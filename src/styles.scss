@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/theming";
+
+// always include only once per project
+@include mat-core();
+
+// Inclusion de notre theme customisé
+@import "themes/main-theme";
+@include angular-material-theme($main-theme);
