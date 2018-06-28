@@ -8,3 +8,16 @@
 // Inclusion de notre theme customisé
 @import "themes/main-theme";
 @include angular-material-theme($main-theme);
+
+// Export main colors
+$primary: mat-color($main-theme-primary);
+$accent: mat-color($main-theme-accent);
+$warn: mat-color($main-theme-warn);
+
+$primary-lighter: mat-color($main-theme-primary, lighter);
+$accent-lighter: mat-color($main-theme-accent, lighter);
+$warn-lighter: mat-color($main-theme-warn, lighter);
+
+$primary-darker: mat-color($main-theme-primary, darker);
+$accent-darker: mat-color($main-theme-accent, darker);
+$warn-darker: mat-color($main-theme-warn, darker);

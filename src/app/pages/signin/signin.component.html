@@ -1,14 +1,29 @@
-<div class="">
-  <h2>Connectez vous</h2>
+<div class="login-container" align="center">
 
-  <form id="signin-form">
-    <div class="row">
-      <label for="login-input">Identifint</label>
-      <input type="text" name="username" id="login-input">
+<mat-card color="accent">
+  <div layout="column">
+    <div flex>
+      <mat-card-title>Connectez vous</mat-card-title>
     </div>
-    <div class="row">
-      <label for="password-input">Mot de passe</label>
-      <input type="password" name="password" id="password-input">
-    </div>
-  </form>
+
+    <form [formGroup]="form" id="signin-form">
+      <div class="row" flex>
+        <mat-form-field>
+          <input matInput placeholder="Identifiant" type="text" name="username">
+        </mat-form-field>
+      </div>
+      <div class="row" flex>
+        <mat-form-field>
+          <input matInput placeholder="Mot de passe" type="password" name="password">
+        </mat-form-field>
+      </div>
+      <div class="row" flex>
+        <button mat-raised-button color="primary" (click)="submitForm()">Connexion</button>
+      </div>
+    </form>
+
+    <p *ngIf="error !== null">{{ error }}</p>
+  </div>
+</mat-card>
+
 </div>
