@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import {User} from "../models/user";
+import {$QUESTION} from "codelyzer/angular/styles/chars";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private connectedUser: User;
-
   constructor(
     private http: HttpClient
-  ) {
-    this.connectedUser = null;
-  }
+  ) { }
 
   public checkCredentials(username: string, password: string): Promise<any> {
     let formData = new FormData();
@@ -24,13 +21,13 @@ export class AccountService {
   }
 
   public getUser(id: any) {
-    return this.http.get(environment.apiURL + '/account/' + id).toPromise();
+    return this.http.get<User>(environment.apiURL + '/account/' + id).toPromise();
   }
 
   public setSession(jwt: string) {
     localStorage.setItem('jwt', jwt);
     this.getUser('me').then(apiResponse => {
-      this.connectedUser = new User(apiResponse);
+      localStorage.setItem('jwt', jwt);
     }, err => {
       this.signout();
     });
@@ -38,15 +35,9 @@ export class AccountService {
 
   public signout(): void {
     localStorage.clear();
-    this.connectedUser = null;
   }
 
   public isUserConnected(): boolean {
-    return this.connectedUser != null && this.connectedUser.id != 0
-      && localStorage.getItem('jwt') != null;
-  }
-
-  public getConnectedUser(): User {
-    return this.connectedUser;
+    return localStorage.getItem('jwt') != null;
   }
 }
