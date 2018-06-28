@@ -17,15 +17,23 @@ export class AccountService {
   }
 
   public checkCredentials(username: string, password: string): Promise<any> {
-    const body = new URLSearchParams();
-    body.set('username', username);
-    body.set('password', password);
-    return this.http.post(environment.apiURL + '/signin', body).toPromise();
+    let formData = new FormData();
+    formData.append('_username', username);
+    formData.append('_password', password);
+    return this.http.post(environment.apiURL + '/account/signin', formData).toPromise();
   }
 
-  public setSession(user: User, jwt: string) {
-    this.connectedUser = user;
+  public getUser(id: any) {
+    return this.http.get(environment.apiURL + '/account/' + id).toPromise();
+  }
+
+  public setSession(jwt: string) {
     localStorage.setItem('jwt', jwt);
+    this.getUser('me').then(apiResponse => {
+      this.connectedUser = new User(apiResponse);
+    }, err => {
+      this.signout();
+    });
   }
 
   public signout(): void {
@@ -34,7 +42,7 @@ export class AccountService {
   }
 
   public isUserConnected(): boolean {
-    return this.connectedUser != null
+    return this.connectedUser != null && this.connectedUser.id != 0
       && localStorage.getItem('jwt') != null;
   }
 

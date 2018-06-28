@@ -13,33 +13,37 @@ export class SigninComponent implements OnInit {
 
   private error: string;
   private form: FormGroup;
+  private canSubmit: boolean;
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService
   ) {
     this.error = null;
+    this.canSubmit = false;
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  ngOnInit() {
-
-  }
-
   public submitForm() {
+    if (!this.form.valid) {
+      this.error = "Vueillez remplir tous les champs";
+      return;
+    }
+
     let formVal = this.form.value;
-    this.accountService.checkCredentials(formVal.username, this.form.value.password)
+    this.accountService.checkCredentials(formVal.username, formVal.password)
       .then(apiToken => {
-        console.log(apiToken);
-        /*const user = new User();
-        user.username = formVal;
-        this.accountService.setSession(user)*/
+        this.accountService.setSession(apiToken.token);
       }, err => {
         console.log(err);
       });
+  }
+
+  ngOnInit() {
+    this.form.valid;
   }
 
 }

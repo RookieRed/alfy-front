@@ -13,15 +13,16 @@ import {
   MatCommonModule, MatGridListModule,
   MatInputModule
 } from "@angular/material";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { AuthInterceptorService } from "./services/auth-interceptor.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,13 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [
     AppComponent
   ]

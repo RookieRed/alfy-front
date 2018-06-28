@@ -9,20 +9,21 @@
     <form [formGroup]="form" id="signin-form">
       <div class="row" flex>
         <mat-form-field>
-          <input matInput placeholder="Identifiant" type="text" name="username">
+          <input [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text" name="username">
         </mat-form-field>
       </div>
       <div class="row" flex>
         <mat-form-field>
-          <input matInput placeholder="Mot de passe" type="password" name="password">
+          <input [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password" name="password">
         </mat-form-field>
       </div>
-      <div class="row" flex>
-        <button mat-raised-button color="primary" (click)="submitForm()">Connexion</button>
+      <div class="row action-buttons" flex>
+        <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
       </div>
     </form>
 
-    <p *ngIf="error !== null">{{ error }}</p>
+    <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
   </div>
 </mat-card>
 
