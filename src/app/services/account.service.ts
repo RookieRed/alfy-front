@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import {User} from "../models/user";
 import {$QUESTION} from "codelyzer/angular/styles/chars";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {$QUESTION} from "codelyzer/angular/styles/chars";
 export class AccountService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   public checkCredentials(username: string, password: string): Promise<any> {
@@ -29,12 +31,14 @@ export class AccountService {
     this.getUser('me').then(apiResponse => {
       localStorage.setItem('jwt', jwt);
     }, err => {
+      console.log(err);
       this.signout();
     });
   }
 
   public signout(): void {
     localStorage.clear();
+    this.router.navigate(['signin']);
   }
 
   public isUserConnected(): boolean {

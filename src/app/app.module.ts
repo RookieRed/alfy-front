@@ -10,14 +10,14 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCommonModule, MatGridListModule,
-  MatInputModule
+  MatCommonModule, MatDatepickerModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatNativeDateModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
-import {AuthGuard} from "./shared/auth.guard";
+import { AuthGuard } from "./shared/auth.guard";
 import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 
@@ -38,10 +38,13 @@ import { HomeComponent } from './shared/home/home.component';
     AppRoutingModule,
     MatCommonModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatButtonModule,
     MatGridListModule,
     MatButtonToggleModule,
     MatInputModule,
+    MatIconModule,
     BrowserAnimationsModule,
   ],
   providers: [

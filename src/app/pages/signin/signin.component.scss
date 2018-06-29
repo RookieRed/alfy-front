@@ -10,11 +10,6 @@
   justify-content: center;
   align-items: center;
 
-  background-origin: border-box;
-  background-clip: border-box;
-  background: url('../../../assets/img/connection-background.jpg') no-repeat 0 0;
-  background-size: cover;
-
   mat-card {
     background-color: $accent-lighter;
     width: 450px;
@@ -30,5 +25,6 @@
       }
     }
   }
-
 }
+
+
