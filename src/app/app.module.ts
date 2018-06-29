@@ -11,7 +11,7 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatCommonModule, MatDatepickerModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatNativeDateModule
+  MatInputModule, MatListModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
@@ -20,6 +20,7 @@ import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { AuthGuard } from "./shared/auth.guard";
 import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HomeComponent } from './shared/home/home.component';
     SigninComponent,
     Page404Component,
     HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,10 @@ import { HomeComponent } from './shared/home/home.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatCommonModule,
+    MatListModule,
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,

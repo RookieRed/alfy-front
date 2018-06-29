@@ -6,7 +6,7 @@
       <mat-card-title>Connectez vous</mat-card-title>
     </div>
 
-    <form [formGroup]="form" id="signin-form">
+    <form [formGroup]="form">
       <div class="row" flex>
         <mat-form-field>
           <input [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text" name="username">
@@ -18,8 +18,8 @@
         </mat-form-field>
       </div>
       <div class="row action-buttons" flex>
+        <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
         <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
-        <button mat-flat-button color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
       </div>
     </form>
 

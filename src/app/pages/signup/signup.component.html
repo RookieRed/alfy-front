@@ -6,7 +6,7 @@
         <mat-card-title>Formulaire d'inscription</mat-card-title>
       </div>
 
-      <form [formGroup]="form" id="signin-form">
+      <form (submit)="submitForm()" [formGroup]="form" id="signin-form">
         <div class="row" flex>
           <mat-form-field>
             <input (change)="checkValidity()" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text">
@@ -50,8 +50,8 @@
         </div>
 
         <div class="row action-buttons" flex>
+          <button mat-flat-button type="submit" [autofocus]="form" color="primary" [disabled]="!form.valid" (click)="submitForm()">S'incrire</button>
           <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
-          <button mat-flat-button color="primary" [disabled]="!form.valid" (click)="submitForm()">S'incrire</button>
         </div>
       </form>
     </div>

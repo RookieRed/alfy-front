@@ -1,0 +1,32 @@
+$header-height: 70px;
+
+#app-container {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 0;
+  bottom: $header-height;
+  right: 0;
+  left: 0;
+
+  .app-toolbar {
+    height: $header-height;
+    position: fixed;
+    box-shadow: 0 2px 5px #606060;
+    z-index: 2;
+
+    .blank-filler {
+      flex: 1 1 auto;
+    }
+  }
+
+  .sidenav-container {
+    flex: 1;
+    top: $header-height;
+
+    .app-content {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import {Component, NgModule, OnDestroy, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import { AccountService } from "../../services/account.service";
 import {Router} from "@angular/router";
 
