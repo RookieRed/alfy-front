@@ -9,12 +9,12 @@
       <form [formGroup]="form" id="signin-form">
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text" name="lastName">
+            <input (change)="checkValidity()" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.firstName" matInput placeholder="Prénom" type="text" name="firstName">
+            <input (change)="checkValidity()" [formControl]="form.controls.firstName" matInput placeholder="Prénom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
@@ -26,22 +26,22 @@
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text" name="username">
+            <input (change)="checkValidity()" [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.email" matInput placeholder="Adresse mail" type="email" name="email">
+            <input (change)="checkValidity()" [formControl]="form.controls.email" matInput placeholder="Adresse mail" type="email">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password" name="password">
+            <input (change)="checkValidity()" [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.passwordConfirm" matInput placeholder="Confirmation" type="password" name="password">
+            <input (change)="checkValidity()" [formControl]="form.controls.passwordConfirm" matInput placeholder="Confirmation" type="password">
           </mat-form-field>
         </div>
 

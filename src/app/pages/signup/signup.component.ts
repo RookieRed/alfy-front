@@ -1,5 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {User} from "../../models/user";
+import {timestamp} from "rxjs/operators";
+import {AccountService} from "../../services/account.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +18,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
+    private accountService: AccountService,
+    private router: Router,
     ) {
     this.form = this.fb.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -28,7 +34,34 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public submitForm() {
+    if (this.form.valid) {
+      const val = this.form.value;
 
+      if (val.password !== val.passwordConfirm) {
+        this.error = "Les deux mots de passes ne sont pas identiques";
+        return;
+      }
+      if (val.birthDay.getTime() >= (new Date()).getTime()) {
+        this.error = "Date de naissance invalide";
+        return;
+      }
+
+      let userPayload = new User();
+      userPayload.username = val.username;
+      userPayload.firstName = val.firstName;
+      userPayload.lastName = val.lastName;
+      userPayload.email = val.email;
+      userPayload.birthDay = val.birthDay;
+      userPayload.password = val.password;
+
+      this.accountService.signup(userPayload)
+        .then(apiResponse => {
+          this.accountService.setSession(apiResponse.token);
+          this.router.navigate(['']);
+        }, err => {
+          console.log(err);
+        });
+    }
   }
 
   public checkValidity() {
@@ -41,9 +74,11 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.style.background = "url('../../../assets/img/connection-background.jpg') no-repeat 0 0";
+    document.body.style.backgroundSize = "100%";
   }
 
   ngOnDestroy() {
+    document.body.style.backgroundSize = "";
     document.body.style.background = "";
   }
 }

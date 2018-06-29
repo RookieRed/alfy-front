@@ -22,6 +22,10 @@ export class AccountService {
     return this.http.post(environment.apiURL + '/account/signin', formData).toPromise();
   }
 
+  public signup(userPayload): Promise<any> {
+    return this.http.put(environment.apiURL + '/account/signup', JSON.stringify(userPayload)).toPromise();
+  }
+
   public getUser(id: any) {
     return this.http.get<User>(environment.apiURL + '/account/' + id).toPromise();
   }
