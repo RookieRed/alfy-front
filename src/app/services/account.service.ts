@@ -36,13 +36,13 @@ export class AccountService {
       localStorage.setItem('jwt', jwt);
     }, err => {
       console.log(err);
-      this.signout();
+      this.signout('');
     });
   }
 
-  public signout(): void {
+  public signout(redirectTo: string): void {
     localStorage.clear();
-    this.router.navigate(['signin']);
+    this.router.navigate([redirectTo]);
   }
 
   public isUserConnected(): boolean {

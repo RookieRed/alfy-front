@@ -1,0 +1,92 @@
+@import "../../../styles";
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    padding: 0 9%;
+    align-content: center;
+    flex-direction: column;
+
+    .title {
+      margin: 25px;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    .content {
+      margin: 0 0 25px;
+      line-height: 23px;
+      font-size: 17px;
+      text-align: center;
+    }
+
+    &.alfy-presentation {
+      background-color: white;
+
+      .main-title {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-flow: column;
+
+        h1 {
+          text-align: center;
+        }
+
+        .logo-alfy {
+          max-width: 85%;
+          margin: 0 auto;
+          max-height: 300px;
+        }
+      }
+    }
+
+    &.alfy-actions {
+      background: white;
+    }
+
+    &.alfy-history {
+
+    }
+
+    &.alfy-contacts {
+      background-color: $primary-darker;
+
+      .cards-container {
+        display: flex;
+        flex-direction: row;
+
+        mat-card {
+          margin: 10px auto;
+          width: 400px;
+          display: flex;
+          flex-direction: column;
+
+          mat-card-title {
+            font-size: 19px !important;
+            margin-bottom: 10px !important;
+          }
+
+          mat-card-content {
+            width: auto;
+            margin: auto;
+
+            .flex-rows {
+              align-items: center;
+              display: flex;
+
+              mat-icon {
+                margin-right: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

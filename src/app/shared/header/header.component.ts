@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 
 @Component({
@@ -23,7 +23,12 @@ export class HeaderComponent implements OnInit {
   }
 
   public signout() {
-    this.accountService.signout();
+    this.accountService.signout(window.location.pathname);
+  }
+
+  isConnected() {
+    console.log(this.accountService.isUserConnected());
+    return this.accountService.isUserConnected();
   }
 
   ngOnInit() { }

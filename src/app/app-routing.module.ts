@@ -5,14 +5,22 @@ import { SignupComponent } from "./pages/signup/signup.component";
 import {AuthGuard} from "./shared/auth.guard";
 import {Page404Component} from "./shared/page404/page404.component";
 import {HomeComponent} from "./shared/home/home.component";
+import {AboutComponent} from "./pages/about/about.component";
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'about', pathMatch: 'full' },
+      { component: AboutComponent, path: 'about' },
+      { component: Page404Component, path: '404' },
+    ],
+  },
 
-  { path: '404', component: Page404Component},
-  { path: '**', redirectTo: '/404'}
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
@@ -23,4 +31,6 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

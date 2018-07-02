@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCommonModule, MatDatepickerModule, MatGridListModule, MatIconModule,
+  MatCommonModule, MatDatepickerModule, MatDividerModule, MatGridListModule, MatIconModule,
   MatInputModule, MatListModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -21,6 +21,7 @@ import { AuthGuard } from "./shared/auth.guard";
 import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HeaderComponent } from './shared/header/header.component';
     Page404Component,
     HomeComponent,
     HeaderComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { HeaderComponent } from './shared/header/header.component';
     MatButtonToggleModule,
     MatInputModule,
     MatIconModule,
+    MatDividerModule,
     BrowserAnimationsModule,
   ],
   providers: [

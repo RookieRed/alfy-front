@@ -39,6 +39,9 @@ export class SigninComponent implements OnInit, OnDestroy {
         this.accountService.setSession(apiToken.token);
         this.router.navigate(['']);
       }, err => {
+        if (err.status == 401) {
+          this.error = "Mauvais identifiants";
+        }
         console.log(err);
       });
   }

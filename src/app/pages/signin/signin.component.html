@@ -17,13 +17,16 @@
           <input [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password" name="password">
         </mat-form-field>
       </div>
+
+      <div class="row" flex>
+        <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
+      </div>
+
       <div class="row action-buttons" flex>
         <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
         <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
       </div>
     </form>
-
-    <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
   </div>
 </mat-card>
 
