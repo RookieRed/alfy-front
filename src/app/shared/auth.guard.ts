@@ -14,9 +14,11 @@ export class AuthGuard implements CanActivate {
     '/signout',
   ];
   private readonly unprotectedLinks: string[] = this.connectionLinks.concat([
-    '/users',
     '/about'
   ]);
+  private readonly userProtectedLinks: string[] = [
+    '/directory'
+  ];
 
   constructor(
     private accountService: AccountService,
@@ -31,8 +33,15 @@ export class AuthGuard implements CanActivate {
     } else if (this.accountService.isUserConnected() && this.isConnection(url)) {
       this.router.navigate(["/"]);
       return false;
+    } else if (this.accountService.isUserConnected() && this.isUserProtected(url)) {
+      return true;
     }
     return true;
+  }
+
+  public isEnabled(link: string) {
+    return (this.accountService.isUserConnected() && !this.isConnection(link))
+    || this.isUnprotected(link);
   }
 
   private isUnprotected(link: string) {
@@ -43,6 +52,12 @@ export class AuthGuard implements CanActivate {
 
   private isConnection(link: string) {
     return this.connectionLinks.some( e => {
+      return link === <string> e;
+    });
+  }
+
+  private isUserProtected(link: string) {
+    return this.userProtectedLinks.some( e => {
       return link === <string> e;
     });
   }

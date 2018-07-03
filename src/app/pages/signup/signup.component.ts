@@ -12,9 +12,9 @@ import {Router} from "@angular/router";
 })
 export class SignupComponent implements OnInit, OnDestroy {
 
-  private form: FormGroup;
-  private calendarStartDate: Date;
-  private error: string;
+  form: FormGroup;
+  calendarStartDate: Date;
+  error: string;
 
   constructor(
     private fb: FormBuilder,

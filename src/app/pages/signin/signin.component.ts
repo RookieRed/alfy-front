@@ -10,9 +10,9 @@ import {Router} from "@angular/router";
 })
 export class SigninComponent implements OnInit, OnDestroy {
 
-  private error: string;
-  private form: FormGroup;
-  private canSubmit: boolean;
+  error: string;
+  form: FormGroup;
+  canSubmit: boolean;
 
   constructor(
     private fb: FormBuilder,
