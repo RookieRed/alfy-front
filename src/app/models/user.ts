@@ -7,6 +7,7 @@ export class User {
   username: string;
   email: string;
   birthDay: Date;
+  profilePicture: {pathname, name};
   role: string;
 
   public constructor(obj?: {id?: number,

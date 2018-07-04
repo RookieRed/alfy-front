@@ -17,7 +17,8 @@ export class AuthGuard implements CanActivate {
     '/about'
   ]);
   private readonly userProtectedLinks: string[] = [
-    '/directory'
+    '/directory',
+    '/profile/edit'
   ];
 
   constructor(

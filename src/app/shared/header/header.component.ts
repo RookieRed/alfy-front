@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   private readonly allMenuLinks: Link[] = [
     { link: '/about', name: 'Accueil' },
     { link: '/directory', name: 'Annuaire' },
-    { link: '/admin/users', name: 'Gestion des utilisateurs' },
+    { link: '/admin/students', name: 'Gestion des utilisateurs' },
     { link: '/signin', name: 'Se connecter' },
   ];
 
@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
   }
 
   isConnected() {
-    console.log(this.accountService.isUserConnected());
     return this.accountService.isUserConnected();
   }
 

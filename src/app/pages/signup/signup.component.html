@@ -9,39 +9,39 @@
       <form (submit)="submitForm()" [formGroup]="form" id="signin-form">
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text">
+            <input (input)="checkValidity()" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.firstName" matInput placeholder="Prénom" type="text">
+            <input (input)="checkValidity()" [formControl]="form.controls.firstName" matInput placeholder="Prénom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" matInput [formControl]="form.controls.birthDay" [matDatepicker]="picker" placeholder="Date de naissance">
+            <input (input)="checkValidity()" matInput [formControl]="form.controls.birthDay" [matDatepicker]="picker" placeholder="Date de naissance">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text">
+            <input (input)="checkValidity()" [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.email" matInput placeholder="Adresse mail" type="email">
+            <input (input)="checkValidity()" [formControl]="form.controls.email" matInput placeholder="Adresse mail" type="email">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password">
+            <input (input)="checkValidity()" [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (change)="checkValidity()" [formControl]="form.controls.passwordConfirm" matInput placeholder="Confirmation" type="password">
+            <input (input)="checkValidity()" [formControl]="form.controls.passwordConfirm" matInput placeholder="Confirmation" type="password">
           </mat-form-field>
         </div>
 

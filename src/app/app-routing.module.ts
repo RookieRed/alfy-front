@@ -6,6 +6,8 @@ import {AuthGuard} from "./shared/auth.guard";
 import {Page404Component} from "./shared/page404/page404.component";
 import {HomeComponent} from "./shared/home/home.component";
 import {AboutComponent} from "./pages/about/about.component";
+import {DirectoryComponent} from "./pages/directory/directory.component";
+import {ProfileComponent} from "./pages/account/profile.component";
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
@@ -16,6 +18,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'about', pathMatch: 'full' },
       { component: AboutComponent, path: 'about' },
+      { component: DirectoryComponent, path: 'directory' },
+      { component: ProfileComponent, path: 'profile/:id' },
       { component: Page404Component, path: '404' },
     ],
   },

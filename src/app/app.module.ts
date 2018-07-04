@@ -22,6 +22,9 @@ import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ProfileComponent } from './pages/account/profile.component';
+import { DirectoryComponent } from './pages/directory/directory.component';
+import { CasePipe } from './shared/pipes/case.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { AboutComponent } from './pages/about/about.component';
     HomeComponent,
     HeaderComponent,
     AboutComponent,
+    ProfileComponent,
+    DirectoryComponent,
+    CasePipe,
   ],
   imports: [
     BrowserModule,

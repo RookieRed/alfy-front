@@ -1,0 +1,112 @@
+@import "../../../styles";
+
+$item-height: 35px;
+
+.blank-filler {
+  flex: 1 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  $item-height: 30px;
+
+  .bordered-container {
+    margin: 10px 10% 0;
+    background-color: white;
+    height: calc( 100% - 10px - 2px );
+    border: 1px solid #eee;
+    border-radius: 10px;
+  }
+}
+
+.bordered-container {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+  }
+
+  .results-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $accent;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 15px;
+    border-bottom: 0.5px solid $accent-lighter;
+
+    button:enabled {
+      color: $accent-darker;
+    }
+
+    .nb-result, .pages-info {
+      margin: 0 5px;
+    }
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+      mat-form-field {
+        min-width: 250px;
+        width: 50%;
+        max-width: 600px;
+        transition: width 0.3s ease-in-out;
+
+        &:focus-within {
+          transition: width 0.3s ease-in-out;
+          width: 80%;
+        }
+    }
+  }
+
+  mat-list {
+    background: white;
+    margin-top: 20px !important;
+    padding: 20px 0;
+
+
+    .student-item {
+      padding: 5px 16px !important;
+
+      .student-info {
+        display: flex;
+        flex-direction: row;
+        height: $item-height;
+        line-height: $item-height;
+        font-size: $item-height / 2;
+
+        &.student-avatar {
+          border: 1px solid black;
+          border-radius: 20px;
+          overflow: hidden;
+          margin: 0 20px;
+
+          img {
+            height: $item-height;
+            width: auto;
+          }
+        }
+
+        &.student-username {
+          color: $accent;
+          font-size: ($item-height / 2) - 4px;
+          margin-left: 10px;
+        }
+      }
+
+      &:hover {
+        background-color: $accent-lighter;
+      }
+    }
+  }
+
+  .errors-container {
+    font-size: 20px;
+    text-align: center;
+  }
+}

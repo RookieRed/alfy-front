@@ -1,0 +1,36 @@
+<div class="bordered-container">
+
+  <h1>Annuaire des élèves</h1>
+  <div class="search-container">
+    <mat-form-field>
+      <input matInput class="search-input" [(ngModel)]="searchValue" (input)="onSearchChange()" type="text" placeholder="Rechercher...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="results-info">
+    <button (click)="previousPaage()" *ngIf="pagination != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage > 1)">
+            <mat-icon>skip_previous</mat-icon>
+    </button>
+    <div class="blank-filler"></div>
+    <div class="nb-result">Nombre de résultats : {{ nbResults }}</div>
+    <div *ngIf="pagination != null" class="pages-info">Page : {{ pagination.currentPage }} / {{ pagination.totalPages }}</div>
+    <div class="blank-filler"></div>
+    <button (click)="nextPaage()" *ngIf="pagination != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage < pagination.totalPages)">
+      <mat-icon>skip_next</mat-icon>
+    </button>
+  </div>
+  <mat-list *ngIf="students.length > 0">
+    <mat-list-item class="student-item" *ngFor="let u of students" routerLink="/profile/{{u.id}}">
+      <div *ngIf="u.profilePicture == null" class="student-info student-avatar"><img src="/assets/img/default-avatar.png"/></div>
+      <div *ngIf="u.profilePicture != null" class="student-info student-avatar"><img src="{{ u.profilePicture.pathname }}"/></div>
+      <div class="student-info student-name">{{ u.firstName | case: 'ucfirst' }} {{ u.lastName | case: 'up' }}</div>
+      <div class="student-info student-username" *ngIf="u.username != null">@{{ u.username }}</div>
+      <div class="blank-filler"></div>
+      <mat-icon>edit</mat-icon>
+    </mat-list-item>
+  </mat-list>
+  <div class="errors-container" *ngIf="students.length == 0">
+    <p class="mat-error">Aucun résultat</p>
+  </div>
+
+</div>
