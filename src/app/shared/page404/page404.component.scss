@@ -1,0 +1,19 @@
+@import "../sass/bordered-container";
+@import "../../../styles";
+
+.bordered-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+
+  pre {
+    color: $warn-darker;
+    user-select: none;
+  }
+   p {
+     color: $accent-darker;
+   }
+}

@@ -8,14 +8,14 @@
     </mat-form-field>
   </div>
   <div class="results-info">
-    <button (click)="previousPaage()" *ngIf="pagination != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage > 1)">
+    <button (click)="previousPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage > 1)">
             <mat-icon>skip_previous</mat-icon>
     </button>
     <div class="blank-filler"></div>
     <div class="nb-result">Nombre de résultats : {{ nbResults }}</div>
-    <div *ngIf="pagination != null" class="pages-info">Page : {{ pagination.currentPage }} / {{ pagination.totalPages }}</div>
+    <div *ngIf="pagination.totalPages != null" class="pages-info">Page : {{ pagination.currentPage }} / {{ pagination.totalPages }}</div>
     <div class="blank-filler"></div>
-    <button (click)="nextPaage()" *ngIf="pagination != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage < pagination.totalPages)">
+    <button (click)="nextPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage < pagination.totalPages)">
       <mat-icon>skip_next</mat-icon>
     </button>
   </div>

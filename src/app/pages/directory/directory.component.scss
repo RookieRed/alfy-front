@@ -1,21 +1,10 @@
 @import "../../../styles";
+@import "../../shared/sass/bordered-container";
 
 $item-height: 35px;
 
 .blank-filler {
   flex: 1 0 auto;
-}
-
-@media only screen and (min-width: 768px) {
-  $item-height: 30px;
-
-  .bordered-container {
-    margin: 10px 10% 0;
-    background-color: white;
-    height: calc( 100% - 10px - 2px );
-    border: 1px solid #eee;
-    border-radius: 10px;
-  }
 }
 
 .bordered-container {

@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page404',
   templateUrl: './page404.component.html',
-  styleUrls: ['./page404.component.css']
+  styleUrls: ['./page404.component.scss']
 })
-export class Page404Component implements OnInit {
+export class Page404Component implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private title: Title
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('ALFY : page introuvable');
   }
 
+  ngOnDestroy() {
+    this.title.setTitle('ALFY');
+  }
 }

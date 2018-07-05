@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     { link: '/about', name: 'Accueil' },
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
-    { link: '/signin', name: 'Se connecter' },
+    { link: '/profile/edit', name: 'Mon compte' },
   ];
 
   constructor(
@@ -46,6 +46,16 @@ export class HeaderComponent implements OnInit {
         this.linksList.push(link);
       }
     }
+    if (this.accountService.isUserConnected()) {
+      this.linksList.push({ link: '/signout', name: 'Se déconnecter' });
+    } else {
+      this.linksList.push({ link: '/signin', name: 'Se connecter' });
+    }
+  }
+
+  onLinkClick() {
+    this.isMenuOpened = false;
+    document.getElementById('app-content').focus();
   }
 
 }

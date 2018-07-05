@@ -41,7 +41,7 @@ export class AuthGuard implements CanActivate {
   }
 
   public isEnabled(link: string) {
-    return (this.accountService.isUserConnected() && !this.isConnection(link))
+    return (this.accountService.isUserConnected() && this.isUserProtected(link))
     || this.isUnprotected(link);
   }
 

@@ -1,7 +1,7 @@
 <div id="app-container">
   <mat-toolbar class="app-toolbar" color="primary">
     <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
-    <h1>ALFY - Le réseau.</h1>
+    <h1 routerLink="/about">ALFY - Le réseau.</h1>
     <span class="blank-filler"></span>
     <button mat-icon-button *ngIf="isConnected()" (click)="signout()"><mat-icon>exit_to_app</mat-icon></button>
     <button mat-icon-button *ngIf="!isConnected()" routerLink="/signin"><mat-icon>account_circle</mat-icon></button>
@@ -11,12 +11,12 @@
     <mat-sidenav class="sidenav-menu" mode="over" [(opened)]="isMenuOpened">
       <mat-nav-list>
         <mat-list-item *ngFor="let link of linksList">
-          <a matLine routerLink="link.link">{{ link.name }}</a>
+          <a matLine routerLink="{{ link.link }}" (click)="toggleMenu()">{{ link.name }}</a>
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content class="app-content">
+    <mat-sidenav-content id="app-content">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -12,11 +12,38 @@ export class StudentService {
     private http: HttpClient
   ) { }
 
-  public getAll() {
-    return this.http.get(environment.apiURL + '/students').toPromise();
+  public getAll(pagination?: Pagination) {
+    let options;
+    if (pagination != null && pagination.currentPage != null) {
+      options = {
+        params: {'p': '' + pagination.currentPage}
+      };
+      if (pagination.resultsPerPage != null) {
+        options.params.resultsPerPage = pagination.resultsPerPage;
+      }
+    }
+    return this.http.get(environment.apiURL + '/students', options).toPromise();
   }
 
-  searchByName(searchValue: string, pagination?: Pagination) {
-    return this.http.get(environment.apiURL + '/students', {params: {'search': searchValue}}).toPromise();
+  public searchByName(searchValue: string, pagination?: Pagination) {
+    let options;
+    if (pagination != null && pagination.currentPage != null) {
+      options = {
+        params: {
+          'search': searchValue,
+          'p': '' + pagination.currentPage,
+        }
+      };
+      if (pagination.resultsPerPage != null) {
+        options.params.resultsPerPage = pagination.resultsPerPage;
+      }
+    } else {
+      options = {
+        params: {
+          'search': searchValue
+        }
+      };
+    }
+    return this.http.get(environment.apiURL + '/students', options).toPromise();
   }
 }
