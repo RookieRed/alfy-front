@@ -1,8 +1,8 @@
 // Création d'un thème material principal
 
-$main-theme-primary: mat-palette($mat-amber, 400, 200, 700);
-$main-theme-accent: mat-palette($mat-grey, 400, 200, 800);
-$main-theme-warn: mat-palette($mat-deep-orange, 500);
+$main-theme-primary: mat-palette($mat-yellow, 600, 100, 800);
+$main-theme-accent: mat-palette($mat-grey, 500, 200, 800);
+$main-theme-warn: mat-palette($mat-deep-orange);
 
 
 // Theme :

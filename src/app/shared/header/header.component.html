@@ -3,8 +3,8 @@
     <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
     <h1 routerLink="/about">ALFY - Le réseau.</h1>
     <span class="blank-filler"></span>
-    <button mat-icon-button *ngIf="isConnected()" (click)="signout()"><mat-icon>exit_to_app</mat-icon></button>
-    <button mat-icon-button *ngIf="!isConnected()" routerLink="/signin"><mat-icon>account_circle</mat-icon></button>
+    <button mat-stroked-button *ngIf="isConnected()" (click)="signout()">Déconnexion</button>
+    <button mat-stroked-button *ngIf="!isConnected()" routerLink="/signin">Connexion</button>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">

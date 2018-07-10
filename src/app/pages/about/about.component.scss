@@ -1,17 +1,19 @@
 @import "../../../styles";
 
+$padding: 11%;
+
 .about-container {
   display: flex;
   flex-direction: column;
 
   .row {
     display: flex;
-    padding: 0 9%;
+    padding: 0 $padding;
     align-content: center;
     flex-direction: column;
 
     .title {
-      margin: 25px;
+      margin: 25px 0;
 
       h2 {
         margin: 0;
@@ -22,7 +24,6 @@
       margin: 0 0 25px;
       line-height: 23px;
       font-size: 17px;
-      text-align: center;
     }
 
     &.alfy-presentation {
@@ -46,18 +47,21 @@
       }
     }
 
-    &.alfy-actions {
-      background: white;
+    &.alfy-history {
+      background-color: $accent-darker;
+      color: $light-primary-text;
     }
 
-    &.alfy-history {
-
+    &.alfy-actions {
+      background-color: white;
     }
 
     &.alfy-contacts {
-      background-color: $primary-darker;
+      background-color: $accent-darker;
+      color: $light-primary-text;
 
       .cards-container {
+        top: 24px;
         display: flex;
         flex-direction: row;
 
@@ -86,6 +90,17 @@
             }
           }
         }
+      }
+
+      &:before {
+        display: block;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 24px;
+        margin-left: -1*$padding;
+        background: url(/assets/img/shadow.png) no-repeat top center;
+        background-size: contain;
       }
     }
   }

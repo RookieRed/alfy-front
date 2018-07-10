@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 $header-height: 70px;
 
 #app-container {
@@ -12,15 +14,21 @@ $header-height: 70px;
   width: 100%;
   max-width: 100%;
 
+  ::selection {
+    background-color: $primary;
+  }
+
   .app-toolbar {
     height: $header-height;
     position: fixed;
-    box-shadow: 0 2px 5px #606060;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 100;
 
     h1 {
       margin-left: 20px;
       cursor: pointer;
+      font-family: 'Bitter', serif;
+      font-size: 24px;
     }
     .blank-filler {
       flex: 1 1 auto;
@@ -42,7 +50,7 @@ $header-height: 70px;
     #app-content {
       margin: 0;
       padding: 0;
-      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-family: Raleway, sans-serif;
     }
   }
 }
