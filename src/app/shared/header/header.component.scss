@@ -16,7 +16,7 @@ $header-height: 70px;
     height: $header-height;
     position: fixed;
     box-shadow: 0 2px 5px #606060;
-    z-index: 2;
+    z-index: 100;
 
     h1 {
       margin-left: 20px;
@@ -29,6 +29,10 @@ $header-height: 70px;
 
   .sidenav-menu {
     width: 250px;
+
+    .hidden {
+      display: none;
+    }
   }
 
   .sidenav-container {

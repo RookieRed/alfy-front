@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 import {AppRoutingModule} from "../../app-routing.module";
 import {AuthGuard} from "../auth.guard";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -11,21 +12,22 @@ import {AuthGuard} from "../auth.guard";
 export class HeaderComponent implements OnInit {
 
   isMenuOpened: boolean;
-  linksList: Link[];
 
   private readonly allMenuLinks: Link[] = [
     { link: '/about', name: 'Accueil' },
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
     { link: '/profile/edit', name: 'Mon compte' },
+    { link: '/signout', name: 'Se déconnecter' },
+    { link: '/signin', name: 'Se connecter' },
   ];
 
   constructor(
     private accountService: AccountService,
     private authGuard: AuthGuard,
+    private router: Router,
   ) {
     this.isMenuOpened = false;
-    this.linksList = [];
   }
 
   public toggleMenu() {
@@ -33,30 +35,27 @@ export class HeaderComponent implements OnInit {
   }
 
   public signout() {
-    this.accountService.signout(window.location.pathname);
+    this.accountService.signout();
+    if (!this.authGuard.isEnabled(window.location.pathname)) {
+      this.router.navigate(['']);
+    }
   }
 
   isConnected() {
     return this.accountService.isUserConnected();
   }
 
-  ngOnInit() {
-    for (let link of this.allMenuLinks) {
-      if (this.authGuard.isEnabled(link.link)) {
-        this.linksList.push(link);
-      }
+  isEnabled(link: string): boolean {
+    if (!this.accountService.isUserConnected() && link == '/signout') {
+      return false;
     }
-    if (this.accountService.isUserConnected()) {
-      this.linksList.push({ link: '/signout', name: 'Se déconnecter' });
-    } else {
-      this.linksList.push({ link: '/signin', name: 'Se connecter' });
+    if (this.accountService.isUserConnected() && link == '/signin'){
+      return false;
     }
+    return this.authGuard.isEnabled(link);
   }
 
-  onLinkClick() {
-    this.isMenuOpened = false;
-    document.getElementById('app-content').focus();
-  }
+  ngOnInit() { }
 
 }
 

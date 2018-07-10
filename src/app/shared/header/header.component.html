@@ -10,7 +10,7 @@
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav-menu" mode="over" [(opened)]="isMenuOpened">
       <mat-nav-list>
-        <mat-list-item *ngFor="let link of linksList">
+        <mat-list-item *ngFor="let link of allMenuLinks" [ngClass]="{'hidden': !isEnabled(link.link)}">
           <a matLine routerLink="{{ link.link }}" (click)="toggleMenu()">{{ link.name }}</a>
         </mat-list-item>
       </mat-nav-list>

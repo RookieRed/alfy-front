@@ -1,0 +1,82 @@
+<div [ngClass]="{'profile-container': true, 'loading': loading}">
+  <h1>Mon compte</h1>
+  <div *ngIf="!loading && form != null">
+  <form [formGroup]="form">
+
+    <div class="block">
+      <h3>Infos perso</h3>
+      <div class=" personal-infos">
+        <div class="profile-picture">
+          <div class="picture-border">
+            <img *ngIf="user.profilePicture == null" src="/assets/img/default-avatar.png">
+            <img *ngIf="user.profilePicture != null" src="{{ getProfilePictureUrl() }}">
+          </div>
+          <input id="photoPicker" type="file" accept="image/*" hidden />
+          <button mat-mini-fab class="photo-picker" (click)="pickAPhoto()"><mat-icon>add_a_photo</mat-icon></button>
+        </div>
+        <div class="names">
+          <mat-form-field>
+            <input  matInput [formControl]="form.controls.firstName" type="text" placeholder="Prenom" ([ngModel])="user.firstName"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [formControl]="form.controls.lastName" type="text" placeholder="Nom" ([ngModel])="user.lastName"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [formControl]="form.controls.username" type="text" class="username" placeholder="Pseudo" ([ngModel])="user.username"/>
+          </mat-form-field>
+        </div>
+        <app-address-form [form]="addressForm" (address)="onAddressChanged($event)"></app-address-form>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Sécurité</h3>
+      <p class="info">Vous pouvez changer de mot de passe ici.</p>
+      <div class="security">
+        <div class="row">
+          <mat-form-field>
+            <input  matInput [formControl]="securityForm.controls.password" type="password" placeholder="Mot de passe actuel"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Nouveau mot de passe" type="password" name="newPassword" [formControl]="securityForm.controls.newPassword"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Confirmation" type="password" name="password" [formControl]="securityForm.controls.passwordConfirm"/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Contacts / Social</h3>
+      <p class="info">Renseignez vos profils sur les réseaux sociaux.</p>
+      <div class="social">
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Téléphone" type="text" name="phone" [formControl]="form.controls.phone" ([ngModel])="user.phone"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Facebook" type="text" name="facebook" [formControl]="form.controls.facebook" ([ngModel])="user.facebook"/>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="LinkedIn" type="text" name="linkedIn" [formControl]="form.controls.linkedIn" ([ngModel])="user.linkedIn"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Twitter" type="text" name="password" [formControl]="form.controls.twitter" ([ngModel])="user.twitter"/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="block submission">
+      <button mat-stroked-button color="primary" type="submit" [disabled]="!form.valid">Enregistrer</button>
+    </div>
+  </form>
+  </div>
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="100"></mat-progress-spinner>
+  <p class="mat-error" *ngIf="error != null">{{ error }}</p>
+</div>

@@ -7,7 +7,7 @@ import {Page404Component} from "./shared/page404/page404.component";
 import {HomeComponent} from "./shared/home/home.component";
 import {AboutComponent} from "./pages/about/about.component";
 import {DirectoryComponent} from "./pages/directory/directory.component";
-import {ProfileComponent} from "./pages/account/profile.component";
+import {ProfileEditComponent} from "./pages/profileEdit/profile-edit.component";
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'about', pathMatch: 'full' },
       { component: AboutComponent, path: 'about' },
       { component: DirectoryComponent, path: 'directory' },
-      { component: ProfileComponent, path: 'profile/:id' },
+      { component: ProfileEditComponent, path: 'profile/:id' },
       { component: Page404Component, path: '404' },
     ],
   },

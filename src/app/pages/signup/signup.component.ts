@@ -1,14 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
-import {timestamp} from "rxjs/operators";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['../signin/signin.component.scss']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit, OnDestroy {
 

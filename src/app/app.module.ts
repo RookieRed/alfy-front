@@ -11,7 +11,7 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatCommonModule, MatDatepickerModule, MatDividerModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatListModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule
+  MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
@@ -22,9 +22,10 @@ import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AboutComponent } from './pages/about/about.component';
-import { ProfileComponent } from './pages/account/profile.component';
+import { ProfileEditComponent } from './pages/profileEdit/profile-edit.component';
 import { DirectoryComponent } from './pages/directory/directory.component';
 import { CasePipe } from './shared/pipes/case.pipe';
+import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,10 @@ import { CasePipe } from './shared/pipes/case.pipe';
     HomeComponent,
     HeaderComponent,
     AboutComponent,
-    ProfileComponent,
+    ProfileEditComponent,
     DirectoryComponent,
     CasePipe,
+    AddressFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import { CasePipe } from './shared/pipes/case.pipe';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatGridListModule,
     MatButtonToggleModule,

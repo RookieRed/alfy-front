@@ -1,0 +1,116 @@
+@import "../../../styles";
+@import "../../shared/sass/form";
+
+
+.profile-container {
+  $bg-color: white;
+
+  background-color: $bg-color;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &.loading{
+    background-color: transparent;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 0.5px solid $accent;
+    border-radius: 10px;
+    margin: 20px 10px;
+    padding: 10px;
+
+    h3 {
+      display: block;
+      position: relative;
+      top: -7.5px - 10px;
+      left: 10px;
+      background-color: $bg-color;
+      text-align: left;
+      margin: 0;
+      padding: 0 10px;
+      z-index: 3;
+      color: $accent;
+      font-size: 15px;
+      line-height: 15px;
+    }
+
+    p.info {
+      margin: 0 15px 10px;
+      color: $accent-darker;
+      font-size: 13px;
+    }
+
+    .security, .social {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+
+      .row {
+        flex-direction: row;
+        align-items: start;
+        justify-content: center;
+      }
+    }
+
+    .social {
+      mat-form-field {
+        width: 250px;
+      }
+    }
+  }
+
+  .personal-infos {
+    flex-direction: column;
+
+    .profile-picture {
+      justify-content: center;
+      align-items: flex-end;
+      display: flex;
+      margin-bottom: 10px;
+
+      .picture-border {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 200px;
+        margin: 0;
+        padding: 0;
+        border: 3px solid #ddd;
+        border-radius: 200px;
+        overflow: hidden;
+
+        img {
+          min-width: 220px;
+          width: 220px;
+          height: auto;
+        }
+      }
+
+      .photo-picker {
+        position: relative;
+        left: -20px;
+        background-color: $primary;
+      }
+    }
+  }
+
+  .submission {
+    border: none;
+    margin-top: 0;
+    align-items: center;
+  }
+
+  mat-progress-spinner {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+  }
+}
