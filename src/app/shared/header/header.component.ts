@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   isMenuOpened: boolean;
 
-  private readonly allMenuLinks: Link[] = [
+  readonly allMenuLinks: Link[] = [
     { link: '/about', name: 'Accueil' },
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
