@@ -11,14 +11,14 @@ export class AuthGuard implements CanActivate {
   private readonly connectionLinks: string[] = [
     '/signup',
     '/signin',
-    '/signout',
   ];
   private readonly unprotectedLinks: string[] = this.connectionLinks.concat([
     '/about'
   ]);
   private readonly userProtectedLinks: string[] = [
     '/directory',
-    '/profile/edit'
+    '/profile/edit',
+    '/signout',
   ];
 
   constructor(

@@ -8,10 +8,12 @@ import {HomeComponent} from "./shared/home/home.component";
 import {AboutComponent} from "./pages/about/about.component";
 import {DirectoryComponent} from "./pages/directory/directory.component";
 import {ProfileEditComponent} from "./pages/profileEdit/profile-edit.component";
+import {SignoutComponent} from "./pages/signout/signout.component";
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
+  { path: 'signout', component: SignoutComponent, canActivate: [AuthGuard] },
   { path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],

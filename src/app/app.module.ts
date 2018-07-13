@@ -26,6 +26,7 @@ import { ProfileEditComponent } from './pages/profileEdit/profile-edit.component
 import { DirectoryComponent } from './pages/directory/directory.component';
 import { CasePipe } from './shared/pipes/case.pipe';
 import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
+import { SignoutComponent } from './pages/signout/signout.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddressFormComponent } from './shared/forms/address-form/address-form.c
     DirectoryComponent,
     CasePipe,
     AddressFormComponent,
+    SignoutComponent,
   ],
   imports: [
     BrowserModule,
