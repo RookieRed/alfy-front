@@ -48,4 +48,10 @@ export class AccountService {
   public getMine(): Promise<any> {
     return this.http.get(environment.apiURL + '/account/me').toPromise();
   }
+
+  public updateProfilePicture(user: User, uploadedPicture: File) {
+    let formData = new FormData();
+    formData.append('picture', uploadedPicture, uploadedPicture.name);
+    return this.http.post(environment.apiURL + '/account/' + user.id + '/pictures', formData).toPromise();
+  }
 }

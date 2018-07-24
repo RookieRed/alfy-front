@@ -18,19 +18,24 @@ export class ProfileEditComponent implements OnInit {
   user: User;
   error: string;
   loading: boolean;
+  pictureLoading: boolean;
+  uploadedPicture: File;
+  pictureSrc: string;
+  pictureIsWide: boolean;
+
+  private static readonly DEFAULT_PICTURE_SRC: string = '/assets/img/default-avatar.png';
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
   ) {
     this.loading = true;
+    this.pictureLoading = false;
+    this.uploadedPicture = null;
+    this.pictureIsWide = false;
   }
 
   onSubmitInfo() {
-
-  }
-
-  onSubmitSecurity() {
 
   }
 
@@ -42,17 +47,45 @@ export class ProfileEditComponent implements OnInit {
 
   }
 
-  pickAPhoto() {
+  choseAPicture() {
     document.getElementById('photoPicker').click();
+  }
+
+  onImageChange(e) {
+      if (e.target.files.length > 0) {
+        this.pictureLoading = true;
+        this.uploadedPicture = e.target.files[0];
+        const fr = new FileReader();
+        fr.onload = () => {
+          this.pictureSrc = fr.result;
+          this.pictureLoading = false;
+          this.updatePictureDimensions();
+        };
+        fr.readAsDataURL(this.uploadedPicture);
+      }
+  }
+
+  uploadPicture() {
+    this.pictureLoading = true;
+    this.accountService.updateProfilePicture(this.user, this.uploadedPicture)
+      .then( resp => {
+
+      },
+        err => {
+
+      });
+    this.pictureLoading = false;
+  }
+
+  resetPicture() {
+    this.uploadedPicture = null;
+    this.pictureSrc = this.getInitialPictureSrc();
+    this.updatePictureDimensions();
   }
 
   onAddressChanged(newAdress: Address) {
     console.log(newAdress);
     console.log(this.addressForm);
-  }
-
-  getProfilePictureUrl() {
-    return environment.apiURL + this.user.profilePicture.pathname;
   }
 
   async ngOnInit() {
@@ -95,5 +128,19 @@ export class ProfileEditComponent implements OnInit {
       twitter: [this.user.twitter],
       linkedIn: [this.user.linkedIn],
     });
+
+    this.pictureSrc = this.getInitialPictureSrc();
+  }
+
+  private getInitialPictureSrc() {
+    if (this.user.profilePicture != null && this.user.profilePicture.pathname != null) {
+      this.pictureSrc = environment.apiURL + this.user.profilePicture.pathname;
+    }
+    return ProfileEditComponent.DEFAULT_PICTURE_SRC;
+  }
+
+  private updatePictureDimensions() {
+    let elem = <HTMLImageElement> document.getElementById('profile-picture');
+    this.pictureIsWide = elem.naturalWidth / elem.naturalHeight > 1;
   }
 }

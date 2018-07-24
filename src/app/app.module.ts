@@ -27,6 +27,7 @@ import { DirectoryComponent } from './pages/directory/directory.component';
 import { CasePipe } from './shared/pipes/case.pipe';
 import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
 import { SignoutComponent } from './pages/signout/signout.component';
+import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SignoutComponent } from './pages/signout/signout.component';
     MatIconModule,
     MatDividerModule,
     BrowserAnimationsModule,
+    MomentDateModule,
   ],
   providers: [
     {

@@ -41,9 +41,19 @@ export class SigninComponent implements OnInit, OnDestroy {
       }, err => {
         if (err.status == 401) {
           this.error = "Mauvais identifiants";
+        } else {
+          this.error = "Erreur système";
         }
         console.log(err);
       });
+  }
+
+  checkValidity() {
+    if (this.form.valid) {
+      this.error = null;
+    } else {
+      this.error = 'Veuillez remplir tous les champs';
+    }
   }
 
   ngOnInit() {

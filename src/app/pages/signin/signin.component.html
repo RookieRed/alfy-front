@@ -9,12 +9,12 @@
     <form [formGroup]="form">
       <div class="row" flex>
         <mat-form-field>
-          <input [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text" name="username">
+          <input [formControl]="form.controls.username" (change)="checkValidity()" (blur)="checkValidity()" matInput placeholder="Identifiant" type="text" name="username">
         </mat-form-field>
       </div>
       <div class="row" flex>
         <mat-form-field>
-          <input [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password" name="password">
+          <input [formControl]="form.controls.password" (change)="checkValidity()" (blur)="checkValidity()" matInput placeholder="Mot de passe" type="password" name="password">
         </mat-form-field>
       </div>
 

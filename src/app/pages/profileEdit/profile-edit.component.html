@@ -8,11 +8,17 @@
       <div class=" personal-infos">
         <div class="profile-picture">
           <div class="picture-border">
-            <img *ngIf="user.profilePicture == null" src="/assets/img/default-avatar.png">
-            <img *ngIf="user.profilePicture != null" src="{{ getProfilePictureUrl() }}">
+            <img [hidden]="!pictureLoading" id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
+            <div [hidden]="pictureLoading" class="picture-loading">
+              <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+            </div>
           </div>
-          <input id="photoPicker" type="file" accept="image/*" hidden />
-          <button mat-mini-fab class="photo-picker" (click)="pickAPhoto()"><mat-icon>add_a_photo</mat-icon></button>
+          <input id="photoPicker" (change)="onImageChange($event)" type="file" accept="image/*" hidden />
+          <div class="photo-buttons-group">
+            <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()"><mat-icon>add_a_photo_alternate</mat-icon></button>
+            <button mat-mini-fab *ngIf="uploadedPicture != null" (click)="resetPicture()"><mat-icon>cancel</mat-icon></button>
+            <button mat-mini-fab *ngIf="uploadedPicture != null" class="primary" (click)="uploadPicture()"><mat-icon>save</mat-icon></button>
+          </div>
         </div>
         <div class="names">
           <mat-form-field>

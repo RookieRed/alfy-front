@@ -3,32 +3,43 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ]
 })
 export class SignupComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   calendarStartDate: Date;
   error: string;
+  user: User;
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
     private router: Router,
-    ) {
+    private adapter: DateAdapter<any>
+  ) {
+    this.user = new User();
     this.form = this.fb.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      firstName: ['', Validators.compose([Validators.required])],
-      lastName: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      birthDay: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      username: [this.user.username, Validators.compose([Validators.required, Validators.minLength(3)])],
+      firstName: [this.user.firstName, Validators.compose([Validators.required])],
+      lastName: [this.user.lastName, Validators.compose([Validators.required])],
+      email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
+      birthDay: [this.user.birthDay, Validators.compose([Validators.required])],
+      password: [this.user.password, Validators.compose([Validators.required, Validators.minLength(6)])],
       passwordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
+    this.adapter.setLocale('fr-FR');
     this.calendarStartDate = new Date('2000-01-01');
   }
 
@@ -45,19 +56,12 @@ export class SignupComponent implements OnInit, OnDestroy {
         return;
       }
 
-      let userPayload = new User();
-      userPayload.username = val.username;
-      userPayload.firstName = val.firstName;
-      userPayload.lastName = val.lastName;
-      userPayload.email = val.email;
-      userPayload.birthDay = val.birthDay;
-      userPayload.password = val.password;
-
-      this.accountService.signup(userPayload)
+      this.accountService.signup(this.user)
         .then(apiResponse => {
           this.accountService.setSession(apiResponse.token);
-          this.router.navigate(['']);
+          this.router.navigate(['/profile/edit']);
         }, err => {
+          this.error = "Erreur : " + err.toString();
           console.log(err);
         });
     }

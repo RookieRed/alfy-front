@@ -87,17 +87,42 @@
         border-radius: 200px;
         overflow: hidden;
 
-        img {
-          min-width: 220px;
-          width: 220px;
-          height: auto;
+        #profile-picture {
+          &.wide {
+            height: auto;
+            width: 105%;
+          }
+          &.tall {
+            height: 105%;
+            width: auto;
+          }
+        }
+
+        .picture-loading {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-self: center;
+          background-color: #fff5;
+          filter: blur(5px);
         }
       }
 
-      .photo-picker {
-        position: relative;
+      .photo-buttons-group {
         left: -20px;
-        background-color: $primary;
+        max-width: 40px;
+        overflow: visible;
+        display: flex;
+        position: relative;
+
+        .primary {
+          background-color: $primary;
+        }
+
+        button {
+          margin: 0 2px;
+        }
       }
     }
   }
