@@ -4,11 +4,20 @@ import {User} from "../../models/user";
 import {AccountService} from "../../services/account.service";
 import {environment} from "../../../environments/environment";
 import {Address} from "../../models/address";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
+import {MatDialog} from "@angular/material";
+import {SimpleDialogComponent} from "../../shared/dialogs/simple-dialog/simple-dialog.component";
 
 @Component({
   selector: 'app-account',
   templateUrl: './profile-edit.component.html',
-  styleUrls: ['./profile-edit.component.scss']
+  styleUrls: ['./profile-edit.component.scss'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ]
 })
 export class ProfileEditComponent implements OnInit {
 
@@ -28,11 +37,14 @@ export class ProfileEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
+    private adapter: DateAdapter<any>,
+    private dialog: MatDialog,
   ) {
     this.loading = true;
-    this.pictureLoading = false;
+    this.pictureLoading = true;
     this.uploadedPicture = null;
     this.pictureIsWide = false;
+    this.adapter.setLocale('fr-FR');
   }
 
   onSubmitInfo() {
@@ -53,34 +65,49 @@ export class ProfileEditComponent implements OnInit {
 
   onImageChange(e) {
       if (e.target.files.length > 0) {
-        this.pictureLoading = true;
+        this.setLoadingPicture();
         this.uploadedPicture = e.target.files[0];
         const fr = new FileReader();
         fr.onload = () => {
           this.pictureSrc = fr.result;
-          this.pictureLoading = false;
-          this.updatePictureDimensions();
         };
         fr.readAsDataURL(this.uploadedPicture);
       }
   }
 
   uploadPicture() {
-    this.pictureLoading = true;
-    this.accountService.updateProfilePicture(this.user, this.uploadedPicture)
-      .then( resp => {
-
-      },
+    this.setLoadingPicture();
+    this.accountService.updateProfilePicture(this.uploadedPicture)
+      .then( newImage => {
+          this.uploadedPicture = null;
+          this.user.profilePicture = (<any>newImage);
+          this.pictureSrc = this.getInitialPictureSrc();
+          this.dialog.open(SimpleDialogComponent, {
+            width: '300px',
+            data: {
+              title: 'Photo de profil enregistrée',
+              message: 'Votre photo de profil a bien été enregistrée'
+            }
+          });
+        },
         err => {
-
+          this.dialog.open(SimpleDialogComponent, {
+            width: '300px',
+            data: {
+              title: 'Erreur lors de l\'enregistrement',
+              message: 'Une erreur est survenue lors de l\'enregistrement de votre photo.',
+              type: 'error',
+            }
+          }).afterClosed().subscribe(() => {
+            this.resetPicture();
+          });
       });
-    this.pictureLoading = false;
   }
 
   resetPicture() {
     this.uploadedPicture = null;
     this.pictureSrc = this.getInitialPictureSrc();
-    this.updatePictureDimensions();
+    this.setLoadingPicture();
   }
 
   onAddressChanged(newAdress: Address) {
@@ -97,6 +124,7 @@ export class ProfileEditComponent implements OnInit {
       this.form = null;
       this.error = e.toString();
       this.loading = false;
+      this.pictureLoading = false;
       return;
     }
 
@@ -130,17 +158,26 @@ export class ProfileEditComponent implements OnInit {
     });
 
     this.pictureSrc = this.getInitialPictureSrc();
+    this.setLoadingPicture();
   }
 
   private getInitialPictureSrc() {
-    if (this.user.profilePicture != null && this.user.profilePicture.pathname != null) {
-      this.pictureSrc = environment.apiURL + this.user.profilePicture.pathname;
+    if (this.user.profilePicture != null) {
+      return environment.apiURL + '/' + this.user.profilePicture.path + this.user.profilePicture.name;
     }
     return ProfileEditComponent.DEFAULT_PICTURE_SRC;
   }
 
-  private updatePictureDimensions() {
-    let elem = <HTMLImageElement> document.getElementById('profile-picture');
-    this.pictureIsWide = elem.naturalWidth / elem.naturalHeight > 1;
+  private setLoadingPicture() {
+    this.pictureLoading = true;
+    let pictureElem = <HTMLImageElement> document.getElementById('profile-picture');
+    if (pictureElem != null) {
+      pictureElem.onload = () => {
+        this.pictureIsWide = pictureElem.naturalWidth / pictureElem.naturalHeight < 1;
+        this.pictureLoading = false;
+      };
+    } else  {
+      this.pictureLoading = false;
+    }
   }
 }

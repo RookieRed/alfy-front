@@ -19,7 +19,7 @@
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.birthDay | date:'MM-dd-yyyy'" matInput [formControl]="form.controls.birthDay" [matDatepicker]="picker" placeholder="Date de naissance">
+            <input (input)="checkValidity()" [ngModel]="user.birthDay" matInput [formControl]="form.controls.birthDay" [matDatepicker]="picker" placeholder="Date de naissance">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>

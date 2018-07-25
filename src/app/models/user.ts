@@ -10,7 +10,7 @@ export class User {
   phone: string;
   email: string;
   birthDay: Date;
-  profilePicture: {pathname, name};
+  profilePicture: {path, name};
   address: Address;
   role: string;
   facebook: string;
@@ -24,7 +24,7 @@ export class User {
                      email?: string,
                      phone?: string,
                      birthDay?: Date,
-                     profilePicture?: {pathname, name},
+                     profilePicture?: {path, name},
                      address?: Address,
                      role?: string,
                      facebook?: string,

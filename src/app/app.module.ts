@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCommonModule, MatDatepickerModule, MatDividerModule, MatGridListModule, MatIconModule,
+  MatCommonModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatGridListModule, MatIconModule,
   MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -28,6 +28,7 @@ import { CasePipe } from './shared/pipes/case.pipe';
 import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
 import { SignoutComponent } from './pages/signout/signout.component';
 import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
+import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,10 @@ import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-ad
     CasePipe,
     AddressFormComponent,
     SignoutComponent,
+    SimpleDialogComponent,
+  ],
+  entryComponents: [
+    SimpleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,7 @@ import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-ad
     MatInputModule,
     MatIconModule,
     MatDividerModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     MomentDateModule,
   ],

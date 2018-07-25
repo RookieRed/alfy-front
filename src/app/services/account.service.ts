@@ -49,9 +49,9 @@ export class AccountService {
     return this.http.get(environment.apiURL + '/account/me').toPromise();
   }
 
-  public updateProfilePicture(user: User, uploadedPicture: File) {
+  public updateProfilePicture(uploadedPicture: File) {
     let formData = new FormData();
     formData.append('picture', uploadedPicture, uploadedPicture.name);
-    return this.http.post(environment.apiURL + '/account/' + user.id + '/pictures', formData).toPromise();
+    return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
   }
 }

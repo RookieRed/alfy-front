@@ -21,3 +21,9 @@ $warn-lighter: mat-color($main-theme-warn, lighter);
 $primary-darker: mat-color($main-theme-primary, darker);
 $accent-darker: mat-color($main-theme-accent, darker);
 $warn-darker: mat-color($main-theme-warn, darker);
+
+// Fonts
+body {
+  font-family: Raleway, sans-serif;
+}
+
