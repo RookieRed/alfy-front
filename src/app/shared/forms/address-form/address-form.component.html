@@ -1,20 +1,20 @@
 <div class="address-container">
   <div class="row">
     <mat-form-field>
-      <input type="text" matInput [formControl]="form.controls.line1" ([ngModel])="address.line1" placeholder="Adresse ligne 1" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line1" ([ngModel])="address.line1" placeholder="Adresse ligne 1" />
     </mat-form-field>
     <mat-form-field>
-      <input type="text" matInput [formControl]="form.controls.line2" ([ngModel])="address.line2" placeholder="Ligne 2" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line2" ([ngModel])="address.line2" placeholder="Ligne 2" />
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field>
-      <input type="text" matInput [formControl]="form.controls.city" ([ngModel])="address.city" placeholder="Ville" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.city" ([ngModel])="address.city" placeholder="Ville" />
     </mat-form-field>
     <mat-form-field>
-      <input (input)="updateCountryList()" matInput [formControl]="form.controls.countryId" ([ngModel])="address.country" placeholder="Pays" />
-      <datalist>
-        <option *ngFor="let c of countries" value="{{ c.id }}">{{ c.frName }}</option>
+      <input (input)="updateCountryList()" list="countries-list" matInput [formControl]="form.controls.countryName" placeholder="Pays"/>
+      <datalist id="countries-list">
+        <option *ngFor="let c of countries" value="{{ c.frName }}">{{ c.frName }}</option>
       </datalist>
     </mat-form-field>
   </div>

@@ -31,6 +31,9 @@ export class ProfileEditComponent implements OnInit {
   uploadedPicture: File;
   pictureSrc: string;
   pictureIsWide: boolean;
+  passwordError: string;
+
+  private passwordOK: boolean;
 
   private static readonly DEFAULT_PICTURE_SRC: string = '/assets/img/default-avatar.png';
 
@@ -44,15 +47,39 @@ export class ProfileEditComponent implements OnInit {
     this.pictureLoading = true;
     this.uploadedPicture = null;
     this.pictureIsWide = false;
+    this.passwordOK = false;
+    this.error = null;
+    this.passwordError = null;
     this.adapter.setLocale('fr-FR');
   }
 
-  onSubmitInfo() {
+  onFormSubmit() {
+    if (this.form.valid) {
+      const userBean = Object.assign(this.user);
 
-  }
-
-  onFileUpload() {
-
+      this.accountService.update(userBean)
+        .then(newUser => {
+          this.user = newUser;
+          this.dialog.open(SimpleDialogComponent, {
+            width: '300px',
+            data: {
+              title: 'Modifiactions enregistrées',
+              message: 'Modifiactions enregistrées',
+            }
+          });
+        }, err => {
+          console.log(err);
+          this.dialog.open(SimpleDialogComponent, {
+            width: '300px',
+            data: {
+              title: 'Erreur à l\'enregistrement',
+              message: 'Une erreur est survenue lors de la modification de votre profil, ' +
+                'aucune modification n\'a été apportée.',
+              type: 'error',
+            }
+          });
+        });
+    }
   }
 
   onUsernameChange() {
@@ -110,9 +137,43 @@ export class ProfileEditComponent implements OnInit {
     this.setLoadingPicture();
   }
 
-  onAddressChanged(newAdress: Address) {
-    console.log(newAdress);
-    console.log(this.addressForm);
+  onAddressChanged(newAddress: Address) {
+    this.user.address = newAddress;
+  }
+
+  checkCurrentPassword() {
+    const password = this.securityForm.value.password;
+    if (password != '') {
+      this.accountService.checkCredentials(this.user.username, password)
+        .then(resp => {
+            this.passwordError = null;
+            this.securityForm.controls.password.setErrors(null);
+            this.passwordOK = true;
+        },
+          err => {
+          this.passwordError = "Mot de passe erroné";
+          this.securityForm.controls.password.setErrors({invalid: true});
+            this.passwordOK = false;
+        });
+    } else {
+
+    }
+  }
+
+  onNewPasswordsChanges() {
+    const password = this.securityForm.value.password;
+    const newPassword = this.securityForm.value.newPassword;
+    const passwordConfirm = this.securityForm.value.passwordConfirm;
+    if (password == '' || !this.passwordOK && (newPassword != '' || passwordConfirm != '')) {
+      this.passwordError = "Veuillez renseinger votre mot de passe actuel";
+      this.securityForm.controls.password.setErrors({invalid: true});
+    } else if (this.passwordOK) {
+      if (newPassword != passwordConfirm) {
+        this.passwordError = "Les deux mots de passes sont différents";
+      } else {
+        this.passwordError = null;
+      }
+    }
   }
 
   async ngOnInit() {
@@ -132,10 +193,10 @@ export class ProfileEditComponent implements OnInit {
       this.user.address = new Address();
     }
     this.addressForm = this.fb.group({
-      line1: [this.user.address.line1, Validators.required],
-      line2: [this.user.address.line2],
-      city: [this.user.address.city, Validators.required],
-      countryId: [(this.user.address.country != null ? this.user.address.country.id : ''), Validators.required],
+      line1: [this.user.address.line1, Validators.required],git add -
+      line2: [this.user.address.line2, Validators.required],
+      city: [this.user.address.city],
+      countryName: [(this.user.address.country != null ? this.user.address.country.frName : ''), Validators.required],
     });
 
     this.securityForm = this.fb.group({

@@ -54,4 +54,13 @@ export class AccountService {
     formData.append('picture', uploadedPicture, uploadedPicture.name);
     return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
   }
+
+  public update(userBean: User): Promise<any> {
+    delete userBean.profilePicture;
+    delete userBean.role;
+    if (userBean.password == null) {
+      delete userBean.password;
+    }
+    return this.http.post(environment.apiURL + '/account/me', userBean).toPromise();
+  }
 }

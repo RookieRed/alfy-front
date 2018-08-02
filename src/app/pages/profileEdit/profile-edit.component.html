@@ -46,17 +46,18 @@
       <div class="security">
         <div class="row">
           <mat-form-field>
-            <input  matInput [formControl]="securityForm.controls.password" type="password" placeholder="Mot de passe actuel"/>
+            <input (change)="checkCurrentPassword()" matInput [formControl]="securityForm.controls.password" type="password" placeholder="Mot de passe actuel"/>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Nouveau mot de passe" type="password" name="newPassword" [formControl]="securityForm.controls.newPassword"/>
+            <input (input)="onNewPasswordsChanges()" matInput placeholder="Nouveau mot de passe" type="password" name="newPassword" [formControl]="securityForm.controls.newPassword"/>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Confirmation" type="password" name="password" [formControl]="securityForm.controls.passwordConfirm"/>
+            <input (input)="onNewPasswordsChanges()" matInput placeholder="Confirmation" type="password" name="password" [formControl]="securityForm.controls.passwordConfirm"/>
           </mat-form-field>
         </div>
+        <p class="mat-error" *ngIf="passwordError != null">{{ passwordError }}</p>
       </div>
     </div>
 
@@ -84,10 +85,10 @@
     </div>
 
     <div class="block submission">
-      <button mat-stroked-button color="primary" type="submit" [disabled]="!form.valid">Enregistrer</button>
+      <p class="mat-error" *ngIf="error != null">{{ error }}</p>
+      <button mat-stroked-button color="primary" type="submit" (click)="onFormSubmit()" [disabled]="!form.valid">Enregistrer</button>
     </div>
   </form>
   </div>
   <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="100"></mat-progress-spinner>
-  <p class="mat-error" *ngIf="error != null">{{ error }}</p>
 </div>
