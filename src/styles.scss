@@ -25,5 +25,17 @@ $warn-darker: mat-color($main-theme-warn, darker);
 // Fonts
 body {
   font-family: Raleway, sans-serif;
+
+  ::selection {
+    background-color: $primary;
+  }
+
+  a {
+    color: $primary;
+
+    &:visited {
+      color: $primary-darker;
+    }
+  }
 }
 

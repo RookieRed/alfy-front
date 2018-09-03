@@ -41,10 +41,24 @@ $header-height: 70px;
     a {
       font-family: 'Anonymous Pro', monospace;
       font-weight: bold !important;
+      color: black;
+
+      &:visited {
+        color: black;
+      }
     }
 
     .hidden {
       display: none;
+    }
+
+    #copyright {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      font-size: 14px;
+      margin: 10px 0;
     }
   }
 
