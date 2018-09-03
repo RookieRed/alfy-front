@@ -31,6 +31,7 @@ export class ProfileEditComponent implements OnInit {
   uploadedPicture: File;
   pictureSrc: string;
   pictureIsWide: boolean;
+  profileError: string;
   passwordError: string;
 
   private passwordOK: boolean;
@@ -50,6 +51,7 @@ export class ProfileEditComponent implements OnInit {
     this.passwordOK = false;
     this.error = null;
     this.passwordError = null;
+    this.profileError = null;
     this.adapter.setLocale('fr-FR');
   }
 
@@ -137,8 +139,40 @@ export class ProfileEditComponent implements OnInit {
     this.setLoadingPicture();
   }
 
-  onAddressChanged(newAddress: Address) {
+  onAddressChanged(newAddress?: Address) {
     this.user.address = newAddress;
+    if (newAddress != null && (newAddress.line1 != null || newAddress.line2 != null
+      || newAddress.city != null || this.addressForm.value.countryName != null)) {
+      console.log(newAddress, "Non vide");
+      if (newAddress.line1 == null) {
+        this.addressForm.controls.line1.setErrors({invalid: true});
+        this.profileError = "L'adresse n'est pas complète";
+      } else {
+        this.addressForm.controls.line1.setErrors(null);
+        this.profileError = null;
+      }
+      if (newAddress.city == null) {
+        this.addressForm.controls.city.setErrors({invalid: true});
+        this.profileError = "L'adresse n'est pas complète";
+      } else {
+        this.addressForm.controls.city.setErrors(null);
+        this.profileError = null;
+      }
+      if (this.addressForm.value.countryName == null) {
+        this.addressForm.controls.countryName.setErrors({invalid: true});
+        this.profileError = "L'adresse n'est pas complète";
+      } else {
+        this.addressForm.controls.countryName.setErrors(null);
+        this.profileError = null;
+      }
+    } else {
+      console.log("Vide");
+      this.addressForm.controls.line1.setErrors(null);
+      this.addressForm.controls.city.setErrors(null);
+      this.addressForm.controls.countryName.setErrors(null);
+      this.profileError = null;
+    }
+    this.addressForm.updateValueAndValidity();
   }
 
   checkCurrentPassword() {
@@ -155,8 +189,6 @@ export class ProfileEditComponent implements OnInit {
           this.securityForm.controls.password.setErrors({invalid: true});
             this.passwordOK = false;
         });
-    } else {
-
     }
   }
 
@@ -193,10 +225,10 @@ export class ProfileEditComponent implements OnInit {
       this.user.address = new Address();
     }
     this.addressForm = this.fb.group({
-      line1: [this.user.address.line1, Validators.required],git add -
-      line2: [this.user.address.line2, Validators.required],
+      line1: [this.user.address.line1],
+      line2: [this.user.address.line2],
       city: [this.user.address.city],
-      countryName: [(this.user.address.country != null ? this.user.address.country.frName : ''), Validators.required],
+      countryName: [(this.user.address.country != null ? this.user.address.country.frName : '')],
     });
 
     this.securityForm = this.fb.group({

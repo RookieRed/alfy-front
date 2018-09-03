@@ -20,7 +20,7 @@ export class AddressFormComponent implements OnInit {
   constructor(
     private addressService: AddressService
   ) {
-    this.eventEmitter = new EventEmitter<Address>();
+    this.eventEmitter = new EventEmitter<Address>(true);
   }
 
   updateCountryList() {
@@ -45,6 +45,9 @@ export class AddressFormComponent implements OnInit {
 
   onInputChanges() {
     const newAddress = new Address(this.form.value);
+    if (this.selectedCountry != null) {
+      newAddress.country = this.selectedCountry || <Country> {frName: this.form.value.countryName};
+    }
     this.eventEmitter.emit(newAddress);
   }
 

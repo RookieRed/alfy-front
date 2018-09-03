@@ -37,6 +37,7 @@
           </mat-form-field>
         </div>
         <app-address-form [form]="addressForm" (address)="onAddressChanged($event)"></app-address-form>
+        <p *ngIf="profileError != null" class="mat-error">{{ profileError }}</p>
       </div>
     </div>
 
