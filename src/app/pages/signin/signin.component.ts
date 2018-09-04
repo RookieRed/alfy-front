@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   error: string;
   form: FormGroup;
   canSubmit: boolean;
+  loading: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class SigninComponent implements OnInit, OnDestroy {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.loading = false;
   }
 
   public submitForm() {
@@ -34,11 +36,14 @@ export class SigninComponent implements OnInit, OnDestroy {
     }
 
     let formVal = this.form.value;
+    this.loading = true;
     this.accountService.checkCredentials(formVal.username, formVal.password)
       .then(apiToken => {
+        this.loading = false;
         this.accountService.setSession(apiToken.token);
         this.router.navigate(['']);
       }, err => {
+        this.loading = false;
         if (err.status == 401) {
           this.error = "Mauvais identifiants";
         } else {

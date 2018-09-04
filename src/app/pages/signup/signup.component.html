@@ -49,9 +49,13 @@
           <p class="mat-error">{{ error }}</p>
         </div>
 
-        <div class="row action-buttons" flex>
+        <div class="row action-buttons"  *ngIf="!loading" flex>
           <button mat-flat-button type="submit" [autofocus]="form" color="primary" [disabled]="!form.valid" (click)="submitForm()">S'incrire</button>
           <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
+        </div>
+
+        <div *ngIf="loading">
+          <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
         </div>
       </form>
     </div>

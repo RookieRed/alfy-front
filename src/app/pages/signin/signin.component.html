@@ -22,9 +22,13 @@
         <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
       </div>
 
-      <div class="row action-buttons" flex>
+      <div class="row action-buttons" flex *ngIf="!loading">
         <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
         <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
+      </div>
+
+      <div *ngIf="loading">
+        <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
       </div>
     </form>
   </div>

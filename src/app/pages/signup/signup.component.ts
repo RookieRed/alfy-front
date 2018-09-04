@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   calendarStartDate: Date;
   error: string;
   user: User;
+  loading: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +42,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
     this.adapter.setLocale('fr-FR');
     this.calendarStartDate = new Date('2000-01-01');
+    this.loading = false;
   }
 
   public submitForm() {
@@ -58,9 +60,11 @@ export class SignupComponent implements OnInit, OnDestroy {
 
       this.accountService.signup(this.user)
         .then(apiResponse => {
+          this.loading = true;
           this.accountService.setSession(apiResponse.token);
           this.router.navigate(['/profile/edit']);
         }, err => {
+          this.loading = true;
           this.error = "Erreur : " + err.toString();
           console.log(err);
         });
