@@ -8,9 +8,13 @@ import {User} from "../models/user";
 })
 export class AccountService {
 
+  private static me: User;
+
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+    AccountService.me = null;
+  }
 
   public checkCredentials(username: string, password: string): Promise<any> {
     let formData = new FormData();
@@ -32,7 +36,7 @@ export class AccountService {
     this.getUser('me').then(apiResponse => {
       localStorage.setItem('jwt', jwt);
     }, err => {
-      console.log(err);
+      console.error(err);
       this.signout();
     });
   }

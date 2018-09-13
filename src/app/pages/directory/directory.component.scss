@@ -1,7 +1,7 @@
 @import "../../../styles";
 @import "../../shared/sass/bordered-container";
 
-$item-height: 35px;
+$item-height: 40px;
 
 .blank-filler {
   flex: 1 0 auto;
@@ -35,21 +35,39 @@ $item-height: 35px;
     }
   }
 
-  .search-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  .row {
+    margin: 10px 0;
 
-      mat-form-field {
-        min-width: 250px;
-        width: 50%;
-        max-width: 600px;
-        transition: width 0.3s ease-in-out;
+    .admin-buttons {
+      text-align: center;
+      flex: 1;
 
-        &:focus-within {
+      button {
+        margin-bottom: 15px;
+      }
+
+      h4 {
+        margin: 10px 0;
+      }
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      flex: 2;
+
+        mat-form-field {
+          min-width: 250px;
+          width: 50%;
+          max-width: 600px;
           transition: width 0.3s ease-in-out;
-          width: 80%;
-        }
+
+          &:focus-within {
+            transition: width 0.3s ease-in-out;
+            width: 80%;
+          }
+      }
     }
   }
 
@@ -71,9 +89,11 @@ $item-height: 35px;
 
         &.student-avatar {
           border: 1px solid black;
-          border-radius: 20px;
+          border-radius: 30px;
           overflow: hidden;
           margin: 0 20px;
+          max-width: $item-height;
+          justify-content: center;
 
           img {
             height: $item-height;

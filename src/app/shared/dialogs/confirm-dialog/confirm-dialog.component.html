@@ -1,3 +1,11 @@
-<p>
-  confirm-dialog works!
-</p>
+<h3 mat-dialog-title>{{ data.title }}</h3>
+<mat-dialog-content>
+  <div class="content">
+    <div class="logo-container {{ data.type }}"></div>
+    <p class="message-container" [innerHTML]="data.message"></p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ data.closeLabel }}</button>
+  <button mat-button [mat-dialog-close]="true">{{ data.confirmLabel }}</button>
+</mat-dialog-actions>

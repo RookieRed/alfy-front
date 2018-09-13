@@ -49,7 +49,7 @@ export class SigninComponent implements OnInit, OnDestroy {
         } else {
           this.error = "Erreur système";
         }
-        console.log(err);
+        console.error(err);
       });
   }
 

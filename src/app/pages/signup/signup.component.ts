@@ -66,7 +66,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         }, err => {
           this.loading = true;
           this.error = "Erreur : " + err.toString();
-          console.log(err);
+          console.error(err);
         });
     }
   }

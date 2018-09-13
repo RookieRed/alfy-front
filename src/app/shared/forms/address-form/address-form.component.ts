@@ -37,7 +37,7 @@ export class AddressFormComponent implements OnInit {
             });
           },
           err => {
-            console.log(err);
+            console.error(err);
         });
     }
     this.onInputChanges();

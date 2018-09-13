@@ -3,7 +3,7 @@
   <h4 class="subtitle" *ngIf="data.subtitle != null">{{ data.subtitle }}</h4>
   <div class="content">
     <div class="logo-container {{ data.type }}"></div>
-    <p class="message-container">{{ data.message }}</p>
+    <p class="message-container" [innerHTML]="data.message"></p>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>

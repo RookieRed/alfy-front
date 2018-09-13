@@ -70,7 +70,7 @@ export class ProfileEditComponent implements OnInit {
             }
           });
         }, err => {
-          console.log(err);
+          console.error(err);
           this.dialog.open(SimpleDialogComponent, {
             width: '300px',
             data: {

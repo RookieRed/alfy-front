@@ -50,6 +50,7 @@ import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-
   ],
   entryComponents: [
     SimpleDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
