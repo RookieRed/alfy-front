@@ -29,6 +29,7 @@ import { AddressFormComponent } from './shared/forms/address-form/address-form.c
 import { SignoutComponent } from './pages/signout/signout.component';
 import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
 import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dialog.component';
+import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dia
     AddressFormComponent,
     SignoutComponent,
     SimpleDialogComponent,
+    ConfirmDialogComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,
