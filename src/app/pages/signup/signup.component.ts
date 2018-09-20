@@ -5,6 +5,7 @@ import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-signup',
@@ -72,6 +73,25 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.error = 'Le formulaire n\'est pas valide';
     } else {
       this.error = null;
+      const loginTaken = 'Le login est déjà pris, séléctionnez en un autre';
+      const serverError = 'Erreur serveur, le login n\'a pas pu être vérifié';
+      const username = this.form.value.username;
+      if (username != null && username.length > 0) {
+        this.accountService.isUsernameTaken(username)
+          .then(() => {
+            this.form.get('username').setErrors(null);
+            if (this.error == loginTaken || this.error == serverError) {
+              this.error = null;
+            }
+          }, (httpError: HttpErrorResponse) => {
+            this.form.get('username').setErrors({taken: true});
+            if (httpError.status == 409) {
+              this.error = loginTaken;
+            } else {
+              this.error = serverError;
+            }
+          });
+      }
     }
   }
 

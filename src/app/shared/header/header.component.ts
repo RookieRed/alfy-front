@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
     { link: '/profile/edit', name: 'Mon compte' },
     { link: '/signout', name: 'Se déconnecter' },
     { link: '/signin', name: 'Se connecter' },
+    { link: '/signup', name: 'Inscription' },
   ];
 
   constructor(
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
     if (!this.accountService.isUserConnected() && link == '/signout') {
       return false;
     }
-    if (this.accountService.isUserConnected() && link == '/signin'){
+    if (this.accountService.isUserConnected() && (link == '/signin' || link == '/signup')){
       return false;
     }
     return this.authGuard.isEnabled(link);

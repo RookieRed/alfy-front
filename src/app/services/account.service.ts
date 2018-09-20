@@ -99,4 +99,8 @@ export class AccountService {
     // Sending
     return this.http.post(environment.apiURL + '/account/me', payload).toPromise();
   }
+
+  isUsernameTaken(username: string): Promise<any> {
+    return this.http.get(environment.apiURL + '/account/login/' + username).toPromise();
+  }
 }

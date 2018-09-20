@@ -28,7 +28,7 @@
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput formControlName="username" type="text" class="username" placeholder="Pseudo"/>
+            <input matInput (keyup)="checkUsername()" formControlName="username" type="text" class="username" placeholder="Pseudo"/>
           </mat-form-field>
           <mat-form-field (click)="inp()">
             <input matInput formControlName="birthDay" (input)="inp()" (change)="inp()"

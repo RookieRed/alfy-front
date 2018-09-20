@@ -8,6 +8,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from "@angular/material-moment-adapter";
 import {MatDialog} from "@angular/material";
 import {SimpleDialogComponent} from "../../shared/dialogs/simple-dialog/simple-dialog.component";
+import {HttpErrorResponse} from "../../../../node_modules/@angular/common/http";
 
 @Component({
   selector: 'app-account',
@@ -167,8 +168,26 @@ export class ProfileEditComponent implements OnInit {
     }
   }
 
-  onUsernameChange() {
-
+  checkUsername() {
+    const input = this.form.value.username;
+    if (input !== this.oldUser.username && input.length > 0) {
+      const loginTaken = 'Le login est déjà pris, séléctionnez en un autre';
+      const serverError = 'Erreur serveur, le login n\'a pas pu être vérifié';
+      this.accountService.isUsernameTaken(input)
+            .then(() => {
+              this.form.get('username').setErrors(null);
+              if (this.profileError == loginTaken || this.profileError == serverError) {
+                this.profileError = null;
+              }
+            }, (httpError: HttpErrorResponse) => {
+              this.form.get('username').setErrors({taken: true});
+              if (httpError.status == 409) {
+                this.profileError = loginTaken;
+              } else {
+                this.profileError = serverError;
+              }
+            });
+    }
   }
 
   /*----------------------------
@@ -343,9 +362,5 @@ export class ProfileEditComponent implements OnInit {
       newPassword: [''],
       passwordConfirm: [''],
     });
-  }
-
-  inp() {
-    console.log(this.form.value.birthDay);
   }
 }
