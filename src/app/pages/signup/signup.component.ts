@@ -53,10 +53,6 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.error = "Les deux mots de passes ne sont pas identiques";
         return;
       }
-      if (val.birthDay.getTime() >= (new Date()).getTime()) {
-        this.error = "Date de naissance invalide";
-        return;
-      }
 
       this.accountService.signup(this.user)
         .then(apiResponse => {

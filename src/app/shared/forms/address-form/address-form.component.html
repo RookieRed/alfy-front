@@ -1,21 +1,22 @@
 <div class="address-container">
   <div class="row">
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line1" ([ngModel])="address.line1" placeholder="Adresse ligne 1" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line1" ([ngModel])="address.line1" placeholder="Adresse" />
     </mat-form-field>
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line2" ([ngModel])="address.line2" placeholder="Ligne 2" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.city" ([ngModel])="address.city" placeholder="Ville" />
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.city" ([ngModel])="address.city" placeholder="Ville" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.region" ([ngModel])="address.region" placeholder="Région" />
     </mat-form-field>
     <mat-form-field>
-      <input (input)="updateCountryList()" list="countries-list" matInput [formControl]="form.controls.countryName" placeholder="Pays"/>
-      <datalist id="countries-list">
-        <option *ngFor="let c of countries" value="{{ c.frName }}">{{ c.frName }}</option>
-      </datalist>
+      <mat-select aria-placeholder="Sélectionner un pays" [formControl]="form.controls.countryId">
+        <ngx-mat-select-search placeholderLabel="Rechercher" [formControl]="countrySearchCtl"></ngx-mat-select-search>
+        <mat-option (click)="onSelectCountry(null)" [value]="null">Aucun</mat-option>
+        <mat-option (click)="onSelectCountry(c)" *ngFor="let c of countries" [value]="c.id">{{ c.frName }}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 </div>

@@ -6,42 +6,45 @@
         <mat-card-title>Formulaire d'inscription</mat-card-title>
       </div>
 
-      <form (submit)="submitForm()" [formGroup]="form" id="signin-form">
+      <form [formGroup]="form" id="signin-form">
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.lastName" [formControl]="form.controls.lastName" matInput placeholder="Nom" type="text">
+            <input (input)="checkValidity()" [(ngModel)]="user.lastName" formControlName="lastName" matInput placeholder="Nom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.firstName" [formControl]="form.controls.firstName" matInput placeholder="Prénom" type="text">
+            <input (input)="checkValidity()" [(ngModel)]="user.firstName" formControlName="firstName" matInput placeholder="Prénom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.birthDay" matInput [formControl]="form.controls.birthDay" [matDatepicker]="picker" placeholder="Date de naissance">
+            <input (input)="checkValidity()"
+                   [(ngModel)]="user.birthDay" matInput
+                   formControlName="birthDay" [matDatepicker]="picker"
+                   placeholder="Date de naissance">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.username" [formControl]="form.controls.username" matInput placeholder="Identifiant" type="text">
+            <input (input)="checkValidity()" [(ngModel)]="user.username" formControlName="username" matInput placeholder="Identifiant" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.email" [formControl]="form.controls.email" matInput placeholder="Adresse mail" type="email">
+            <input (input)="checkValidity()" [(ngModel)]="user.email" formControlName="email" matInput placeholder="Adresse mail" type="email">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [ngModel]="user.password" [formControl]="form.controls.password" matInput placeholder="Mot de passe" type="password">
+            <input (input)="checkValidity()" [(ngModel)]="user.password" formControlName="password" matInput placeholder="Mot de passe" type="password">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [formControl]="form.controls.passwordConfirm" matInput placeholder="Confirmation" type="password">
+            <input (input)="checkValidity()" formControlName="passwordConfirm" matInput placeholder="Confirmation" type="password">
           </mat-form-field>
         </div>
 
@@ -50,7 +53,7 @@
         </div>
 
         <div class="row action-buttons"  *ngIf="!loading" flex>
-          <button mat-flat-button type="submit" [autofocus]="form" color="primary" [disabled]="!form.valid" (click)="submitForm()">S'incrire</button>
+          <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary" [disabled]="!form.valid">S'incrire</button>
           <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
         </div>
 

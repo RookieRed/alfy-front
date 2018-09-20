@@ -30,16 +30,16 @@
     </button>
   </div>
   <mat-list *ngIf="students.length > 0">
-    <mat-list-item class="student-item" *ngFor="let u of students" routerLink="/profile/{{u.id}}">
-      <div class="student-info student-avatar"><img [src]="getProfilePictureURL(u)"/></div>
-      <div class="student-info student-name">{{ u.firstName }} {{ u.lastName | case: 'up' }}</div>
-      <div class="student-info student-username" *ngIf="u.username != null">@{{ u.username }}</div>
+    <mat-list-item class="student-item" *ngFor="let u of students">
+      <div routerLink="/profile/{{u.id}}" class="student-info student-avatar"><img [src]="getProfilePictureURL(u)"/></div>
+      <div routerLink="/profile/{{u.id}}" class="student-info student-name">{{ u.firstName }} {{ u.lastName | case: 'up' }}</div>
+      <div routerLink="/profile/{{u.id}}" class="student-info student-username" *ngIf="u.username != null">@{{ u.username }}</div>
       <div class="blank-filler"></div>
-      <mat-icon>edit</mat-icon>
+      <button class="admin-button" mat-mini-fab routerLink="/profile/edit/{{u.id}}" *ngIf="isAdmin"><mat-icon>edit</mat-icon></button>
+      <button class="admin-button" mat-mini-fab (click)="deleteUser(u)" *ngIf="isAdmin"><mat-icon>delete</mat-icon></button>
     </mat-list-item>
   </mat-list>
   <div class="errors-container" *ngIf="students.length == 0">
     <p class="mat-error">Aucun résultat</p>
   </div>
-
 </div>

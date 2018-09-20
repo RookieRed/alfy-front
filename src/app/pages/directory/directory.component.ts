@@ -48,6 +48,46 @@ export class DirectoryComponent implements OnInit {
     }
   }
 
+  public deleteUser(user: User) {
+    if (this.isAdmin) {
+      this.dialog.open(ConfirmDialogComponent, {
+        width: '400px',
+        data: {
+          title: 'Confirmation de suppression',
+          message: 'Voulez-vous vraiment supprimer le compte de ' + user.firstName + ' ' + user.lastName
+            + ', ainsi que toutes ses données associées ?',
+          confirmLabel: 'Confirmer',
+          closeLabel: 'Annuler',
+          type: 'info'
+        }
+      }).afterClosed().subscribe(confirmed => {
+        if (confirmed) {
+          this.accountService.deleteAccount(user)
+            .then(apiRespoinse => {
+              this.dialog.open(SimpleDialogComponent, {
+                width: '400px',
+                data: {
+                  title: 'Compte supprimé',
+                  message: 'Le compte de ' + user.firstName + ' ' + user.lastName + ' a bien été supprimé.',
+                }
+              });
+            }, err => {
+              console.error(err);
+              this.dialog.open(SimpleDialogComponent, {
+                width: '400px',
+                data: {
+                  title: 'Erreur serveur',
+                  message: 'Une erreur est survenue. Le compte n\'a pas pu être supprimé',
+                  type: 'error',
+                }
+              });
+            });
+            this.getAllStudents();
+          }
+        });
+    }
+  }
+
   private onApiError(err) {
     console.error(err);
     this.students = [];
@@ -55,18 +95,10 @@ export class DirectoryComponent implements OnInit {
     this.nbResults = 0;
   }
 
-  previousPage() {
-    if (this.pagination != null && this.pagination.currentPage > 0) {
-      this.pagination.currentPage--;
-      this.onSearchChange();
-    }
-  }
-
-  nextPage() {
-    if (this.pagination != null && this.pagination.currentPage < this.pagination.totalPages) {
-      this.pagination.currentPage++;
-      this.onSearchChange();
-    }
+  onPaginationChanges(event) {
+    this.pagination.resultsPerPage = event.pageSize;
+    this.pagination.currentPage = event.pageIndex + 1;
+    this.onSearchChange();
   }
 
   onImportChange(e) {
@@ -139,7 +171,7 @@ export class DirectoryComponent implements OnInit {
       .then((resp: any) => {
         const respObj = <PaginatedResults>resp;
         this.students = <User[]>respObj.results;
-        this.nbResults = respObj.results.length;
+        this.nbResults = respObj.totalResults;
       }, err => {
         this.onApiError(err);
       });

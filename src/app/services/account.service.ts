@@ -23,7 +23,7 @@ export class AccountService {
     return this.http.post(environment.apiURL + '/account/signin', formData).toPromise();
   }
 
-  public signup(userPayload): Promise<any> {
+  public signup(userPayload: User): Promise<any> {
     return this.http.put(environment.apiURL + '/account/signup', JSON.stringify(userPayload)).toPromise();
   }
 
@@ -59,12 +59,44 @@ export class AccountService {
     return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
   }
 
+  public deleteAccount(user?: any): Promise<any> {
+    const target = user instanceof User ? user.id : 'me';
+    return this.http.delete(environment.apiURL + '/account/' + target).toPromise();
+  }
+
   public update(userBean: User): Promise<any> {
-    delete userBean.profilePicture;
-    delete userBean.role;
-    if (userBean.password == null) {
-      delete userBean.password;
+    let payload = <any> Object.assign({}, userBean);
+    delete payload.profilePicture;
+    delete payload.role;
+    if (payload.password == null || payload.password.length == 0) {
+      delete payload.password;
     }
-    return this.http.post(environment.apiURL + '/account/me', userBean).toPromise();
+    // Address
+    if (payload.address != null && payload.address.country != null) {
+      payload.address.countryId = userBean.address.country.id;
+      delete payload.address.country;
+    } else {
+      payload.address = null;
+    }
+    // Social
+    const regex = /^https?:\/\//gm;
+    if (payload.facebook != null && payload.facebook.length && !regex.test(payload.facebook)) {
+      payload.facebook = 'https://' + payload.facebook;
+    } else {
+      payload.facebook = null;
+    }
+    if (payload.twitter != null && payload.twitter.length && !regex.test(payload.twitter)) {
+      payload.twitter = 'https://' + payload.twitter;
+    } else {
+      payload.twitter = null;
+    }
+    if (payload.linkedin != null && payload.linkedin.length && !regex.test(payload.linkedin)) {
+      payload.linkedin = 'https://' + payload.linkedIn;
+    } else {
+      payload.linkedin = null;
+    }
+
+    // Sending
+    return this.http.post(environment.apiURL + '/account/me', payload).toPromise();
   }
 }

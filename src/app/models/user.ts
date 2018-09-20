@@ -1,4 +1,5 @@
 import {Address} from "./address";
+import {Moment} from "moment";
 
 export class User {
 
@@ -9,7 +10,7 @@ export class User {
   username: string;
   phone: string;
   email: string;
-  birthDay: Date;
+  birthDay: Date | Moment;
   profilePicture: {path, name};
   address: Address;
   role: string;
@@ -23,7 +24,7 @@ export class User {
                      username?: string,
                      email?: string,
                      phone?: string,
-                     birthDay?: Date,
+                     birthDay?: Date | Moment,
                      profilePicture?: {path, name},
                      address?: Address,
                      role?: string,

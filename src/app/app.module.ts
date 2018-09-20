@@ -10,8 +10,19 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
-  MatCommonModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule
+  MatCommonModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatNativeDateModule, MatOptionModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule, MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
@@ -30,6 +41,7 @@ import { SignoutComponent } from './pages/signout/signout.component';
 import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
 import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dialog.component';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 @NgModule({
   declarations: [
@@ -74,7 +86,11 @@ import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-
     MatIconModule,
     MatDividerModule,
     MatDialogModule,
+    MatPaginatorModule,
     BrowserAnimationsModule,
+    MatSelectModule,
+    MatOptionModule,
+    NgxMatSelectSearchModule,
     MomentDateModule,
   ],
   providers: [

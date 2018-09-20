@@ -17,7 +17,10 @@ export class StudentService {
     let options;
     if (pagination != null && pagination.currentPage != null) {
       options = {
-        params: {'p': '' + pagination.currentPage}
+        params: {
+          'p': '' + pagination.currentPage,
+          'resultsPerPage': '' + pagination.resultsPerPage
+        }
       };
       if (pagination.resultsPerPage != null) {
         options.params.resultsPerPage = pagination.resultsPerPage;
@@ -33,6 +36,7 @@ export class StudentService {
         params: {
           'search': searchValue,
           'p': '' + pagination.currentPage,
+          'resultsPerPage': '' + pagination.resultsPerPage
         }
       };
       if (pagination.resultsPerPage != null) {
