@@ -22,8 +22,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   form: FormGroup;
   calendarStartDate: Date;
   error: string;
-  user: User;
   loading: boolean;
+  userMatchOnServer: User;
 
   constructor(
     private fb: FormBuilder,
@@ -31,14 +31,14 @@ export class SignupComponent implements OnInit, OnDestroy {
     private router: Router,
     private adapter: DateAdapter<any>
   ) {
-    this.user = new User();
+    this.userMatchOnServer = null;
     this.form = this.fb.group({
-      username: [this.user.username, Validators.compose([Validators.required, Validators.minLength(3)])],
-      firstName: [this.user.firstName, Validators.compose([Validators.required])],
-      lastName: [this.user.lastName, Validators.compose([Validators.required])],
-      email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
-      birthDay: [this.user.birthDay, Validators.compose([Validators.required])],
-      password: [this.user.password, Validators.compose([Validators.required, Validators.minLength(6)])],
+      username: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      firstName: ['', Validators.compose([Validators.required])],
+      lastName: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      birthDay: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       passwordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
     this.adapter.setLocale('fr-FR');
@@ -55,7 +55,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         return;
       }
 
-      this.accountService.signup(this.user)
+      const userBean = Object.assign({}, this.form.value);
+      this.accountService.signup(userBean)
         .then(apiResponse => {
           this.loading = true;
           this.accountService.setSession(apiResponse.token);
@@ -73,25 +74,29 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.error = 'Le formulaire n\'est pas valide';
     } else {
       this.error = null;
-      const loginTaken = 'Le login est déjà pris, séléctionnez en un autre';
-      const serverError = 'Erreur serveur, le login n\'a pas pu être vérifié';
-      const username = this.form.value.username;
-      if (username != null && username.length > 0) {
-        this.accountService.isUsernameTaken(username)
-          .then(() => {
-            this.form.get('username').setErrors(null);
-            if (this.error == loginTaken || this.error == serverError) {
-              this.error = null;
-            }
-          }, (httpError: HttpErrorResponse) => {
-            this.form.get('username').setErrors({taken: true});
-            if (httpError.status == 409) {
-              this.error = loginTaken;
-            } else {
-              this.error = serverError;
-            }
-          });
-      }
+      this.checkUsername();
+    }
+  }
+
+  checkUsername() {
+    const loginTaken = 'Le login est déjà pris, séléctionnez en un autre';
+    const serverError = 'Erreur serveur, le login n\'a pas pu être vérifié';
+    const username = this.form.value.username;
+    if (username != null && username.length > 0) {
+      this.accountService.isUsernameTaken(username)
+        .then(() => {
+          this.form.get('username').setErrors(null);
+          if (this.error == loginTaken || this.error == serverError) {
+            this.error = null;
+          }
+        }, (httpError: HttpErrorResponse) => {
+          this.form.get('username').setErrors({taken: true});
+          if (httpError.status == 409) {
+            this.error = loginTaken;
+          } else {
+            this.error = serverError;
+          }
+        });
     }
   }
 

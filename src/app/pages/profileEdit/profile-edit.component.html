@@ -30,8 +30,8 @@
           <mat-form-field>
             <input matInput (keyup)="checkUsername()" formControlName="username" type="text" class="username" placeholder="Pseudo"/>
           </mat-form-field>
-          <mat-form-field (click)="inp()">
-            <input matInput formControlName="birthDay" (input)="inp()" (change)="inp()"
+          <mat-form-field>
+            <input matInput formControlName="birthDay"
                    [matDatepicker]="picker" placeholder="Date de naissance">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>

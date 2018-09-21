@@ -9,18 +9,17 @@
       <form [formGroup]="form" id="signin-form">
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [(ngModel)]="user.lastName" formControlName="lastName" matInput placeholder="Nom" type="text">
+            <input (input)="checkValidity()" formControlName="lastName" matInput placeholder="Nom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [(ngModel)]="user.firstName" formControlName="firstName" matInput placeholder="Prénom" type="text">
+            <input (input)="checkValidity()" formControlName="firstName" matInput placeholder="Prénom" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()"
-                   [(ngModel)]="user.birthDay" matInput
+            <input (input)="checkValidity()" matInput
                    formControlName="birthDay" [matDatepicker]="picker"
                    placeholder="Date de naissance">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -29,17 +28,17 @@
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [(ngModel)]="user.username" formControlName="username" matInput placeholder="Identifiant" type="text">
+            <input (input)="checkValidity()" formControlName="username" matInput placeholder="Identifiant" type="text">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [(ngModel)]="user.email" formControlName="email" matInput placeholder="Adresse mail" type="email">
+            <input (input)="checkValidity()" formControlName="email" matInput placeholder="Adresse mail" type="email">
           </mat-form-field>
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" [(ngModel)]="user.password" formControlName="password" matInput placeholder="Mot de passe" type="password">
+            <input (input)="checkValidity()" formControlName="password" matInput placeholder="Mot de passe" type="password">
           </mat-form-field>
         </div>
         <div class="row" flex>
