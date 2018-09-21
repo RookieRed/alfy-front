@@ -142,6 +142,7 @@ $padding: 11%;
     &.goals-container, &.alfy-contacts {
       background-color: $accent-darker;
       color: white;
+      z-index: 2;
 
       &:before, &:after {
         display: block;
@@ -169,7 +170,104 @@ $padding: 11%;
     }
 
     &.alfy-actions {
-      background-color: white;
+      $gutter: 30px;
+      $border-width: 5px;
+      $dot-diameter: 8px;
+
+      display: flex;
+      justify-content: center;
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .timeline {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px 0;
+        position: relative;
+        margin: 0 auto 30px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: -15px;
+          left: calc( 34% - 3px );
+          height: calc( 100% + 45px );
+          bottom: 0;
+          width: 4px;
+          background: $accent-darker;
+          z-index: 1;
+        }
+      }
+
+      .entry {
+        text-align: left;
+        display: flex;
+        align-items: baseline;
+
+        .title {
+          float: left;
+          flex: 34%;
+          padding-right: $gutter;
+          text-align: right;
+          position: relative;
+          margin: 0 !important;
+
+          &:before {
+            content: '';
+            position: absolute;
+            width: $dot-diameter;
+            height: $dot-diameter;
+            border: $border-width solid $warn;
+            background-color: #fff;
+            border-radius:100%;
+            top: 15%;
+            right: -$dot-diameter - 0.5px;
+            z-index: 99;
+          }
+
+          h3 {
+            margin: 0;
+            font-size: 120%;
+
+            @media only screen and (max-width: 500px) {
+              font-size: 100% !important;
+            }
+          }
+
+          p {
+            margin: 0;
+            font-size: 100%;
+          }
+        }
+
+        .body {
+          margin: 0 0 20px;
+          float: right;
+          width: 66%;
+          padding-left: $gutter;
+
+          p:first-child {
+            margin-top: 0;
+            font-weight: 400;
+            margin-bottom: 10px;
+          }
+
+          ul {
+            color: $accent;
+            padding-left: 0;
+            list-style-type: none;
+            font-size: 16px;
+            margin: 10px 0;
+
+            li:before {
+              content: "–";
+              margin-right: .5em;
+            }
+          }
+        }
+      }
     }
 
     &.alfy-contacts {
