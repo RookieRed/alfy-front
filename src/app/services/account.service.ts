@@ -80,20 +80,26 @@ export class AccountService {
     }
     // Social
     const regex = /^https?:\/\//gm;
-    if (payload.facebook != null && payload.facebook.length && !regex.test(payload.facebook)) {
-      payload.facebook = 'https://' + payload.facebook;
+    if (payload.facebook != null && payload.facebook.length) {
+      if (!regex.test(payload.facebook)){
+        payload.facebook = 'https://' + payload.facebook;
+      }
     } else {
       payload.facebook = null;
     }
-    if (payload.twitter != null && payload.twitter.length && !regex.test(payload.twitter)) {
-      payload.twitter = 'https://' + payload.twitter;
+    if (payload.twitter != null && payload.twitter.length) {
+      if (!regex.test(payload.twitter)){
+        payload.twitter = 'https://' + payload.twitter;
+      }
     } else {
       payload.twitter = null;
     }
-    if (payload.linkedin != null && payload.linkedin.length && !regex.test(payload.linkedin)) {
-      payload.linkedin = 'https://' + payload.linkedIn;
+    if (payload.linkedIn != null && payload.linkedIn.length) {
+      if (!regex.test(payload.linkedIn)){
+        payload.linkedIn = 'https://' + payload.linkedIn;
+      }
     } else {
-      payload.linkedin = null;
+      payload.linkedIn = null;
     }
 
     // Sending
