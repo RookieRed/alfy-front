@@ -27,12 +27,12 @@
     "flag-icon-css": "^3.3.0",
     "moment": "^2.24.0",
     "ngx-mat-select-search": "^1.7.6",
-    "rxjs": "^6.5.2",
-    "rxjs-compat": "^6.5.2",
+    "rxjs": "6.3.2",
+    "rxjs-compat": "6.3.2",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.801.1",
+    "@angular-devkit/build-angular": "0.13.9",
     "@angular/cli": "~6.0.8",
     "@angular/compiler-cli": "^6.1.10",
     "@angular/language-service": "^6.1.10",
