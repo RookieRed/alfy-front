@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit {
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
     { link: '/profile/edit', name: 'Mon compte' },
-    { link: '/signout', name: 'Se déconnecter' },
-    { link: '/signin', name: 'Se connecter' },
-    { link: '/signup', name: 'Inscription' },
+    // { link: '/signout', name: 'Se déconnecter' },
+    // { link: '/signin', name: 'Se connecter' },
+    // { link: '/signup', name: 'Inscription' },
   ];
 
   constructor(

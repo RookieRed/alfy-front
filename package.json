@@ -26,7 +26,8 @@
     "core-js": "^2.6.9",
     "flag-icon-css": "^3.3.0",
     "moment": "^2.24.0",
-    "ngx-mat-select-search": "^1.7.6",
+    "ng-simple-slideshow": "^1.2.9",
+    "ngx-mat-select-search": "^1.8.0",
     "rxjs": "6.3.2",
     "rxjs-compat": "6.3.2",
     "zone.js": "^0.8.29"
@@ -44,7 +45,7 @@
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^3.1.4",
     "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "^2.0.5",
+    "karma-coverage-istanbul-reporter": "^2.1.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.4.2",

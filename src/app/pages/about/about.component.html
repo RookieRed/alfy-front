@@ -1,9 +1,13 @@
 <div flex class="about-container">
   <div flex="1" class="row alfy-presentation">
     <div class="main-title">
-      <div class="voile">
-        <h1>Anciens du Lycée Fustel de Yaoundé</h1>
-      </div>
+      <slideshow #slideshow
+        [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
+        minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
+      </slideshow>
+<!--      <div class="voile">-->
+<!--        <h1>Anciens du Lycée Fustel de Yaoundé</h1>-->
+<!--      </div>-->
     </div>
     <div class="title">
       <h2 _ngcontent-c9="">Qui nous sommes</h2>

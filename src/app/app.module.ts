@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -23,12 +23,12 @@ import {
   MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
   MatToolbarModule
-} from "@angular/material";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { AuthInterceptorService } from "./services/auth-interceptor.service";
-import { AuthGuard } from "./shared/auth.guard";
+} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthGuard } from './shared/auth.guard';
 import { Page404Component } from './shared/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -38,10 +38,12 @@ import { DirectoryComponent } from './pages/directory/directory.component';
 import { CasePipe } from './shared/pipes/case.pipe';
 import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
 import { SignoutComponent } from './pages/signout/signout.component';
-import {MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
+import {MatMomentDateModule, MomentDateModule} from '@angular/material-moment-adapter';
 import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dialog.component';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import {SlideshowModule} from 'ng-simple-slideshow';
+import {SlideshowComponent} from 'ng-simple-slideshow/src/app/modules/slideshow/slideshow.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
     MatOptionModule,
     NgxMatSelectSearchModule,
     MomentDateModule,
+    SlideshowModule,
   ],
   providers: [
     {
