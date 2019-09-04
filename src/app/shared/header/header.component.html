@@ -1,8 +1,22 @@
 <div id="app-container">
-  <mat-toolbar class="app-toolbar" color="primary">
-    <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
-    <h1 routerLink="/about">ALFY - Le réseau.</h1>
-    <span class="blank-filler"></span>
+  <mat-toolbar class="app-toolbar" color="primary" fxLayout="row" fxLayoutAlign.gt-md="space-between center" fxLayoutAlign.lt-md="flex-start center">
+    <div fxLayout="row" fxLayoutAlign="flex-start center">
+      <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
+      <h1 *ngIf="!isSmallScreen" routerLink="/about">Anciens du Lycée Français de Yaoundé (ALFY)</h1>
+      <h1 *ngIf="isSmallScreen" routerLink="/about">ALFY</h1>
+    </div>
+
+    <!-- TOOLBAR LINKS PAGE -->
+    <div [fxHide.lt-md]="true" class="menu-tabs-link" fxLayout="column" fxLayoutAlign="flex-end flex-end">
+      <nav mat-tab-nav-bar backgroundColor="primary" mat-align-tabs="center">
+        <a mat-tab-link routerLinkActive="rla" #rla="routerLinkActive" [active]="rla.isActive"
+           *ngFor="let link of tabsLinks" [routerLink]="link.link">
+          <div class="menu-tab-link">
+            <span>{{ link.name }}</span>
+          </div>
+        </a>
+      </nav>
+    </div>
 <!--    <button mat-stroked-button *ngIf="isConnected()" (click)="signout()">Déconnexion</button>-->
 <!--    <button mat-stroked-button *ngIf="!isConnected()" routerLink="/signin">Connexion</button>-->
   </mat-toolbar>
@@ -10,7 +24,7 @@
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav-menu" mode="over" [(opened)]="isMenuOpened">
       <mat-nav-list>
-        <mat-list-item routerLink="{{ link.link }}" (click)="toggleMenu()" *ngFor="let link of allMenuLinks" [ngClass]="{'hidden': !isEnabled(link.link)}">
+        <mat-list-item routerLink="{{ link.link }}" (click)="toggleMenu()" *ngFor="let link of shownMenuLinks" [ngClass]="{'hidden': !isEnabled(link.link)}">
           <a matLine>{{ link.name }}</a>
         </mat-list-item>
       </mat-nav-list>

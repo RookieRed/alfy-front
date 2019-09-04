@@ -19,17 +19,19 @@
     "@angular/forms": "^6.1.10",
     "@angular/http": "^6.1.10",
     "@angular/material": "^6.4.7",
+    "@angular/flex-layout": "^6.0.0-beta.16",
     "@angular/material-moment-adapter": "^6.4.7",
     "@angular/platform-browser": "^6.1.10",
     "@angular/platform-browser-dynamic": "^6.1.10",
     "@angular/router": "^6.1.10",
+    "ajv": "^6.10.2",
     "core-js": "^2.6.9",
     "flag-icon-css": "^3.3.0",
     "moment": "^2.24.0",
     "ng-simple-slideshow": "^1.2.9",
     "ngx-mat-select-search": "^1.8.0",
-    "rxjs": "6.3.2",
-    "rxjs-compat": "6.3.2",
+    "rxjs": "6.2.2",
+    "rxjs-compat": "6.2.2",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
@@ -51,6 +53,6 @@
     "protractor": "^5.4.2",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "2.9.2"
   }
 }

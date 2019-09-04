@@ -1,19 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 import {AppRoutingModule} from "../../app-routing.module";
 import {AuthGuard} from "../auth.guard";
 import {Router} from "@angular/router";
+import {BreakpointObserver, BreakpointState, MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
 
   isMenuOpened: boolean;
 
-  readonly allMenuLinks: Link[] = [
+  shownMenuLinks: Link[] = [];
+  readonly menuLinks: Link[] = [
     { link: '/about', name: 'Accueil' },
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
@@ -23,10 +25,20 @@ export class HeaderComponent implements OnInit {
     // { link: '/signup', name: 'Inscription' },
   ];
 
+  readonly tabsLinks: Link[] = [
+    { link: '/about', name: 'Accueil' },
+    { link: '/history', name: 'L\'association' },
+    { link: '/fustel', name: 'Le lycée' },
+    { link: '/faq', name: 'FAQ' },
+  ];
+  isSmallScreen: boolean;
+
   constructor(
     private accountService: AccountService,
     private authGuard: AuthGuard,
     private router: Router,
+    private cdRef: ChangeDetectorRef,
+    private breakpointObserver: BreakpointObserver,
   ) {
     this.isMenuOpened = false;
   }
@@ -47,17 +59,34 @@ export class HeaderComponent implements OnInit {
   }
 
   isEnabled(link: string): boolean {
-    if (!this.accountService.isUserConnected() && link == '/signout') {
+    if (!this.accountService.isUserConnected() && link === '/signout') {
       return false;
     }
-    if (this.accountService.isUserConnected() && (link == '/signin' || link == '/signup')){
+    if (this.accountService.isUserConnected() && (link === '/signin' || link === '/signup')) {
       return false;
     }
     return this.authGuard.isEnabled(link);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.breakpointObserver.observe('(max-width: 960px)').subscribe((state) => {
+      this.onBreakpointChanges(state.matches);
+    });
+  }
 
+  private onBreakpointChanges(matches: boolean) {
+    this.isSmallScreen = matches;
+    if (matches) {
+      this.shownMenuLinks = [...this.tabsLinks, ...this.menuLinks];
+    } else {
+      this.shownMenuLinks = this.menuLinks;
+    }
+    this.cdRef.markForCheck();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.cdRef.detectChanges();
+  }
 }
 
 class Link {

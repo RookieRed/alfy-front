@@ -1,6 +1,6 @@
 @import "../../../styles";
 
-$header-height: 70px;
+$header-height: 65px;
 
 #app-container {
   position: absolute;
@@ -21,17 +21,41 @@ $header-height: 70px;
   .app-toolbar {
     height: $header-height;
     position: fixed;
+    padding: 0 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 100;
 
+    mat-icon {
+      font-size: 20px;
+    }
+
     h1 {
-      margin-left: 1%;
       cursor: pointer;
       font-family: 'Bitter', serif;
-      font-size: 24px;
+      font-size: 20px;
+      line-height: 20px;
     }
-    .blank-filler {
-      flex: 1 1 auto;
+
+
+    .menu-tabs-link {
+      height: $header-height;
+
+      a[mat-tab-link] {
+        padding: 0 16px !important;
+        min-width: 130px;
+
+        &.mat-tab-label-active {
+          opacity: 1 !important;
+        }
+
+        div.menu-tab-link {
+          font-family: 'Bitter', serif;
+          font-size: 17px;
+          line-height: 17px;
+          display: inline-flex;
+          vertical-align: middle;
+        }
+      }
     }
   }
 

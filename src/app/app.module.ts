@@ -22,6 +22,7 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,12 +39,12 @@ import { DirectoryComponent } from './pages/directory/directory.component';
 import { CasePipe } from './shared/pipes/case.pipe';
 import { AddressFormComponent } from './shared/forms/address-form/address-form.component';
 import { SignoutComponent } from './pages/signout/signout.component';
-import {MatMomentDateModule, MomentDateModule} from '@angular/material-moment-adapter';
+import { MomentDateModule} from '@angular/material-moment-adapter';
 import { SimpleDialogComponent } from './shared/dialogs/simple-dialog/simple-dialog.component';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {SlideshowModule} from 'ng-simple-slideshow';
-import {SlideshowComponent} from 'ng-simple-slideshow/src/app/modules/slideshow/slideshow.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,8 @@ import {SlideshowComponent} from 'ng-simple-slideshow/src/app/modules/slideshow/
     NgxMatSelectSearchModule,
     MomentDateModule,
     SlideshowModule,
+    MatTabsModule,
+    FlexLayoutModule,
   ],
   providers: [
     {
