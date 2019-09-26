@@ -15,9 +15,10 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.backgroundImages = [
-      { url: '/assets/img/fustel.jpg', caption: 'Caption of the premiere photo'},
+      { url: '/assets/img/alfy-meeting.jpg', caption: 'Caption of the premiere photo', backgroundSize: 'contain'},
       { url: '/assets/img/fustel.jpg', caption: 'Légende de the deuxieme photo'},
-      { url: '/assets/img/fustel.jpg', caption: 'Allez, une ptite troisieme photo pour faire zizir'},
+      { url: '/assets/img/programme-ete.png', caption: 'La bouffe, on adore !', backgroundSize: 'contain'},
+      { url: '/assets/img/anciens-voyagent.jpg', caption: 'Allez, une ptite troisieme photo pour faire zizir', backgroundSize: 'contain'},
     ];
   }
 

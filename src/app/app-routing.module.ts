@@ -9,11 +9,15 @@ import {AboutComponent} from './pages/about/about.component';
 import {DirectoryComponent} from './pages/directory/directory.component';
 import {ProfileEditComponent} from './pages/profileEdit/profile-edit.component';
 import {SignoutComponent} from './pages/signout/signout.component';
+import {PageIsBuildingComponent} from './pages/page-is-building/page-is-building.component';
+import {FaqComponent} from './pages/faq/faq.component';
+import {HighSchoolComponent} from './pages/high-school/high-school.component';
+import {AssociationComponent} from './pages/association/association.component';
 
 const routes: Routes = [
-  // { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
   // { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
-  // { path: 'signout', component: SignoutComponent, canActivate: [AuthGuard] },
+  { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
+  { path: 'signout', component: SignoutComponent, canActivate: [AuthGuard] },
   { path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
@@ -22,7 +26,11 @@ const routes: Routes = [
       { component: AboutComponent, path: 'about' },
       { component: DirectoryComponent, path: 'directory' },
       { component: ProfileEditComponent, path: 'profile/:id' },
+      { path: 'high-school', redirectTo: 'is-building', pathMatch: 'full' },
+      { path: 'association', redirectTo: 'is-building', pathMatch: 'full' },
+      { path: 'faq', redirectTo: 'is-building', pathMatch: 'full' },
       { component: Page404Component, path: '404' },
+      { component: PageIsBuildingComponent, path: 'is-building' },
     ],
   },
 

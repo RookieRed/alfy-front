@@ -20,15 +20,15 @@ export class HeaderComponent implements OnInit, OnChanges {
     { link: '/directory', name: 'Annuaire' },
     { link: '/admin/students', name: 'Gestion des utilisateurs' },
     { link: '/profile/edit', name: 'Mon compte' },
-    // { link: '/signout', name: 'Se déconnecter' },
-    // { link: '/signin', name: 'Se connecter' },
+    { link: '/signout', name: 'Se déconnecter' },
+    { link: '/signin', name: 'Se connecter' },
     // { link: '/signup', name: 'Inscription' },
   ];
 
   readonly tabsLinks: Link[] = [
     { link: '/about', name: 'Accueil' },
-    { link: '/history', name: 'L\'association' },
-    { link: '/fustel', name: 'Le lycée' },
+    { link: '/association', name: 'L\'association' },
+    { link: '/high-school', name: 'Le lycée' },
     { link: '/faq', name: 'FAQ' },
   ];
   isSmallScreen: boolean;

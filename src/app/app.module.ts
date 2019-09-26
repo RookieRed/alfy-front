@@ -45,6 +45,10 @@ import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { PageIsBuildingComponent } from './pages/page-is-building/page-is-building.component';
+import { AssociationComponent } from './pages/association/association.component';
+import { HighSchoolComponent } from './pages/high-school/high-school.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     SignoutComponent,
     SimpleDialogComponent,
     ConfirmDialogComponent,
+    PageIsBuildingComponent,
+    AssociationComponent,
+    HighSchoolComponent,
+    FaqComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,
