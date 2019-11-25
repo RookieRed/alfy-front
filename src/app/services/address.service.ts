@@ -11,7 +11,7 @@ export class AddressService {
     private http: HttpClient,
     ) { }
 
-  public findCountries(search?: string){
+  public findCountries(search?: string) {
     const url = environment.apiURL + '/countries'
       + (search != null && search.length > 0 ? '?&search=' + search : '');
     return this.http.get(url).toPromise();

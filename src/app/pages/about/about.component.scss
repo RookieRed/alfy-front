@@ -53,42 +53,50 @@ $padding: 11%;
         width: 100% * ( 1 / 0.78 );
         left: 11% * ( -1 / 0.78 );
 
-        //.voile {
-        //  position: relative;
-        //  height: 100%;
-        //  display: flex;
-        //  align-items: flex-end;
-        //  padding-bottom: 20px;
-        //  padding-right: 50%;
-        //  width: 100%;
-        //  font-weight: bolder;
-        //  box-sizing: border-box;
-        //  overflow: hidden;
-        //
-        //  &:before {
-        //    content: "";
-        //    display: block;
-        //    position: absolute;
-        //    left: 0;
-        //    bottom: 0;
-        //    height: 0;
-        //    width: 0;
-        //    border-bottom: 330px solid rgba(255,255,255,0.7);
-        //    border-right: 800px solid transparent;
-        //    z-index: 0;
-        //  }
-        //
-        //  h1 {
-        //    width: 100%;
-        //    z-index: 5;
-        //    min-width: 260px;
-        //    max-width: 370px;
-        //    font-size: 46px;
-        //    line-height: 52px;
-        //    font-family: Bitter, serif;
-        //    margin: 0 20% 0 7%;
-        //  }
-        //}
+        &.no-background {
+          background-image: url('/assets/img/fustel.jpg');
+          background-size: cover;
+          background-color: $accent-lighter;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+
+        .voile {
+          position: relative;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          padding-bottom: 20px;
+          padding-right: 50%;
+          width: 100%;
+          font-weight: bolder;
+          box-sizing: border-box;
+          overflow: hidden;
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 0;
+            width: 0;
+            border-bottom: 330px solid rgba(255,255,255,0.7);
+            border-right: 800px solid transparent;
+            z-index: 0;
+          }
+
+          h1 {
+            width: 100%;
+            z-index: 5;
+            min-width: 260px;
+            max-width: 370px;
+            font-size: 46px;
+            line-height: 52px;
+            font-family: Bitter, serif;
+            margin: 0 20% 0 7%;
+          }
+        }
       }
 
       .logo-alfy {

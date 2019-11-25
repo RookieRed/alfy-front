@@ -1,5 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IImage} from 'ng-simple-slideshow';
+import {PageService} from '../../services/page.service';
+import {PageInfo} from '../../models/page';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -9,17 +12,26 @@ import {IImage} from 'ng-simple-slideshow';
 export class AboutComponent implements OnInit {
 
   @ViewChild('slideshow') slideshow;
-  backgroundImages:  IImage[];
+  backgroundImages:  IImage[] = [];
 
-  constructor() { }
+  constructor(
+    private pageService: PageService,
+  ) { }
 
   ngOnInit() {
-    this.backgroundImages = [
-      { url: '/assets/img/alfy-meeting.jpg', caption: 'Caption of the premiere photo', backgroundSize: 'contain'},
-      { url: '/assets/img/fustel.jpg', caption: 'Légende de the deuxieme photo'},
-      { url: '/assets/img/programme-ete.png', caption: 'La bouffe, on adore !', backgroundSize: 'contain'},
-      { url: '/assets/img/anciens-voyagent.jpg', caption: 'Allez, une ptite troisieme photo pour faire zizir', backgroundSize: 'contain'},
-    ];
+    this.pageService.getPage('about')
+      .then((response) => {
+        const pageInfo: PageInfo = response;
+        pageInfo.files.forEach(file => {
+          const iImage: IImage = Object.assign(file.options, { url: environment.apiURL + '/' + file.path });
+          this.backgroundImages.push(iImage);
+        });
+      }).catch(console.error);
   }
+
+  callback() {
+    console.log('click');
+  }
+
 
 }

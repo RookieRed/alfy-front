@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   public signout() {
-    this.accountService.signout();
+    this.accountService.signOut();
     if (!this.authGuard.isEnabled(window.location.pathname)) {
       this.router.navigate(['']);
     }

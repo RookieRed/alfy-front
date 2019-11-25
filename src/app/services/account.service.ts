@@ -23,7 +23,7 @@ export class AccountService {
     return this.http.post(environment.apiURL + '/account/signin', formData).toPromise();
   }
 
-  public signup(userPayload: User): Promise<any> {
+  public signUp(userPayload: User): Promise<any> {
     return this.http.put(environment.apiURL + '/account/signup', JSON.stringify(userPayload)).toPromise();
   }
 
@@ -37,11 +37,11 @@ export class AccountService {
       localStorage.setItem('jwt', jwt);
     }, err => {
       console.error(err);
-      this.signout();
+      this.signOut();
     });
   }
 
-  public signout(): void {
+  public signOut(): void {
     localStorage.clear();
   }
 
@@ -54,7 +54,7 @@ export class AccountService {
   }
 
   public updateProfilePicture(uploadedPicture: File) {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('picture', uploadedPicture, uploadedPicture.name);
     return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
   }
@@ -65,7 +65,7 @@ export class AccountService {
   }
 
   public update(userBean: User): Promise<any> {
-    let payload = <any> Object.assign({}, userBean);
+    const payload = <any> Object.assign({}, userBean);
     delete payload.profilePicture;
     delete payload.role;
     if (payload.password == null || payload.password.length == 0) {

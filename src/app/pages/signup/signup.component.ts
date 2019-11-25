@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       }
 
       const userBean = Object.assign({}, this.form.value);
-      this.accountService.signup(userBean)
+      this.accountService.signUp(userBean)
         .then(apiResponse => {
           this.loading = true;
           this.accountService.setSession(apiResponse.token);

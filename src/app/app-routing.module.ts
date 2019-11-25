@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import {AuthGuard} from './shared/auth.guard';
-import {Page404Component} from './shared/page404/page404.component';
+import {Page404Component} from './pages/page404/page404.component';
 import {HomeComponent} from './shared/home/home.component';
 import {AboutComponent} from './pages/about/about.component';
 import {DirectoryComponent} from './pages/directory/directory.component';

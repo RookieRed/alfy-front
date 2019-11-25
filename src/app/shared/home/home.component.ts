@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
 
   constructor(
-    private accountService :AccountService,
+    private accountService: AccountService,
     private auth: AuthGuard,
     private router: Router,
   ) { }
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         await this.accountService.getMine();
       } catch (e) {
         console.log(e);
-        this.accountService.signout();
+        this.accountService.signOut();
         if (!this.auth.isEnabled(window.location.pathname)) {
           this.router.navigate(['']);
         }

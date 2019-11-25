@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthGuard } from './shared/auth.guard';
-import { Page404Component } from './shared/page404/page404.component';
+import { Page404Component } from './pages/page404/page404.component';
 import { HomeComponent } from './shared/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -49,6 +49,8 @@ import { PageIsBuildingComponent } from './pages/page-is-building/page-is-buildi
 import { AssociationComponent } from './pages/association/association.component';
 import { HighSchoolComponent } from './pages/high-school/high-school.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { EditableElementComponent } from './shared/components/editable-element/editable-element.component';
+import { AboutPicturesFormDialogComponent } from './shared/dialogs/about-pictures-form-dialog/about-pictures-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { FaqComponent } from './pages/faq/faq.component';
     AssociationComponent,
     HighSchoolComponent,
     FaqComponent,
+    EditableElementComponent,
+    AboutPicturesFormDialogComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,
