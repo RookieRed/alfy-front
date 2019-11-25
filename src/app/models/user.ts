@@ -30,7 +30,7 @@ export class User {
                      role?: string,
                      facebook?: string,
                      twitter?: string,
-                     linkedIn?: string,}) {
+                     linkedIn?: string, }) {
     if (obj != null) {
       this.id = obj.id;
       this.lastName = obj.lastName;

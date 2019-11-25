@@ -19,13 +19,13 @@ export class ConfirmDialogComponent implements OnInit {
     }
   ) {
     if (this.data.type == null) {
-      this.data.confirmLabel = 'Confirmer'
+      this.data.confirmLabel = 'Confirmer';
     }
     if (data.closeLabel == null) {
       data.closeLabel = 'Fermer';
     }
     if (this.data.type == null) {
-      this.data.type = 'info'
+      this.data.type = 'info';
     }
   }
 

@@ -7,10 +7,10 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angul
 })
 export class EditableElementComponent implements OnInit {
 
+  @Input()
+  hide: boolean;
   @Output('onEdit')
   private clickEmitter: EventEmitter<any> = new EventEmitter<any>();
-  @Input()
-  private hide: boolean;
 
   constructor() {
   }

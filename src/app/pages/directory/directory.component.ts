@@ -102,6 +102,7 @@ export class DirectoryComponent implements OnInit {
   }
 
   onImportChange(e) {
+    // tslint:disable-next-line:triple-equals
     if (e.target.files.length == 0) {
       return;
     }
@@ -159,7 +160,7 @@ export class DirectoryComponent implements OnInit {
   async ngOnInit() {
     this.getAllStudents();
     try {
-      let user: User = await this.accountService.getMine();
+      const user: User = await this.accountService.getMine();
       this.isAdmin = user.role == "ADMIN";
     } catch (e) {
       console.error(e);

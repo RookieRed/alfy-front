@@ -181,7 +181,7 @@ export class ProfileEditComponent implements OnInit {
               }
             }, (httpError: HttpErrorResponse) => {
               this.form.get('username').setErrors({taken: true});
-              if (httpError.status == 409) {
+              if (httpError.status === 409) {
                 this.profileError = loginTaken;
               } else {
                 this.profileError = serverError;
@@ -204,7 +204,7 @@ export class ProfileEditComponent implements OnInit {
         this.uploadedPicture = e.target.files[0];
         const fr = new FileReader();
         fr.onload = () => {
-          this.pictureSrc = fr.result;
+          this.pictureSrc = fr.result.toString();
         };
         fr.readAsDataURL(this.uploadedPicture);
       }
@@ -254,7 +254,7 @@ export class ProfileEditComponent implements OnInit {
 
   private setLoadingPicture() {
     this.pictureLoading = true;
-    let pictureElem = <HTMLImageElement> document.getElementById('profile-picture');
+    const pictureElem = <HTMLImageElement> document.getElementById('profile-picture');
     if (pictureElem != null) {
       pictureElem.onload = () => {
         this.pictureIsWide = pictureElem.naturalWidth / pictureElem.naturalHeight < 1;

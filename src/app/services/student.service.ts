@@ -55,8 +55,8 @@ export class StudentService {
   public downloadImportModel() {
     return this.http.get(environment.apiURL + '/students/import', {responseType: 'blob'}).toPromise()
       .then(file => {
-        let url = window.URL.createObjectURL(file);
-        let link = document.createElement('a');
+        const url = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
         link.setAttribute('style', 'display: none;');
         document.body.appendChild(link);
         link.href = url;
@@ -69,7 +69,7 @@ export class StudentService {
   }
 
   public uploadImport(file: File): Promise<any> {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('file', file, file.name);
     return this.http.post(environment.apiURL + '/students/import', formData).toPromise();
   }

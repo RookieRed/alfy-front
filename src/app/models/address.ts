@@ -8,7 +8,7 @@ export class Address {
   city: string;
   country: Country;
 
-  public constructor(obj?:{
+  public constructor(obj?: {
     id?: number,
     line1?: string,
     region?: string,

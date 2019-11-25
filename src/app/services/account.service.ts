@@ -17,7 +17,7 @@ export class AccountService {
   }
 
   public checkCredentials(username: string, password: string): Promise<any> {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('_username', username);
     formData.append('_password', password);
     return this.http.post(environment.apiURL + '/account/signin', formData).toPromise();
@@ -68,7 +68,7 @@ export class AccountService {
     const payload = <any> Object.assign({}, userBean);
     delete payload.profilePicture;
     delete payload.role;
-    if (payload.password == null || payload.password.length == 0) {
+    if (payload.password == null || payload.password.length === 0) {
       delete payload.password;
     }
     // Address
@@ -81,21 +81,21 @@ export class AccountService {
     // Social
     const regex = /^https?:\/\//gm;
     if (payload.facebook != null && payload.facebook.length) {
-      if (!regex.test(payload.facebook)){
+      if (!regex.test(payload.facebook)) {
         payload.facebook = 'https://' + payload.facebook;
       }
     } else {
       payload.facebook = null;
     }
     if (payload.twitter != null && payload.twitter.length) {
-      if (!regex.test(payload.twitter)){
+      if (!regex.test(payload.twitter)) {
         payload.twitter = 'https://' + payload.twitter;
       }
     } else {
       payload.twitter = null;
     }
     if (payload.linkedIn != null && payload.linkedIn.length) {
-      if (!regex.test(payload.linkedIn)){
+      if (!regex.test(payload.linkedIn)) {
         payload.linkedIn = 'https://' + payload.linkedIn;
       }
     } else {

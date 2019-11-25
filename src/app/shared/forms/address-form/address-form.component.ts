@@ -13,7 +13,7 @@ import {Subject} from "rxjs";
 export class AddressFormComponent implements OnInit {
 
   @Input('form') form: FormGroup;
-  @Output('address') eventEmitter: EventEmitter<Address>;
+  @Output('address') addressEmitter: EventEmitter<Address>;
   address: Address;
   countries: Country[];
   selectedCountry: Country;
@@ -23,7 +23,7 @@ export class AddressFormComponent implements OnInit {
   constructor(
     private addressService: AddressService
   ) {
-    this.eventEmitter = new EventEmitter<Address>(true);
+    this.addressEmitter = new EventEmitter<Address>(true);
     this.selectedCountry = null;
     this.countrySearchCtl = new FormControl();
   }
@@ -49,7 +49,7 @@ export class AddressFormComponent implements OnInit {
   onInputChanges() {
     const newAddress = new Address(this.form.value);
     newAddress.country = this.selectedCountry;
-    this.eventEmitter.emit(newAddress);
+    this.addressEmitter.emit(newAddress);
   }
 
   onSelectCountry(country?: Country) {
@@ -71,7 +71,7 @@ export class AddressFormComponent implements OnInit {
     this.getAllCountries();
     this.countrySearchCtl.valueChanges.subscribe(() => {
       this.filterCountries(this.countrySearchCtl.value);
-    })
+    });
   }
 
   private filterCountries(search?: string) {
