@@ -299,7 +299,17 @@ $padding: 11%;
             margin-right: 15px;
             height: 22px;
           }
+
+          .line-icon {
+            display: inline-block;
+          }
+
+          .column-footer {
+            column-count: 2;
+            column-gap: 100px;
+          }
         }
+        
       }
     }
   }
