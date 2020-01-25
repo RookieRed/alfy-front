@@ -144,34 +144,8 @@ $padding: 11%;
       }
     }
 
-    &.goals-container, &.alfy-contacts {
-      background-color: $accent-darker;
-      color: white;
-      z-index: 2;
-
-      &:before, &:after {
-        display: block;
-        position: relative;
-        content: "";
-        width: 100% * (1 / 0.78);
-        left: 11% * (-1 / 0.78);
-        height: 24px;
-        background: url(/assets/img/shadow.png) no-repeat top center;
-        background-size: contain;
-      }
-
-      &:before {
-        top: 0;
-      }
-
-      &:after {
-        bottom: 0;
-        transform: rotate(180deg);
-      }
-
-      .title {
-        margin-top: 10px;
-      }
+    &.goals-container {
+      @extend %container;
     }
 
     &.alfy-actions {
@@ -276,20 +250,13 @@ $padding: 11%;
     }
 
     &.alfy-contacts {
+      
 
       .content {
-        top: 24px;
-
-        .flex-rows {
-          display: flex;
-          width: 100%;
-          font-size: 22px;
-          line-height: 22px;
-          flex-wrap: wrap;
 
           div {
-            display: flex;
-            flex: 1;
+            //display: flex;
+            //flex: 1;
             min-width: 200px;
             justify-content: center;
             margin: 10px 0;
@@ -300,15 +267,35 @@ $padding: 11%;
             height: 22px;
           }
 
-          .line-icon {
-            display: inline-block;
+          .flex-rows {
+            display: flex;
+            width: 100%;
+            font-size: 22px;
+            line-height: 22px;
+            flex-wrap: wrap;
           }
 
-          .column-footer {
-            column-count: 2;
-            column-gap: 100px;
+          .line-icon {
+            width: 100%;
           }
-        }
+
+          .row:after {
+            content: "";
+            display: table;
+            clear: both;
+            box-sizing: border-box;
+          }
+
+          .column1 {
+            float: left; 
+            width: 80%;
+          }
+
+          .column2 {
+            float: right; 
+            width: 20%;
+          }
+
         
       }
     }

@@ -23,9 +23,10 @@
       </div>
 
       <div class="row action-buttons" flex *ngIf="!loading">
-        <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
-        <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
+        <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
         <button mat-flat-button color="accent" onclick="location.href='http://localhost:4200/about';" >Retour</button>
+        <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
+        <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
       </div>
 
       <div *ngIf="loading">

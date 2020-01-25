@@ -51,6 +51,7 @@ import { HighSchoolComponent } from './pages/high-school/high-school.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { EditableElementComponent } from './shared/components/editable-element/editable-element.component';
 import { AboutPicturesFormDialogComponent } from './shared/dialogs/about-pictures-form-dialog/about-pictures-form-dialog.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { AboutPicturesFormDialogComponent } from './shared/dialogs/about-picture
     FaqComponent,
     EditableElementComponent,
     AboutPicturesFormDialogComponent,
+    FooterComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,

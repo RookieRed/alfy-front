@@ -32,6 +32,7 @@ export class AboutComponent implements OnInit {
   callback() {
     console.log('click');
   }
+  
 
 
 }
