@@ -17,6 +17,20 @@
             <input (input)="checkValidity()" formControlName="firstName" matInput placeholder="Prénom" type="text">
           </mat-form-field>
         </div>
+
+        <div class="row" flex>
+          <mat-form-field>
+            <mat-label>Sexe</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option value="option1">Homme</mat-option>
+              <mat-option value="option1">Femme</mat-option>
+              <mat-option value="option2">Autre</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        
+
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" matInput
@@ -55,7 +69,7 @@
           <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary" [disabled]="!form.valid">S'incrire</button>
           <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
         </div>
-
+       
         <div *ngIf="loading">
           <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
         </div>

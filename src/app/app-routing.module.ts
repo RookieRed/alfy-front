@@ -15,7 +15,7 @@ import {HighSchoolComponent} from './pages/high-school/high-school.component';
 import {AssociationComponent} from './pages/association/association.component';
 
 const routes: Routes = [
-  // { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
   { path: 'signin', component: SigninComponent, canActivate: [AuthGuard] },
   { path: 'signout', component: SignoutComponent, canActivate: [AuthGuard] },
   { path: '',
@@ -31,6 +31,7 @@ const routes: Routes = [
       { path: 'faq', redirectTo: 'is-building', pathMatch: 'full' },
       { component: Page404Component, path: '404' },
       { component: PageIsBuildingComponent, path: 'is-building' },
+      { component: SignupComponent, path: 'signup' },
     ],
   },
 
