@@ -19,7 +19,6 @@ import {HttpErrorResponse} from '@angular/common/http';
   ]
 })
 
-
 export class SignupComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
@@ -27,6 +26,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   error: string;
   loading: boolean;
   userMatchOnServer: User;
+  /*chosenYearDate: Date;*/
+
 
   constructor(
     private fb: FormBuilder,

@@ -29,6 +29,19 @@
           </mat-form-field>
         </div>
 
+        <!--<div class="row" flex>
+          <mat-form-field>
+            <app-pages-signup  mode="YEAR" label="Choose a year" [(ngModel)]="chosenYearDate" [max]="2020"></app-pages-signup><br>
+            {{chosenYearDate}} 
+          </mat-form-field> 
+        </div> -->
+
+        <div class="row" flex>
+          <mat-form-field>
+            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obention du Bac" type="text">
+          </mat-form-field>
+        </div>
+
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" matInput
