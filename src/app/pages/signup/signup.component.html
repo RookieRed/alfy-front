@@ -76,11 +76,16 @@
             </mat-select>
           </mat-form-field>
         </div>
+
         <div>
           <mat-card-content>
-            <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+            <section>
+              <mat-checkbox name="checked_politique_conf" >J'accepte les conditions de la politique de fidélité</mat-checkbox>
+              <mat-checkbox name="checked_newsletter" >Je souhaite m'inscrire à la Newsletter</mat-checkbox>
+            </section>
           </mat-card-content>
         </div>
+
         <div *ngIf="error != null" class="row errors-list" flex>
           <p class="mat-error">{{ error }}</p>
         </div>
