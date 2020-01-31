@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -23,7 +24,7 @@ import {
   MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -48,10 +49,11 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { PageIsBuildingComponent } from './pages/page-is-building/page-is-building.component';
 import { AssociationComponent } from './pages/association/association.component';
 import { HighSchoolComponent } from './pages/high-school/high-school.component';
-import { FaqComponent } from './pages/faq/faq.component';
 import { EditableElementComponent } from './shared/components/editable-element/editable-element.component';
 import { AboutPicturesFormDialogComponent } from './shared/dialogs/about-pictures-form-dialog/about-pictures-form-dialog.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 
 @NgModule({
   declarations: [
@@ -72,10 +74,11 @@ import { FooterComponent } from './shared/footer/footer.component';
     PageIsBuildingComponent,
     AssociationComponent,
     HighSchoolComponent,
-    FaqComponent,
     EditableElementComponent,
     AboutPicturesFormDialogComponent,
     FooterComponent,
+    FaqComponent,
+    ActivitiesComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,
@@ -112,6 +115,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     SlideshowModule,
     MatTabsModule,
     FlexLayoutModule,
+    MatExpansionModule,
   ],
   providers: [
     {

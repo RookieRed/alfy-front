@@ -24,11 +24,11 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'about', pathMatch: 'full' },
       { component: AboutComponent, path: 'about' },
+      { component: FaqComponent, path: 'faq' },
       { component: DirectoryComponent, path: 'directory' },
       { component: ProfileEditComponent, path: 'profile/:id' },
       { path: 'high-school', redirectTo: 'is-building', pathMatch: 'full' },
       { path: 'association', redirectTo: 'is-building', pathMatch: 'full' },
-      { path: 'faq', redirectTo: 'is-building', pathMatch: 'full' },
       { component: Page404Component, path: '404' },
       { component: PageIsBuildingComponent, path: 'is-building' },
     ],

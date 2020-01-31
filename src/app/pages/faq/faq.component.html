@@ -1,3 +1,130 @@
-<p>
-  faq works!
-</p>
+<h1 style="text-align: center; font-size: 40px;">FAQ</h1>
+
+<!-- -->
+<button mat-mini-fab style="position:absolute; top:5%; right:5%;" routerLink=""><mat-icon style="position:relative;">edit</mat-icon></button>
+
+
+<p class="introduction">Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
+  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.</p>
+
+<div class="search">
+  <form>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Rechercher une question">
+    </mat-form-field>
+  </form>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title style="font-size:  25px;">
+        <button mat-mini-fab style="" routerLink=""><mat-icon style="">cancel</mat-icon></button> Catégorie 1 
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+           If you were offered the position of mayor of your city, would you take it? 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">Yes, I would take the position of mayor.</p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+           If you inherited or won a million dollars, what’s the very first thing you would do with the money? 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">I would buy candy.</p>
+    </mat-expansion-panel>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="font-size:  25px;">
+        Catégorie 2
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+           If you were offered the position of mayor of your city, would you take it? 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">Yes, I would take the position of mayor.</p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+           If you inherited or won a million dollars, what’s the very first thing you would do with the money? 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">I would buy candy.</p>
+    </mat-expansion-panel>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="font-size:  25px;">
+        Catégorie 3
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+           If you were offered the position of mayor of your city, would you take it? 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">Yes, I would take the position of mayor.</p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:   20px;">
+          If you inherited or won a million dollars, what’s the very first thing you would do with the money?
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p style="text-indent: 3em;">I would buy candy.</p>
+    </mat-expansion-panel>
+
+  </mat-expansion-panel>
+
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size:  25px;">
+          Catégorie 4
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size:   20px;">
+             If you were offered the position of mayor of your city, would you take it?  
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p style="text-indent: 3em;">Yes, I would take the position of mayor.</p>
+      </mat-expansion-panel>
+  
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-size:   20px;">
+             If you inherited or won a million dollars, what’s the very first thing you would do with the money? 
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p style="text-indent: 3em;">I would buy candy.</p>
+      </mat-expansion-panel>
+  
+    </mat-expansion-panel>
+</mat-accordion>
