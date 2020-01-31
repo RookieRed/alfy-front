@@ -1,7 +1,7 @@
-<div class="login-container" align="center">
+<div class="login-container" align="center"  style= "position: static;">
 
   <mat-card color="accent">
-    <div layout="column">
+    <div layout="column" >
       <div flex>
         <mat-card-title>Formulaire d'inscription</mat-card-title>
       </div>
@@ -22,9 +22,9 @@
           <mat-form-field>
             <mat-label>Sexe</mat-label>
             <mat-select [(value)]="selected">
-              <mat-option value="option1">Homme</mat-option>
-              <mat-option value="option1">Femme</mat-option>
-              <mat-option value="option2">Autre</mat-option>
+              <mat-option value="homme">Homme</mat-option>
+              <mat-option value="femme">Femme</mat-option>
+              <mat-option value="autre">Autre</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -68,8 +68,33 @@
         </div>
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="passwordConfirm" matInput placeholder="Confirmation" type="password">
+            <input (input)="checkValidity()" formControlName="passwordConfirm" matInput placeholder="Confirmation mot de passe ??" type="password">
           </mat-form-field>
+        </div>
+
+        <div class="row" flex>
+          <mat-form-field>
+            <mat-label>Pourquoi voulez-vous vous inscrire?</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option value="option1">Pour développer mon réseau</mat-option>
+              <mat-option value="option2">Pour chercher des futurs partenaires</mat-option>
+              <mat-option value="option3">Pour s’informer sur les dernières actualités de l’association</mat-option>
+              <mat-option value="option4">Pour chercher des futurs partenaires</mat-option>
+              <mat-option value="option5">Pour chercher des futurs stagiaires</mat-option>
+              <mat-option value="option6">Pour trouver des opportunités de travail</mat-option>
+              <mat-option value="option7">Pour retrouver des anciens élèves</mat-option>
+              <mat-option value="option8">Autre</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-card-content>
+            <section>
+              <mat-checkbox name="checked_politique_conf" >J'accepte les conditions de la politique de fidélité</mat-checkbox>
+              <mat-checkbox name="checked_newsletter" >Je souhaite m'inscrire à la Newsletter</mat-checkbox>
+            </section>
+          </mat-card-content>
         </div>
 
         <div *ngIf="error != null" class="row errors-list" flex>
@@ -77,7 +102,9 @@
         </div>
 
         <div class="row action-buttons"  *ngIf="!loading" flex>
-          <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary" [disabled]="!form.valid">S'incrire</button>
+          <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
+          <button mat-flat-button color="accent" onclick="location.href='http://localhost:4200/about';" >Retour</button>  
+          <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary" [disabled]="!form.valid">Soumettre</button>
           <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
         </div>
        
