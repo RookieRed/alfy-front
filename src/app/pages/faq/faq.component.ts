@@ -7,7 +7,6 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
-  panelOpenState = false;
 
   constructor() { }
 
