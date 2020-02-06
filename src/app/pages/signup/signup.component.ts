@@ -6,6 +6,8 @@ import {Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {HttpErrorResponse} from '@angular/common/http';
+import {FormControl} from '@angular/forms';
+
 
 
 @Component({
@@ -26,7 +28,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   error: string;
   loading: boolean;
   userMatchOnServer: User;
-  /*chosenYearDate: Date;*/
+  raisons = new FormControl();
+  raisonList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
 
 
   constructor(

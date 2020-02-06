@@ -72,7 +72,7 @@
           </mat-form-field>
         </div>
 
-        <div class="row" flex>
+        <!-- <div class="row" flex>
           <mat-form-field>
             <mat-label>Pourquoi voulez-vous vous inscrire?</mat-label>
             <mat-select [(value)]="selected">
@@ -86,7 +86,24 @@
               <mat-option value="option8">Autre</mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
+        </div> -->
+
+        <!--<div class="row" flex>
+          <mat-form-field>
+            <mat-label>Pourquoi voulez-vous vous inscrire?</mat-label>
+            <mat-select placeholder="Pour" [formControl]="raisons" multiple>>
+            
+              <mat-select-trigger>
+                {{raisons.value ? raisons.value[0] : ''}}
+                <span *ngIf="raisons.value?.length > 1" class="signup-component">
+                  (+{{raisons.value.length - 1}} {{raisons.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let topping of toppingList" [value]="raison">{{raison}}</mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+        </div> -->
 
         <div>
           <mat-card-content>
