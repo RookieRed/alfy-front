@@ -35,9 +35,8 @@
             {{chosenYearDate}} 
           </mat-form-field> 
         </div> -->
-
-        <!--
-        <div class="row" flex>
+        
+        <!--<div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" matInput 
                     formControlName="bacYear" [matDatepicker]="picker"
@@ -46,8 +45,9 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>
-        </div>
-        -->
+        </div> -->
+
+
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" matInput
@@ -56,7 +56,14 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>
+        </div> 
+
+        <div class="row" flex>
+          <mat-form-field>
+            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obtention du Bac" type="number" [min]="1967">
+          </mat-form-field>
         </div>
+
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" formControlName="username" matInput placeholder="Identifiant" type="text">
@@ -78,23 +85,8 @@
           </mat-form-field>
         </div>
 
-        <!-- <div class="row" flex>
-          <mat-form-field>
-            <mat-label>Pourquoi voulez-vous vous inscrire?</mat-label>
-            <mat-select [(value)]="selected">
-              <mat-option value="option1">Pour développer mon réseau</mat-option>
-              <mat-option value="option2">Pour chercher des futurs partenaires</mat-option>
-              <mat-option value="option3">Pour s’informer sur les dernières actualités de l’association</mat-option>
-              <mat-option value="option4">Pour chercher des futurs partenaires</mat-option>
-              <mat-option value="option5">Pour chercher des futurs stagiaires</mat-option>
-              <mat-option value="option6">Pour trouver des opportunités de travail</mat-option>
-              <mat-option value="option7">Pour retrouver des anciens élèves</mat-option>
-              <mat-option value="option8">Autre</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> -->
 
-        <!--<div class="row" flex>
+        <div class="row" flex>
           <mat-form-field>
             <mat-label>Pourquoi voulez-vous vous inscrire?</mat-label>
             <mat-select placeholder="Pour" [formControl]="raisons" multiple>>
@@ -105,11 +97,17 @@
                   (+{{raisons.value.length - 1}} {{raisons.value?.length === 2 ? 'other' : 'others'}})
                 </span>
               </mat-select-trigger>
-              <mat-option *ngFor="let topping of toppingList" [value]="raison">{{raison}}</mat-option>
-              
-            </mat-select>
+              <mat-option *ngFor="let raison of raisonList" (click)="gestionMotivation(raison)" [value]="raison">{{raison}}</mat-option>
+              <!--<textarea matInput placeholder="Expliquez ici vos motivations"></textarea>-->
+             </mat-select>
           </mat-form-field>
-        </div> -->
+        </div>
+
+        <form *ngIf="textZone">        
+          <mat-form-field >
+            <textarea matInput placeholder="Expliquez ici vos motivations"></textarea>
+          </mat-form-field>
+        </form>
 
         <div>
           <mat-card-content>

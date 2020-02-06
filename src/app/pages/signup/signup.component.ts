@@ -29,9 +29,15 @@ export class SignupComponent implements OnInit, OnDestroy {
   loading: boolean;
   userMatchOnServer: User;
   raisons = new FormControl();
-  raisonList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
-
+  raisonList: string[] = ['Pour développer mon réseau',
+   'Pour chercher des futurs partenaires', 
+   'Pour s’informer sur les dernières actualités de l’association', 
+   'Pour chercher des futurs stagiaires', 
+   'Pour trouver des opportunités de travail', 
+   'Pour retrouver des anciens élèves', 
+   'Autre'];
+   textZone: boolean;
+   compteur: number;
 
   constructor(
     private fb: FormBuilder,
@@ -45,6 +51,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.compose([Validators.required])],
       lastName: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
+      bacYear: ['', Validators.compose([Validators.required])],
       birthDay: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       passwordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -52,6 +59,20 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.adapter.setLocale('fr-FR');
     this.calendarStartDate = new Date('2000-01-01');
     this.loading = false;
+    this.textZone = false;
+    this.compteur = 0;
+  }
+
+  public gestionMotivation(autre) {
+    if ('Autre' === autre){
+      this.compteur ++;
+      if (this.compteur % 2 == 0){
+        this.textZone = false;
+      }else{
+        this.textZone = true;
+      }
+    }
+    //debugger
   }
 
   public submitForm() {
