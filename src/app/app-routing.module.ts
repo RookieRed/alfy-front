@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'about', pathMatch: 'full' },
       { component: AboutComponent, path: 'about' },
-      { path: 'faq', redirectTo: 'is-building', pathMatch: 'full' },
+      { component: FaqComponent, path: 'faq' },
       { component: DirectoryComponent, path: 'directory' },
       { component: ProfileEditComponent, path: 'profile/:id' },
       { path: 'high-school', redirectTo: 'is-building', pathMatch: 'full' },

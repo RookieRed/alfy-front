@@ -1,3 +1,32 @@
-<p>
-  faq works!
-</p>
+<h1 style="text-align: center; font-size: 40px;">FAQ</h1>
+
+<button mat-mini-fab style="position:absolute; top:5%; right:5%;" routerLink=""><mat-icon style="position:relative;">edit</mat-icon></button>
+
+<p class="introduction">Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
+  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.</p>
+
+
+<div class="search">
+  <form>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Rechercher une question">
+    </mat-form-field>
+  </form>
+</div>
+
+
+<div class="categories">
+  
+  <mat-expansion-panel *ngFor="let panel of panels">
+    <mat-expansion-panel-header>
+      <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{panel.category}}</p>
+    </mat-expansion-panel-header>
+
+    <p class="question">{{panel.question}}</p>
+    <p class="answer">{{panel.response}}</p>
+  </mat-expansion-panel>
+  
+
+
+  
+</div>

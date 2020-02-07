@@ -1,0 +1,38 @@
+.title {
+    font-size: xx-large; 
+    text-align: center;
+}
+
+.introduction {
+    font-size: large;
+    text-align: center;
+}
+
+.search {
+    margin: auto;
+    width: 13%;
+    padding: 10px;
+}
+
+.question {
+    text-indent: 25px;
+    font-style: italic;
+}
+
+.answer { 
+    text-indent: 35px;
+}
+
+.category {
+    font-size: larger;
+}
+
+.categories {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+}
+
+mat-expansion-panel {
+    width: 100%;
+}
