@@ -29,25 +29,6 @@
           </mat-form-field>
         </div>
 
-        <!--<div class="row" flex>
-          <mat-form-field>
-            <app-pages-signup  mode="YEAR" label="Choose a year" [(ngModel)]="chosenYearDate" [max]="2020"></app-pages-signup><br>
-            {{chosenYearDate}} 
-          </mat-form-field> 
-        </div> -->
-        
-        <!--<div class="row" flex>
-          <mat-form-field>
-            <input (input)="checkValidity()" matInput 
-                    formControlName="bacYear" [matDatepicker]="picker"
-                    placeholder="Année d'obention du Bac" >
-                    
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
-          </mat-form-field>
-        </div> -->
-
-
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" matInput
@@ -60,7 +41,7 @@
 
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obtention du Bac" type="number" [min]="1967">
+            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obtention du Bac" type="number" [min]="1967" [max]="10000">
           </mat-form-field>
         </div>
 
