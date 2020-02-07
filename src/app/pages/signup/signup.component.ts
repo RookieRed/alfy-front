@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit, OnDestroy {
    'Pour retrouver des anciens élèves', 
    'Autre'];
    textZone: boolean;
-   compteur: number;
+   selectedOther: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +51,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.compose([Validators.required])],
       lastName: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
+      emailConfirm: ['', Validators.compose([Validators.required, Validators.email])],
       bacYear: ['', Validators.compose([Validators.required])],
       birthDay: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -60,16 +61,17 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.calendarStartDate = new Date('2000-01-01');
     this.loading = false;
     this.textZone = false;
-    this.compteur = 0;
+    this.selectedOther = false;
   }
 
-  public gestionMotivation(autre) {
-    if ('Autre' === autre){
-      this.compteur ++;
-      if (this.compteur % 2 == 0){
+  public textZoneMotivation(other) {
+    if ('Autre' === other){
+      if (this.selectedOther){
         this.textZone = false;
+        this.selectedOther = false;
       }else{
         this.textZone = true;
+        this.selectedOther = true;
       }
     }
     //debugger
@@ -81,6 +83,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
       if (val.password !== val.passwordConfirm) {
         this.error = "Les deux mots de passes ne sont pas identiques";
+        return;
+      }
+      if (val.email !== val.emailConfirm) {
+        this.error = "Les deux adresses mail ne sont pas identiques";
         return;
       }
 
