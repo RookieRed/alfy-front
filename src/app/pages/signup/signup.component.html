@@ -1,5 +1,4 @@
-<div class="login-container" align="center"  style= "position: static;">
-
+  <div class="login-container" align="center"  style= "position: static;">
   <mat-card color="accent">
     <div layout="column" >
       <div flex>
@@ -79,7 +78,6 @@
                 </span>
               </mat-select-trigger>
               <mat-option *ngFor="let raison of raisonList" (click)="gestionMotivation(raison)" [value]="raison">{{raison}}</mat-option>
-              <!--<textarea matInput placeholder="Expliquez ici vos motivations"></textarea>-->
              </mat-select>
           </mat-form-field>
         </div>

@@ -1,6 +1,37 @@
 @import "../../../styles.scss";
 @import "../../shared/sass/form";
 
+@media only screen and (max-width: 500px) {
+
+    .login-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    
+      mat-card {
+        background-color: white;
+        width: 450px;
+        padding: 30px 10px;
+    
+        mat-form-field {
+            width: 200px !important;    
+        }
+    
+        .action-buttons {
+          button {
+            margin: 10px 50px !important;
+          }
+        }
+      }
+    
+    }
+}
+
 .login-container {
   position: absolute;
   width: 100%;
@@ -17,10 +48,13 @@
     padding: 30px 10px;
 
     mat-form-field {
-        width: 400px;    
+      width: 400px;    
     }
 
-    
+    mat-checkbox{
+      text-rendering: 0px;    
+    }
+
     .action-buttons {
       button {
         margin: 0 10px;
@@ -29,5 +63,3 @@
   }
 
 }
-
-
