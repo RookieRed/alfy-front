@@ -24,7 +24,7 @@
     
         .action-buttons {
           button {
-            margin: 10px 50px !important;
+            margin: 10px 70px !important;
           }
         }
       }
@@ -50,14 +50,15 @@
     mat-form-field {
       width: 400px;    
     }
-
-    mat-checkbox{
-      text-rendering: 0px;    
-    }
+    /*mat-checkbox {
+      margin-block-start: 100px;
+      margin-block-end: 0em; 
+      text-align: center;   
+    }*/
 
     .action-buttons {
       button {
-        margin: 0 10px;
+        margin: 10px 10px;
       }
     }
   }
