@@ -70,6 +70,9 @@
 
   }
 }
+
+
+
 // Permet de régler la taille du label des checkbox
 // adds breaks to the mat-checkboxes with long labels
 ::ng-deep .mat-checkbox-layout {
@@ -79,4 +82,10 @@
 // rather than center the checkbox, put the checkbox in the first line
 ::ng-deep .mat-checkbox-inner-container {
   margin-top: 3px !important;
+}
+
+mat-option{
+  white-space: pre-line;
+  line-height: 2em !important;
+  height: auto !important;
 }
