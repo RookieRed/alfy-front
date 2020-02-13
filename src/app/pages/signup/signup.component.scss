@@ -1,78 +1,6 @@
 @import "../../../styles.scss";
 @import "../../shared/sass/form";
 
-@media only screen and (max-width: 500px) {
-
-    .login-container {
-      position: static;
-      width: 100%;
-      height: 100%;
-      right: 0;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    
-      mat-card {
-        background-color: white;
-        width: 450px;
-        padding: 30px 10px;
-    
-        mat-form-field {
-            width: 200px !important;    
-        }
-          
-        .action-buttons {
-          button {
-            margin: 10px 70px !important;
-          }
-        }
-      }
-    }
-
-    //.checkboxText {
-      //white-space: pre-wrap !important;
-    //}
-}
-
-@media only screen and (min-width: 500px) {
-
-  .login-container {
-    position: static;
-    width: 100%;
-    height: 100%;
-    right: 0;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    mat-card {
-      background-color: white;
-      width: 450px;
-      padding: 30px 10px;
-
-      mat-form-field {
-        width: 400px;    
-      }
-      /*mat-checkbox {
-        margin-block-start: 100px;
-        margin-block-end: 0em; 
-        text-align: center;   
-      }*/
-
-      .action-buttons {
-        button {
-          margin: 10px 10px;
-        }
-      }
-    }
-
-  }
-}
-
-
-
 // Permet de régler la taille du label des checkbox
 // adds breaks to the mat-checkboxes with long labels
 ::ng-deep .mat-checkbox-layout {
@@ -88,4 +16,19 @@ mat-option{
   white-space: pre-line;
   line-height: 27px !important;
   height: auto !important;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+      mat-form-field {
+            width: 200px !important;    
+        }
+          
+        .action-buttons {
+          button {
+            margin: 10px 70px !important;
+          }
+        }
 }
