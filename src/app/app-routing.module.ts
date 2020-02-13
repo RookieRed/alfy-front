@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'association', redirectTo: 'is-building', pathMatch: 'full' },
       { component: Page404Component, path: '404' },
       { component: PageIsBuildingComponent, path: 'is-building' },
-      { component: SignupComponent, path: 'signup' },
+      //{ component: SignupComponent, path: 'signup' },
     ],
   },
 
