@@ -116,11 +116,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     SlideshowModule,
     MatTabsModule,
     FlexLayoutModule,
-<<<<<<< HEAD
     MatExpansionModule,
-=======
     MatCheckboxModule,
->>>>>>> inscription
   ],
   providers: [
     {
