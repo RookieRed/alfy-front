@@ -1,64 +1,175 @@
 @import "../../../styles.scss";
 
 .alfy-contacts {
+
   @extend %container;
-
-  .link {
-    padding-right: 50px;
-  }
-
-  .link-line {
-    display: flex; 
-    text-align: center; 
-    font-size:22px;
-  }
 
   .content {
 
-    div {
-      //display: flex;
-      //flex: 1;
-      min-width: 200px;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    mat-icon {
-      margin-right: 15px;
-      height: 22px;
-    }
-
-    .flex-rows {
-      display: flex;
-      width: 100%;
-      font-size: 22px;
-      line-height: 22px;
-      flex-wrap: wrap;
-    }
-
-    .line-icon {
-      width: 100%;
-    }
-
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-      box-sizing: border-box;
-    }
-
     .column1 {
-      float: left;
+      float: center;
       width: 50%;
       text-align: center;
     }
-
     .column2 {
-      float: right;
+      float: center;
       width: 50%;
       text-align: center;
     }
 
+    mat-form-field {
+      width: 7em;
+    }
+
+    a.link { 
+      display: block;
+      text-align: center;
+      margin: 2em;
+    }
+   
+
+  }
+
+}
+
+@media only screen and (min-width: 500px) {
+
+    .content {
+  
+      div {
+        //display: flex;
+        //flex: 1;
+        min-width: 200px;
+        justify-content: center;
+        margin: 10px 0;
+      }
+  
+      mat-icon {
+        margin-right: 15px;
+        height: 22px;
+      }
+
+      mat-form-field {
+        width: auto !important;
+      }
+  
+      .flex-rows {
+        display: flex;
+        width: 100%;
+        font-size: 22px;
+        line-height: 22px;
+        flex-wrap: wrap;
+      }
+  
+      .line-icon {
+        width: 100%;
+      }
+  
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        box-sizing: border-box;
+      }
+
+      .link-line {
+        display: flex; 
+        text-align: center; 
+        font-size:22px;
+      }
+
+      .link {
+        padding-right: 50px;
+      }
+  
+    }
+  
+  
+
+}
+
+/*@media only screen and (max-width: 500px) {
+
+    .login-container {
+      position: static;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    
+      mat-card {
+        background-color: white;
+        width: 450px;
+        padding: 30px 10px;
+    
+        mat-form-field {
+            width: 200px !important;    
+        }
+          
+        .action-buttons {
+          button {
+            margin: 10px 70px !important;
+          }
+        }
+      }
+    }
+
+    //.checkboxText {
+      //white-space: pre-wrap !important;
+    //}
+}
+
+@media only screen and (min-width: 500px) {
+
+  .login-container {
+    position: static;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-card {
+      background-color: white;
+      width: 450px;
+      padding: 30px 10px;
+
+      mat-form-field {
+        width: 400px;    
+      }
+      
+
+      .action-buttons {
+        button {
+          margin: 10px 10px;
+        }
+      }
+    }
 
   }
 }
+
+
+
+// Permet de régler la taille du label des checkbox
+// adds breaks to the mat-checkboxes with long labels
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+// rather than center the checkbox, put the checkbox in the first line
+::ng-deep .mat-checkbox-inner-container {
+  margin-top: 3px !important;
+}
+
+mat-option{
+  white-space: pre-line;
+  line-height: 27px !important;
+  height: auto !important;
+}
+*/
