@@ -17,7 +17,7 @@
 }
 
 .answer { 
-    margin-left: 45px;
+    margin-left: 110px;
     font-size: large;
 }
 
@@ -50,5 +50,9 @@ mat-expansion-panel-header{
 }
 
 @media only screen and (max-width: 500px) {
+
+    p.answer {
+        margin-left: 0px;  
+    }
 }
 
