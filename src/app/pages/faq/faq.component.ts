@@ -21,9 +21,27 @@ export class FaqComponent implements OnInit {
   },
 
   {
-    category: 'I don\'t know',
-    question: 'Comment i don\'t know parce que i don\'t know ?',
-    response: 'En fait ce qu\'il faut  faire c\'est i don\'t know, puis i don\'t know et il faut surtout pas oublier i don\'t know !'
+    category: 'Catégorie 3',
+    question: 'Comment rechercher des membres d ALFY ?',
+    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
+  }, 
+
+  {
+    category: 'Catégorie 4',
+    question: 'Comment rechercher des membres d ALFY ?',
+    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
+  }, 
+
+  {
+    category: 'Catégorie 5',
+    question: 'Comment rechercher des membres d ALFY ?',
+    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
+  }, 
+
+  {
+    category: 'Catégorie 6',
+    question: 'Comment rechercher des membres d ALFY ?',
+    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
   }
   ]
 
