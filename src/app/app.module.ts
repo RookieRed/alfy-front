@@ -54,6 +54,7 @@ import { AboutPicturesFormDialogComponent } from './shared/dialogs/about-picture
 import { FooterComponent } from './shared/footer/footer.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,11 @@ import { ActivitiesComponent } from './pages/activities/activities.component';
     SlideshowModule,
     MatTabsModule,
     FlexLayoutModule,
+<<<<<<< HEAD
     MatExpansionModule,
+=======
+    MatCheckboxModule,
+>>>>>>> inscription
   ],
   providers: [
     {

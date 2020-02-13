@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.style.background = "url('../../../assets/img/connection-background.jpg') no-repeat 0 0";
-    document.body.style.backgroundSize = "100%";
+    document.body.style.backgroundSize = "auto";
   }
 
   ngOnDestroy() {
