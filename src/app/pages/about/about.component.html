@@ -8,12 +8,19 @@
   </mat-grid-tile>
 </mat-grid-list> -->
 
-<mat-grid-list cols="4" rowHeight="200px">
-  <mat-grid-tile colspan="4" rowspan="1" style="background-color: lightblue;">
-      <h2>Carousel</h2>
-  </mat-grid-tile>
+<mat-grid-list cols="4" >
+    <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
+        [class.no-background]="backgroundImages.length == 0">
+      <slideshow #slideshow *ngIf="backgroundImages.length > 0"
+      [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
+      minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
+      </slideshow>
+      <div *ngIf="backgroundImages.length === 0" class="voile">
+        <h1>Anciens du Lycée Fustel de Yaoundé</h1>
+      </div>
+    </editable-element>
   <mat-grid-tile colspan="1" rowspan="3" style="background-color: lightgreen;">
-      <h2>Agenda</h2>
+    <h2>Agenda</h2>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="1" style="background-color: lightpink;">
     <h2> Presentation </h2>

@@ -18,13 +18,19 @@ export interface Tile {
 })
 export class AboutComponent implements OnInit {
 
-  tiles: Tile[] = [
+  /*tiles: Tile[] = [
     {text: 'Carousel', cols: 4, rows: 1, color: 'lightblue'},
     {text: 'Agenda', cols: 1, rows: 3, color: 'lightgreen'},
     {text: 'Presentation', cols: 3, rows: 1, color: 'lightpink'},
     {text: 'Actualites', cols: 3, rows: 1, color: '#DDBDF1'},
 	  {text: 'Partenaires', cols: 3, rows: 1, color: 'lightblue'},
+  ];*/
+
+  backgroundImages: (string)[] = [
+    "/assets/img/logo-alfy.jpg",
+    "/assets/img/anciens-voyagent.jpg"    
   ];
+  
   constructor(
   ) { }
 
