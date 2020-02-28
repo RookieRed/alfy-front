@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { FaqService } from '../../services/faq.service';
+import { Category } from '../../models/faqCategory';
+
 
 @Component({
   selector: 'app-faq',
@@ -7,6 +10,15 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
+
+  categories: Promise<Category>;
+
+  listeQuestions : [];
+  var : BigInteger;
+
+  for (listeQuestions) {
+    
+  }
 
   panels = [
     {
@@ -45,9 +57,14 @@ export class FaqComponent implements OnInit {
   }
   ]
 
-  constructor() { }
+  constructor(private faqService: FaqService) { }
+
+  getCategories(): void {
+    this.categories = this.faqService.getCategories();
+  }
 
   ngOnInit() {
+    this.getCategories();
   }
 
 }
