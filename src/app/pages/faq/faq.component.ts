@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
-import { Category } from '../../models/faqCategory';
+import { Category } from '../../models/pageFaq';
+import { environnement } from '../../models/pageFaq';
 
 
 @Component({
@@ -11,14 +12,7 @@ import { Category } from '../../models/faqCategory';
 })
 export class FaqComponent implements OnInit {
 
-  categories: Promise<Category>;
-
-  listeQuestions : [];
-  var : BigInteger;
-
-  for (listeQuestions) {
-    
-  }
+  categories: Category;
 
   panels = [
     {
@@ -57,10 +51,19 @@ export class FaqComponent implements OnInit {
   }
   ]
 
+  private onApiError(err) {
+    console.error(err);
+    this.categories = null;
+  }
+
   constructor(private faqService: FaqService) { }
 
   getCategories(): void {
-    this.categories = this.faqService.getCategories();
+    this.faqService.getCategories().then((resp: any) => {
+      this.categories = resp;
+    }, (err) => {
+      this.onApiError(err);
+    })
   }
 
   ngOnInit() {
