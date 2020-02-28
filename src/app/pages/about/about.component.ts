@@ -4,6 +4,13 @@ import {PageService} from '../../services/page.service';
 import {PageInfo} from '../../models/page';
 import {environment} from '../../../environments/environment';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -11,26 +18,21 @@ import {environment} from '../../../environments/environment';
 })
 export class AboutComponent implements OnInit {
 
-  @ViewChild('slideshow') slideshow;
-  backgroundImages:  IImage[] = [];
-
+  tiles: Tile[] = [
+    {text: 'Carousel', cols: 4, rows: 1, color: 'lightblue'},
+    {text: 'Agenda', cols: 1, rows: 3, color: 'lightgreen'},
+    {text: 'Presentation', cols: 3, rows: 1, color: 'lightpink'},
+    {text: 'Actualites', cols: 3, rows: 1, color: '#DDBDF1'},
+	  {text: 'Partenaires', cols: 3, rows: 1, color: 'lightblue'},
+  ];
   constructor(
-    private pageService: PageService,
   ) { }
 
   ngOnInit() {
-    this.pageService.getPage('about')
-      .then((response) => {
-        const pageInfo: PageInfo = response;
-        pageInfo.files.forEach(file => {
-          const iImage: IImage = Object.assign(file.options, { url: environment.apiURL + '/' + file.path });
-          this.backgroundImages.push(iImage);
-        });
-      }).catch(console.error);
+   
   }
 
   callback() {
-    console.log('click');
   }
 
 
