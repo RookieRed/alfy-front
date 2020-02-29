@@ -15,15 +15,14 @@
 </div>
 
 
-<div class="categories">
-  
-  <mat-expansion-panel *ngFor="let panel of panels">
-    <mat-expansion-panel-header>
-      <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{panel.category}}</p>
+<div class="cat">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header *ngFor="let c of categories">
+      <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{c}}</p>
     </mat-expansion-panel-header>
 
-    <p class="question"><button mat-mini-fab routerLink=""><mat-icon>arrow_downward</mat-icon></button><button mat-mini-fab routerLink=""><mat-icon>arrow_upward</mat-icon></button>{{panel.question}}</p>
-    <p class="answer">{{panel.response}}</p>
+    <p class="question"><button mat-mini-fab routerLink=""><mat-icon>arrow_downward</mat-icon></button><button mat-mini-fab routerLink=""><mat-icon>arrow_upward</mat-icon></button>Poop</p>
+    <p class="answer">Poop</p>
   </mat-expansion-panel>
 
   <button mat-raised-button class="validation">Annuler</button>

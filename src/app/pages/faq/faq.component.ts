@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
-import { Category } from '../../models/pageFaq';
-import { environnement } from '../../models/pageFaq';
+import { Faq, Category, Question } from '../../models/pageFaq';
 
 
 @Component({
@@ -12,55 +11,23 @@ import { environnement } from '../../models/pageFaq';
 })
 export class FaqComponent implements OnInit {
 
-  categories: Category;
-
-  panels = [
-    {
-    category: 'Inscription',
-    question: 'Comment devenir membre officiel d ALFY ?',
-    response: 'On devient membre de l’ALFY après s’être acquitté d’une cotisation d’un certain montant. Pour recueillir les cotisations, il faut passer via le site Helloasso qui se charge ensuite de reverser le tout compte bancaire d ALFY.'
-  },
-  {
-    category: 'Entrer en contact avec des membres',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  },
-
-  {
-    category: 'Catégorie 3',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 4',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 5',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 6',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }
-  ]
+  categories: Category[];
+  questions: Question[];
+  intro: string;
 
   private onApiError(err) {
     console.error(err);
-    this.categories = null;
+    //TODO
   }
 
   constructor(private faqService: FaqService) { }
 
   getCategories(): void {
     this.faqService.getCategories().then((resp: any) => {
-      this.categories = resp;
+      const respObj = resp;
+      this.categories = <Category[]>respObj.categories;
+      this.questions = <Question[]>respObj.questions;
+      this.intro = respObj.html;
     }, (err) => {
       this.onApiError(err);
     })

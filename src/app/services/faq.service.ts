@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { Category } from '../models/pageFaq';
+import { Faq, Category, Question } from '../models/pageFaq';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,6 @@ export class FaqService {
     ) { }
 
   public getCategories() {
-    return this.http.get<Category>(environment.apiURL + '​/pages​/faq​' ).toPromise();
+    return this.http.get<Faq>(environment.apiURL + '​/pages/faq​' ).toPromise();
   }
 }
