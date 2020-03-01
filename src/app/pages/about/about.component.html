@@ -9,7 +9,7 @@
 </mat-grid-list> -->
 
 <div flex="1" class="about-container">
-  <div fxFlex="40" class="caroussel">
+  <div fxFlex="40%" class="caroussel">
     <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
                       [class.no-background]="backgroundImages.length == 0">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
@@ -25,16 +25,16 @@
 <div fxLayout="row" class="low-mock-up">
   <div fxFlex="30" class="agenda" #actions  style="background-color: lightgreen">
     <div class="title">
-      <h2>Notre histoire</h2>
+      <h2>Agenda</h2>
     </div>
-    <div class="content timeline">
+    <div class="exemple">
       <div class="entry">
         <div class="title">
           <h3>Juillet 2018</h3>
         </div>
         <div class="body">
-          <p>Première édition de l'évènement estival "l'été d'ALFY".<br>
-            Pour l'occasion nous avons été représenté dans les 3 villes différentes :</p>
+          <p>ce jour la on fait ca lala.<br>
+            des mois des annees tititi</p>
         </div>
       </div>
     </div>
@@ -51,12 +51,12 @@
       </div>
       <div fxFlex="auto" class="actualites"  style="background-color: lightskyblue;">
         <div class="title" >
-          <h2>Qui nous sommes</h2>
+          <h2>Actualites</h2>
         </div>
       </div>
       <div fxFlex="auto" class="partenaires"  style="background-color: lightpink">
         <div class="title" >
-          <h2>Qui nous sommes</h2>
+          <h2>QPartenaires</h2>
         </div>
       </div>
     </div>
