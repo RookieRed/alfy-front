@@ -37,4 +37,32 @@ export class FaqComponent implements OnInit {
     this.getCategories();
   }
 
+
+  // Function for buttons
+
+  // Pour l'instant elles envoient juste un message sur la console de F12
+
+  editionMode() {
+    console.log("Vous avez appuyé pour passer en mode édition! Une fonction sera bientôt implémenter pour cela.");
+  }
+
+  delete() {
+    console.log("Vous avez appuyé sur supprimer! Une fonction sera bientôt implémenter pour cela.");
+  }
+
+  questionDownward() {
+    console.log("Vous avez appuyé sur la flêche du haut! Une fonction sera bientôt implémenter pour cela.");
+  }
+
+  questionUpward() {
+    console.log("Vous avez appuyé sur la flêche du bas! Une fonction sera bientôt implémenter pour cela.");
+  }
+
+  cancellation() {
+    console.log("Vous avez appuyé sur annuler! Une fonction sera bientôt implémenter pour cela.");
+  }
+
+  submit(){
+    console.log("Vous avez appuyé sur soumettre! Une fonction sera bientôt implémenter pour cela.");
+  }
 }

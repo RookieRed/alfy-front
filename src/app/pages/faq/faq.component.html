@@ -1,9 +1,15 @@
 <h1 style="text-align: center; font-size: 40px;">FAQ</h1>
 
-<button mat-mini-fab style="position:absolute; top:5%; right:5%;" routerLink=""><mat-icon style="position:relative;">edit</mat-icon></button>
+<button mat-mini-fab style="position:absolute; top:5%; right:5%;" (click)="editionMode()">
+  <mat-icon style="position:relative;">
+    edit
+  </mat-icon>
+</button>
 
-<p class="introduction">Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
-  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.</p>
+<p class="introduction">
+  Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
+  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.
+</p>
 
 
 <div fxLayoutAlign="center center">
@@ -18,14 +24,35 @@
 <div class="cat">
   <mat-expansion-panel>
     <mat-expansion-panel-header *ngFor="let c of categories">
-      <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{c}}</p>
+      <p class="category">
+        <!--Voir pour mettre le boutton après le text pour que ça reste le plus proche 
+          possible de l'affichage classique-->
+        <button mat-icon-button (click)="delete()">         
+          <mat-icon>
+            cancel
+          </mat-icon>
+        </button>
+        {{c}}
+      </p>  <!-- Genre avant ou après le </p> -->
     </mat-expansion-panel-header>
 
-    <p class="question"><button mat-mini-fab routerLink=""><mat-icon>arrow_downward</mat-icon></button><button mat-mini-fab routerLink=""><mat-icon>arrow_upward</mat-icon></button>Poop</p>
+    <p class="question">
+      <button mat-mini-fab (click)="questionDownward()">    
+        <mat-icon>
+          arrow_downward
+        </mat-icon>
+      </button>
+      <button mat-mini-fab routerLink="questionUpward()">
+        <mat-icon>
+          arrow_upward
+        </mat-icon>
+      </button>
+      Poop
+    </p>
     <p class="answer">Poop</p>
   </mat-expansion-panel>
 
-  <button mat-raised-button class="validation">Annuler</button>
-  <button mat-raised-button class="validation">Soumettre</button>
+  <button mat-raised-button class="validation" (click)="cancellation()">Annuler</button>
+  <button mat-raised-button class="validation" (click)="submit()">Soumettre</button>
   
 </div>
