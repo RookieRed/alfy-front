@@ -1,12 +1,51 @@
 export class Faq {
+  public name: string;
+  public sections: Section[];
+  
+
+  public constructor(obj?: {name?: string, sections?: Section[], }) {
+    if (obj != null) {
+      this.name = obj.name;
+      this.sections = obj.sections;
+    }
+  }
+
+}
+
+export class Section {
   public html: string;
+  public files: string[];
+  public type: string;
+  public id: number;
+  public updatedAt: string;
+  public lastWriter: string;
+  public title: string;
+  public orderIndex: number;
   public categories: Category[];
 
-  public constructor(obj?: {html?: string, }) {
-      if (obj != null) {
+  public constructor(obj?: {html?: string, 
+                            files: string[],
+                            type: string,
+                            id: number,
+                            updatedAt: string,
+                            lastWriter: string,
+                            title: string,
+                            orderIndex: number,
+                            categories: Category[],
+                           }) {
+    if (obj != null) {
       this.html = obj.html;
-      }
+      this.files = obj.files;
+      this.type = obj.type;
+      this.id = obj.id;
+      this.updatedAt = obj.updatedAt;
+      this.lastWriter = obj.lastWriter;
+      this.title = obj.title;
+      this.orderIndex = obj.orderIndex;
+      this.categories = obj.categories;
     }
+  }
+
 }
 
 export class Category {

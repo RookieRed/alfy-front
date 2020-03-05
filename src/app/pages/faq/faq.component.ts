@@ -17,24 +17,26 @@ export class FaqComponent implements OnInit {
 
   private onApiError(err) {
     console.error(err);
-    //TODO
   }
 
   constructor(private faqService: FaqService) { }
 
-  getCategories(): void {
-    this.faqService.getCategories().then((resp: any) => {
+  getFaq(): void {
+    this.faqService.getFAQ().then((resp : any) => {
       const respObj = resp;
+      console.log("Html = " + respObj.html);
       this.categories = <Category[]>respObj.categories;
       this.questions = <Question[]>respObj.questions;
-      this.intro = respObj.html;
-    }, (err) => {
+      this.intro = respObj;
+    }, err => {
       this.onApiError(err);
-    })
+    });
   }
 
   ngOnInit() {
-    this.getCategories();
+    this.getFaq();
+    console.log("Categories = " + this.faqService.getFAQ());
+    //this.categories[0].
   }
 
 }

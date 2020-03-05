@@ -12,7 +12,8 @@ export class FaqService {
     private http: HttpClient
     ) { }
 
-  public getCategories() {
-    return this.http.get<Faq>(environment.apiURL + '​/pages/faq​' ).toPromise();
+  public getFAQ() {
+    console.log(this.http.get(environment.apiURL + '​/pages/faq​' ).toPromise());
+    return this.http.get(environment.apiURL + '​/pages/faq​' ).toPromise();
   }
 }

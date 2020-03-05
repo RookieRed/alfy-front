@@ -14,8 +14,11 @@
   </form>
 </div>
 
+<div *ngFor="let c of categories">
+  <p>{{c.name}}</p>
+</div>
 
-<div class="cat">
+<!--<div class="cat">
   <mat-expansion-panel>
     <mat-expansion-panel-header *ngFor="let c of categories">
       <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{c}}</p>
@@ -28,4 +31,4 @@
   <button mat-raised-button class="validation">Annuler</button>
   <button mat-raised-button class="validation">Soumettre</button>
   
-</div>
+</div>-->
