@@ -26,7 +26,28 @@ $padding: 11%;
       background-color: white;
     }
 
-    .low-mock-up{
+    .low-mock-up {
+      .agenda {
+        overflow-y : scroll;
+
+        .title{
+          text-align: center;
+        }
+
+        .box {
+          border: 2px solid black;
+          outline: 50px;
+          text-align: center;
+          padding: 10px;
+          width: 50%;
+          margin: auto;
+        }
+
+        .test {
+          font-size: 100;
+        }
+      }
+
       .low-right-mock-up{
         .presentation{
           .title{
@@ -63,6 +84,8 @@ $padding: 11%;
           }
           
         }
+
+        
       }
     }
     

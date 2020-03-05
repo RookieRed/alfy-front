@@ -1,13 +1,3 @@
-<!-- <mat-grid-list cols="4" rowHeight="200px">
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
-  </mat-grid-tile>
-</mat-grid-list> -->
-
 <!-- Conteneur générale en Colonne-->
 <div flexLayout="column" class="about-container">
   <!-- Carousel -->
@@ -23,26 +13,63 @@
       </div>
     </editable-element>
   </div>
+
   <!-- Deuxième conteneur en ligne -->
   <div fxLayout="row" class="low-mock-up">
     <!-- Agenda -->
     <div fxFlex="30" class="agenda" #actions  style="background-color: lightgreen">
-      <div class="title">
-        <h2>Agenda</h2>
+      <h2 class="title">Agenda</h2>
+      
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
       </div>
-      <div class="exemple">
-        <div class="entry">
-          <div class="title">
-            <h3>Juillet 2018</h3>
-          </div>
-          <div class="body">
-            <p>ce jour la on fait ca lala.<br>
-              des mois des annees tititi
-            </p>
-          </div>
-        </div>
+
+      <br/>
+
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
       </div>
+
+      <br/>
+
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
+      </div>
+
+      <br/>
+
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
+      </div>
+
+      <br/>
+
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
+      </div>
+
+      <br/>
+
+      <div class="box">
+        <h3>Titre de l'evenement</h3>
+        <p class="test">Date de l'evenement</p>
+        <a href="">Lien vers l'evenement</a>
+      </div>
+      
+      <br/>
+
     </div>
+
     <!-- Troisième conteneur en colonne -->
     <div fxLayout="column" fxFlex="auto"  class="low-right-mock-up">
       <!-- Présentation -->
@@ -109,31 +136,4 @@
   </div>
 </div>
 
-<!-- <mat-grid-list cols="4" >
-  <div flex class="about-container">
-    <div flex="1" class="row alfy-presentation"></div>
-      <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
-          [class.no-background]="backgroundImages.length == 0">
-        <slideshow #slideshow *ngIf="backgroundImages.length > 0"
-        [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
-        minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
-        </slideshow>
-        <div *ngIf="backgroundImages.length === 0" class="voile">
-          <h1>Anciens du Lycée Fustel de Yaoundé</h1>
-        </div>
-      </editable-element>
-    </div>
-    <mat-grid-tile colspan="1" rowspan="3" style="background-color: lightgreen;">
-      <h2>Agenda</h2>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1" style="background-color: lightpink;">
-      <h2> Presentation </h2>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1" style="background-color: #DDBDF1;">
-      <h2>Actualites</h2>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1" style="background-color: lightgoldenrodyellow;">
-      <h2>Partenaires</h2>
-    </mat-grid-tile>
-</mat-grid-list> -->
   
