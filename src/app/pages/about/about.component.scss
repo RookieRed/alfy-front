@@ -29,8 +29,25 @@ $padding: 11%;
     .low-mock-up {
       .agenda {
         max-height: 100vh;
-        overflow-y : scroll;
+        overflow-y : auto;
+
+        mat-card-title {
+          color: white;
+        }
+
+        mat-card-subtitle {
+          color: white;
+        }
+
+        mat-card-content {
+          color: white;
+        }
         
+        .event {
+          border-radius: 20px;
+          background-color: $accent-darker;
+        }
+
         .example-header-image {
           background-image: url("/assets/img/logo-alfy.jpg");
           background-size: cover;
@@ -42,6 +59,7 @@ $padding: 11%;
 
         .box {
           text-align: center;
+          color: white;
           padding: 10px;
           width: 70%;
           margin: auto;
