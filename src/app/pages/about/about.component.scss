@@ -41,6 +41,14 @@ $padding: 11%;
             }
           }
         }
+        .partenaires{
+          img {
+            position: relative; // ou static 
+            max-height: 100px;
+            border-radius: 50%;
+            margin: 30px;
+          }
+        }
       }
     }
     

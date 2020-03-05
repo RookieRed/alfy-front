@@ -27,5 +27,9 @@ export class AboutComponent implements OnInit {
   callback() {
   }
 
+  goToPartenaire() {
+    console.log("Vous venez de cliquer sur un partenaire. Une fonction sera bientôt implémentaire pour cela.");
+  }
+
 
 }
