@@ -6,7 +6,7 @@
                       [class.no-background]="backgroundImages.length == 0">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
         [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
-        minHeight="350px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
+        minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
       </slideshow>
       <div *ngIf="backgroundImages.length === 0" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
@@ -176,11 +176,33 @@
         <div class="title" >
           <h2>Partenaires</h2>
         </div>
-        <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
-        <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
-        <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
-        <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
-        <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+        <div class="logos">
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <br/>
+            <span> Partenaire 1</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <br/>
+            <span> Partenaire 2</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <br/>
+            <span> Partenaire 1</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <br/>
+            <span> Partenaire 3</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <br/>
+            <span> Partenaire 4</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
