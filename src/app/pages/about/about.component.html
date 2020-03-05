@@ -8,69 +8,78 @@
   </mat-grid-tile>
 </mat-grid-list> -->
 
-<div flex="1" class="about-container">
-  <div fxFlex="40%" class="caroussel">
+<!-- Conteneur générale en Colonne-->
+<div flexLayout="column" class="about-container">
+  <!-- Carousel -->
+  <div class="caroussel" >
     <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
                       [class.no-background]="backgroundImages.length == 0">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
         [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
-        minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
+        minHeight="350px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
       </slideshow>
       <div *ngIf="backgroundImages.length === 0" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
       </div>
     </editable-element>
   </div>
-</div> 
-<div fxLayout="row" class="low-mock-up">
-  <div fxFlex="30" class="agenda" #actions  style="background-color: lightgreen">
-    <div class="title">
-      <h2>Agenda</h2>
-    </div>
-    <div class="exemple">
-      <div class="entry">
-        <div class="title">
-          <h3>Juillet 2018</h3>
-        </div>
-        <div class="body">
-          <p>ce jour la on fait ca lala.<br>
-            des mois des annees tititi</p>
+  <!-- Deuxième conteneur en ligne -->
+  <div fxLayout="row" class="low-mock-up">
+    <!-- Agenda -->
+    <div fxFlex="30" class="agenda" #actions  style="background-color: lightgreen">
+      <div class="title">
+        <h2>Agenda</h2>
+      </div>
+      <div class="exemple">
+        <div class="entry">
+          <div class="title">
+            <h3>Juillet 2018</h3>
+          </div>
+          <div class="body">
+            <p>ce jour la on fait ca lala.<br>
+              des mois des annees tititi
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-    <div fxLayout="column" fxFlex="auto" class="low-right-mock-up">
+    <!-- Troisième conteneur en colonne -->
+    <div fxLayout="column" fxFlex="auto"  class="low-right-mock-up">
+      <!-- Présentation -->
       <div fxFlex="auto" class="presentation"  style="background-color: #DDBDF1;">
         <div class="title">
           <h2>Qui nous sommes</h2>
         </div>
         <div class="content" #whoAreWe>
-          <!--<img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/> -->
+          <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
           <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
             été scolarisée au moins un an au Lycée Fustel de Coulanges de Yaoundé, tout membre du personnel administratif
-            comme professoral et enfin tout parent d'élève. </p>
+            comme professoral et enfin tout parent d'élève. 
+          </p>
           <h4>C’est de la pensée que découle l’action.</h4>
           <p>L'ALFY est <b>née en septembre 2016</b> pensée dans le but premier d'aider la promotion de bacheliers dans leur orientation
             post-bac, en les mettant en contact avec des anciens élèves dont la formation scolaire et professionnelle s'inscrirait
             dans le cadre de leurs ambitions. Suite à une réflexion menée avec la proviseur du lycée en fonction en 2017, l'ALFY
             est <b>passée du statut de projet à celui d'association</b> dont la vie a été rythmée depuis par une collaboration restreinte
             avec le <a href="https://www.fustel-yaounde.net/">lycée Fustel de Coulanges</a>, <a href="https://alfm.fr/">l'association mondiale ALFM</a>, l'AEFE et d'autres associations locales telles que
-            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques. </p>
+            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques. 
+          </p>
         </div>
       </div>
+      <!-- Actualité -->
       <div fxFlex="auto" class="actualites"  style="background-color: lightskyblue;">
         <div class="title" >
           <h2>Actualites</h2>
         </div>
       </div>
+      <!-- Partenaire -->
       <div fxFlex="auto" class="partenaires"  style="background-color: lightpink">
         <div class="title" >
           <h2>Partenaires</h2>
         </div>
       </div>
     </div>
-  
+  </div>
 </div>
 
 <!-- <mat-grid-list cols="4" >

@@ -26,14 +26,19 @@ $padding: 11%;
       background-color: white;
     }
 
-    .low-mockup{
-      .low-right-mochup{
-        .content{
-          .logo-alfy {
-            position: relative;
-            top: -25px;
-            max-height: 230px;
-            margin: -15px 8% 0 25px;
+    .low-mock-up{
+      .low-right-mock-up{
+        .presentation{
+          .title{
+            margin: 20px;}
+          .content{
+            margin: 30px;
+            .logo-alfy {
+              position: relative; // ou static 
+              top: -25px;
+              max-height: 200px;
+              margin: -15px 8% 0 10xp;
+            }
           }
         }
       }
