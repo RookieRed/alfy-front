@@ -28,18 +28,22 @@ $padding: 11%;
 
     .low-mock-up {
       .agenda {
+        max-height: 100vh;
         overflow-y : scroll;
+        
+        .example-header-image {
+          background-image: url("/assets/img/logo-alfy.jpg");
+          background-size: cover;
+        }
 
         .title{
           text-align: center;
         }
 
         .box {
-          border: 2px solid black;
-          outline: 50px;
           text-align: center;
           padding: 10px;
-          width: 50%;
+          width: 70%;
           margin: auto;
         }
 
