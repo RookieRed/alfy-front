@@ -20,32 +20,38 @@ $padding: 11%;
 .about-container {
   display: flex;
   flex-direction: column;
+  background-color: $accent-darker;
 
+  .caroussel {
+    margin: 2%;
+    border-radius: 3%;
+  }
     
     &.alfy-presentation {
       background-color: white;
     }
 
     .low-mock-up {
+      
       .agenda {
         max-height: 100vh;
         overflow-y : auto;
+        background-color: white;
+        margin: 2%;
 
-        mat-card-title {
-          color: white;
+        .title{
+          color: black;
         }
 
-        mat-card-subtitle {
-          color: white;
-        }
-
-        mat-card-content {
-          color: white;
-        }
-        
         .event {
           border-radius: 20px;
-          background-color: $accent-darker;
+          background-color: white;
+
+          mat-card-actions {
+            button{
+              background-color: $primary-lighter;
+            }
+          }
         }
 
         .example-header-image {
@@ -72,6 +78,10 @@ $padding: 11%;
 
       .low-right-mock-up{
         .presentation{
+          margin: 2%;
+          background-color: white;
+          border-radius: 3%;
+
           .title{
             margin: 20px;}
           .content{
@@ -85,10 +95,18 @@ $padding: 11%;
           }
         }
         .actualites{
+          background-color: white;
+          margin: 2%;
+          border-radius: 3%;
+
           .title{
             margin: 20px;}
         }
         .partenaires{
+          margin: 2%;
+          background-color: white;
+          border-radius: 3%;
+
           .title{
             margin: 20px;}
           .logos{
