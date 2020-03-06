@@ -7,8 +7,7 @@
 </button>
 
 <p class="introduction">
-  Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
-  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.
+  {{intro}}
 </p>
 
 
@@ -20,13 +19,9 @@
   </form>
 </div>
 
-<div *ngFor="let c of categories">
-  <p>{{c.name}}</p>
-</div>
-
-<!--<div class="cat">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header *ngFor="let c of categories">
+<div class="cat">
+  <mat-expansion-panel *ngFor="let c of categories">
+    <mat-expansion-panel-header>
       <p class="category">
         <!--Voir pour mettre le boutton après le text pour que ça reste le plus proche 
           possible de l'affichage classique-->
@@ -35,27 +30,30 @@
             cancel
           </mat-icon>
         </button>
-        {{c}}
+        {{c.name}}
       </p>  <!-- Genre avant ou après le </p> -->
     </mat-expansion-panel-header>
 
-    <p class="question">
-      <button mat-mini-fab (click)="questionDownward()">    
+    <div *ngFor = "let q of c.questions">
+      <p class="question">
+        <button mat-mini-fab (click)="questionDownward()">
         <mat-icon>
-          arrow_downward
+        arrow_downward
         </mat-icon>
-      </button>
-      <button mat-mini-fab routerLink="questionUpward()">
+        </button>
+        <button mat-mini-fab routerLink="questionUpward()">
         <mat-icon>
-          arrow_upward
+        arrow_upward
         </mat-icon>
-      </button>
-      Poop
-    </p>
-    <p class="answer">Poop</p>
+        </button>
+        {{q.question}}
+      </p>
+      <p class="answer">{{q.answer}}</p>
+    </div>
   </mat-expansion-panel>
 
   <button mat-raised-button class="validation" (click)="cancellation()">Annuler</button>
   <button mat-raised-button class="validation" (click)="submit()">Soumettre</button>
   
-</div>-->
+</div>
+

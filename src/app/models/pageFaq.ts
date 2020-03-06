@@ -58,12 +58,14 @@ export class Category {
   public constructor(obj?: {id?: number,
     name?: string,
     description?: string,
-    orderIndex?: number, }) {
+    orderIndex?: number, 
+    questions?: Question[]}) {
       if (obj != null) {
-      this.id = obj.id;
-      this.name = obj.name;
-      this.description = obj.description;
-      this.orderIndex = obj.orderIndex;
+        this.id = obj.id;
+        this.name = obj.name;
+        this.description = obj.description;
+        this.orderIndex = obj.orderIndex;
+        this.questions = obj.questions;
       }
     }
 }

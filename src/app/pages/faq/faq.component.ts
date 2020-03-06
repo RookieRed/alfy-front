@@ -21,21 +21,22 @@ export class FaqComponent implements OnInit {
 
   constructor(private faqService: FaqService) { }
 
-  getFaq(): void {
-    this.faqService.getFAQ().then((resp : any) => {
+  async getFaq() {
+    await this.faqService.getFAQ().then((resp : any) => {
       const respObj = resp;
-      console.log("Html = " + respObj.html);
-      this.categories = <Category[]>respObj.categories;
-      this.questions = <Question[]>respObj.questions;
-      this.intro = respObj;
+      this.categories = <Category[]>respObj.sections[1].categories;
+      console.log(respObj.sections[0].html);
+
+      this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
+      console.log(this.intro);
     }, err => {
       this.onApiError(err);
     });
   }
 
-  ngOnInit() {
-    this.getFaq();
-    console.log("Categories = " + this.faqService.getFAQ());
+ async  ngOnInit() {
+    await this.getFaq();
+    console.log("Categories on init = " + this.faqService.getFAQ());
     //this.categories[0].
   }
 
