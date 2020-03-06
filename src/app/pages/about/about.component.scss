@@ -4,18 +4,26 @@ $padding: 11%;
 
 @media only screen and (max-width: 500px) {
 
-  .about-container .content{
-    display: flex;
-    flex-direction: column;
-
+  .content{
     .logo-alfy {
       max-height: 240px !important;
       width: auto;
-      margin: 0 auto !important;
       top: 0 !important;
     }
   }
+
+  .low-mock-up {
+    //test pq il rentre pas?
+    //color: yellow !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
 }
+
+  h2 {
+    font-size: 30px;
+  }
 
 .about-container {
   display: flex;
@@ -32,7 +40,9 @@ $padding: 11%;
     }
 
     .low-mock-up {
-      
+      display: flex;
+      flex-direction: row;
+
       .agenda {
         max-height: 100vh;
         overflow-y : auto;
@@ -81,12 +91,13 @@ $padding: 11%;
           margin: 2%;
           margin-top: 4%;
           background-color: $accent-lighter;
-          border-radius: 3%;
+          //border-radius: 3%;
 
           .title{
             margin: 20px;}
           .content{
             margin: 30px;
+            font-size: 20px;
             .logo-alfy {
               position: relative; // ou static 
               top: -25px;
@@ -96,9 +107,10 @@ $padding: 11%;
             }
           }
         }
+
         .actualites{
           background-color: $accent-darker;
-          //margin: 2%;
+          margin: 2%;
           //border-radius: 3%;
           margin-right: 2%;
           color: white;
@@ -109,7 +121,7 @@ $padding: 11%;
         .partenaires{
           margin: 2%;
           background-color: $accent-lighter;
-          border-radius: 3%;
+          //border-radius: 3%;
 
           .title{
             margin: 20px;}
