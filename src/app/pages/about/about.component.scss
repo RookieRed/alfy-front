@@ -13,8 +13,6 @@ $padding: 11%;
   }
 
   .low-mock-up {
-    //test pq il rentre pas?
-    //color: yellow !important;
     display: flex !important;
     flex-direction: column !important;
   }
@@ -34,7 +32,7 @@ $padding: 11%;
     //margin: 2%;
     border-radius: 3%;
   }
-    
+
     &.alfy-presentation {
       background-color: white;
     }
@@ -99,7 +97,7 @@ $padding: 11%;
             margin: 30px;
             font-size: 20px;
             .logo-alfy {
-              position: relative; // ou static 
+              position: relative; // ou static
               top: -25px;
               max-height: 200px;
               margin: 30px;
@@ -132,17 +130,17 @@ $padding: 11%;
             margin: 30px;
 
             img {
-              position: relative; // ou static 
+              position: relative; // ou static
               max-height: 100px;
               border-radius: 50%;
               margin: 30px;
             }
           }
-          
+
         }
 
-        
+
       }
     }
-    
+
 }
