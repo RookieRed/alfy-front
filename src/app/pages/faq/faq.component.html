@@ -25,13 +25,18 @@
       <p class="category">
         <!--Voir pour mettre le boutton après le text pour que ça reste le plus proche 
           possible de l'affichage classique-->
-        <button mat-icon-button (click)="delete()">         
-          <mat-icon>
-            cancel
-          </mat-icon>
-        </button>
         {{c.name}}
       </p>  <!-- Genre avant ou après le </p> -->
+      <button mat-icon-button (click)="delete()">         
+        <mat-icon>
+          cancel
+        </mat-icon>
+      </button>
+      <button mat-mini-fab class="buttonEdit" (click)="editionMode()">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
     </mat-expansion-panel-header>
 
     <div *ngFor = "let q of c.questions">

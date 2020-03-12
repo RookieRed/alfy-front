@@ -35,7 +35,14 @@
     margin: auto;
     width: 80%;
     padding: 10px;
-    overflow:hidden
+    overflow:hidden;
+    .buttonEdit {
+        width: 2em;
+        height: 2em;
+        margin-top: 5px;
+        padding: inherit !important;
+
+    }
 }
 
 .validation {
