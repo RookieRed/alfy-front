@@ -2,8 +2,10 @@
 <div flexLayout="column" class="about-container">
   <!-- Carousel -->
   <div class="caroussel" >
-    <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
-                      [class.no-background]="backgroundImages.length == 0">
+    <!-- editable-element 
+    [hide]="backgroundImages.length == 0" (onEdit)="callback()"
+                      [class.no-background]="backgroundImages.length == 0"-->
+    <div class="main-title">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
         [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
         minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
@@ -11,7 +13,7 @@
       <div *ngIf="backgroundImages.length === 0" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
       </div>
-    </editable-element>
+    </div>
   </div>
 
   <!-- Deuxième conteneur en ligne -->
@@ -180,7 +182,7 @@
           <h2>Partenaires</h2>
         </div>
         <div class="logos">
-          <div>
+          <div class="logo">
             <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
             <br/>
             <span> Partenaire 1</span>
@@ -205,6 +207,7 @@
             <br/>
             <span> Partenaire 4</span>
           </div>
+          
         </div>
       </div>
     </div>
