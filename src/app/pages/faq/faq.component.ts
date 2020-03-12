@@ -14,12 +14,15 @@ export class FaqComponent implements OnInit {
   categories: Category[];
   questions: Question[];
   intro: string;
+  questionOnEdit: boolean;
 
   private onApiError(err) {
     console.error(err);
   }
 
-  constructor(private faqService: FaqService) { }
+  constructor(private faqService: FaqService) {
+    this.questionOnEdit = false;
+  }
 
   async getFaq() {
     await this.faqService.getFAQ().then((resp : any) => {
@@ -44,6 +47,10 @@ export class FaqComponent implements OnInit {
   // Function for buttons
 
   // Pour l'instant elles envoient juste un message sur la console de F12
+
+  questionEdit() {
+    this.questionOnEdit = !this.questionOnEdit;
+  }
 
   editionMode() {
     console.log("Vous avez appuyé pour passer en mode édition! Une fonction sera bientôt implémenter pour cela.");

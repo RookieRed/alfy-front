@@ -1,5 +1,5 @@
 .title {
-    font-size: xx-large; 
+    font-size: xx-large;
     text-align: center;
 }
 
@@ -17,9 +17,28 @@
     font-weight: bold;
 }
 
-.answer { 
+.answer {
     margin-left: 110px;
     font-size: large;
+}
+
+.questionInput {
+  margin-left: 25px;
+  font-style: italic;
+  font-size: large;
+  display: block;
+  font-weight: bold;
+  width: 98%;
+}
+
+.answerInput {
+  margin-left: 110px;
+  font-size: large;
+  width: 93%;
+}
+
+.confirmOrCancel {
+  text-align: center;
 }
 
 .category {
@@ -37,11 +56,10 @@
     padding: 10px;
     overflow:hidden;
     .buttonEdit {
-        width: 2em;
-        height: 2em;
-        margin-top: 5px;
-        padding: inherit !important;
-
+        position: relative;
+    }
+    .arrows {
+      display: block;
     }
 }
 
@@ -64,7 +82,7 @@ mat-expansion-panel-header{
 @media only screen and (max-width: 500px) {
 
     p.answer {
-        margin-left: 0px;  
+        margin-left: 0px;
     }
 }
 
