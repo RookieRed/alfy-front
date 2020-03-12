@@ -1,0 +1,38 @@
+@import "../../../styles";
+
+.backround-picture {
+    position: relative;
+    height: 300px;
+    margin: 4%;
+}
+
+.profile-pic {
+    border-radius: 100%; 
+    border-style: solid;
+    border-color: lightgray; 
+    margin-top: 10%;   
+    margin-left: 5%;
+}
+
+.title {
+    margin-left: 5%;
+
+    h1 {
+        margin-top: 3%;
+        font-size: 300%;
+    }
+    
+    h2 {
+        font-size: 200%;
+        color: gray; 
+        font-style: italic;
+    }
+}
+
+.social-media {
+    margin-right: 5%;
+}
+
+.informations {
+    margin: 5%;
+}
