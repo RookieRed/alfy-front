@@ -24,8 +24,8 @@
       </p>  <!-- Genre avant ou après le </p> -->
 
     </mat-expansion-panel-header>
-    <div *ngIf = "!questionOnEdit">
-      <div *ngFor = "let q of c.questions">
+    <div *ngFor = "let q of c.questions">
+      <div *ngIf = "!questionOnEdit || !questionListOE.includes(q)">
 
         <p class="question">
           <button mat-icon-button (click)="questionDownward()">
@@ -39,7 +39,7 @@
             </mat-icon>
           </button>
           {{q.question}}
-          <button mat-icon-button class="buttonEdit" (click)="questionEdit()">
+          <button mat-icon-button class="buttonEdit" (click)="questionEdit(q)">
             <mat-icon>
               edit
             </mat-icon>
@@ -54,10 +54,7 @@
 
         <p class="answer">{{q.answer}}</p>
       </div>
-    </div>
-
-    <div *ngIf = "questionOnEdit">
-      <div *ngFor = "let q of c.questions">
+      <div *ngIf = "questionOnEdit && questionListOE.includes(q)">
 
 
         <mat-form-field class="questionInput">
@@ -73,7 +70,7 @@
               check
             </mat-icon>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="cancelMQ(q)">
             <mat-icon>
               close
             </mat-icon>
@@ -81,6 +78,11 @@
         </div>
       </div>
     </div>
+    <button mat-icon-button (click)="cancelMQ(q)">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
   </mat-expansion-panel>
 
   <button mat-raised-button class="validation" (click)="cancellation()">Annuler</button>

@@ -15,6 +15,7 @@ export class FaqComponent implements OnInit {
   questions: Question[];
   intro: string;
   questionOnEdit: boolean;
+  questionListOE: Question[];
 
   private onApiError(err) {
     console.error(err);
@@ -22,6 +23,7 @@ export class FaqComponent implements OnInit {
 
   constructor(private faqService: FaqService) {
     this.questionOnEdit = false;
+    this.questionListOE = new Array<Question>();
   }
 
   async getFaq() {
@@ -48,8 +50,17 @@ export class FaqComponent implements OnInit {
 
   // Pour l'instant elles envoient juste un message sur la console de F12
 
-  questionEdit() {
-    this.questionOnEdit = !this.questionOnEdit;
+  questionEdit(question) {
+    this.questionOnEdit = true;
+    this.questionListOE.push(question);
+  }
+
+  cancelMQ(question) {
+    if ( this.questionListOE.length <= 1 ) {
+      this.questionOnEdit = false;
+    }
+    const index = this.questionListOE.indexOf(question);
+    this.questionListOE.splice(index, 1);
   }
 
   editionMode() {
