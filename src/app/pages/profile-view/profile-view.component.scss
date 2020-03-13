@@ -7,14 +7,16 @@
 
     .backround-picture {
         position: relative;
-        height: 300px;
-        margin: 4%;
+        height: 280px;
+        margin-bottom: 4%;
+        background-size: 100%;
     }
 
     .profile-pic {
         border-radius: 100%; 
         border-style: solid;
-        border-color: lightgray; 
+        border-color: white;
+        border-width: 10px; 
         margin-top: 15%;   
         margin-left: 5%;
     }
@@ -23,34 +25,31 @@
         margin-left: 5%;
 
         h1 {
-            margin-top: 5%;
+            margin-top: 12%;
             font-size: 300%;
         }
         
         h2 {
             font-size: 200%;
-            color: gray; 
+            color: stressed; 
             font-style: italic;
         }
     }
 
     .informations {
         margin: 5%;
-    }
-
-    .alfy-actions {
         $gutter: 30px;
         $border-width: 5px;
         $dot-diameter: 8px;
-  
-        display: flex;
-        justify-content: center;
   
         * {
           box-sizing: border-box;
         }
   
         .timeline {
+
+          //ligne verticale
+
           width: 100%;
           max-width: 800px;
           padding: 20px 0;
@@ -95,97 +94,14 @@
               right: -$dot-diameter - 0.5px;
               z-index: 99;
             }
-  
-            h3 {
-              margin: 0;
-              font-size: 120%;
-  
-              @media only screen and (max-width: 500px) {
-                font-size: 100% !important;
-              }
-            }
-  
-            p {
-              margin: 0;
-              font-size: 100%;
-            }
           }
   
           .body {
             margin: 0 0 20px;
             float: right;
             width: 66%;
-            padding-left: $gutter;
-  
-            p:first-child {
-              margin-top: 0;
-              font-weight: 400;
-              margin-bottom: 10px;
-            }
-  
-            ul {
-              color: $accent;
-              padding-left: 0;
-              list-style-type: none;
-              font-size: 16px;
-              margin: 10px 0;
-  
-              li:before {
-                content: "–";
-                margin-right: .5em;
-              }
-            }
+            padding-left: $gutter;            
           }
-        }
-      }
-  
-      &.alfy-contacts {
-        
-        .content {
-  
-            div {
-              //display: flex;
-              //flex: 1;
-              min-width: 200px;
-              justify-content: center;
-              margin: 10px 0;
-            }
-  
-            mat-icon {
-              margin-right: 15px;
-              height: 22px;
-            }
-  
-            .flex-rows {
-              display: flex;
-              width: 100%;
-              font-size: 22px;
-              line-height: 22px;
-              flex-wrap: wrap;
-            }
-  
-            .line-icon {
-              width: 100%;
-            }
-  
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-              box-sizing: border-box;
-            }
-  
-            .column1 {
-              float: left; 
-              width: 80%;
-            }
-  
-            .column2 {
-              float: right; 
-              width: 20%;
-            }
-  
-          
         }
       }
   
