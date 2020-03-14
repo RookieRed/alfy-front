@@ -9,7 +9,7 @@
         position: relative;
         height: 280px;
         margin-bottom: 4%;
-        background-size: 100%;
+        background-size: 110%;
     }
 
     .profile-pic {
@@ -31,17 +31,20 @@
         
         h2 {
             font-size: 200%;
-            color: stressed; 
+            color: $accent-darker; 
             font-style: italic;
         }
     }
 
     .informations {
-        margin: 5%;
         $gutter: 30px;
         $border-width: 5px;
         $dot-diameter: 8px;
-  
+        margin-bottom: 5%;
+        
+        h2 {
+            color: black; 
+        }
         * {
           box-sizing: border-box;
         }
@@ -49,19 +52,18 @@
         .timeline {
 
           //ligne verticale
-
-          width: 100%;
-          max-width: 800px;
-          padding: 20px 0;
+          //width: 100%;
+          //max-width: 800px;
           position: relative;
-          margin: 0 auto 30px;
+          margin-top: 10px;
+          margin-bottom: 20px;
   
           &:before {
             content: '';
             position: absolute;
-            top: -15px;
+            //top: -15px;
             left: calc( 34% - 3px );
-            height: calc( 100% + 45px );
+            height: calc( 100%);
             bottom: 0;
             width: 4px;
             background: $accent-darker;
