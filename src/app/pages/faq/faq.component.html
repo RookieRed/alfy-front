@@ -44,7 +44,7 @@
               edit
             </mat-icon>
           </button>
-          <button mat-icon-button (click)="delete()">
+          <button mat-icon-button (click)="deleteQuestion(q)">
             <mat-icon>
               delete_outline
             </mat-icon>
@@ -77,16 +77,36 @@
           </button>
         </div>
       </div>
-    </div>
-    <button mat-icon-button (click)="cancelMQ(q)">
-      <mat-icon>
-        add
-      </mat-icon>
-    </button>
-  </mat-expansion-panel>
+      <div *ngIf = "newQuestion">
+        <mat-form-field class="questionInput">
+          <textarea matInput placeholder="Question"></textarea>
+        </mat-form-field>
 
-  <button mat-raised-button class="validation" (click)="cancellation()">Annuler</button>
-  <button mat-raised-button class="validation" (click)="submit()">Soumettre</button>
+        <mat-form-field class="answerInput">
+          <textarea matInput placeholder="Réponse"></textarea>
+        </mat-form-field>
+        <div class="confirmOrCancel">
+          <button mat-icon-button>
+            <mat-icon>
+              check
+            </mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>
+              close
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="add">
+      <button mat-icon-button class="addButton" (click)="addQuestion()">
+        <mat-icon class="addButton">
+          add_circle_outline
+        </mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
 
 </div>
 

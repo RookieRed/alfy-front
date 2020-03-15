@@ -16,6 +16,7 @@ export class FaqComponent implements OnInit {
   intro: string;
   questionOnEdit: boolean;
   questionListOE: Question[];
+  newQuestion: boolean;
 
   private onApiError(err) {
     console.error(err);
@@ -24,10 +25,11 @@ export class FaqComponent implements OnInit {
   constructor(private faqService: FaqService) {
     this.questionOnEdit = false;
     this.questionListOE = new Array<Question>();
+    this.newQuestion = false;
   }
 
   async getFaq() {
-    await this.faqService.getFAQ().then((resp : any) => {
+    await this.faqService.getFAQ().then((resp: any) => {
       const respObj = resp;
       this.categories = <Category[]>respObj.sections[1].categories;
       console.log(respObj.sections[0].html);
@@ -41,8 +43,6 @@ export class FaqComponent implements OnInit {
 
  async  ngOnInit() {
     await this.getFaq();
-    console.log("Categories on init = " + this.faqService.getFAQ());
-    //this.categories[0].
   }
 
 
@@ -53,6 +53,7 @@ export class FaqComponent implements OnInit {
   questionEdit(question) {
     this.questionOnEdit = true;
     this.questionListOE.push(question);
+    console.log("ID = " + question.id);
   }
 
   cancelMQ(question) {
@@ -63,6 +64,14 @@ export class FaqComponent implements OnInit {
     this.questionListOE.splice(index, 1);
   }
 
+  deleteQuestion(question) {
+    this.faqService.deleteQuestion(question).subscribe();
+    console.log("Vous avez appuyé supprime " + question.id);
+  }
+
+  addQuestion() {
+    this.newQuestion = true;
+  }
   editionMode() {
     console.log("Vous avez appuyé pour passer en mode édition! Une fonction sera bientôt implémenter pour cela.");
   }
