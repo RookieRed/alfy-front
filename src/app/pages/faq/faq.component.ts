@@ -16,7 +16,7 @@ export class FaqComponent implements OnInit {
   intro: string;
   questionOnEdit: boolean;
   questionListOE: Question[];
-  newQuestion: boolean;
+  categoriesAddQuestion: number[];
 
   private onApiError(err) {
     console.error(err);
@@ -25,7 +25,7 @@ export class FaqComponent implements OnInit {
   constructor(private faqService: FaqService) {
     this.questionOnEdit = false;
     this.questionListOE = new Array<Question>();
-    this.newQuestion = false;
+    this.categoriesAddQuestion = new Array<number>();
   }
 
   async getFaq() {
@@ -69,8 +69,20 @@ export class FaqComponent implements OnInit {
     console.log("Vous avez appuyé supprime " + question.id);
   }
 
-  addQuestion() {
-    this.newQuestion = true;
+  addQuestion(categorie) {
+    console.log("Voici la catégorie envoyée : "+ categorie.id);
+    this.categoriesAddQuestion.push(categorie.id);
+    console.log("Voici la liste des catégories : " + this.categoriesAddQuestion);
+  }
+  validationAddQuestion(categorie) {
+    console.log("Vous avez appuyer sur Valider!")
+    const index = this.categoriesAddQuestion.indexOf(categorie.id);
+    this.categoriesAddQuestion.splice(index, 1);
+  }
+  conceledAddQuestion(categorie) {
+    console.log("Vous avez appuyer sur Supprimer!")
+    const index = this.categoriesAddQuestion.indexOf(categorie.id);
+    this.categoriesAddQuestion.splice(index, 1);
   }
   editionMode() {
     console.log("Vous avez appuyé pour passer en mode édition! Une fonction sera bientôt implémenter pour cela.");

@@ -77,30 +77,30 @@
           </button>
         </div>
       </div>
-      <div *ngIf = "newQuestion">
-        <mat-form-field class="questionInput">
-          <textarea matInput placeholder="Question"></textarea>
-        </mat-form-field>
+    </div>
+    <div *ngIf = "categoriesAddQuestion.includes(c.id)">
+      <mat-form-field class="questionInput">
+        <textarea matInput placeholder="Question"></textarea>
+      </mat-form-field>
 
-        <mat-form-field class="answerInput">
-          <textarea matInput placeholder="Réponse"></textarea>
-        </mat-form-field>
-        <div class="confirmOrCancel">
-          <button mat-icon-button>
-            <mat-icon>
-              check
-            </mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>
-              close
-            </mat-icon>
-          </button>
-        </div>
+      <mat-form-field class="answerInput">
+        <textarea matInput placeholder="Réponse"></textarea>
+      </mat-form-field>
+      <div class="confirmOrCancel">
+        <button mat-icon-button (click)="validationAddQuestion(c)">
+          <mat-icon>
+            check
+          </mat-icon>
+        </button>
+        <button mat-icon-button (click)="conceledAddQuestion(c)">
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
       </div>
     </div>
-    <div class="add">
-      <button mat-icon-button class="addButton" (click)="addQuestion()">
+    <div class="add" *ngIf = "!categoriesAddQuestion.includes(c.id)"> 
+      <button mat-icon-button class="addButton" (click)="addQuestion(c)">
         <mat-icon class="addButton">
           add_circle_outline
         </mat-icon>
