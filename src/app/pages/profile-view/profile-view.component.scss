@@ -37,23 +37,19 @@
     }
 
     .informations {
-        $gutter: 30px;
-        $border-width: 5px;
-        $dot-diameter: 8px;
+        $border-width: 10px;
+        $dot-diameter: 1px;
         margin-bottom: 5%;
+
+        .title-info {
+          margin-left: 5%;
+          color: black; 
+        }
         
-        h2 {
-            color: black; 
-        }
-        * {
-          box-sizing: border-box;
-        }
+        //* { box-sizing: border-box;}
   
         .timeline {
-
           //ligne verticale
-          //width: 100%;
-          //max-width: 800px;
           position: relative;
           margin-top: 10px;
           margin-bottom: 20px;
@@ -61,48 +57,36 @@
           &:before {
             content: '';
             position: absolute;
-            //top: -15px;
-            left: calc( 34% - 3px );
-            height: calc( 100%);
-            bottom: 0;
+            left: 12%;
+            height: 100%;
             width: 4px;
-            background: $accent-darker;
-            z-index: 1;
+            background: $primary-darker;
           }
-        }
+
+          .entry {
+            text-align: left;
+            //display: flex;
+            align-items: baseline;
+    
+            .body {
+              position: relative;
+             // left: 11.4%;
+              left: 20%;         
+    
+              &:before {
+                content: '';
+                position: absolute;
+                width: $dot-diameter;
+                height: $dot-diameter;
+                border: $border-width solid $primary-darker;
+                border-radius:100%;
+                top: 15%;
+                left: -8.8%;
   
-        .entry {
-          text-align: left;
-          display: flex;
-          align-items: baseline;
-  
-          .title {
-            float: left;
-            flex: 34%;
-            padding-right: $gutter;
-            text-align: right;
-            position: relative;
-            margin: 0 !important;
-  
-            &:before {
-              content: '';
-              position: absolute;
-              width: $dot-diameter;
-              height: $dot-diameter;
-              border: $border-width solid $warn;
-              background-color: #fff;
-              border-radius:100%;
-              top: 15%;
-              right: -$dot-diameter - 0.5px;
-              z-index: 99;
+              }
+              
             }
-          }
-  
-          .body {
-            margin: 0 0 20px;
-            float: right;
-            width: 66%;
-            padding-left: $gutter;            
+            
           }
         }
       }
