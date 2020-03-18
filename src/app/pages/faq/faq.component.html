@@ -25,7 +25,7 @@
 
     </mat-expansion-panel-header>
     <div *ngFor = "let q of c.questions">
-      <div *ngIf = "!questionOnEdit || !questionListOE.includes(q)">
+      <div *ngIf = "!questionListOE.includes(q)">
 
         <p class="question">
           <button mat-icon-button (click)="questionDownward()">
@@ -54,7 +54,7 @@
 
         <p class="answer">{{q.answer}}</p>
       </div>
-      <div *ngIf = "questionOnEdit && questionListOE.includes(q)">
+      <div *ngIf = "questionListOE.includes(q)">
 
 
         <mat-form-field class="questionInput">

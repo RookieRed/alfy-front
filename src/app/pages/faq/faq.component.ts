@@ -14,7 +14,6 @@ export class FaqComponent implements OnInit {
   categories: Category[];
   questions: Question[];
   intro: string;
-  questionOnEdit: boolean;
   questionListOE: Question[];
   categoriesAddQuestion: number[];
 
@@ -23,7 +22,6 @@ export class FaqComponent implements OnInit {
   }
 
   constructor(private faqService: FaqService) {
-    this.questionOnEdit = false;
     this.questionListOE = new Array<Question>();
     this.categoriesAddQuestion = new Array<number>();
   }
@@ -48,18 +46,12 @@ export class FaqComponent implements OnInit {
 
   // Function for buttons
 
-  // Pour l'instant elles envoient juste un message sur la console de F12
-
   questionEdit(question) {
-    this.questionOnEdit = true;
     this.questionListOE.push(question);
     console.log("ID = " + question.id);
   }
 
   cancelMQ(question) {
-    if ( this.questionListOE.length <= 1 ) {
-      this.questionOnEdit = false;
-    }
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
@@ -68,7 +60,7 @@ export class FaqComponent implements OnInit {
     this.faqService.deleteQuestion(question).subscribe();
     console.log("Vous avez appuyé supprime " + question.id);
   }
-
+  // Ajout d'une question
   addQuestion(categorie) {
     console.log("Voici la catégorie envoyée : "+ categorie.id);
     this.categoriesAddQuestion.push(categorie.id);
@@ -83,28 +75,5 @@ export class FaqComponent implements OnInit {
     console.log("Vous avez appuyer sur Supprimer!")
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
-  }
-  editionMode() {
-    console.log("Vous avez appuyé pour passer en mode édition! Une fonction sera bientôt implémenter pour cela.");
-  }
-
-  delete() {
-    console.log("Vous avez appuyé sur supprimer! Une fonction sera bientôt implémenter pour cela.");
-  }
-
-  questionDownward() {
-    console.log("Vous avez appuyé sur la flêche du haut! Une fonction sera bientôt implémenter pour cela.");
-  }
-
-  questionUpward() {
-    console.log("Vous avez appuyé sur la flêche du bas! Une fonction sera bientôt implémenter pour cela.");
-  }
-
-  cancellation() {
-    console.log("Vous avez appuyé sur annuler! Une fonction sera bientôt implémenter pour cela.");
-  }
-
-  submit(){
-    console.log("Vous avez appuyé sur soumettre! Une fonction sera bientôt implémenter pour cela.");
   }
 }
