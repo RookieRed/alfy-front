@@ -19,26 +19,6 @@
     <!-- Agenda -->
     <div fxFlex="row-wrap" class="agenda" #actions>
       <h2 class="title">Agenda</h2>
-      
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
 
       <div class="box">
         <mat-card class="event">
@@ -137,7 +117,27 @@
           </mat-card-actions>
         </mat-card>
       </div>
-      
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
       <br/>
 
     </div>
@@ -153,7 +153,7 @@
           <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
           <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
             été scolarisée au moins un an au Lycée Fustel de Coulanges de Yaoundé, tout membre du personnel administratif
-            comme professoral et enfin tout parent d'élève. 
+            comme professoral et enfin tout parent d'élève.
           </p>
           <h4>C’est de la pensée que découle l’action.</h4>
           <p>L'ALFY est <b>née en septembre 2016</b> pensée dans le but premier d'aider la promotion de bacheliers dans leur orientation
@@ -161,7 +161,7 @@
             dans le cadre de leurs ambitions. Suite à une réflexion menée avec la proviseur du lycée en fonction en 2017, l'ALFY
             est <b>passée du statut de projet à celui d'association</b> dont la vie a été rythmée depuis par une collaboration restreinte
             avec le <a href="https://www.fustel-yaounde.net/">lycée Fustel de Coulanges</a>, <a href="https://alfm.fr/">l'association mondiale ALFM</a>, l'AEFE et d'autres associations locales telles que
-            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques. 
+            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques.
           </p>
         </div>
       </div>
@@ -175,40 +175,65 @@
         </div>
       </div>
       <!-- Partenaire -->
-      <div fxFlex="auto" class="partenaires">
+      <div class="partenaires">
         <div class="title" >
           <h2>Partenaires</h2>
         </div>
-        <div class="logos">
+        <div class="logos" flexLayout="row" fxLayoutAlign="center center">
           <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
             <br/>
             <span> Partenaire 1</span>
           </div>
           <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
             <br/>
             <span> Partenaire 2</span>
           </div>
           <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
             <br/>
             <span> Partenaire 1</span>
           </div>
           <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
             <br/>
             <span> Partenaire 3</span>
           </div>
           <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()"> 
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
             <br/>
             <span> Partenaire 4</span>
           </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 5</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 6</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 7</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 8</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 9</span>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
 
-  

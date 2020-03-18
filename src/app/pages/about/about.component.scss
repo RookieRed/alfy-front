@@ -119,15 +119,16 @@ $padding: 11%;
         .partenaires{
           margin: 2%;
           background-color: $accent-lighter;
+          overflow-x: auto;
           //border-radius: 3%;
 
           .title{
             margin: 20px;}
           .logos{
             display: flex;
-            flex-wrap: wrap;
             text-align: center;
             margin: 30px;
+            white-space: nowrap;
 
             img {
               position: relative; // ou static
