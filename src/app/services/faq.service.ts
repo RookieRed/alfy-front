@@ -14,11 +14,11 @@ export class FaqService {
     ) { }
 
   public getFAQ() {
-    return this.http.get(environment.apiURL + '​/pages/faq​' ).toPromise();
+    return this.http.get(environment.apiURL + '/pages/faq' ).toPromise();
   }
 
   public updateQuestion(question: Question): Observable<Question> {
-    return this.http.put<Question>(environment.apiURL + '/faq/categorie', question);
+    return this.http.put<Question>(environment.apiURL + '/faq/categories', question);
   }
 
   public deleteQuestion(question: Question): Observable<{}> {
