@@ -10,7 +10,7 @@
 
 
 .question {
-    margin-left: 25px;
+    //margin-left: 25px;
     font-style: italic;
     font-size: large;
     display: block;
@@ -18,23 +18,22 @@
 }
 
 .answer {
-    margin-left: 110px;
+    margin-left: 125px;
     font-size: large;
 }
 
 .questionInput {
-  margin-left: 25px;
   font-style: italic;
   font-size: large;
   display: block;
   font-weight: bold;
-  width: 98%;
+  width: 100%;
 }
 
 .answerInput {
-  margin-left: 110px;
+ //margin-left: 110px;
   font-size: large;
-  width: 93%;
+  width: 100%;
 }
 
 .confirmOrCancel {
