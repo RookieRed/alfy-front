@@ -111,7 +111,6 @@ $padding: 11%;
           margin: 2%;
           //border-radius: 3%;
           margin-right: 2%;
-          color: white;
 
           .title{
             margin: 20px;}
@@ -121,6 +120,7 @@ $padding: 11%;
           background-color: $accent-lighter;
           overflow-x: auto;
           //border-radius: 3%;
+          max-width: 1400px;
 
           .title{
             margin: 20px;}
