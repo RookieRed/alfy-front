@@ -79,13 +79,15 @@
       </div>
     </div>
     <div *ngIf = "categoriesAddQuestion.includes(c.id)">
-      <mat-form-field class="questionInput">
-        <textarea matInput placeholder="Question"></textarea>
-      </mat-form-field>
+      <form [formGroup]="questionForm">
+        <mat-form-field class="questionInput">
+          <textarea matInput placeholder="Question" formControlName="newQuestion"></textarea>
+        </mat-form-field>
 
-      <mat-form-field class="answerInput">
-        <textarea matInput placeholder="Réponse"></textarea>
-      </mat-form-field>
+        <mat-form-field class="answerInput">
+          <textarea matInput placeholder="Réponse" formControlName="newAnswer"></textarea>
+        </mat-form-field>
+      </form>
       <div class="confirmOrCancel">
         <button mat-icon-button (click)="validationAddQuestion(c)">
           <mat-icon>

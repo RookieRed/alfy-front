@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question } from '../../models/pageFaq';
 
@@ -16,12 +16,13 @@ export class FaqComponent implements OnInit {
   intro: string;
   questionListOE: Question[];
   categoriesAddQuestion: number[];
+  questionForm: FormGroup;
 
   private onApiError(err) {
     console.error(err);
   }
 
-  constructor(private faqService: FaqService) {
+  constructor(private fb: FormBuilder, private faqService: FaqService) {
     this.questionListOE = new Array<Question>();
     this.categoriesAddQuestion = new Array<number>();
   }
@@ -41,6 +42,10 @@ export class FaqComponent implements OnInit {
 
  async  ngOnInit() {
     await this.getFaq();
+    this.questionForm = this.fb.group({
+      newQuestion: [],
+      newAnswer: [],
+    })
   }
 
 
@@ -68,6 +73,7 @@ export class FaqComponent implements OnInit {
   }
   validationAddQuestion(categorie) {
     console.log("Vous avez appuyer sur Valider!")
+    console.log("Affichons la nouvelle question : "+ this.questionForm.value.newQuestion);
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
