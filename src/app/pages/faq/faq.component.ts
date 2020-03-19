@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question } from '../../models/pageFaq';
 
@@ -17,6 +17,7 @@ export class FaqComponent implements OnInit {
   questionListOE: Question[];
   categoriesAddQuestion: number[];
   questionForm: FormGroup;
+  modificationForm: FormGroup;
 
   private onApiError(err) {
     console.error(err);
@@ -46,6 +47,10 @@ export class FaqComponent implements OnInit {
       newQuestion: [],
       newAnswer: [],
     })
+    this.modificationForm = this.fb.group({
+      modifQuestion: [],
+      modifAnswer: [],
+    })
   }
 
 
@@ -55,7 +60,13 @@ export class FaqComponent implements OnInit {
     this.questionListOE.push(question);
     console.log("ID = " + question.id);
   }
-
+  validationMQ(question) {
+    question.question = this.modificationForm.value.modifQuestion;
+    question.answer = this.modificationForm.value.modifAnswer;
+    this.faqService.updateQuestion(question).subscribe();
+    const index = this.questionListOE.indexOf(question);
+    this.questionListOE.splice(index, 1);
+  }
   cancelMQ(question) {
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
@@ -74,6 +85,18 @@ export class FaqComponent implements OnInit {
   validationAddQuestion(categorie) {
     console.log("Vous avez appuyer sur Valider!")
     console.log("Affichons la nouvelle question : "+ this.questionForm.value.newQuestion);
+    /*var maxId = 0;
+    for(const c of this.categories){
+      for (const q in c.questions){
+        console.log("L'id de q est  : "+q.getId());
+        if (q.id > maxId){
+          maxId = q.id;
+        };
+      };
+    };
+    console.log("L'id max est : "+maxId);
+    var newQuestion = new Question(12, this.questionForm.value.newQuestion, this.questionForm.value.newAnswer, categorie.id );
+    this.faqService.addQuestion(newQuestion);*/
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }

@@ -55,17 +55,16 @@
         <p class="answer">{{q.answer}}</p>
       </div>
       <div *ngIf = "questionListOE.includes(q)">
-
-
-        <mat-form-field class="questionInput">
-          <textarea matInput placeholder="Question">{{q.question}}</textarea>
-        </mat-form-field>
-
-        <mat-form-field class="answerInput">
-          <textarea matInput placeholder="Réponse">{{q.answer}}</textarea>
-        </mat-form-field>
+        <form [formGroup]="modificationForm">
+          <mat-form-field class="questionInput">
+            <textarea matInput placeholder="Question" formControlName="modifQuestion">{{q.question}}</textarea>
+          </mat-form-field>
+          <mat-form-field class="answerInput">
+            <textarea matInput placeholder="Réponse" formControlName="modifAnswer">{{q.answer}}</textarea>
+          </mat-form-field>
+        </form>
         <div class="confirmOrCancel">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="validationMQ(q)">
             <mat-icon>
               check
             </mat-icon>
