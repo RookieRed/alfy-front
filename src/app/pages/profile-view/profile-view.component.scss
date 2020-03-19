@@ -1,5 +1,45 @@
 @import "../../../styles";
 
+@media only screen and (max-width: 500px) {
+  .profile-pic {
+    margin-left: -1.5% !important;    
+  }
+
+  .title {
+    margin-right: 10% !important;
+
+    h1 {
+        font-size: 200% !important;
+    }
+    
+    h2 {
+        font-size: 100% !important;
+    }
+  }
+
+  .informations {
+      
+    .timeline {
+
+      .entry {
+        max-width: 170px !important;
+        font-size: 80% !important;
+
+        
+        .body {
+          left: 24% !important;                    
+
+          &:before {
+            border: 6px solid $primary-darker !important; 
+            left: -11.5% !important;          
+          }
+        } 
+      }
+    }
+  }
+
+}
+
 .container {
     margin-top: 4%;
     margin-bottom: 4%;
@@ -40,16 +80,15 @@
         $border-width: 10px;
         $dot-diameter: 1px;
         margin-bottom: 5%;
+        display: contents;
 
         .title-info {
           margin-left: 5%;
           color: black; 
         }
-        
-        //* { box-sizing: border-box;}
-  
+          
         .timeline {
-          //ligne verticale
+          //vertical line
           position: relative;
           margin-top: 10px;
           margin-bottom: 20px;
@@ -67,15 +106,13 @@
 
           .entry {
             text-align: left;
-            //display: flex;
-            align-items: baseline;
     
             .body {
               position: relative;
-             // left: 11.4%;
               left: 20%;         
     
               &:before {
+                //dots
                 content: '';
                 position: absolute;
                 width: $dot-diameter;
