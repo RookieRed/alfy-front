@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
-import { Faq, Category, Question } from '../../models/pageFaq';
+import { Faq, Category, Question, QuestionAdd } from '../../models/pageFaq';
 
 
 @Component({
@@ -84,19 +84,12 @@ export class FaqComponent implements OnInit {
   }
   validationAddQuestion(categorie) {
     console.log("Vous avez appuyer sur Valider!")
-    console.log("Affichons la nouvelle question : "+ this.questionForm.value.newQuestion);
-    /*var maxId = 0;
-    for(const c of this.categories){
-      for (const q in c.questions){
-        console.log("L'id de q est  : "+q.getId());
-        if (q.id > maxId){
-          maxId = q.id;
-        };
-      };
-    };
-    console.log("L'id max est : "+maxId);
-    var newQuestion = new Question(12, this.questionForm.value.newQuestion, this.questionForm.value.newAnswer, categorie.id );
-    this.faqService.addQuestion(newQuestion);*/
+    var newQuestion = new QuestionAdd();
+    newQuestion.question =  this.questionForm.value.newQuestion;
+    newQuestion.answer = this.questionForm.value.newAnswer;
+    newQuestion.categoryId = categorie.id;
+    this.faqService.addQuestion(newQuestion).subscribe();
+
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }

@@ -86,6 +86,23 @@ export class Question {
       this.answer = obj.answer;
       this.orderIndex = obj.orderIndex;
       }
+    }    
+}
+
+export class QuestionAdd {
+  question: string;
+  answer: string;
+  categoryId: number;
+
+  public constructor(obj?: {
+    question?: string,
+    answer?: string,
+    categoryId?: number, }) {
+      if (obj != null) {
+      this.question = obj.question;
+      this.answer = obj.answer;
+      this.categoryId = obj.categoryId;
+      }
     }
 }
 
