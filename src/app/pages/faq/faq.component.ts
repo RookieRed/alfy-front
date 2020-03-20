@@ -63,8 +63,14 @@ export class FaqComponent implements OnInit {
   validationMQ(categorie, question) {
     question.question = this.modificationForm.value.modifQuestion;
     question.answer = this.modificationForm.value.modifAnswer;
-    question.categoryId = categorie.id;
-    this.faqService.updateQuestion(question).subscribe();
+    //question.categoryId = categorie.id;
+    var questionModifie = new QuestionModifie();
+    questionModifie.id = question.id;
+    questionModifie.answer = question.answer;
+    questionModifie.question = question.question;
+    questionModifie.categoryId = categorie.id;
+    questionModifie.orderIndex = question.orderIndex;
+    this.faqService.updateQuestion(questionModifie).subscribe();
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
@@ -90,7 +96,6 @@ export class FaqComponent implements OnInit {
     newQuestion.answer = this.questionForm.value.newAnswer;
     newQuestion.categoryId = categorie.id;
     this.faqService.addQuestion(newQuestion).subscribe();
-
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
