@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
-import { Faq, Category, Question, QuestionAdd } from '../../models/pageFaq';
+import { Faq, Category, Question, QuestionAdd, QuestionModifie } from '../../models/pageFaq';
 
 
 @Component({
@@ -60,9 +60,10 @@ export class FaqComponent implements OnInit {
     this.questionListOE.push(question);
     console.log("ID = " + question.id);
   }
-  validationMQ(question) {
+  validationMQ(categorie, question) {
     question.question = this.modificationForm.value.modifQuestion;
     question.answer = this.modificationForm.value.modifAnswer;
+    question.categoryId = categorie.id;
     this.faqService.updateQuestion(question).subscribe();
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);

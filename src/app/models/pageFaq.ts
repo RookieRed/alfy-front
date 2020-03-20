@@ -79,7 +79,7 @@ export class Question {
   public constructor(obj?: {id?: number,
     question?: string,
     answer?: string,
-    orderIndex?: number, }) {
+    orderIndex?: number,}) {
       if (obj != null) {
       this.id = obj.id;
       this.question = obj.question;
@@ -104,6 +104,28 @@ export class QuestionAdd {
       this.categoryId = obj.categoryId;
       }
     }
+}
+
+export class QuestionModifie {
+  id: number;
+  question: string;
+  answer: string;
+  orderIndex: number;
+  categoryId: number;
+
+  public constructor(obj?: {id?: number,
+    question?: string,
+    answer?: string,
+    orderIndex?: number, 
+    categoryId?: number,}) {
+      if (obj != null) {
+      this.id = obj.id;
+      this.question = obj.question;
+      this.answer = obj.answer;
+      this.orderIndex = obj.orderIndex;
+      this.categoryId = obj.categoryId;
+      }
+    }    
 }
 
 
