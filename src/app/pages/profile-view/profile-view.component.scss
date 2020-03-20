@@ -1,12 +1,23 @@
 @import "../../../styles";
 
 @media only screen and (max-width: 500px) {
+
+  .container {
+    max-width: -webkit-fill-available !important;
+    margin: 0 !important;
+  }
+
+  .backround-picture {
+    height: 210px !important;
+  }
+
   .profile-pic {
-    margin-left: -1.5% !important;    
+    margin-top: 14% !important;    
   }
 
   .title {
     margin-right: 10% !important;
+    margin-top: 10% !important;
 
     h1 {
         font-size: 200% !important;
@@ -27,11 +38,11 @@
 
         
         .body {
-          left: 24% !important;                    
+          left: 40% !important;                    
 
           &:before {
             border: 6px solid $primary-darker !important; 
-            left: -11.5% !important;          
+            left: -16% !important;          
           }
         } 
       }
