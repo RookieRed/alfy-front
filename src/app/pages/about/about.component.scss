@@ -4,7 +4,7 @@ $padding: 11%;
 
 @media only screen and (max-width: 500px) {
 
-  .content{
+  .content {
     .logo-alfy {
       max-height: 240px !important;
       width: auto;
@@ -19,9 +19,9 @@ $padding: 11%;
 
 }
 
-  h2 {
-    font-size: 30px;
-  }
+h2 {
+  font-size: 30px;
+}
 
 .about-container {
   display: flex;
@@ -33,113 +33,133 @@ $padding: 11%;
     border-radius: 3%;
   }
 
-    &.alfy-presentation {
-      background-color: white;
+  &.alfy-presentation {
+    background-color: white;
+  }
+
+  .low-mock-up {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    .agenda {
+      @media only screen and (min-width: 768px) {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 64%;
+      }
+      overflow-y: auto;
+      background-color: $accent-lighter;
+      margin: 2%;
+
+      .title {
+        color: black;
+      }
+
+      .event {
+        border-radius: 20px;
+        background-color: white;
+
+        mat-card-actions {
+          button {
+            background-color: white;
+          }
+        }
+      }
+
+      .example-header-image {
+        background-image: url("/assets/img/logo-alfy.jpg");
+        background-size: cover;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .box {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        width: 70%;
+        margin: auto;
+      }
+
+      .test {
+        font-size: 100;
+      }
     }
 
-    .low-mock-up {
-      display: flex;
-      flex-direction: row;
-
-      .agenda {
-        max-height: 100vh;
-        overflow-y : auto;
-        background-color: $accent-lighter;
+    .low-right-mock-up {
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      flex-grow: 0;
+      @media only screen and (min-width: 768px) {
+        margin-left: 36%;
+      }
+      .presentation {
         margin: 2%;
+        margin-top: 4%;
+        background-color: $accent-lighter;
+        //border-radius: 3%;
 
-        .title{
-          color: black;
+        .title {
+          margin: 20px;
         }
 
-        .event {
-          border-radius: 20px;
-          background-color: white;
+        .content {
+          margin: 30px;
+          font-size: 20px;
 
-          mat-card-actions {
-            button{
-              background-color: white;
-            }
+          .logo-alfy {
+            position: relative; // ou static
+            top: -25px;
+            max-height: 200px;
+            margin: 30px;
+            border-radius: 100%;
           }
-        }
-
-        .example-header-image {
-          background-image: url("/assets/img/logo-alfy.jpg");
-          background-size: cover;
-        }
-
-        .title{
-          text-align: center;
-        }
-
-        .box {
-          text-align: center;
-          color: white;
-          padding: 10px;
-          width: 70%;
-          margin: auto;
-        }
-
-        .test {
-          font-size: 100;
         }
       }
 
-      .low-right-mock-up{
-        .presentation{
-          margin: 2%;
-          margin-top: 4%;
-          background-color: $accent-lighter;
-          //border-radius: 3%;
+      .actualites {
+        background-color: $accent-darker;
+        margin: 2%;
+        //border-radius: 3%;
+        margin-right: 2%;
 
-          .title{
-            margin: 20px;}
-          .content{
-            margin: 30px;
-            font-size: 20px;
-            .logo-alfy {
-              position: relative; // ou static
-              top: -25px;
-              max-height: 200px;
-              margin: 30px;
-              border-radius: 100%;
-            }
-          }
+        .title {
+          margin: 20px;
+        }
+      }
+
+      .partenaires {
+        margin: 2%;
+        background-color: $accent-lighter;
+        overflow-x: auto;
+        //border-radius: 3%;
+        max-width: 1400px;
+
+        .title {
+          margin: 20px;
         }
 
-        .actualites{
-          background-color: $accent-darker;
-          margin: 2%;
-          //border-radius: 3%;
-          margin-right: 2%;
-
-          .title{
-            margin: 20px;}
-        }
-        .partenaires{
-          margin: 2%;
-          background-color: $accent-lighter;
-          overflow-x: auto;
-          //border-radius: 3%;
-          max-width: 1400px;
-
-          .title{
-            margin: 20px;}
-          .logos{
-            display: flex;
-            text-align: center;
-            margin: 30px;
-            white-space: nowrap;
+        .logos {
+          display: flex;
+          text-align: center;
+          margin: 30px;
+          white-space: nowrap;
 
 
-            img {
-              position: relative; // ou static
-              max-height: 100px;
-              border-radius: 50%;
-              margin: 30px 30px;
-            }
+          img {
+            position: relative; // ou static
+            max-height: 100px;
+            border-radius: 50%;
+            margin: 30px 30px;
           }
         }
       }
     }
+  }
 
 }

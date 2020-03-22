@@ -19,7 +19,7 @@
   <!-- Deuxième conteneur en ligne -->
   <div class="low-mock-up" flexLayout="row-wrap">
     <!-- Agenda -->
-    <div fxFlex="row-wrap" class="agenda" #actions>
+    <div fxLayout="column" fxFlex.gt-md="36%"  fxFlex.lt-md="100%" class="agenda" #actions>
       <h2 class="title">Agenda</h2>
 
       <div class="box">
@@ -145,7 +145,7 @@
     </div>
 
     <!-- Troisième conteneur en colonne -->
-    <div fxLayout="column" fxFlex="auto"  class="low-right-mock-up">
+    <div fxLayout="column" fxFlex.gt-md="64%"  fxFlex.lt-md="100%"  class="low-right-mock-up">
       <!-- Présentation -->
       <div fxFlex="auto" class="presentation">
         <div class="title">
