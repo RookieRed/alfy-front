@@ -1,5 +1,5 @@
 .title {
-    font-size: xx-large; 
+    font-size: xx-large;
     text-align: center;
 }
 
@@ -10,27 +10,68 @@
 
 
 .question {
-    margin-left: 25px;
+    //margin-left: 25px;
     font-style: italic;
     font-size: large;
     display: block;
-}
-
-.answer { 
-    margin-left: 110px;
-    font-size: large;
-}
-
-.category {
-    font-size: larger;
     font-weight: bold;
 }
 
-.categories {
+.answer {
+    margin-left: 125px;
+    font-size: large;
+}
+
+.questionInput {
+  font-style: italic;
+  font-size: large;
+  display: block;
+  font-weight: bold;
+  width: 100%;
+}
+
+.answerInput {
+ //margin-left: 110px;
+  font-size: large;
+  width: 100%;
+}
+
+.confirmOrCancel {
+  text-align: center;
+}
+
+.add {
+  text-align: center;
+  //width: 2em;
+  //height: 2em;
+}
+
+::ng-deep .addButton {
+  height:40px !important;
+  width:40px !important;
+  font-size:40px !important;
+}
+
+.category {
+    width : 100%;
+    font-size: larger;
+    font-weight: bold;
+    /*button{
+        float: right;
+    } */
+}
+
+.cat {
     margin: auto;
     width: 80%;
     padding: 10px;
-    overflow:hidden
+    overflow:hidden;
+    .buttonEdit {
+        position: relative;
+    }
+    .arrows {
+      display: block;
+    }
 }
 
 .validation {
@@ -52,7 +93,7 @@ mat-expansion-panel-header{
 @media only screen and (max-width: 500px) {
 
     p.answer {
-        margin-left: 0px;  
+        margin-left: 0px;
     }
 }
 
