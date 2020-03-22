@@ -4,299 +4,142 @@ $padding: 11%;
 
 @media only screen and (max-width: 500px) {
 
-  .about-container .content{
-    display: flex;
-    flex-direction: column;
-
+  .content{
     .logo-alfy {
       max-height: 240px !important;
       width: auto;
-      margin: 0 auto !important;
       top: 0 !important;
     }
   }
+
+  .low-mock-up {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
 }
+
+  h2 {
+    font-size: 30px;
+  }
 
 .about-container {
   display: flex;
   flex-direction: column;
+  background-color: $accent-lighter;
 
-  .row {
-    display: flex;
-    padding: 0 $padding;
-    align-content: center;
-    flex-direction: column;
-
-    .title {
-      margin: 25px 0;
-
-      h2 {
-        margin: 0;
-      }
-    }
-
-    .content {
-      margin: 0 0 25px;
-      line-height: 23px;
-      font-size: 17px;
-    }
+  .caroussel {
+    //margin: 2%;
+    border-radius: 3%;
+  }
 
     &.alfy-presentation {
       background-color: white;
+    }
 
-      .main-title {
-        position: relative;
-        display: flex;
-        justify-content: flex-end;
-        flex-flow: column;
-        height: 500px;
-        width: 100% * ( 1 / 0.78 );
-        left: 11% * ( -1 / 0.78 );
+    .low-mock-up {
+      display: flex;
+      flex-direction: row;
 
-        &.no-background {
-          background-image: url('/assets/img/fustel.jpg');
+      .agenda {
+        max-height: 100vh;
+        overflow-y : auto;
+        background-color: $accent-lighter;
+        margin: 2%;
+
+        .title{
+          color: black;
+        }
+
+        .event {
+          border-radius: 20px;
+          background-color: white;
+
+          mat-card-actions {
+            button{
+              background-color: white;
+            }
+          }
+        }
+
+        .example-header-image {
+          background-image: url("/assets/img/logo-alfy.jpg");
           background-size: cover;
-          background-color: $accent-lighter;
-          background-repeat: no-repeat;
-          background-position: center center;
         }
 
-        .voile {
-          position: relative;
-          height: 100%;
-          display: flex;
-          align-items: flex-end;
-          padding-bottom: 20px;
-          padding-right: 50%;
-          width: 100%;
-          font-weight: bolder;
-          box-sizing: border-box;
-          overflow: hidden;
-
-          &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 0;
-            width: 0;
-            border-bottom: 330px solid rgba(255,255,255,0.7);
-            border-right: 800px solid transparent;
-            z-index: 0;
-          }
-
-          h1 {
-            width: 100%;
-            z-index: 5;
-            min-width: 260px;
-            max-width: 370px;
-            font-size: 46px;
-            line-height: 52px;
-            font-family: Bitter, serif;
-            margin: 0 20% 0 7%;
-          }
-        }
-      }
-
-      .logo-alfy {
-        position: relative;
-        top: -25px;
-        max-height: 230px;
-        margin: -15px 8% 0 25px;
-      }
-    }
-
-    &.goals-container {
-      display: flex;
-      flex-direction: column;
-
-      h3 {
-        margin-bottom: 30px;
-      }
-
-      .goals-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-
-        .goal {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        .title{
           text-align: center;
-          flex: 1;
-          min-width: 200px;
-          margin: 10px;
-
-          h4 {
-            font-size: 23px;
-            margin: 15px 0;
-          }
-
-          img {
-            height: 100px;
-            width: auto;
-          }
         }
-      }
-    }
 
-    &.goals-container {
-      @extend %container;
-    }
+        .box {
+          text-align: center;
+          color: white;
+          padding: 10px;
+          width: 70%;
+          margin: auto;
+        }
 
-    &.alfy-actions {
-      $gutter: 30px;
-      $border-width: 5px;
-      $dot-diameter: 8px;
-
-      display: flex;
-      justify-content: center;
-
-      * {
-        box-sizing: border-box;
-      }
-
-      .timeline {
-        width: 100%;
-        max-width: 800px;
-        padding: 20px 0;
-        position: relative;
-        margin: 0 auto 30px;
-
-        &:before {
-          content: '';
-          position: absolute;
-          top: -15px;
-          left: calc( 34% - 3px );
-          height: calc( 100% + 45px );
-          bottom: 0;
-          width: 4px;
-          background: $accent-darker;
-          z-index: 1;
+        .test {
+          font-size: 100;
         }
       }
 
-      .entry {
-        text-align: left;
-        display: flex;
-        align-items: baseline;
+      .low-right-mock-up{
+        .presentation{
+          margin: 2%;
+          margin-top: 4%;
+          background-color: $accent-lighter;
+          //border-radius: 3%;
 
-        .title {
-          float: left;
-          flex: 34%;
-          padding-right: $gutter;
-          text-align: right;
-          position: relative;
-          margin: 0 !important;
-
-          &:before {
-            content: '';
-            position: absolute;
-            width: $dot-diameter;
-            height: $dot-diameter;
-            border: $border-width solid $warn;
-            background-color: #fff;
-            border-radius:100%;
-            top: 15%;
-            right: -$dot-diameter - 0.5px;
-            z-index: 99;
-          }
-
-          h3 {
-            margin: 0;
-            font-size: 120%;
-
-            @media only screen and (max-width: 500px) {
-              font-size: 100% !important;
-            }
-          }
-
-          p {
-            margin: 0;
-            font-size: 100%;
-          }
-        }
-
-        .body {
-          margin: 0 0 20px;
-          float: right;
-          width: 66%;
-          padding-left: $gutter;
-
-          p:first-child {
-            margin-top: 0;
-            font-weight: 400;
-            margin-bottom: 10px;
-          }
-
-          ul {
-            color: $accent;
-            padding-left: 0;
-            list-style-type: none;
-            font-size: 16px;
-            margin: 10px 0;
-
-            li:before {
-              content: "–";
-              margin-right: .5em;
+          .title{
+            margin: 20px;}
+          .content{
+            margin: 30px;
+            font-size: 20px;
+            .logo-alfy {
+              position: relative; // ou static
+              top: -25px;
+              max-height: 200px;
+              margin: 30px;
+              border-radius: 100%;
             }
           }
         }
-      }
-    }
 
-    &.alfy-contacts {
-      
-      .content {
+        .actualites{
+          background-color: $accent-darker;
+          margin: 2%;
+          //border-radius: 3%;
+          margin-right: 2%;
 
-          div {
-            //display: flex;
-            //flex: 1;
-            min-width: 200px;
-            justify-content: center;
-            margin: 10px 0;
-          }
+          .title{
+            margin: 20px;}
+        }
+        .partenaires{
+          margin: 2%;
+          background-color: $accent-lighter;
+          overflow-x: auto;
+          //border-radius: 3%;
+          max-width: 1400px;
 
-          mat-icon {
-            margin-right: 15px;
-            height: 22px;
-          }
-
-          .flex-rows {
+          .title{
+            margin: 20px;}
+          .logos{
             display: flex;
-            width: 100%;
-            font-size: 22px;
-            line-height: 22px;
-            flex-wrap: wrap;
-          }
+            text-align: center;
+            margin: 30px;
+            white-space: nowrap;
 
-          .line-icon {
-            width: 100%;
-          }
 
-          .row:after {
-            content: "";
-            display: table;
-            clear: both;
-            box-sizing: border-box;
+            img {
+              position: relative; // ou static
+              max-height: 100px;
+              border-radius: 50%;
+              margin: 30px 30px;
+            }
           }
-
-          .column1 {
-            float: left; 
-            width: 80%;
-          }
-
-          .column2 {
-            float: right; 
-            width: 20%;
-          }
-
-        
+        }
       }
     }
-  }
+
 }
