@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     { link: '/profile/edit', name: 'Mon compte' },
     { link: '/signout', name: 'Se déconnecter' },
     { link: '/signin', name: 'Se connecter' },
+    { link: '/profile/view', name: 'Profile View' },
     // { link: '/signup', name: 'Inscription' },
   ];
 
