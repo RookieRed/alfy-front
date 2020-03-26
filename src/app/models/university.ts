@@ -2,9 +2,9 @@ import {Address} from "./address";
 
 export class University {
 
-  private id: number;
-  private name: string;
-  private address: Address;
+  id: number;
+  name: string;
+  address: Address;
 
 
   constructor(obj?: {id: number, name: string, address: Address} ) {
