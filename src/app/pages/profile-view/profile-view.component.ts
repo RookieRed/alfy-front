@@ -10,20 +10,20 @@ import { Address } from 'src/app/models/address';
 })
 export class ProfileViewComponent implements OnInit {
 
-  private id : Number;
-  private userName : string;
-  private firstName : string;
-  private lastName : string;
+  private id: Number;
+  private userName: string;
+  private firstName: string;
+  private lastName: string;
   private birthDay: Date | Moment;
-  private age : string;
-  private email : string;
-  private phone : string;
-  private role : string;
+  private age: string;
+  private email: string;
+  private phone: string;
+  private role: string;
   private profilePicture: {path, name};
-  private facebook : string;
-  private linkedin : string;
-  private twitter : string;
-  private adress : Address;
+  private facebook: string;
+  private linkedin: string;
+  private twitter: string;
+  private adress: Address;
 
   constructor(private profileService : ProfileService ) {
    }

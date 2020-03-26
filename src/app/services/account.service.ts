@@ -50,7 +50,7 @@ export class AccountService {
   }
 
   public getMine(): Promise<any> {
-    return this.http.get(environment.apiURL + '/account/me').toPromise();
+    return this.http.get(environment.apiURL + '/account/my-info').toPromise();
   }
 
   public updateProfilePicture(uploadedPicture: File) {
@@ -103,7 +103,7 @@ export class AccountService {
     }
 
     // Sending
-    return this.http.post(environment.apiURL + '/account/me', payload).toPromise();
+    return this.http.post(environment.apiURL + '/account/my-info', payload).toPromise();
   }
 
   isUsernameTaken(username: string): Promise<any> {
