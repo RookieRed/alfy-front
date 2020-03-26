@@ -22,7 +22,7 @@ export class ProfileViewComponent implements OnInit {
   private profilePicture: {path, name};
   private facebook : string;
   private linkedin : string;
-  private twitter : string;
+  private twitter : string; 
   private adress : Address;
 
   constructor(private profileService : ProfileService ) {
