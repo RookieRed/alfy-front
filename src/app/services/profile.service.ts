@@ -11,7 +11,7 @@ export class ProfileService {
    }
 
   public getUser() {
-    return this.http.get(environment.apiURL + '/account/my-info' ).toPromise();
+    return this.http.get(environment.apiURL + '/account/1' ).toPromise();
   }
 
 }

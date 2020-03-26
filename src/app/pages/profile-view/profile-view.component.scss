@@ -78,13 +78,17 @@
         h1 {
             margin-top: 12%;
             font-size: 300%;
-        }
-        
+        } 
         h2 {
-            font-size: 200%;
-            color: $accent-darker; 
-            font-style: italic;
+          font-size: 200%;
+          color: $primary-darker; 
+          font-style: italic;
         }
+        h3 {
+          font-size: 150%;
+          color: $primary-darker; 
+          font-style: italic;
+      }
     }
 
     .informations {
