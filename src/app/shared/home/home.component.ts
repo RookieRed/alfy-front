@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     if (this.accountService.isUserConnected()) {
       try {
-        await this.accountService.getMine();
+        await this.accountService.getUserInfo();
       } catch (e) {
         console.log(e);
         this.accountService.signOut();

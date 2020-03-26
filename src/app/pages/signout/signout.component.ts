@@ -15,7 +15,6 @@ export class SignoutComponent implements OnInit {
 
   ngOnInit() {
     this.accountService.signOut();
-    console.log('yolo');
     this.router.navigate(['']);
   }
 
