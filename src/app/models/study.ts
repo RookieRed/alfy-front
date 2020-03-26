@@ -3,13 +3,13 @@ import {University} from "./university";
 
 export class Study {
 
-  private id: number;
-  private type: string;
-  private university: University;
-  private startedAt: Date | Moment;
-  private monthsDuration: number;
-  private comment: string;
-  private notation: number;
+  id: number;
+  type: string;
+  university: University;
+  startedAt: Date | Moment;
+  monthsDuration: number;
+  comment: string;
+  notation: number;
 
 
   constructor(obj?: {id: number, type: string, university: University, startedAt: Date | Moment, monthsDuration: number, comment: string, notation: number}) {

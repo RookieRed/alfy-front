@@ -1,8 +1,8 @@
 export class File {
 
-  private name: string;
-  private path: string;
-  private fullPath: string;
+  name: string;
+  path: string;
+  fullPath: string;
 
 
   constructor(obj?: {name?: string, path?: string, fullPath?: string}) {

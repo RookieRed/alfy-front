@@ -25,6 +25,7 @@ export class User {
   jobTitle: string;
   projects: Project[];
   address: Address;
+  password: string;
 
 
 
@@ -45,10 +46,12 @@ export class User {
                      instagram?: string,
                      baccalaureate?: string,
                      jobTitle?: string,
+                     studies: Study[],
                      linkedIn?: string, }) {
     if (obj != null) {
       this.coverPicture = obj.coverPicture;
       this.projects = obj.projects;
+      this.studies = obj.studies;
       this.instagram = obj.instagram;
       this.baccalaureate = obj.baccalaureate;
       this.jobTitle = obj.jobTitle;
