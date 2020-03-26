@@ -57,10 +57,10 @@
       <div *ngIf = "questionListOE.includes(q)">
         <form [formGroup]="modificationForm">
           <mat-form-field class="questionInput">
-            <textarea matInput placeholder="Question" formControlName="modifQuestion">{{q.question}}</textarea>
+            <textarea matInput placeholder="Question" formControlName="modifQuestion" value="{{q.question}}"></textarea>
           </mat-form-field>
           <mat-form-field class="answerInput">
-            <textarea matInput placeholder="Réponse" formControlName="modifAnswer">{{q.answer}}</textarea>
+            <textarea matInput placeholder="Réponse" formControlName="modifAnswer" value="{{q.answer}}"></textarea>
           </mat-form-field>
         </form>
         <div class="confirmOrCancel">

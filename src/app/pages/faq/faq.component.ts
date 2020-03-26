@@ -58,12 +58,16 @@ export class FaqComponent implements OnInit {
 
   questionEdit(question) {
     this.questionListOE.push(question);
-    console.log("ID = " + question.id);
   }
   validationMQ(categorie, question) {
+    if (this.modificationForm.value.modifQuestion == null) {
+      this.modificationForm.value.modifQuestion = question.question ;
+    }
+    if (this.modificationForm.value.modifAnswer == null) {
+      this.modificationForm.value.modifAnswer = question.answer;
+    }
     question.question = this.modificationForm.value.modifQuestion;
     question.answer = this.modificationForm.value.modifAnswer;
-    //question.categoryId = categorie.id;
     var questionModifie = new QuestionModifie();
     questionModifie.id = question.id;
     questionModifie.answer = question.answer;
@@ -73,6 +77,7 @@ export class FaqComponent implements OnInit {
     this.faqService.updateQuestion(questionModifie).subscribe();
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
+    //window.location.reload();
   }
   cancelMQ(question) {
     const index = this.questionListOE.indexOf(question);
@@ -82,6 +87,7 @@ export class FaqComponent implements OnInit {
   deleteQuestion(question) {
     this.faqService.deleteQuestion(question).subscribe();
     console.log("Vous avez appuyé supprime " + question.id);
+    //window.location.reload();
   }
   // Ajout d'une question
   addQuestion(categorie) {
@@ -98,6 +104,7 @@ export class FaqComponent implements OnInit {
     this.faqService.addQuestion(newQuestion).subscribe();
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
+    //window.location.reload();
   }
   conceledAddQuestion(categorie) {
     console.log("Vous avez appuyer sur Supprimer!")
