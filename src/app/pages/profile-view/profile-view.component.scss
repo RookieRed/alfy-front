@@ -30,7 +30,7 @@
 
   .informations {
       
-    .timeline {
+x    .timeline {
 
       .entry {
         max-width: 170px !important;
@@ -96,6 +96,8 @@
         $dot-diameter: 1px;
         margin-bottom: 5%;
         display: contents;
+        font-size: 100%;
+
 
         .title-info {
           margin-left: 5%;
