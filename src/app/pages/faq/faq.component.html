@@ -39,7 +39,7 @@
             </mat-icon>
           </button>
           {{q.question}}
-          <button mat-icon-button class="buttonEdit" (click)="questionEdit(q)">
+          <button mat-icon-button class="buttonEdit" (click)="questionZoneEdit(q)">
             <mat-icon>
               edit
             </mat-icon>
@@ -101,7 +101,7 @@
       </div>
     </div>
     <div class="add" *ngIf = "!categoriesAddQuestion.includes(c.id)"> 
-      <button mat-icon-button class="addButton" (click)="addQuestion(c)">
+      <button mat-icon-button class="addButton" (click)="questionZoneAdd(c)">
         <mat-icon class="addButton">
           add_circle_outline
         </mat-icon>

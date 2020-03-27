@@ -56,10 +56,13 @@ export class FaqComponent implements OnInit {
 
   // Function for buttons
 
-  questionEdit(question) {
+  // Modifications des questions
+  questionZoneEdit(question) {
+    // Affichage de la zone de modification
     this.questionListOE.push(question);
   }
   validationMQ(categorie, question) {
+    // Enregistre les modifications
     if (this.modificationForm.value.modifQuestion == null) {
       this.modificationForm.value.modifQuestion = question.question ;
     }
@@ -77,25 +80,27 @@ export class FaqComponent implements OnInit {
     this.faqService.updateQuestion(questionModifie).subscribe();
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
-    //window.location.reload();
   }
   cancelMQ(question) {
+    // Annule les modifiactions
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
 
+  // Suppression d'une question
   deleteQuestion(question) {
     this.faqService.deleteQuestion(question).subscribe();
     console.log("Vous avez appuyé supprime " + question.id);
-    //window.location.reload();
   }
   // Ajout d'une question
-  addQuestion(categorie) {
+  questionZoneAdd(categorie) {
+    // Affichage de la zone d'ajout d'une question
     console.log("Voici la catégorie envoyée : "+ categorie.id);
     this.categoriesAddQuestion.push(categorie.id);
     console.log("Voici la liste des catégories : " + this.categoriesAddQuestion);
   }
   validationAddQuestion(categorie) {
+    // Validation de la nouvelle question
     console.log("Vous avez appuyer sur Valider!")
     var newQuestion = new QuestionAdd();
     newQuestion.question =  this.questionForm.value.newQuestion;
@@ -104,9 +109,9 @@ export class FaqComponent implements OnInit {
     this.faqService.addQuestion(newQuestion).subscribe();
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
-    //window.location.reload();
   }
   conceledAddQuestion(categorie) {
+    // Annulation de l'ajout 
     console.log("Vous avez appuyer sur Supprimer!")
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
