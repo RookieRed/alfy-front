@@ -13,30 +13,30 @@ import { Project } from 'src/app/models/project';
 export class ProfileViewComponent implements OnInit {
 
   private id: Number;
-  private userName: string;
+  private userName: string; //undefined
   private firstName: string;
   private lastName: string;
   private birthDay: Date | Moment;
   private age: number;
-  private birthYear : number;
-  private currentYear : number;
+  private birthYear: number;
+  private currentYear: number;
   private email: string;
   private phone: string;
   private role: string;
   private profilePicture: File;
   private coverPicture: File;
   private facebook: string;
-  private linkedin: string;
+  private linkedIn: string;
   private twitter: string;
   private instagram: string;
-  private adress: Address;
+  private address: Address;
   private baccalaureate: string;
   private studies: Study[];
   private jobTitle: string;
   private projects: Project[];
   private password: string;
 
-  constructor(private profileService : ProfileService ) {
+  constructor(private profileService: ProfileService ) {
   }
 
   async ngOnInit() {
@@ -55,14 +55,17 @@ export class ProfileViewComponent implements OnInit {
   }
 
   private exists(toCheck) {
-    return typeof toCheck !== "undefined";
+    if ( toCheck ) {
+      return true;
+    }
+    return false;
   }
 
   async getUser() {
     await this.profileService.getUser().then((resp: any) => {
       const respObj = resp;
       this.id = <Number>respObj.id;
-      this.userName = <string>respObj.userName;
+      this.userName = <string>respObj.userName; //undefined
       this.firstName = <string>respObj.firstName;
       this.lastName = <string>respObj.lastName;
       this.birthDay = <Date | Moment>respObj.birthDay;
@@ -72,41 +75,19 @@ export class ProfileViewComponent implements OnInit {
       this.profilePicture = <File>respObj.profilePicture;
       this.coverPicture = <File>respObj.coverPicture;
       this.facebook = <string>respObj.facebook;
-      this.linkedin = <string>respObj.linkedin;
+      this.linkedIn = <string>respObj.linkedIn;
       this.twitter = <string>respObj.twitter;
       this.instagram = <string>respObj.instagram;
-      this.adress = <Address>respObj.adress;
+      this.address = <Address>respObj.address;
       this.baccalaureate = <string>respObj.baccalaureate;
       this.studies = <Study[]>respObj.studies;
       this.jobTitle = <string>respObj.jobTitle;
       this.projects = <Project[]>respObj.projects;
-      this.password = <string>respObj.password;
       this.birthYear = Number((this.birthDay.toString()).substr(0, 4));
       this.currentYear = new Date().getFullYear();
       this.age = this.currentYear - this.birthYear;
 
-      console.log(this.id);
-      //console.log(this.userName);
-      console.log(this.firstName);
-      console.log(this.lastName);
-      console.log(this.birthDay);
-      console.log(this.birthYear);
-      console.log(this.currentYear);
-      //console.log(this.age);
-      console.log(this.email);
-      console.log(this.phone);
-      console.log(this.role);
-      console.log(this.profilePicture);
-      console.log(this.coverPicture);
-      console.log(this.facebook);
-      //console.log(this.linkedin);
-      //console.log(this.twitter);
-      //console.log(this.adress);
-      console.log(this.baccalaureate);
-      console.log(this.studies);
-      console.log(this.jobTitle);
-      console.log(this.projects);
-      console.log(this.password);
+      console.log(this.userName);
 
     }, err => {
       this.onApiError(err);
