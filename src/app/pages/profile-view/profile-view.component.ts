@@ -78,9 +78,9 @@ export class ProfileViewComponent implements OnInit {
       this.adress = <Address>respObj.adress;
       this.baccalaureate = <string>respObj.baccalaureate;
       this.studies = <Study[]>respObj.studies;
-      this.jobTitle = <string>this.jobTitle;
-      this.projects = <Project[]>this.projects;
-      this.password = <string>this.password;
+      this.jobTitle = <string>respObj.jobTitle;
+      this.projects = <Project[]>respObj.projects;
+      this.password = <string>respObj.password;
       this.birthYear = Number((this.birthDay.toString()).substr(0, 4));
       this.currentYear = new Date().getFullYear();
       this.age = this.currentYear - this.birthYear;
@@ -96,8 +96,8 @@ export class ProfileViewComponent implements OnInit {
       console.log(this.email);
       console.log(this.phone);
       console.log(this.role);
-      //console.log(this.profilePicture);
-      //console.log(this.coverPicture);
+      console.log(this.profilePicture);
+      console.log(this.coverPicture);
       console.log(this.facebook);
       //console.log(this.linkedin);
       //console.log(this.twitter);
