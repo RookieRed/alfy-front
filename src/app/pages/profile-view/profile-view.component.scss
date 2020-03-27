@@ -1,6 +1,6 @@
 @import "../../../styles";
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
   .container {
     max-width: -webkit-fill-available !important;
@@ -30,19 +30,19 @@
 
   .informations {
       
-x    .timeline {
+    .timeline {
 
       .entry {
-        max-width: 170px !important;
-        font-size: 80% !important;
-
+        max-width: 270px !important;
+        font-size: 90% !important;
         
         .body {
-          left: 40% !important;                    
+          left: 36% !important;                    
 
           &:before {
             border: 6px solid $primary-darker !important; 
-            left: -16% !important;          
+            left: -19% !important;  
+        
           }
         } 
       }
@@ -96,8 +96,6 @@ x    .timeline {
         $dot-diameter: 1px;
         margin-bottom: 5%;
         display: contents;
-        font-size: 100%;
-
 
         .title-info {
           margin-left: 5%;
@@ -123,6 +121,7 @@ x    .timeline {
 
           .entry {
             text-align: left;
+            max-width: 80%;
     
             .body {
               position: relative;
@@ -137,7 +136,7 @@ x    .timeline {
                 border: $border-width solid $primary-darker;
                 border-radius:100%;
                 top: 15%;
-                left: -8.8%;
+                left: -5.8%;
                 z-index: 99;  
               }
               
