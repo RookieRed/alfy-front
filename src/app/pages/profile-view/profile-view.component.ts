@@ -28,6 +28,7 @@ export class ProfileViewComponent implements OnInit {
   private facebook: string;
   private linkedin: string;
   private twitter: string;
+  private instagram: string;
   private adress: Address;
   private baccalaureate: string;
   private studies: Study[];
@@ -53,6 +54,10 @@ export class ProfileViewComponent implements OnInit {
     console.error(err);
   }
 
+  private exists(toCheck) {
+    return typeof toCheck !== "undefined";
+  }
+
   async getUser() {
     await this.profileService.getUser().then((resp: any) => {
       const respObj = resp;
@@ -69,6 +74,7 @@ export class ProfileViewComponent implements OnInit {
       this.facebook = <string>respObj.facebook;
       this.linkedin = <string>respObj.linkedin;
       this.twitter = <string>respObj.twitter;
+      this.instagram = <string>respObj.instagram;
       this.adress = <Address>respObj.adress;
       this.baccalaureate = <string>respObj.baccalaureate;
       this.studies = <Study[]>respObj.studies;
@@ -80,22 +86,22 @@ export class ProfileViewComponent implements OnInit {
       this.age = this.currentYear - this.birthYear;
 
       console.log(this.id);
-      console.log(this.userName);
+      //console.log(this.userName);
       console.log(this.firstName);
       console.log(this.lastName);
       console.log(this.birthDay);
       console.log(this.birthYear);
       console.log(this.currentYear);
-      console.log(this.age);
+      //console.log(this.age);
       console.log(this.email);
       console.log(this.phone);
       console.log(this.role);
-      console.log(this.profilePicture);
-      console.log(this.coverPicture);
+      //console.log(this.profilePicture);
+      //console.log(this.coverPicture);
       console.log(this.facebook);
-      console.log(this.linkedin);
-      console.log(this.twitter);
-      console.log(this.adress);
+      //console.log(this.linkedin);
+      //console.log(this.twitter);
+      //console.log(this.adress);
       console.log(this.baccalaureate);
       console.log(this.studies);
       console.log(this.jobTitle);

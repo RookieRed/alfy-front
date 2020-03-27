@@ -12,15 +12,15 @@
           <h2>M2 Informatique DL</h2>
           <h3> {{age}} ans</h3>
         </div>
-    
+
         <div class="social-media" fxFlex="auto">
-          <a href={{facebook}}> <img src="/assets/img/about/logoFacebook.png"
+          <a href={{facebook}} *ngIf="exists(facebook);"> <img src="/assets/img/about/logoFacebook.png"
             alt="Lien Facebook" width="38" height="38" hspace="10"> </a>
-        <a href="https://www.instagram.com/asso_alfy/"> <img src="/assets/img/about/logoInstagram.png"
+        <a href={{instagram}} *ngIf="exists(instagram);"> <img src="/assets/img/about/logoInstagram.png"
             alt="Lien Instagram" width="38" height="38" hspace="10"> </a>
-        <a href={{twitter}}> <img src="/assets/img/about/logoTwitter.png"
+        <a href={{twitter}} *ngIf="exists(twitter);"> <img src="/assets/img/about/logoTwitter.png"
             alt="Lien Twitter" width="38" height="38" hspace="10"> </a>
-        <a href={{mail}}> <img src="/assets/img/about/logoEmail.png" alt="Lien Email" width="38"
+        <a href={{email}} *ngIf="exists(email);"> <img src="/assets/img/about/logoEmail.png" alt="Lien Email" width="38"
             height="38" hspace="10"> </a>
         </div>
       </div>
@@ -33,25 +33,9 @@
       </div>
       <div class="content timeline">
         <div class="entry">
-          <div class="title">
-          </div>
-          <div class="body">
-            <h3>Master DL Paul Sab</h3>
-            <p>lalala</p>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="title"></div>
-          <div class="body">
-            <h3>Licence jsaispasou</h3>
-            <p>lelel</p>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="title"></div>
-          <div class="body">
-            <h3>Bac S Lycée Français de Yaoundé</h3>
-            <p>yeyyy</p>
+          <div class="body" *ngFor="let s of studies">
+            <h3>{{s.type}} {{s.university.name}}</h3>
+            <p>{{s.comment}}</p>
           </div>
         </div>
       </div>
@@ -61,8 +45,6 @@
       </div>
       <div class="content timeline">
         <div class="entry">
-          <div class="title">
-          </div>
           <div class="body">
             <h3>Site web ALFY</h3>
             <p>lalala</p>
@@ -79,4 +61,4 @@
 
     </div>
 
-</div> 
+</div>
