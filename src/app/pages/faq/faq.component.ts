@@ -39,6 +39,7 @@ export class FaqComponent implements OnInit {
     }, err => {
       this.onApiError(err);
     });
+    this.sortQuestions();
   }
 
  async  ngOnInit() {
@@ -51,6 +52,16 @@ export class FaqComponent implements OnInit {
       modifQuestion: [],
       modifAnswer: [],
     })
+  }
+
+  sortQuestions() {
+    for(let c of this.categories) {
+      var index = 0;
+      for(let q of c.questions) {
+        q.id = index;
+        index++;
+      }
+    }
   }
 
 
@@ -116,4 +127,37 @@ export class FaqComponent implements OnInit {
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
+
+  questionDownward(categorie, question) {
+    // Monter question 
+    console.log("Vous avez appuyer sur down!");
+
+    if (question.id != categorie.questions.length-1){
+      var question_temp : Question = new Question();
+      var id_question_temp : number;
+      question_temp = question;
+      id_question_temp = question.id;
+      categorie.questions[question.id] = categorie.questions[question.id+1];
+      categorie.questions[question.id].id = id_question_temp;
+      categorie.questions[question.id+1] = question_temp;
+      categorie.questions[question.id+1].id =id_question_temp+1;
+    }
+  }
+  
+  questionUpward(categorie, question) {
+    // descendre qustion 
+    console.log("Vous avez appuyer sur up!");
+    
+    if (question.id != 0){
+      var question_temp : Question = new Question();
+      var id_question_temp : number;
+      question_temp = question;
+      id_question_temp = question.id;
+      categorie.questions[question.id] = categorie.questions[question.id-1];
+      categorie.questions[question.id].id = id_question_temp;
+      categorie.questions[question.id-1] = question_temp;
+      categorie.questions[question.id-1].id =id_question_temp-1;
+    }
+  }
+
 }

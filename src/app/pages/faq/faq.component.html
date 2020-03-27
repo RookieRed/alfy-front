@@ -28,12 +28,12 @@
       <div *ngIf = "!questionListOE.includes(q)">
 
         <p class="question">
-          <button mat-icon-button (click)="questionDownward()">
+          <button mat-icon-button (click)="questionDownward(c,q)">
             <mat-icon>
               keyboard_arrow_down
             </mat-icon>
           </button>
-          <button mat-icon-button (click)="questionDownward()">
+          <button mat-icon-button (click)="questionUpward(c,q)">
             <mat-icon>
               keyboard_arrow_up
             </mat-icon>
