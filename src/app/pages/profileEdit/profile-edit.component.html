@@ -50,6 +50,18 @@
       </div>
 
       <div class="block">
+        <h3>Infos pro</h3>
+        <div class="professional">
+          <mat-form-field>
+            <input matInput type="text" formControlName="baccalaureate" placeholder="Bac réalisé"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" formControlName="jobTitle" placeholder="Poste actuel"/>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="block">
         <h3>Sécurité</h3>
         <p class="info">Vous pouvez changer de mot de passe ici.</p>
         <div class="security">
@@ -81,6 +93,9 @@
             <mat-form-field>
               <input matInput placeholder="Téléphone" type="text" name="phone" formControlName="phone"/>
             </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Mail" type="text" name="email" formControlName="email"/>
+            </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field>
@@ -103,7 +118,7 @@
 
       <div class="block">
         <h3>Études</h3>
-        <div class=" personal-infos">
+        <div class="studies">
           <div class="row">
             <mat-form-field>
               <input matInput type="text" placeholder="École"/>
@@ -114,19 +129,11 @@
           </div>
           <div class="row">
             <mat-form-field>
-              <mat-label>Année de début</mat-label>
-              <mat-select>
-                <mat-option>
-                </mat-option>
-              </mat-select>
+              <input matInput type="number" placeholder="Année de début" min="1980"/>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Année de fin</mat-label>
-              <mat-select>
-                <mat-option>
-                </mat-option>
-              </mat-select>
+              <input matInput type="number" placeholder="Année de fin" min="1980"/>
             </mat-form-field>
           </div>
           <div class="row">
@@ -146,7 +153,7 @@
 
       <div class="block">
         <h3>Projets</h3>
-        <div class=" personal-infos">
+        <div class="projects">
           <div class="row">
             <mat-form-field>
               <input matInput type="text" placeholder="Nom"/>
@@ -158,19 +165,11 @@
           </div>
           <div class="row">
             <mat-form-field>
-              <mat-label>Début</mat-label>
-              <mat-select>
-                <mat-option>
-                </mat-option>
-              </mat-select>
+              <input matInput type="number" placeholder="Année de début" min="1980"/>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Fin</mat-label>
-              <mat-select>
-                <mat-option>
-                </mat-option>
-              </mat-select>
+              <input matInput type="number" placeholder="Année de fin" min="1980"/>
             </mat-form-field>
           </div>
           <button mat-icon-button>

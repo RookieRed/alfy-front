@@ -84,12 +84,16 @@ export class ProfileEditComponent implements OnInit {
       username: [this.oldUser.username, Validators.required],
       birthDay: [this.oldUser.birthDay, Validators.required],
       phone: [this.oldUser.phone],
-      address: this.addressForm,
+      email: [this.oldUser.email],
+      //address: this.addressForm,
       security: this.securityForm,
       facebook: [this.oldUser.facebook],
       instagram: [this.oldUser.instagram],
       twitter: [this.oldUser.twitter],
       linkedIn: [this.oldUser.linkedIn],
+      baccalaureate: [this.oldUser.baccalaureate],
+      jobTitle: [this.oldUser.jobTitle],
+      address: [this.oldUser.address],
     });
 
     this.pictureSrc = this.getInitialPictureSrc();
@@ -103,10 +107,14 @@ export class ProfileEditComponent implements OnInit {
     this.form.get('username').setValue(this.oldUser.username);
     this.form.get('birthDay').setValue(this.oldUser.birthDay);
     this.form.get('phone').setValue(this.oldUser.phone);
+    this.form.get('email').setValue(this.oldUser.email);
     this.form.get('facebook').setValue(this.oldUser.facebook);
     this.form.get('instagram').setValue(this.oldUser.instagram);
     this.form.get('twitter').setValue(this.oldUser.twitter);
     this.form.get('linkedIn').setValue(this.oldUser.linkedIn);
+    this.form.get('jobTitle').setValue(this.oldUser.jobTitle);
+    this.form.get('baccalaureate').setValue(this.oldUser.baccalaureate);
+    this.form.get('address').setValue(this.oldUser.address);
 
     if (this.oldUser.address != null) {
       this.addressForm.get('line1').setValue(this.oldUser.address.line1);

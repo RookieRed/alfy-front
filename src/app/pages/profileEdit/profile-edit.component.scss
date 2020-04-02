@@ -17,10 +17,10 @@
   }
 
   .block {
-    display: flex;
+    //display: flex;
     flex-direction: column;
     align-items: start;
-    border: 0.5px solid $accent;
+    border: 1px solid $accent-lighter;
     border-radius: 10px;
     margin: 20px 10px;
     padding: 10px;
