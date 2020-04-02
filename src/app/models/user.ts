@@ -1,50 +1,55 @@
 import {Address} from "./address";
 import {Moment} from "moment";
+import {File} from "./file";
+import {Study} from "./study";
+import {Project} from "./project";
 
 export class User {
 
   id: number;
-  lastName: string;
-  password: string;
-  firstName: string;
   username: string;
-  phone: string;
-  email: string;
+  firstName: string;
+  lastName: string;
   birthDay: Date | Moment;
-  profilePicture: {path, name};
-  address: Address;
+  email: string;
+  phone: string;
   role: string;
+  profilePicture: File;
+  coverPicture: File;
   facebook: string;
-  twitter: string;
   linkedIn: string;
+  twitter: string;
+  instagram: string;
+  baccalaureate: string;
+  studies: Study[];
+  jobTitle: string;
+  projects: Project[];
+  address: Address;
+  password: string;
 
-  public constructor(obj?: {id?: number,
-                     lastName?: string,
-                     firstName?: string,
-                     username?: string,
-                     email?: string,
-                     phone?: string,
-                     birthDay?: Date | Moment,
-                     profilePicture?: {path, name},
-                     address?: Address,
-                     role?: string,
-                     facebook?: string,
-                     twitter?: string,
-                     linkedIn?: string, }) {
-    if (obj != null) {
+
+  constructor(obj?: {id: number, userName: string, firstName: string, lastName: string, birthDay: Date | Moment, email: string, phone: string, role: string, profilePicture: File, coverPicture: File, facebook: string, linkedIn: string, twitter: string, instagram: string, baccalaureate: string, studies: Study[], jobTitle: string, projects: Project[], address: Address, password: string}) {
+    if ( obj != null ) {
       this.id = obj.id;
-      this.lastName = obj.lastName;
+      this.username = obj.userName;
       this.firstName = obj.firstName;
-      this.username = obj.username;
+      this.lastName = obj.lastName;
+      this.birthDay = obj.birthDay;
       this.email = obj.email;
       this.phone = obj.phone;
-      this.profilePicture = obj.profilePicture;
-      this.address = obj.address;
-      this.birthDay = obj.birthDay;
       this.role = obj.role;
+      this.profilePicture = obj.profilePicture;
+      this.coverPicture = obj.coverPicture;
       this.facebook = obj.facebook;
-      this.twitter = obj.twitter;
       this.linkedIn = obj.linkedIn;
+      this.twitter = obj.twitter;
+      this.instagram = obj.instagram;
+      this.baccalaureate = obj.baccalaureate;
+      this.studies = obj.studies;
+      this.jobTitle = obj.jobTitle;
+      this.projects = obj.projects;
+      this.address = obj.address;
+      this.password = obj.password;
     }
   }
 }
