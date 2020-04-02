@@ -87,6 +87,7 @@ export class ProfileEditComponent implements OnInit {
       address: this.addressForm,
       security: this.securityForm,
       facebook: [this.oldUser.facebook],
+      instagram: [this.oldUser.instagram],
       twitter: [this.oldUser.twitter],
       linkedIn: [this.oldUser.linkedIn],
     });
@@ -103,6 +104,7 @@ export class ProfileEditComponent implements OnInit {
     this.form.get('birthDay').setValue(this.oldUser.birthDay);
     this.form.get('phone').setValue(this.oldUser.phone);
     this.form.get('facebook').setValue(this.oldUser.facebook);
+    this.form.get('instagram').setValue(this.oldUser.instagram);
     this.form.get('twitter').setValue(this.oldUser.twitter);
     this.form.get('linkedIn').setValue(this.oldUser.linkedIn);
 
