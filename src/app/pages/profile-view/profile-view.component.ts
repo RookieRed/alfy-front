@@ -93,7 +93,7 @@ export class ProfileViewComponent implements OnInit {
       this.pathCoverPicture = environment.apiURL+this.coverPicture.fullPath;
       this.pathProfilePicture = environment.apiURL+this.profilePicture.fullPath;
 
-      console.log(this.pathCoverPicture);
+      console.log(this.userName);
       console.log(this.pathProfilePicture);
 
     }, err => {
