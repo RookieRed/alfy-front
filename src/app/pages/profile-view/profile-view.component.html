@@ -2,8 +2,11 @@
      style="background-image: url('/assets/img/connection-background.jpg'); background-repeat: round">
   <div fxLayout="column" class="container" fxFlex="60" style="background-color: white;">
     <div class="pictures">
-      <div class="backround-picture" style="background-image: url('/assets/img/alfy-background.png')">
-        <img class="profile-pic" src="/assets/img/cedric.jpg"/>
+      <div class="backround-picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}" style="background-position: top center; background-size: cover;">
+        <img *ngIf="exists(pathProfilePicture); else elseBlock" class="profile-pic" src={{pathProfilePicture}} />
+        <ng-template #elseBlock>
+          <img class="profile-pic" src="/assets/img/default-avatar.png" />
+        </ng-template>
       </div>
 
       <div fxLayout="row">

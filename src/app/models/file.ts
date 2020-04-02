@@ -1,4 +1,4 @@
-export class File {
+export class File2 {
 
   name: string;
   path: string;
