@@ -70,6 +70,44 @@ export class Category {
     }
 }
 
+export class CategoryUpdate {
+  id: number;
+  name: string;
+  description: string;
+  orderIndex: number;
+  sectionId: number;
+
+  public constructor(obj?: {id?: number,
+    name?: string,
+    description?: string,
+    orderIndex?: number, 
+    sectionId?: number}) {
+      if (obj != null) {
+        this.id = obj.id;
+        this.name = obj.name;
+        this.description = obj.description;
+        this.orderIndex = obj.orderIndex;
+        this.sectionId = obj.sectionId;
+      }
+    }
+}
+
+export class CategoryAdd {
+  name: string;
+  description: string;
+  sectionId: number;
+
+  public constructor(obj?: {name?: string,
+    description?: string,
+    sectionId?: number}) {
+      if (obj != null) {
+        this.name = obj.name;
+        this.description = obj.description;
+        this.sectionId = obj.sectionId;
+      }
+    }
+}
+
 export class Question {
   id: number;
   question: string;
@@ -106,7 +144,7 @@ export class QuestionAdd {
     }
 }
 
-export class QuestionModifie {
+export class QuestionUpdate {
   id: number;
   question: string;
   answer: string;

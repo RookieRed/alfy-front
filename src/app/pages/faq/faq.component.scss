@@ -81,6 +81,19 @@
     margin-top: 25px;
 }
 
+.buttonAddCategory {
+    //display: block;
+    //margin: auto;
+    text-align: center;
+}
+.categoryInputName {
+    font-style: italic;
+    font-size: large;
+    display: block;
+    font-weight: bold;
+    width: 100%;
+}
+
 mat-expansion-panel {
     width: 100%;
 }

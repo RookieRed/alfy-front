@@ -16,14 +16,40 @@
 
 <div class="cat">
   <mat-expansion-panel *ngFor="let c of categories">
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header *ngIf="!categoryListOE.includes(c)">
       <p class="category">
-        <!--Voir pour mettre le boutton après le text pour que ça reste le plus proche
-          possible de l'affichage classique-->
         {{c.name}}
-      </p>  <!-- Genre avant ou après le </p> -->
-
+      </p>  
+      <button mat-icon-button class="buttonEdit" (click)="categoryModifZone(c)">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteCategory(c)">
+        <mat-icon>
+          delete_outline
+        </mat-icon>
+      </button>
     </mat-expansion-panel-header>
+
+    <mat-expansion-panel-header *ngIf="categoryListOE.includes(c)" >
+      <form [formGroup]="modifCategoryForm">
+        <mat-form-field class = "categoryInputName">
+          <textarea matInput placeholder="Catégorie" formControlName="modifCategoryName" value="{{c.name}}"></textarea>
+        </mat-form-field>
+      </form>
+      <button mat-icon-button >
+        <mat-icon (click)="validationMC(c)">
+          check
+        </mat-icon>
+      </button>
+      <button mat-icon-button  (click)="cancelMC(c)">
+        <mat-icon>
+          close
+        </mat-icon>
+      </button>
+    </mat-expansion-panel-header>
+
     <div *ngFor = "let q of c.questions">
       <div *ngIf = "!questionListOE.includes(q)">
 
@@ -108,6 +134,32 @@
       </button>
     </div>
   </mat-expansion-panel>
-
+  <div *ngIf = "!categorieAdd" class="buttonAddCategory"> 
+    <button mat-flat-button (click)="categoryZoneAdd()">
+      <mat-icon >
+        add
+      </mat-icon>
+      ajouter une catégorie
+    </button>
+  </div>
+  <div *ngIf = "categorieAdd" class="buttonAddCategory"> 
+    <form [formGroup]="categoryForm">
+      <mat-form-field class="categoryInputName">
+        <textarea matInput placeholder="Nouvelle Catégorie" formControlName="newCategoryName"></textarea>
+      </mat-form-field>
+    </form>
+    <div class="confirmOrCancel">
+      <button mat-icon-button (click)="validationAddCategory()">
+        <mat-icon>
+          check
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="conceledAddCategory()">
+        <mat-icon>
+          close
+        </mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
 
