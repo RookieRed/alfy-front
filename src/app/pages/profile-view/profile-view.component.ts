@@ -87,7 +87,8 @@ export class ProfileViewComponent implements OnInit {
       this.currentYear = new Date().getFullYear();
       this.age = this.currentYear - this.birthYear;
 
-      console.log(this.userName);
+      console.log(this.profilePicture);
+      console.log(this.coverPicture);
 
     }, err => {
       this.onApiError(err);
