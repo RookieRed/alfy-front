@@ -19,7 +19,7 @@ export class FaqComponent implements OnInit {
   categoriesAddQuestion: number[];
   questionForm: FormGroup;
   modifQuestionForm: FormGroup;
-  modifCategoryForm: FormGroup;             // Tout reformuler
+  modifCategoryForm: FormGroup;             
   categoryForm: FormGroup;
   categorieAdd: boolean;
 
@@ -39,13 +39,13 @@ export class FaqComponent implements OnInit {
       const respObj = resp;
       this.categories = <Category[]>respObj.sections[1].categories;
       console.log(respObj.sections[0].html);
-
+      console.log("this.categories" + this.categories);
       this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
       console.log(this.intro);
     }, err => {
       this.onApiError(err);
     });
-    this.sortQuestions();
+    //this.sortQuestions();
   }
 
   async  ngOnInit() {
@@ -66,17 +66,6 @@ export class FaqComponent implements OnInit {
     })
   }
 
-  sortQuestions() {
-    for(let c of this.categories) {
-      var index = 0;
-      for(let q of c.questions) {
-        q.id = index;
-        index++;
-      }
-    }
-  }
-
-
   // Function for buttons
 
   //________________CATEGORIES___________
@@ -96,7 +85,7 @@ export class FaqComponent implements OnInit {
     var categorieUpdate = new CategoryUpdate();
     categorieUpdate.id = categorie.id;
     categorieUpdate.name = categorie.name;
-    categorieUpdate.description = categorie.question;
+    categorieUpdate.description = categorie.description;
     categorieUpdate.orderIndex = categorie.orderIndex;
     categorieUpdate.sectionId = 7;
     this.faqService.updateCategory(categorieUpdate).subscribe();
@@ -112,7 +101,12 @@ export class FaqComponent implements OnInit {
 
   // Suppression d'une categorie
   deleteCategory(categorie) {
-    this.faqService.deleteCategory(categorie).subscribe();
+    console.log("this.categories de delete " + this.categories)
+    this.faqService.deleteCategory(categorie).subscribe({
+      next(data) {
+        this.categories = this.categories.filter(category => category.id != categorie.id);
+      }
+    });
     console.log("Vous avez appuyé supprime " + categorie.id);
   }
 
@@ -216,6 +210,16 @@ export class FaqComponent implements OnInit {
   }
 
   //________________Position des Questions___________
+
+  sortQuestions() {
+    for(let c of this.categories) {
+      var index = 0;
+      for(let q of c.questions) {
+        q.id = index;
+        index++;
+      }
+    }
+  }
 
   questionDownward(categorie, question) {
     // Monter question 

@@ -89,18 +89,16 @@
             <textarea matInput placeholder="Réponse" formControlName="modifAnswer" value="{{q.answer}}"></textarea>
           </mat-form-field>
         </form>
-        <div class="confirmOrCancel">
-          <button mat-icon-button (click)="saveUpdateQuestion(c,q)">
-            <mat-icon>
-              check
-            </mat-icon>
-          </button>
-          <button mat-icon-button (click)="cancelModifQuestion(q)">
-            <mat-icon>
-              close
-            </mat-icon>
-          </button>
-        </div>
+        <button mat-icon-button (click)="saveUpdateQuestion(c,q)">
+          <mat-icon>
+            check
+          </mat-icon>
+        </button>
+        <button mat-icon-button (click)="cancelModifQuestion(q)">
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
       </div>
     </div>
     <div *ngIf = "categoriesAddQuestion.includes(c.id)">
