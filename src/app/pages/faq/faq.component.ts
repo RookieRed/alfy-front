@@ -48,7 +48,7 @@ export class FaqComponent implements OnInit {
     this.sortQuestions();
   }
 
- async  ngOnInit() {
+  async  ngOnInit() {
     await this.getFaq();
     this.questionForm = this.fb.group({
       newQuestion: [],
@@ -81,60 +81,61 @@ export class FaqComponent implements OnInit {
 
   //________________CATEGORIES___________
 
-categoryModifZone(categorie) {                          // voir si je garde ce nom où si je copie celle de question
-  // Affichage de la zone de modification
-  this.categoryListOE.push(categorie);
-}
-
-validationMC(categorie) {                       // changer valide par check ?
-  // Enregistre les modifications
-  if (this.modifCategoryForm.value.modifCategoryName == null) {
-    this.modifCategoryForm.value.modifCategoryName = categorie.name ;
+  categoryModifZone(categorie) {                          // voir si je garde ce nom où si je copie celle de question
+    // Affichage de la zone de modification
+    this.categoryListOE.push(categorie);
   }
-  categorie.name  = this.modifCategoryForm.value.modifCategoryName;
 
-  var categorieModifie = new CategoryUpdate();
-  categorieModifie.id = categorie.id;
-  categorieModifie.name = categorie.name;
-  categorieModifie.description = categorie.question;
-  categorieModifie.orderIndex = categorie.orderIndex;
-  categorieModifie.sectionId = 7;
-  this.faqService.updateCategory(categorieModifie).subscribe();
-  const index = this.categoryListOE.indexOf(categorie);
-  this.categoryListOE.splice(index, 1);
-}
+  validationMC(categorie) {                       // changer valide par check ?
+    // Enregistre les modifications
+    if (this.modifCategoryForm.value.modifCategoryName == null) {
+      this.modifCategoryForm.value.modifCategoryName = categorie.name ;
+    }
+    categorie.name  = this.modifCategoryForm.value.modifCategoryName;
 
-cancelMC(categorie) {
-  // Annule les modifiactions
-  const index = this.categoryListOE.indexOf(categorie);
-  this.categoryListOE.splice(index, 1);
-}
+    var categorieModifie = new CategoryUpdate();
+    categorieModifie.id = categorie.id;
+    categorieModifie.name = categorie.name;
+    categorieModifie.description = categorie.question;
+    categorieModifie.orderIndex = categorie.orderIndex;
+    categorieModifie.sectionId = 7;
+    this.faqService.updateCategory(categorieModifie).subscribe();
+    const index = this.categoryListOE.indexOf(categorie);
+    this.categoryListOE.splice(index, 1);
+  }
 
-// Suppression d'une categorie
-deleteCategory(categorie) {
-  this.faqService.deleteCategory(categorie).subscribe();
-  console.log("Vous avez appuyé supprime " + categorie.id);
-}
+  cancelMC(categorie) {
+    // Annule les modifiactions
+    const index = this.categoryListOE.indexOf(categorie);
+    this.categoryListOE.splice(index, 1);
+  }
 
-// Ajout d'une categorie
-categoryZoneAdd() {
-  // Afficher la zone d'ajout d'une catégorie
-  this.categorieAdd = true;
-}
-conceledAddCategory() {
-  // Annuler l'ajout d'une catégorie
-  this.categorieAdd = false;
-}
-validationAddCategory() {
-  console.log("Vous avez appuyer sur Valider!")
-  var newCategory = new CategoryAdd();
-  newCategory.name =  this.categoryForm.value.newCategoryName;
-  newCategory.description = null;
-  newCategory.sectionId = 7;
-  var result = this.faqService.addCategory(newCategory).subscribe();
-  this.categorieAdd = false;
-  console.log(result)
-}
+  // Suppression d'une categorie
+  deleteCategory(categorie) {
+    this.faqService.deleteCategory(categorie).subscribe();
+    console.log("Vous avez appuyé supprime " + categorie.id);
+  }
+
+  // Ajout d'une categorie
+  categoryZoneAdd() {
+    // Afficher la zone d'ajout d'une catégorie
+    this.categorieAdd = true;
+  }
+
+  conceledAddCategory() {
+    // Annuler l'ajout d'une catégorie
+    this.categorieAdd = false;
+  }
+  validationAddCategory() {
+    console.log("Vous avez appuyer sur Valider!")
+    var newCategory = new CategoryAdd();
+    newCategory.name =  this.categoryForm.value.newCategoryName;
+    newCategory.description = null;
+    newCategory.sectionId = 7;
+    var result = this.faqService.addCategory(newCategory).subscribe();
+    this.categorieAdd = false;
+    console.log(result)
+  }
 
   //________________QUESTIONS____________
 
@@ -205,6 +206,8 @@ validationAddCategory() {
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
+
+  //________________Position des Questions___________
 
   questionDownward(categorie, question) {
     // Monter question 
