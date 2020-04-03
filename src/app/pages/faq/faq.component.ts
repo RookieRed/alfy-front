@@ -18,7 +18,7 @@ export class FaqComponent implements OnInit {
   categoryListOE: Category[];
   categoriesAddQuestion: number[];
   questionForm: FormGroup;
-  modificationForm: FormGroup;
+  modifQuestionForm: FormGroup;
   modifCategoryForm: FormGroup;             // Tout reformuler
   categoryForm: FormGroup;
   categorieAdd: boolean;
@@ -54,7 +54,7 @@ export class FaqComponent implements OnInit {
       newQuestion: [],
       newAnswer: [],
     })
-    this.modificationForm = this.fb.group({
+    this.modifQuestionForm = this.fb.group({
       modifQuestion: [],
       modifAnswer: [],
     })
@@ -86,25 +86,25 @@ export class FaqComponent implements OnInit {
     this.categoryListOE.push(categorie);
   }
 
-  validationMC(categorie) {                       // changer valide par check ?
+  saveUpdateCategory(categorie) {                       // changer valide par check ?
     // Enregistre les modifications
     if (this.modifCategoryForm.value.modifCategoryName == null) {
       this.modifCategoryForm.value.modifCategoryName = categorie.name ;
     }
     categorie.name  = this.modifCategoryForm.value.modifCategoryName;
 
-    var categorieModifie = new CategoryUpdate();
-    categorieModifie.id = categorie.id;
-    categorieModifie.name = categorie.name;
-    categorieModifie.description = categorie.question;
-    categorieModifie.orderIndex = categorie.orderIndex;
-    categorieModifie.sectionId = 7;
-    this.faqService.updateCategory(categorieModifie).subscribe();
+    var categorieUpdate = new CategoryUpdate();
+    categorieUpdate.id = categorie.id;
+    categorieUpdate.name = categorie.name;
+    categorieUpdate.description = categorie.question;
+    categorieUpdate.orderIndex = categorie.orderIndex;
+    categorieUpdate.sectionId = 7;
+    this.faqService.updateCategory(categorieUpdate).subscribe();
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
   }
 
-  cancelMC(categorie) {
+  cancelModifCategory(categorie) {
     // Annule les modifiactions
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
@@ -126,6 +126,7 @@ export class FaqComponent implements OnInit {
     // Annuler l'ajout d'une catégorie
     this.categorieAdd = false;
   }
+
   validationAddCategory() {
     console.log("Vous avez appuyer sur Valider!")
     var newCategory = new CategoryAdd();
@@ -144,27 +145,30 @@ export class FaqComponent implements OnInit {
     // Affichage de la zone de modification
     this.questionListOE.push(question);
   }
-  validationMQ(categorie, question) {
+
+  saveUpdateQuestion(categorie, question) {
     // Enregistre les modifications
-    if (this.modificationForm.value.modifQuestion == null) {
-      this.modificationForm.value.modifQuestion = question.question ;
+    if (this.modifQuestionForm.value.modifQuestion == null) {
+      this.modifQuestionForm.value.modifQuestion = question.question ;
     }
-    if (this.modificationForm.value.modifAnswer == null) {
-      this.modificationForm.value.modifAnswer = question.answer;
+    if (this.modifQuestionForm.value.modifAnswer == null) {
+      this.modifQuestionForm.value.modifAnswer = question.answer;
     }
-    question.question = this.modificationForm.value.modifQuestion;
-    question.answer = this.modificationForm.value.modifAnswer;
-    var questionModifie = new QuestionUpdate();
-    questionModifie.id = question.id;
-    questionModifie.answer = question.answer;
-    questionModifie.question = question.question;
-    questionModifie.categoryId = categorie.id;
-    questionModifie.orderIndex = question.orderIndex;
-    this.faqService.updateQuestion(questionModifie).subscribe();
+    question.question = this.modifQuestionForm.value.modifQuestion;
+    question.answer = this.modifQuestionForm.value.modifAnswer;
+    
+    var questionUpdate = new QuestionUpdate();
+    questionUpdate.id = question.id;
+    questionUpdate.answer = question.answer;
+    questionUpdate.question = question.question;
+    questionUpdate.categoryId = categorie.id;
+    questionUpdate.orderIndex = question.orderIndex;
+    this.faqService.updateQuestion(questionUpdate).subscribe();
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
-  cancelMQ(question) {
+  
+  cancelModifQuestion(question) {
     // Annule les modifiactions
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
@@ -185,8 +189,12 @@ export class FaqComponent implements OnInit {
   validationAddQuestion(categorie) {
     // Validation de la nouvelle question
     console.log("Vous avez appuyer sur Valider!")
-    if (this.modificationForm.value.modifAnswer == null) {
+    if (this.questionForm.value.newAnswer == null) {
       this.questionForm.value.newAnswer = "Pas de réponse pour l'instant";
+    }
+    if (this.questionForm.value.newQuestion == null) {
+      alert("Vous devez écrire une question");
+      return;
     }
     var newQuestion = new QuestionAdd();
     newQuestion.question =  this.questionForm.value.newQuestion;

@@ -32,23 +32,23 @@
       </button>
     </mat-expansion-panel-header>
 
-    <mat-expansion-panel-header *ngIf="categoryListOE.includes(c)" >
+    <div *ngIf="categoryListOE.includes(c)" >
       <form [formGroup]="modifCategoryForm">
         <mat-form-field class = "categoryInputName">
           <textarea matInput placeholder="Catégorie" formControlName="modifCategoryName" value="{{c.name}}"></textarea>
         </mat-form-field>
       </form>
       <button mat-icon-button >
-        <mat-icon (click)="validationMC(c)">
+        <mat-icon (click)="saveUpdateCategory(c)">
           check
         </mat-icon>
       </button>
-      <button mat-icon-button  (click)="cancelMC(c)">
+      <button mat-icon-button  (click)="cancelModifCategory(c)">
         <mat-icon>
           close
         </mat-icon>
       </button>
-    </mat-expansion-panel-header>
+    </div>
 
     <div *ngFor = "let q of c.questions">
       <div *ngIf = "!questionListOE.includes(q)">
@@ -81,7 +81,7 @@
         <p class="answer">{{q.answer}}</p>
       </div>
       <div *ngIf = "questionListOE.includes(q)">
-        <form [formGroup]="modificationForm">
+        <form [formGroup]="modifQuestionForm">
           <mat-form-field class="questionInput">
             <textarea matInput placeholder="Question" formControlName="modifQuestion" value="{{q.question}}"></textarea>
           </mat-form-field>
@@ -90,12 +90,12 @@
           </mat-form-field>
         </form>
         <div class="confirmOrCancel">
-          <button mat-icon-button (click)="validationMQ(c,q)">
+          <button mat-icon-button (click)="saveUpdateQuestion(c,q)">
             <mat-icon>
               check
             </mat-icon>
           </button>
-          <button mat-icon-button (click)="cancelMQ(q)">
+          <button mat-icon-button (click)="cancelModifQuestion(q)">
             <mat-icon>
               close
             </mat-icon>
