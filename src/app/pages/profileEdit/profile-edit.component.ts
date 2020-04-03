@@ -33,6 +33,7 @@ export class ProfileEditComponent implements OnInit {
   pictureIsWide: boolean;
   profileError: string;
   passwordError: string;
+  pathCoverPicture : string;
 
   private passwordOK: boolean;
   private oldUser: User;
@@ -65,6 +66,8 @@ export class ProfileEditComponent implements OnInit {
     try {
       this.oldUser = await (this.accountService.getMine());
       this.loading = false;
+      this.pathCoverPicture = environment.apiURL + this.oldUser.coverPicture.fullPath;
+
     }
     catch (e) {
       this.form = null;

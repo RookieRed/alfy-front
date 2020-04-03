@@ -16,6 +16,14 @@
     background-color: transparent;
   }
 
+  .cover-photo-buttons-group {
+    text-align: -webkit-right;
+  }
+
+  .background_picture {
+    margin-bottom: 3%;
+  }
+
   .block {
     //display: flex;
     flex-direction: column;
@@ -88,6 +96,7 @@
         border: 3px solid #ddd;
         border-radius: 200px;
         overflow: hidden;
+        margin-top: 5%;
 
         #profile-picture {
           &.wide {

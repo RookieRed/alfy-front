@@ -6,13 +6,26 @@
       <div class="block">
         <h3>Infos perso</h3>
         <div class=" personal-infos">
-          <div class="profile-picture">
-            <div class="picture-border" [ngClass]="{blur: pictureLoading}">
-              <img id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
-              <mat-progress-spinner *ngIf="pictureLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+          <div class="background_picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}" style="background-position: top center; background-size: cover;">
+            <div class="profile-picture" >
+              <div class="picture-border" [ngClass]="{blur: pictureLoading}">
+                <img id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
+                <mat-progress-spinner *ngIf="pictureLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+              </div>
+              <input id="photoPicker" (change)="onImageChange($event)" type="file" accept="image/*" hidden/>
+              <div class="photo-buttons-group">
+                <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()">
+                  <mat-icon>add_a_photo_alternate</mat-icon>
+                </button>
+                <button mat-mini-fab *ngIf="uploadedPicture != null" (click)="resetPicture()">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+                <button mat-mini-fab *ngIf="uploadedPicture != null" class="primary" (click)="uploadPicture()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </div>
             </div>
-            <input id="photoPicker" (change)="onImageChange($event)" type="file" accept="image/*" hidden/>
-            <div class="photo-buttons-group">
+            <div class="cover-photo-buttons-group">
               <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()">
                 <mat-icon>add_a_photo_alternate</mat-icon>
               </button>
@@ -23,7 +36,7 @@
                 <mat-icon>save</mat-icon>
               </button>
             </div>
-          </div>
+        </div>
           <div class="row">
             <mat-form-field>
               <input matInput formControlName="firstName" type="text" placeholder="Prenom"/>
