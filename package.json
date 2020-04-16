@@ -32,6 +32,7 @@
     "ngx-mat-select-search": "^1.8.0",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.2.2",
+    "stream": "0.0.2",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

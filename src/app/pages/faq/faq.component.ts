@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
+import { PassThrough } from 'stream';
 
 
 @Component({
@@ -101,12 +102,8 @@ export class FaqComponent implements OnInit {
 
   // Suppression d'une categorie
   deleteCategory(categorie) {
-    console.log("this.categories de delete " + this.categories)
-    this.faqService.deleteCategory(categorie).subscribe({
-      next(data) {
-        this.categories = this.categories.filter(category => category.id != categorie.id);
-      }
-    });
+    this.faqService.deleteCategory(categorie).toPromise().then(
+      res => {this.categories = this.categories.filter(category => category.id != categorie.id);return res;}).catch();
     console.log("Vous avez appuyé supprime " + categorie.id);
   }
 
@@ -118,7 +115,7 @@ export class FaqComponent implements OnInit {
 
   conceledAddCategory() {
     // Annuler l'ajout d'une catégorie
-    this.categorieAdd = false;
+    this.categorieAdd = false; 
   }
 
   validationAddCategory() {
