@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, NgModule} from '@angular/core';
 import {IImage} from 'ng-simple-slideshow';
 import {PageService} from '../../services/page.service';
 import {PageInfo} from '../../models/page';
 import {environment} from '../../../environments/environment';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 @Component({
@@ -11,6 +12,8 @@ import {environment} from '../../../environments/environment';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   backgroundImages: (string)[] = [
     "/assets/img/logo-alfy.jpg",
