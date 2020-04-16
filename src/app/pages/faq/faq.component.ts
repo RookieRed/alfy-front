@@ -75,6 +75,12 @@ export class FaqComponent implements OnInit {
     // Affichage de la zone de modification
     this.categoryListOE.push(categorie);
   }
+  
+  cancelModifCategory(categorie) {
+    // Annule les modifiactions
+    const index = this.categoryListOE.indexOf(categorie);
+    this.categoryListOE.splice(index, 1);
+  }
 
   saveUpdateCategory(categorie) {                       // changer valide par check ?
     // Enregistre les modifications
@@ -89,13 +95,10 @@ export class FaqComponent implements OnInit {
     categorieUpdate.description = categorie.description;
     categorieUpdate.orderIndex = categorie.orderIndex;
     categorieUpdate.sectionId = 7;
-    this.faqService.updateCategory(categorieUpdate).subscribe();
-    const index = this.categoryListOE.indexOf(categorie);
-    this.categoryListOE.splice(index, 1);
-  }
-
-  cancelModifCategory(categorie) {
-    // Annule les modifiactions
+    this.faqService.updateCategory(categorieUpdate).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        this.categories.splice(index, 1, res);return res;}).catch();
+    
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
   }
@@ -124,7 +127,8 @@ export class FaqComponent implements OnInit {
     newCategory.name =  this.categoryForm.value.newCategoryName;
     newCategory.description = null;
     newCategory.sectionId = 7;
-    var result = this.faqService.addCategory(newCategory).subscribe();
+    var result = this.faqService.addCategory(newCategory).toPromise().then(
+      res => {this.categories.push(res) ;return res;}).catch();
     this.categorieAdd = false;
     console.log(result)
   }
