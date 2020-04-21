@@ -1,12 +1,12 @@
 export class Faq {
   public name: string;
   public sections: Section[];
-  
 
-  public constructor(obj?: {name?: string, sections?: Section[], }) {
+
+  public constructor(obj?: {name?: string, sections?: {[key: string]: Section}, }) {
     if (obj != null) {
       this.name = obj.name;
-      this.sections = obj.sections;
+      this.sections = Object.values(obj.sections);
     }
   }
 
@@ -23,7 +23,7 @@ export class Section {
   public orderIndex: number;
   public categories: Category[];
 
-  public constructor(obj?: {html?: string, 
+  public constructor(obj?: {html?: string,
                             files: string[],
                             type: string,
                             id: number,
@@ -58,7 +58,7 @@ export class Category {
   public constructor(obj?: {id?: number,
     name?: string,
     description?: string,
-    orderIndex?: number, 
+    orderIndex?: number,
     questions?: Question[]}) {
       if (obj != null) {
         this.id = obj.id;
@@ -80,7 +80,7 @@ export class CategoryUpdate {
   public constructor(obj?: {id?: number,
     name?: string,
     description?: string,
-    orderIndex?: number, 
+    orderIndex?: number,
     sectionId?: number}) {
       if (obj != null) {
         this.id = obj.id;
@@ -124,7 +124,7 @@ export class Question {
       this.answer = obj.answer;
       this.orderIndex = obj.orderIndex;
       }
-    }    
+    }
 }
 
 export class QuestionAdd {
@@ -154,7 +154,7 @@ export class QuestionUpdate {
   public constructor(obj?: {id?: number,
     question?: string,
     answer?: string,
-    orderIndex?: number, 
+    orderIndex?: number,
     categoryId?: number,}) {
       if (obj != null) {
       this.id = obj.id;
@@ -163,7 +163,7 @@ export class QuestionUpdate {
       this.orderIndex = obj.orderIndex;
       this.categoryId = obj.categoryId;
       }
-    }    
+    }
 }
 
 

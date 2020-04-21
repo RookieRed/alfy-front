@@ -20,7 +20,7 @@ export class FaqComponent implements OnInit {
   categoriesAddQuestion: number[];
   questionForm: FormGroup;
   modifQuestionForm: FormGroup;
-  modifCategoryForm: FormGroup;             
+  modifCategoryForm: FormGroup;
   categoryForm: FormGroup;
   categorieAdd: boolean;
 
@@ -37,7 +37,7 @@ export class FaqComponent implements OnInit {
 
   async getFaq() {
     await this.faqService.getFAQ().then((resp: any) => {
-      const respObj = resp;
+      const respObj = new Faq(resp);
       this.categories = <Category[]>respObj.sections[1].categories;
       console.log(respObj.sections[0].html);
       console.log("this.categories" + this.categories);
@@ -75,7 +75,7 @@ export class FaqComponent implements OnInit {
     // Affichage de la zone de modification
     this.categoryListOE.push(categorie);
   }
-  
+
   cancelModifCategory(categorie) {
     // Annule les modifiactions
     const index = this.categoryListOE.indexOf(categorie);
@@ -98,7 +98,7 @@ export class FaqComponent implements OnInit {
     this.faqService.updateCategory(categorieUpdate).toPromise().then(
       res => {var index = this.categories.indexOf(categorie);
         this.categories.splice(index, 1, res);return res;}).catch();
-    
+
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
   }
@@ -118,7 +118,7 @@ export class FaqComponent implements OnInit {
 
   conceledAddCategory() {
     // Annuler l'ajout d'une catégorie
-    this.categorieAdd = false; 
+    this.categorieAdd = false;
   }
 
   validationAddCategory() {
@@ -151,7 +151,7 @@ export class FaqComponent implements OnInit {
     }
     question.question = this.modifQuestionForm.value.modifQuestion;
     question.answer = this.modifQuestionForm.value.modifAnswer;
-    
+
     var questionUpdate = new QuestionUpdate();
     questionUpdate.id = question.id;
     questionUpdate.answer = question.answer;
@@ -162,7 +162,7 @@ export class FaqComponent implements OnInit {
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
-  
+
   cancelModifQuestion(question) {
     // Annule les modifiactions
     const index = this.questionListOE.indexOf(question);
@@ -199,12 +199,12 @@ export class FaqComponent implements OnInit {
     newQuestion.categoryId = categorie.id;
     console.log("categorie.id = ",categorie.id)
     this.faqService.addQuestion(newQuestion).subscribe();
-    // Fais disparaitre l'espace d'édition d'une nouvelle question                    // Pourrait être remplacer par conceledAddQuestion(categorie) 
+    // Fais disparaitre l'espace d'édition d'une nouvelle question                    // Pourrait être remplacer par conceledAddQuestion(categorie)
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
-  conceledAddQuestion(categorie) {                                                    // closedEditZoneAddQuestion ???        
-    // Annulation de l'ajout 
+  conceledAddQuestion(categorie) {                                                    // closedEditZoneAddQuestion ???
+    // Annulation de l'ajout
     console.log("Vous avez appuyer sur Supprimer!")
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
@@ -223,7 +223,7 @@ export class FaqComponent implements OnInit {
   }
 
   questionDownward(categorie, question) {
-    // Monter question 
+    // Monter question
     console.log("Vous avez appuyer sur down!");
 
     if (question.id != categorie.questions.length-1){
@@ -237,11 +237,11 @@ export class FaqComponent implements OnInit {
       categorie.questions[question.id+1].id =id_question_temp+1;
     }
   }
-  
+
   questionUpward(categorie, question) {
-    // descendre qustion 
+    // descendre qustion
     console.log("Vous avez appuyer sur up!");
-    
+
     if (question.id != 0){
       var question_temp : Question = new Question();
       var id_question_temp : number;
