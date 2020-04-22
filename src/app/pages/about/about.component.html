@@ -147,10 +147,10 @@
     <div fxLayout="column" fxFlex="auto"  class="low-right-mock-up">
       <!-- Présentation -->
       <div fxFlex="auto" class="presentation">
+        <div class="title">
+          <h2>Qui nous sommes</h2>
+        </div>
           <div class="presentation" *ngIf="!editorBool">
-            <div class="title">
-              <h2>Qui nous sommes</h2>
-            </div>
             <div class="content" #whoAreWe>
               <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
               <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
@@ -170,7 +170,7 @@
               <button mat-raised-button (click)="showEditor()">Editer la présentation</button>
             </div>
           </div>
-          
+
           <div class="editor" *ngIf="editorBool">
             <ckeditor [editor]="Editor" data="
             <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
