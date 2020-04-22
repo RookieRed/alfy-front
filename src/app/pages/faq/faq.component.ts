@@ -95,6 +95,7 @@ export class FaqComponent implements OnInit {
     categorieUpdate.description = categorie.description;
     categorieUpdate.orderIndex = categorie.orderIndex;
     categorieUpdate.sectionId = 7;
+
     this.faqService.updateCategory(categorieUpdate).toPromise().then(
       res => {var index = this.categories.indexOf(categorie);
         this.categories.splice(index, 1, res);return res;}).catch();
@@ -149,16 +150,24 @@ export class FaqComponent implements OnInit {
     if (this.modifQuestionForm.value.modifAnswer == null) {
       this.modifQuestionForm.value.modifAnswer = question.answer;
     }
-    question.question = this.modifQuestionForm.value.modifQuestion;
-    question.answer = this.modifQuestionForm.value.modifAnswer;
 
     var questionUpdate = new QuestionUpdate();
     questionUpdate.id = question.id;
-    questionUpdate.answer = question.answer;
-    questionUpdate.question = question.question;
+    questionUpdate.answer = this.modifQuestionForm.value.modifAnswer;
+    questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
     questionUpdate.categoryId = categorie.id;
-    questionUpdate.orderIndex = question.orderIndex;
-    this.faqService.updateQuestion(questionUpdate).subscribe();
+    questionUpdate.orderIndex = 0;                                              // Problème!
+
+    this.faqService.updateQuestion(questionUpdate).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions.forEach (questionFor => { 
+          if (questionFor.id == questionUpdate.id){
+            var index2 = categorie.questions.indexOf(questionFor);
+            categorie.questions.splice(index2, 1, res)
+          }
+        });
+        this.categories.splice(index, 1, categorie);return res;}).catch();
+
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
   }
@@ -170,10 +179,15 @@ export class FaqComponent implements OnInit {
   }
 
   // Suppression d'une question
-  deleteQuestion(question) {
-    this.faqService.deleteQuestion(question).subscribe();
-    console.log("Vous avez appuyé supprime " + question.id);
+  deleteQuestion(categorie, question) {
+    this.faqService.deleteQuestion(question).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions = categorie.questions.filter(questionFor => questionFor.id != question.id);
+        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+    console.log("Vous avez appuyé supprime " + question.id);    
   }
+ 
+
   // Ajout d'une question
   questionZoneAdd(categorie) {
     // Affichage de la zone d'ajout d'une question
@@ -198,11 +212,16 @@ export class FaqComponent implements OnInit {
     console.log("newAnswer = ",this.questionForm.value.newAnswer)
     newQuestion.categoryId = categorie.id;
     console.log("categorie.id = ",categorie.id)
-    this.faqService.addQuestion(newQuestion).subscribe();
+    this.faqService.addQuestion(newQuestion).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions.push(res);
+        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+
     // Fais disparaitre l'espace d'édition d'une nouvelle question                    // Pourrait être remplacer par conceledAddQuestion(categorie)
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
+
   conceledAddQuestion(categorie) {                                                    // closedEditZoneAddQuestion ???
     // Annulation de l'ajout
     console.log("Vous avez appuyer sur Supprimer!")

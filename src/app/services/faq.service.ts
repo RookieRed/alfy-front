@@ -17,8 +17,8 @@ export class FaqService {
     return this.http.get(environment.apiURL + '/pages/faq' ).toPromise();
   }
 
-  public updateQuestion(question: QuestionUpdate): Observable<{}> {
-    return this.http.post(environment.apiURL + '/faq/questions', question);
+  public updateQuestion(question: QuestionUpdate): Observable<Question> {
+    return this.http.post<Question>(environment.apiURL + '/faq/questions', question);
   }
   public updateCategory(category: CategoryUpdate): Observable<Category> {
     return this.http.post<Category>(environment.apiURL + '/faq/categories', category);
