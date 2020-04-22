@@ -14,6 +14,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class AboutComponent implements OnInit {
 
   public Editor = ClassicEditor;
+  private editorBool : boolean = false;
+  private editorData : String;
 
   backgroundImages: (string)[] = [
     "/assets/img/logo-alfy.jpg",
@@ -34,5 +36,19 @@ export class AboutComponent implements OnInit {
     console.log("Vous venez de cliquer sur un partenaire. Une fonction sera bientôt implémentaire pour cela.");
   }
 
+  showEditor() {
+    this.editorBool = true;
+  }
+
+  showPresentation() {
+    this.editorBool = false;
+    //this.editorData = this.Editor.getData();
+    //this.saveEditorData();
+  }
+
+  saveEditorData() {
+    //const editorData = this.Editor.getData();
+    //return editorData;
+  }
 
 }
