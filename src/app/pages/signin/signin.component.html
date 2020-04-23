@@ -23,9 +23,12 @@
       </div>
 
       <div class="row action-buttons" flex *ngIf="!loading">
+        <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
+        <a mat-button mat-flat-button color="accent" routerLink="/">Retour</a>
+        <a mat-button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</a>
         <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
-        <button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</button>
       </div>
+
 
       <div *ngIf="loading">
         <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>

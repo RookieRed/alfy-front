@@ -96,17 +96,29 @@ $padding: 11%;
           .content{
             margin: 30px;
             font-size: 20px;
-            .logo-alfy {
-              position: relative; // ou static
+            img  {
+              position: relative;
               top: -25px;
               max-height: 200px;
               margin: 30px;
               border-radius: 100%;
+              width: 20px;
             }
+            
+              .logo-alfy {
+                position: relative; // ou static
+                top: -25px;
+                max-height: 200px;
+                margin: 30px;
+                border-radius: 100%;
+                width: 20px;
+              }
+          
+            
           }
+          
           .edit-button {
             margin: 30px;
-
           }
         }
 

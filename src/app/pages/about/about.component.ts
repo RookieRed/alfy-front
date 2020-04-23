@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AboutService } from 'src/app/services/about.service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { Section } from 'src/app/models/sections';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class AboutComponent implements OnInit {
   public editor = ClassicEditor;
   private editorBool : boolean = false;
   private editorData : string;
-  private title : String;
+  private splitData : string[];
+  private name : String;
+  private sections : Section;
 
   backgroundImages: (string)[] = [
     "/assets/img/logo-alfy.jpg",
@@ -35,11 +38,14 @@ export class AboutComponent implements OnInit {
   async getAbout() {
     await this.aboutService.getAbout().then((resp: any) => {
       const respObj = resp;
-      //this.title = <String>respObj.title;
       console.log(respObj);
-
-      //this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
-      //console.log(this.intro);
+      this.name = <String>respObj.name;
+      this.sections = <Section>respObj.sections
+      this.editorData = respObj.sections.intro.html;
+      //this.splitData = this.editorData.split("/>");
+      //console.log(this.splitData);
+      //this.editorData = this.splitData[1];
+      console.log(this.editorData);
     }, err => {
       this.onApiError(err);
     });
