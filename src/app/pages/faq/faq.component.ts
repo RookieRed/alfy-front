@@ -93,7 +93,6 @@ export class FaqComponent implements OnInit {
     categorieUpdate.id = categorie.id;
     categorieUpdate.name = categorie.name;
     categorieUpdate.description = categorie.description;
-    categorieUpdate.orderIndex = categorie.orderIndex;
     categorieUpdate.sectionId = 7;
 
     this.faqService.updateCategory(categorieUpdate).toPromise().then(
@@ -156,8 +155,7 @@ export class FaqComponent implements OnInit {
     questionUpdate.answer = this.modifQuestionForm.value.modifAnswer;
     questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
     questionUpdate.categoryId = categorie.id;
-    questionUpdate.orderIndex = 0;                                              // Problème!
-
+    
     this.faqService.updateQuestion(questionUpdate).toPromise().then(
       res => {var index = this.categories.indexOf(categorie);
         categorie.questions.forEach (questionFor => { 
@@ -231,6 +229,7 @@ export class FaqComponent implements OnInit {
 
   //________________Position des Questions___________
 
+  /*
   sortQuestions() {
     for(let c of this.categories) {
       var index = 0;
@@ -272,5 +271,6 @@ export class FaqComponent implements OnInit {
       categorie.questions[question.id-1].id =id_question_temp-1;
     }
   }
+  */
 
 }
