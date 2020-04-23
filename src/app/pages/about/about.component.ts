@@ -17,7 +17,6 @@ export class AboutComponent implements OnInit {
   public editor = ClassicEditor;
   private editorBool : boolean = false;
   private editorData : string;
-  private data : String;
   private title : String;
 
   backgroundImages: (string)[] = [
@@ -63,7 +62,6 @@ export class AboutComponent implements OnInit {
   
   onChange( { editor }: ChangeEvent ) {
     this.editorData = editor.getData();
-    this.data = (new DOMParser().parseFromString(this.editorData,"text/html")).firstChild.textContent;
     console.log(  this.editorData );
   }
     
