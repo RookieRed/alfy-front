@@ -153,8 +153,7 @@
           <div class="presentation" *ngIf="!editorBool">
             <div class="content" #whoAreWe>
               <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
-              <p name="content">
-                {{ data }}
+              <p [innerHTML]="editorData">
               </p>
             </div>
             <div class="edit-button">

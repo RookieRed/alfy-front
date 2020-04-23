@@ -4,7 +4,6 @@ import {PageService} from '../../services/page.service';
 import {environment} from '../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AboutService } from 'src/app/services/about.service';
-import { Page } from 'src/app/models/page';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 
