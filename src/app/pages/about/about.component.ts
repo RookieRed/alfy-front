@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AboutService } from 'src/app/services/about.service';
 import { Page } from 'src/app/models/page';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 
 @Component({
@@ -14,9 +15,10 @@ import { Page } from 'src/app/models/page';
 })
 export class AboutComponent implements OnInit {
 
-  public Editor = ClassicEditor;
+  public editor = ClassicEditor;
   private editorBool : boolean = false;
-  private editorData : String;
+  private editorData : string;
+  private data : String;
   private title : String;
 
   backgroundImages: (string)[] = [
@@ -59,16 +61,17 @@ export class AboutComponent implements OnInit {
   showEditor() {
     this.editorBool = true;
   }
-
-  showPresentation() {
+  
+  onChange( { editor }: ChangeEvent ) {
+    this.editorData = editor.getData();
+    this.data = (new DOMParser().parseFromString(this.editorData,"text/html")).firstChild.textContent;
+    console.log(  this.editorData );
+  }
+    
+    save(){
     this.editorBool = false;
-    //this.editorData = this.Editor.getData();
-    //this.saveEditorData();
-  }
-
-  saveEditorData() {
-    //const editorData = this.Editor.getData();
-    //return editorData;
-  }
+    
+    }
+  
 
 }
