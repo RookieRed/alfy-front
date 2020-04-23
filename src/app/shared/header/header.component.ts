@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     { link: '/profile/edit', name: 'Mon compte' },
     { link: '/signout', name: 'Se déconnecter' },
     { link: '/signin', name: 'Se connecter' },
-    { link: '/about', name: 'Profile View' },
+    //{ link: '/profileview/{id}', name: 'Profil' },
     // { link: '/signup', name: 'Inscription' },
   ];
 
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     { link: '/association', name: 'L\'association' },
     { link: '/high-school', name: 'Le lycée' },
     { link: '/faq', name: 'FAQ' },
-    { link: '/profileview/{id}', name: 'Profile View' },
+    { link: '/profileview/{id}', name: 'Profil' },
   ];
   isSmallScreen: boolean;
 
