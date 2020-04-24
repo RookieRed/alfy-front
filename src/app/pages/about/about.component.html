@@ -62,7 +62,7 @@
 
           <div class="editor" *ngIf="editorBool">
             <ckeditor [editor]="editor" (change)="onChange($event)" data="{{editorData}}">
-              
+
             </ckeditor>
             <div class="edit-button">
               <button mat-raised-button (click)="save()">Enregistrer les modifications</button>
@@ -84,55 +84,10 @@
         </div>
 
         <div class="logos">
-          <div class="logo">
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+          <div class="logo" *ngFor="let s of sponsorList">
+            <a href="{{s.link}}"><img [ngStyle]="{'content': 'url('+ 'https://fustel-api.rookie.red' + s.photo.fullPath +')'}" alt="Avatar Sponsor"></a>
             <br/>
-            <span> Partenaire 1</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 2</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 1</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 3</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 4</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 5</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 6</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 7</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 8</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 9</span>
+            <span>{{s.title}}</span>
           </div>
         </div>
       </div>

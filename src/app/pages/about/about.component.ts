@@ -26,9 +26,10 @@ export class AboutComponent implements OnInit {
   private sponsors : Section;
   private photos : File[];
   private evenements : EventTile[];
+  private sponsorList: EventTile[];
 
   private backgroundImages: (string)[] = [];
-  
+
   constructor(
     private aboutService : AboutService,
   ) { }
@@ -48,12 +49,10 @@ export class AboutComponent implements OnInit {
       this.photos = this.slides_about['photos'];
       this.caroussel(this.photos);
       this.sponsors = <Section>respObj.sections.sponsors;
-      console.log(this.evenements);
-      //console.log(this.slides_about);
-      //console.log(this.photos);
-      //console.log(this.sponsors);
-      
-     
+      this.sponsorList = <EventTile[]>this.sponsors['tiles'];
+      console.log(this.sponsorList);
+
+
     }, err => {
       this.onApiError(err);
     });
@@ -81,16 +80,16 @@ export class AboutComponent implements OnInit {
   showEditor() {
     this.editorBool = true;
   }
-  
+
   onChange( { editor }: ChangeEvent ) {
     this.editorData = editor.getData();
     console.log(  this.editorData );
   }
-    
+
     save(){
     this.editorBool = false;
-    
+
     }
-  
+
 
 }
