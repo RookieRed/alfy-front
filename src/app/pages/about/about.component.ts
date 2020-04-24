@@ -42,10 +42,7 @@ export class AboutComponent implements OnInit {
       this.name = <String>respObj.name;
       this.sections = <Section>respObj.sections
       this.editorData = respObj.sections.intro.html;
-      //this.splitData = this.editorData.split("/>");
-      //console.log(this.splitData);
-      //this.editorData = this.splitData[1];
-      console.log(this.editorData);
+      console.log(this.sections);
     }, err => {
       this.onApiError(err);
     });
