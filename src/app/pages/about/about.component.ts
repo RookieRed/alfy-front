@@ -5,7 +5,7 @@ import {environment} from '../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AboutService } from 'src/app/services/about.service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-import { Section } from 'src/app/models/sections';
+import { Section, HTMLSection } from 'src/app/models/sections';
 import { EventTile } from 'src/app/models/event.tile';
 
 
@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit {
   private editorData : string;
   private splitData : string[];
   private agenda : Section;
-  private intro : Section;
+  private intro : HTMLSection;
   private slides_about : Section;
   private sponsors : Section;
   private photos : File[];
@@ -43,7 +43,7 @@ export class AboutComponent implements OnInit {
       const respObj = resp;
       this.agenda = <Section>respObj.sections.agenda;
       this.evenements = <EventTile[]>this.agenda['tiles'];
-      this.intro = <Section>respObj.sections.intro;
+      this.intro = <HTMLSection>respObj.sections.intro;
       this.editorData = this.intro['html'];
       this.slides_about = <Section>respObj.sections['slides-about'];
       this.photos = this.slides_about['photos'];
@@ -86,10 +86,13 @@ export class AboutComponent implements OnInit {
     console.log(  this.editorData );
   }
 
-    save(){
+  save(){
     this.editorBool = false;
-
-    }
+    this.intro.html = this.editorData;
+    this.aboutService.updatePresentation(this.intro).toPromise().then(
+      res => {console.log("Succes")}
+    ).catch();
+  }
 
 
 }
