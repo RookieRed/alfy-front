@@ -22,116 +22,15 @@
     <div fxFlex="row-wrap" class="agenda" #actions>
       <h2 class="title">Agenda</h2>
 
-      <div class="box">
+      <div class="box" *ngFor="let e of evenements">
         <mat-card class="event">
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+            <div mat-card-avatar class="example-header-image" [ngStyle]="{'background': 'url('+  e.photo +')'}" style="background-position: top center; background-size: cover;" ></div>
+            <mat-card-title>{{e.title}}</mat-card-title>
+            <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
+            <p> {{e.description}} </p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button>Consulter l'evenement</button>

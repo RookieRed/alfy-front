@@ -6,6 +6,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AboutService } from 'src/app/services/about.service';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { Section } from 'src/app/models/sections';
+import { EventTile } from 'src/app/models/event.tile';
 
 
 @Component({
@@ -19,13 +20,14 @@ export class AboutComponent implements OnInit {
   private editorBool : boolean = false;
   private editorData : string;
   private splitData : string[];
-  private name : String;
-  private sections : Section;
+  private agenda : Section;
+  private intro : Section;
+  private slides_about : Section;
+  private sponsors : Section;
+  private photos : File[];
+  private evenements : EventTile[];
 
-  backgroundImages: (string)[] = [
-    "/assets/img/logo-alfy.jpg",
-    "/assets/img/anciens-voyagent.jpg"    
-  ];
+  private backgroundImages: (string)[] = [];
   
   constructor(
     private aboutService : AboutService,
@@ -38,11 +40,20 @@ export class AboutComponent implements OnInit {
   async getAbout() {
     await this.aboutService.getAbout().then((resp: any) => {
       const respObj = resp;
-      console.log(respObj);
-      this.name = <String>respObj.name;
-      this.sections = <Section>respObj.sections
-      this.editorData = respObj.sections.intro.html;
-      console.log(this.sections);
+      this.agenda = <Section>respObj.sections.agenda;
+      this.evenements = <EventTile[]>this.agenda['tiles'];
+      this.intro = <Section>respObj.sections.intro;
+      this.editorData = this.intro['html'];
+      this.slides_about = <Section>respObj.sections['slides-about'];
+      this.photos = this.slides_about['photos'];
+      this.caroussel(this.photos);
+      this.sponsors = <Section>respObj.sections.sponsors;
+      console.log(this.evenements);
+      //console.log(this.slides_about);
+      //console.log(this.photos);
+      //console.log(this.sponsors);
+      
+     
     }, err => {
       this.onApiError(err);
     });
@@ -53,6 +64,14 @@ export class AboutComponent implements OnInit {
 
   private onApiError(err) {
     console.error(err);
+  }
+
+  caroussel(photos) {
+    var i : number = 0;
+    for(let photo of photos) {
+      this.backgroundImages[i] = environment.apiURL + photo.fullPath;
+      i++;
+    }
   }
 
   goToPartenaire() {
