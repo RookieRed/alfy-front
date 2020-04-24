@@ -24,6 +24,8 @@
     "@angular/platform-browser": "^7.2.16",
     "@angular/platform-browser-dynamic": "^7.2.16",
     "@angular/router": "^7.2.16",
+    "@ckeditor/ckeditor5-angular": "^1.2.3",
+    "@ckeditor/ckeditor5-build-classic": "^18.0.0",
     "ajv": "^6.11.0",
     "core-js": "^2.6.11",
     "flag-icon-css": "^3.4.5",
