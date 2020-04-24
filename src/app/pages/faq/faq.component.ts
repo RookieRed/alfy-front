@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
-import { PassThrough } from 'stream';
+//import { PassThrough } from 'stream';
 
 
 @Component({
