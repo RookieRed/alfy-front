@@ -55,6 +55,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ProfileViewComponent } from './pages/profile-view/profile-view.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FooterComponent,
     FaqComponent,
     ActivitiesComponent,
+    ProfileViewComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,

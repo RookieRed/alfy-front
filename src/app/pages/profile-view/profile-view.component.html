@@ -1,0 +1,67 @@
+<div fxLayout="row" fxLayoutAlign="center center"
+     style="background-image: url('/assets/img/connection-background.jpg'); background-repeat: round">
+  <div fxLayout="column" class="container" fxFlex="60" style="background-color: white;">
+    <div class="pictures">
+      <div class="backround-picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}" style="background-position: top center; background-size: cover;">
+        <img *ngIf="exists(pathProfilePicture); else elseBlock" class="profile-pic" src={{pathProfilePicture}} />
+        <ng-template #elseBlock>
+          <img class="profile-pic" src="/assets/img/default-avatar.png" />
+        </ng-template>
+      </div>
+
+      <div fxLayout="row">
+        <div class="title" fxFlex="70%">
+          <h1>{{firstName}} {{lastName}}</h1>
+          <h2>{{jobTitle}}</h2>
+          <h3> {{age}} ans</h3>
+        </div>
+
+        <div class="social-media" fxFlex="auto">
+          <a href={{facebook}} *ngIf="exists(facebook);"> <img src="/assets/img/about/logoFacebook.png"
+                                                               alt="Lien Facebook" width="38" height="38" hspace="10">
+          </a>
+          <a href={{instagram}} *ngIf="exists(instagram);"> <img src="/assets/img/about/logoInstagram.png"
+                                                                 alt="Lien Instagram" width="38" height="38"
+                                                                 hspace="10"> </a>
+          <a href={{twitter}} *ngIf="exists(twitter);"> <img src="/assets/img/about/logoTwitter.png"
+                                                             alt="Lien Twitter" width="38" height="38" hspace="10"> </a>
+          <a href={{email}} *ngIf="exists(email);"> <img src="/assets/img/about/logoEmail.png" alt="Lien Email"
+                                                         width="38"
+                                                         height="38" hspace="10"> </a>
+          <a href={{linkedIn}} *ngIf="exists(linkedIn);"> <img src="/assets/img/about/logoLinkedin.png" alt="Lien Linkedin"
+                                                         width="38"
+                                                         height="38" hspace="10"> </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div flex="1" class="informations" #actions>
+      <div class="title-info" *ngIf="exists(studies)">
+        <h2>Parcours</h2>
+      </div>
+      <div class="content timeline">
+        <div class="entry">
+          <div class="body" *ngFor="let s of studies">
+            <h3>{{s.type}} {{s.university.name}}</h3>
+            <p>{{s.comment}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="title-info" *ngIf="exists(projects)">
+        <h2>Projets / Accomplissements</h2>
+      </div>
+      <div class="content timeline">
+        <div class="entry">
+          <div class="body" *ngFor="let p of projects">
+            <h3>{{p.title}}</h3>
+            <p>{{p.details}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

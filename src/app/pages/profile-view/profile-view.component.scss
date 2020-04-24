@@ -1,0 +1,153 @@
+@import "../../../styles";
+
+@media only screen and (max-width: 600px) {
+
+  .container {
+    max-width: -webkit-fill-available !important;
+    margin: 0 !important;
+  }
+
+  .backround-picture {
+    height: 210px !important;
+  }
+
+  .profile-pic {
+    margin-top: 14% !important;    
+  }
+
+  .title {
+    margin-right: 10% !important;
+    margin-top: 10% !important;
+
+    h1 {
+        font-size: 200% !important;
+    }
+    
+    h2 {
+        font-size: 100% !important;
+    }
+  }
+
+  .informations {
+      
+    .timeline {
+
+      .entry {
+        max-width: 270px !important;
+        font-size: 90% !important;
+        
+        .body {
+          left: 36% !important;                    
+
+          &:before {
+            border: 6px solid $primary-darker !important; 
+            left: -19% !important;  
+        
+          }
+        } 
+      }
+    }
+  }
+
+}
+
+.container {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    max-width: 200%;
+
+    .backround-picture {
+        position: relative;
+        height: 280px;
+        margin-bottom: 4%;
+        background-size: 110%;
+        background-color: $accent;
+    }
+
+    .profile-pic {
+        border-radius: 100%; 
+        border-style: solid;
+        border-color: white;
+        background-color: $primary-darker;
+        border-width: 10px; 
+        margin-top: 15%;   
+        margin-left: 5%;
+        width: 200px;
+        height: 200px;
+    }
+
+    .title {
+        margin-left: 5%;
+
+        h1 {
+            margin-top: 12%;
+            font-size: 300%;
+        } 
+        h2 {
+          font-size: 200%;
+          color: $primary-darker; 
+          font-style: italic;
+        }
+        h3 {
+          font-size: 150%;
+          color: $primary-darker; 
+          font-style: italic;
+      }
+    }
+
+    .informations {
+        $border-width: 10px;
+        $dot-diameter: 1px;
+        margin-bottom: 5%;
+        display: contents;
+
+        .title-info {
+          margin-left: 5%;
+          color: black; 
+        }
+          
+        .timeline {
+          //vertical line
+          position: relative;
+          margin-top: 10px;
+          margin-bottom: 20px;
+          width: 100%;
+  
+          &:before {
+            content: '';
+            position: absolute;
+            left: 12%;
+            height: 100%;
+            width: 4px;
+            background: $primary-darker;
+            z-index: 1;
+          }
+
+          .entry {
+            text-align: left;
+            max-width: 80%;
+    
+            .body {
+              position: relative;
+              left: 20%;         
+    
+              &:before {
+                //dots
+                content: '';
+                position: absolute;
+                width: $dot-diameter;
+                height: $dot-diameter;
+                border: $border-width solid $primary-darker;
+                border-radius:100%;
+                top: 15%;
+                left: -5.8%;
+                z-index: 99;  
+              }
+              
+            }
+            
+          }
+        }
+      }
+  
+}

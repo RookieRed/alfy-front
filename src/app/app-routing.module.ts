@@ -13,6 +13,7 @@ import {PageIsBuildingComponent} from './pages/page-is-building/page-is-building
 import {FaqComponent} from './pages/faq/faq.component';
 import {HighSchoolComponent} from './pages/high-school/high-school.component';
 import {AssociationComponent} from './pages/association/association.component';
+import {ProfileViewComponent} from './pages/profile-view/profile-view.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
@@ -31,7 +32,7 @@ const routes: Routes = [
       { path: 'association', redirectTo: 'is-building', pathMatch: 'full' },
       { component: Page404Component, path: '404' },
       { component: PageIsBuildingComponent, path: 'is-building' },
-      //{ component: SignupComponent, path: 'signup' },
+      { component: ProfileViewComponent, path: 'profileview/:id' },
     ],
   },
 
