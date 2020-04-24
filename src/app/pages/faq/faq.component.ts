@@ -4,7 +4,6 @@ import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
 
 
-
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
