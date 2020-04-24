@@ -15,7 +15,7 @@
 </div>
 
 <div class="cat">
-  <mat-expansion-panel *ngFor="let c of categories">
+  <mat-expansion-panel *ngFor="let c of categories" [expanded]="panelOpenState">
     <mat-expansion-panel-header *ngIf="!categoryListOE.includes(c)">
       <p class="category">
         {{c.name}}
@@ -32,12 +32,19 @@
       </button>
     </mat-expansion-panel-header>
 
-    <div *ngIf="categoryListOE.includes(c)" >
-      <form [formGroup]="modifCategoryForm">
+    
+    <mat-expansion-panel-header *ngIf="categoryListOE.includes(c)">
+      <p class="category">
+        Modification de la Catégorie
+      </p>
+    </mat-expansion-panel-header>
+    <div *ngIf="categoryListOE.includes(c)">
+      <form [formGroup]="modifCategoryForm" *ngIf="categoryListOE.includes(c)">
         <mat-form-field class = "categoryInputName">
           <textarea matInput placeholder="Catégorie" formControlName="modifCategoryName" value="{{c.name}}"></textarea>
         </mat-form-field>
       </form>
+      
       <button mat-icon-button >
         <mat-icon (click)="saveUpdateCategory(c)">
           check
@@ -54,6 +61,7 @@
       <div *ngIf = "!questionListOE.includes(q)">
 
         <p class="question">
+          <!--
           <button mat-icon-button>
             <mat-icon>
               keyboard_arrow_down
@@ -64,6 +72,7 @@
               keyboard_arrow_up
             </mat-icon>
           </button>
+          -->
           {{q.question}}
           <button mat-icon-button class="buttonEdit" (click)="questionZoneEdit(q)">
             <mat-icon>
@@ -104,7 +113,7 @@
     <div *ngIf = "categoriesAddQuestion.includes(c.id)">
       <form [formGroup]="questionForm">
         <mat-form-field class="questionInput">
-          <textarea matInput placeholder="Question" formControlName="newQuestion"></textarea>
+          <textarea matInput placeholder="Question" formControlName="newQuestion" value=""></textarea>
         </mat-form-field>
 
         <mat-form-field class="answerInput">
@@ -143,7 +152,7 @@
   <div *ngIf = "categorieAdd" class="buttonAddCategory"> 
     <form [formGroup]="categoryForm">
       <mat-form-field class="categoryInputName">
-        <textarea matInput placeholder="Nouvelle Catégorie" formControlName="newCategoryName"></textarea>
+        <textarea matInput placeholder="Nouvelle Catégorie" formControlName="newCategoryName" value=""></textarea>
       </mat-form-field>
     </form>
     <div class="confirmOrCancel">

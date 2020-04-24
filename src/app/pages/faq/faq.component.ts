@@ -23,6 +23,7 @@ export class FaqComponent implements OnInit {
   modifCategoryForm: FormGroup;
   categoryForm: FormGroup;
   categorieAdd: boolean;
+  panelOpenState: boolean;
 
   private onApiError(err) {
     console.error(err);
@@ -33,6 +34,7 @@ export class FaqComponent implements OnInit {
     this.categoryListOE = new Array<Category>();
     this.categoriesAddQuestion = new Array<number>();
     this.categorieAdd = false;
+    this.panelOpenState = false;
   }
 
   async getFaq() {
@@ -74,6 +76,7 @@ export class FaqComponent implements OnInit {
   categoryModifZone(categorie) {                          // voir si je garde ce nom où si je copie celle de question
     // Affichage de la zone de modification
     this.categoryListOE.push(categorie);
+    this.panelOpenState = true;
   }
 
   cancelModifCategory(categorie) {
@@ -130,7 +133,6 @@ export class FaqComponent implements OnInit {
     var result = this.faqService.addCategory(newCategory).toPromise().then(
       res => {this.categories.push(res) ;return res;}).catch();
     this.categorieAdd = false;
-    console.log(result)
   }
 
   //________________QUESTIONS____________
@@ -155,7 +157,6 @@ export class FaqComponent implements OnInit {
     questionUpdate.answer = this.modifQuestionForm.value.modifAnswer;
     questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
     questionUpdate.categoryId = categorie.id;
-    
     this.faqService.updateQuestion(questionUpdate).toPromise().then(
       res => {var index = this.categories.indexOf(categorie);
         categorie.questions.forEach (questionFor => { 
