@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
 import { FaqService } from '../../services/faq.service';
 import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
-import { PassThrough } from 'stream';
+
 
 
 @Component({
@@ -41,10 +41,7 @@ export class FaqComponent implements OnInit {
     await this.faqService.getFAQ().then((resp: any) => {
       const respObj = new Faq(resp);
       this.categories = <Category[]>respObj.sections[1].categories;
-      console.log(respObj.sections[0].html);
-      console.log("this.categories" + this.categories);
       this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
-      console.log(this.intro);
     }, err => {
       this.onApiError(err);
     });
@@ -73,7 +70,7 @@ export class FaqComponent implements OnInit {
 
   //________________CATEGORIES___________
 
-  categoryModifZone(categorie) {                          // voir si je garde ce nom où si je copie celle de question
+  categoryModifZone(categorie) {                          
     // Affichage de la zone de modification
     this.categoryListOE.push(categorie);
     this.panelOpenState = true;
@@ -85,7 +82,7 @@ export class FaqComponent implements OnInit {
     this.categoryListOE.splice(index, 1);
   }
 
-  saveUpdateCategory(categorie) {                       // changer valide par check ?
+  saveUpdateCategory(categorie) {                      
     // Enregistre les modifications
     if (this.modifCategoryForm.value.modifCategoryName == null) {
       this.modifCategoryForm.value.modifCategoryName = categorie.name ;
@@ -110,7 +107,6 @@ export class FaqComponent implements OnInit {
   deleteCategory(categorie) {
     this.faqService.deleteCategory(categorie).toPromise().then(
       res => {this.categories = this.categories.filter(category => category.id != categorie.id);return res;}).catch();
-    console.log("Vous avez appuyé supprime " + categorie.id);
   }
 
   // Ajout d'une categorie
@@ -125,7 +121,10 @@ export class FaqComponent implements OnInit {
   }
 
   validationAddCategory() {
-    console.log("Vous avez appuyer sur Valider!")
+    if (this.categoryForm.value.newCategoryName == null) {
+      alert("Vous devez écrire une catégorie");
+      return;
+    }
     var newCategory = new CategoryAdd();
     newCategory.name =  this.categoryForm.value.newCategoryName;
     newCategory.description = null;
@@ -183,47 +182,40 @@ export class FaqComponent implements OnInit {
       res => {var index = this.categories.indexOf(categorie);
         categorie.questions = categorie.questions.filter(questionFor => questionFor.id != question.id);
         this.categories.splice(index, 1, categorie) ;return res;}).catch();
-    console.log("Vous avez appuyé supprime " + question.id);    
   }
  
 
   // Ajout d'une question
   questionZoneAdd(categorie) {
     // Affichage de la zone d'ajout d'une question
-    console.log("Voici la catégorie envoyée : "+ categorie.id);
     this.categoriesAddQuestion.push(categorie.id);
-    console.log("Voici la liste des catégories : " + this.categoriesAddQuestion);
   }
   validationAddQuestion(categorie) {
     // Validation de la nouvelle question
-    console.log("Vous avez appuyer sur Valider!")
-    if (this.questionForm.value.newAnswer == null) {
-      this.questionForm.value.newAnswer = "Pas de réponse pour l'instant";
-    }
     if (this.questionForm.value.newQuestion == null) {
       alert("Vous devez écrire une question");
       return;
     }
+    if (this.questionForm.value.newAnswer == null) {
+      alert("Vous devez écrire une réponse");
+      return;
+    }
     var newQuestion = new QuestionAdd();
     newQuestion.question =  this.questionForm.value.newQuestion;
-    console.log("question = ",this.questionForm.value.newQuestion)
     newQuestion.answer = this.questionForm.value.newAnswer;
-    console.log("newAnswer = ",this.questionForm.value.newAnswer)
     newQuestion.categoryId = categorie.id;
-    console.log("categorie.id = ",categorie.id)
     this.faqService.addQuestion(newQuestion).toPromise().then(
       res => {var index = this.categories.indexOf(categorie);
         categorie.questions.push(res);
         this.categories.splice(index, 1, categorie) ;return res;}).catch();
 
-    // Fais disparaitre l'espace d'édition d'une nouvelle question                    // Pourrait être remplacer par conceledAddQuestion(categorie)
+    // Fais disparaitre l'espace d'édition d'une nouvelle question                    
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
 
-  conceledAddQuestion(categorie) {                                                    // closedEditZoneAddQuestion ???
+  conceledAddQuestion(categorie) {                                                    
     // Annulation de l'ajout
-    console.log("Vous avez appuyer sur Supprimer!")
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
