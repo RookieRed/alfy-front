@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
+import { FaqService } from '../../services/faq.service';
+import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
+import { PassThrough } from 'stream';
+
 
 @Component({
   selector: 'app-faq',
@@ -8,46 +12,266 @@ import {FormControl} from '@angular/forms';
 })
 export class FaqComponent implements OnInit {
 
-  panels = [
-    {
-    category: 'Inscription',
-    question: 'Comment devenir membre officiel d ALFY ?',
-    response: 'On devient membre de l’ALFY après s’être acquitté d’une cotisation d’un certain montant. Pour recueillir les cotisations, il faut passer via le site Helloasso qui se charge ensuite de reverser le tout compte bancaire d ALFY.'
-  },
-  {
-    category: 'Entrer en contact avec des membres',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  },
+  categories: Category[];
+  questions: Question[];
+  intro: string;
+  questionListOE: Question[];
+  categoryListOE: Category[];
+  categoriesAddQuestion: number[];
+  questionForm: FormGroup;
+  modifQuestionForm: FormGroup;
+  modifCategoryForm: FormGroup;
+  categoryForm: FormGroup;
+  categorieAdd: boolean;
+  panelOpenState: boolean;
 
-  {
-    category: 'Catégorie 3',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 4',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 5',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
-  }, 
-
-  {
-    category: 'Catégorie 6',
-    question: 'Comment rechercher des membres d ALFY ?',
-    response: 'Vous pouvez consulter les profils utilisateurs des membres grâce à la barre de recherche.'
+  private onApiError(err) {
+    console.error(err);
   }
-  ]
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private faqService: FaqService) {
+    this.questionListOE = new Array<Question>();
+    this.categoryListOE = new Array<Category>();
+    this.categoriesAddQuestion = new Array<number>();
+    this.categorieAdd = false;
+    this.panelOpenState = false;
   }
+
+  async getFaq() {
+    await this.faqService.getFAQ().then((resp: any) => {
+      const respObj = new Faq(resp);
+      this.categories = <Category[]>respObj.sections[1].categories;
+      console.log(respObj.sections[0].html);
+      console.log("this.categories" + this.categories);
+      this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
+      console.log(this.intro);
+    }, err => {
+      this.onApiError(err);
+    });
+    //this.sortQuestions();
+  }
+
+  async  ngOnInit() {
+    await this.getFaq();
+    this.questionForm = this.fb.group({
+      newQuestion: [],
+      newAnswer: [],
+    })
+    this.modifQuestionForm = this.fb.group({
+      modifQuestion: [],
+      modifAnswer: [],
+    })
+    this.categoryForm = this.fb.group({
+      newCategoryName: [],
+    })
+    this.modifCategoryForm = this.fb.group({
+      modifCategoryName: [],
+    })
+  }
+
+  // Function for buttons
+
+  //________________CATEGORIES___________
+
+  categoryModifZone(categorie) {                          // voir si je garde ce nom où si je copie celle de question
+    // Affichage de la zone de modification
+    this.categoryListOE.push(categorie);
+    this.panelOpenState = true;
+  }
+
+  cancelModifCategory(categorie) {
+    // Annule les modifiactions
+    const index = this.categoryListOE.indexOf(categorie);
+    this.categoryListOE.splice(index, 1);
+  }
+
+  saveUpdateCategory(categorie) {                       // changer valide par check ?
+    // Enregistre les modifications
+    if (this.modifCategoryForm.value.modifCategoryName == null) {
+      this.modifCategoryForm.value.modifCategoryName = categorie.name ;
+    }
+    categorie.name  = this.modifCategoryForm.value.modifCategoryName;
+
+    var categorieUpdate = new CategoryUpdate();
+    categorieUpdate.id = categorie.id;
+    categorieUpdate.name = categorie.name;
+    categorieUpdate.description = categorie.description;
+    categorieUpdate.sectionId = 7;
+
+    this.faqService.updateCategory(categorieUpdate).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        this.categories.splice(index, 1, res);return res;}).catch();
+
+    const index = this.categoryListOE.indexOf(categorie);
+    this.categoryListOE.splice(index, 1);
+  }
+
+  // Suppression d'une categorie
+  deleteCategory(categorie) {
+    this.faqService.deleteCategory(categorie).toPromise().then(
+      res => {this.categories = this.categories.filter(category => category.id != categorie.id);return res;}).catch();
+    console.log("Vous avez appuyé supprime " + categorie.id);
+  }
+
+  // Ajout d'une categorie
+  categoryZoneAdd() {
+    // Afficher la zone d'ajout d'une catégorie
+    this.categorieAdd = true;
+  }
+
+  conceledAddCategory() {
+    // Annuler l'ajout d'une catégorie
+    this.categorieAdd = false;
+  }
+
+  validationAddCategory() {
+    console.log("Vous avez appuyer sur Valider!")
+    var newCategory = new CategoryAdd();
+    newCategory.name =  this.categoryForm.value.newCategoryName;
+    newCategory.description = null;
+    newCategory.sectionId = 7;
+    var result = this.faqService.addCategory(newCategory).toPromise().then(
+      res => {this.categories.push(res) ;return res;}).catch();
+    this.categorieAdd = false;
+  }
+
+  //________________QUESTIONS____________
+
+  // Modifications des questions
+  questionZoneEdit(question) {
+    // Affichage de la zone de modification
+    this.questionListOE.push(question);
+  }
+
+  saveUpdateQuestion(categorie, question) {
+    // Enregistre les modifications
+    if (this.modifQuestionForm.value.modifQuestion == null) {
+      this.modifQuestionForm.value.modifQuestion = question.question ;
+    }
+    if (this.modifQuestionForm.value.modifAnswer == null) {
+      this.modifQuestionForm.value.modifAnswer = question.answer;
+    }
+
+    var questionUpdate = new QuestionUpdate();
+    questionUpdate.id = question.id;
+    questionUpdate.answer = this.modifQuestionForm.value.modifAnswer;
+    questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
+    questionUpdate.categoryId = categorie.id;
+    this.faqService.updateQuestion(questionUpdate).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions.forEach (questionFor => { 
+          if (questionFor.id == questionUpdate.id){
+            var index2 = categorie.questions.indexOf(questionFor);
+            categorie.questions.splice(index2, 1, res)
+          }
+        });
+        this.categories.splice(index, 1, categorie);return res;}).catch();
+
+    const index = this.questionListOE.indexOf(question);
+    this.questionListOE.splice(index, 1);
+  }
+
+  cancelModifQuestion(question) {
+    // Annule les modifiactions
+    const index = this.questionListOE.indexOf(question);
+    this.questionListOE.splice(index, 1);
+  }
+
+  // Suppression d'une question
+  deleteQuestion(categorie, question) {
+    this.faqService.deleteQuestion(question).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions = categorie.questions.filter(questionFor => questionFor.id != question.id);
+        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+    console.log("Vous avez appuyé supprime " + question.id);    
+  }
+ 
+
+  // Ajout d'une question
+  questionZoneAdd(categorie) {
+    // Affichage de la zone d'ajout d'une question
+    console.log("Voici la catégorie envoyée : "+ categorie.id);
+    this.categoriesAddQuestion.push(categorie.id);
+    console.log("Voici la liste des catégories : " + this.categoriesAddQuestion);
+  }
+  validationAddQuestion(categorie) {
+    // Validation de la nouvelle question
+    console.log("Vous avez appuyer sur Valider!")
+    if (this.questionForm.value.newAnswer == null) {
+      this.questionForm.value.newAnswer = "Pas de réponse pour l'instant";
+    }
+    if (this.questionForm.value.newQuestion == null) {
+      alert("Vous devez écrire une question");
+      return;
+    }
+    var newQuestion = new QuestionAdd();
+    newQuestion.question =  this.questionForm.value.newQuestion;
+    console.log("question = ",this.questionForm.value.newQuestion)
+    newQuestion.answer = this.questionForm.value.newAnswer;
+    console.log("newAnswer = ",this.questionForm.value.newAnswer)
+    newQuestion.categoryId = categorie.id;
+    console.log("categorie.id = ",categorie.id)
+    this.faqService.addQuestion(newQuestion).toPromise().then(
+      res => {var index = this.categories.indexOf(categorie);
+        categorie.questions.push(res);
+        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+
+    // Fais disparaitre l'espace d'édition d'une nouvelle question                    // Pourrait être remplacer par conceledAddQuestion(categorie)
+    const index = this.categoriesAddQuestion.indexOf(categorie.id);
+    this.categoriesAddQuestion.splice(index, 1);
+  }
+
+  conceledAddQuestion(categorie) {                                                    // closedEditZoneAddQuestion ???
+    // Annulation de l'ajout
+    console.log("Vous avez appuyer sur Supprimer!")
+    const index = this.categoriesAddQuestion.indexOf(categorie.id);
+    this.categoriesAddQuestion.splice(index, 1);
+  }
+
+  //________________Position des Questions___________
+
+  /*
+  sortQuestions() {
+    for(let c of this.categories) {
+      var index = 0;
+      for(let q of c.questions) {
+        q.id = index;
+        index++;
+      }
+    }
+  }
+
+  questionDownward(categorie, question) {
+    // Monter question
+    console.log("Vous avez appuyer sur down!");
+
+    if (question.id != categorie.questions.length-1){
+      var question_temp : Question = new Question();
+      var id_question_temp : number;
+      question_temp = question;
+      id_question_temp = question.id;
+      categorie.questions[question.id] = categorie.questions[question.id+1];
+      categorie.questions[question.id].id = id_question_temp;
+      categorie.questions[question.id+1] = question_temp;
+      categorie.questions[question.id+1].id =id_question_temp+1;
+    }
+  }
+
+  questionUpward(categorie, question) {
+    // descendre qustion
+    console.log("Vous avez appuyer sur up!");
+
+    if (question.id != 0){
+      var question_temp : Question = new Question();
+      var id_question_temp : number;
+      question_temp = question;
+      id_question_temp = question.id;
+      categorie.questions[question.id] = categorie.questions[question.id-1];
+      categorie.questions[question.id].id = id_question_temp;
+      categorie.questions[question.id-1] = question_temp;
+      categorie.questions[question.id-1].id =id_question_temp-1;
+    }
+  }
+  */
 
 }

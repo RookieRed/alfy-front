@@ -1,9 +1,9 @@
 <h1 style="text-align: center; font-size: 40px;">FAQ</h1>
 
-<button mat-mini-fab style="position:absolute; top:5%; right:5%;" routerLink=""><mat-icon style="position:relative;">edit</mat-icon></button>
 
-<p class="introduction">Voici une introduction, tu peux mettre ce que tu veux. Voici une introduction, tu peux mettre ce
-  que tu veux. Voici une introduction, tu peux mettre ce que tu veux.</p>
+<p class="introduction">
+  {{intro}}
+</p>
 
 
 <div fxLayoutAlign="center center">
@@ -14,19 +14,159 @@
   </form>
 </div>
 
-
-<div class="categories">
-  
-  <mat-expansion-panel *ngFor="let panel of panels">
-    <mat-expansion-panel-header>
-      <p class="category"><button mat-icon-button routerLink=""><mat-icon>cancel</mat-icon></button>{{panel.category}}</p>
+<div class="cat">
+  <mat-expansion-panel *ngFor="let c of categories" [expanded]="panelOpenState">
+    <mat-expansion-panel-header *ngIf="!categoryListOE.includes(c)">
+      <p class="category">
+        {{c.name}}
+      </p>  
+      <button mat-icon-button class="buttonEdit" (click)="categoryModifZone(c)">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteCategory(c)">
+        <mat-icon>
+          delete_outline
+        </mat-icon>
+      </button>
     </mat-expansion-panel-header>
 
-    <p class="question"><button mat-mini-fab routerLink=""><mat-icon>arrow_downward</mat-icon></button><button mat-mini-fab routerLink=""><mat-icon>arrow_upward</mat-icon></button>{{panel.question}}</p>
-    <p class="answer">{{panel.response}}</p>
-  </mat-expansion-panel>
+    
+    <mat-expansion-panel-header *ngIf="categoryListOE.includes(c)">
+      <p class="category">
+        Modification de la Catégorie
+      </p>
+    </mat-expansion-panel-header>
+    <div *ngIf="categoryListOE.includes(c)">
+      <form [formGroup]="modifCategoryForm" *ngIf="categoryListOE.includes(c)">
+        <mat-form-field class = "categoryInputName">
+          <textarea matInput placeholder="Catégorie" formControlName="modifCategoryName" value="{{c.name}}"></textarea>
+        </mat-form-field>
+      </form>
+      
+      <button mat-icon-button >
+        <mat-icon (click)="saveUpdateCategory(c)">
+          check
+        </mat-icon>
+      </button>
+      <button mat-icon-button  (click)="cancelModifCategory(c)">
+        <mat-icon>
+          close
+        </mat-icon>
+      </button>
+    </div>
 
-  <button mat-raised-button class="validation">Annuler</button>
-  <button mat-raised-button class="validation">Soumettre</button>
-  
+    <div *ngFor = "let q of c.questions">
+      <div *ngIf = "!questionListOE.includes(q)">
+
+        <p class="question">
+          <!--
+          <button mat-icon-button>
+            <mat-icon>
+              keyboard_arrow_down
+            </mat-icon>
+          </button>
+          <button mat-icon-button >
+            <mat-icon>
+              keyboard_arrow_up
+            </mat-icon>
+          </button>
+          -->
+          {{q.question}}
+          <button mat-icon-button class="buttonEdit" (click)="questionZoneEdit(q)">
+            <mat-icon>
+              edit
+            </mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteQuestion(c,q)">
+            <mat-icon>
+              delete_outline
+            </mat-icon>
+          </button>
+
+        </p>
+
+        <p class="answer">{{q.answer}}</p>
+      </div>
+      <div *ngIf = "questionListOE.includes(q)">
+        <form [formGroup]="modifQuestionForm">
+          <mat-form-field class="questionInput">
+            <textarea matInput placeholder="Question" formControlName="modifQuestion" value="{{q.question}}"></textarea>
+          </mat-form-field>
+          <mat-form-field class="answerInput">
+            <textarea matInput placeholder="Réponse" formControlName="modifAnswer" value="{{q.answer}}"></textarea>
+          </mat-form-field>
+        </form>
+        <button mat-icon-button (click)="saveUpdateQuestion(c,q)">
+          <mat-icon>
+            check
+          </mat-icon>
+        </button>
+        <button mat-icon-button (click)="cancelModifQuestion(q)">
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf = "categoriesAddQuestion.includes(c.id)">
+      <form [formGroup]="questionForm">
+        <mat-form-field class="questionInput">
+          <textarea matInput placeholder="Question" formControlName="newQuestion" value=""></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="answerInput">
+          <textarea matInput placeholder="Réponse" formControlName="newAnswer"></textarea>
+        </mat-form-field>
+      </form>
+      <div class="confirmOrCancel">
+        <button mat-icon-button (click)="validationAddQuestion(c)">
+          <mat-icon>
+            check
+          </mat-icon>
+        </button>
+        <button mat-icon-button (click)="conceledAddQuestion(c)">
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="add" *ngIf = "!categoriesAddQuestion.includes(c.id)"> 
+      <button mat-icon-button class="addButton" (click)="questionZoneAdd(c)">
+        <mat-icon class="addButton">
+          add_circle_outline
+        </mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+  <div *ngIf = "!categorieAdd" class="buttonAddCategory"> 
+    <button mat-flat-button (click)="categoryZoneAdd()">
+      <mat-icon >
+        add
+      </mat-icon>
+      ajouter une catégorie
+    </button>
+  </div>
+  <div *ngIf = "categorieAdd" class="buttonAddCategory"> 
+    <form [formGroup]="categoryForm">
+      <mat-form-field class="categoryInputName">
+        <textarea matInput placeholder="Nouvelle Catégorie" formControlName="newCategoryName" value=""></textarea>
+      </mat-form-field>
+    </form>
+    <div class="confirmOrCancel">
+      <button mat-icon-button (click)="validationAddCategory()">
+        <mat-icon>
+          check
+        </mat-icon>
+      </button>
+      <button mat-icon-button (click)="conceledAddCategory()">
+        <mat-icon>
+          close
+        </mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
+
