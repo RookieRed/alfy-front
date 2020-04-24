@@ -17,9 +17,9 @@
   </div>
 
   <!-- Deuxième conteneur en ligne -->
-  <div class="low-mock-up" flexLayout="row-wrap">
+  <div class="low-mock-up" fxLayout="row">
     <!-- Agenda -->
-    <div fxFlex="row-wrap" class="agenda" #actions>
+    <div fxFlex="25" class="agenda" #actions >
       <h2 class="title">Agenda</h2>
 
       <div class="box" *ngFor="let e of evenements">
@@ -37,13 +37,12 @@
           </mat-card-actions>
         </mat-card>
       </div>
-
       <br/>
 
     </div>
 
     <!-- Troisième conteneur en colonne -->
-    <div fxLayout="column" fxFlex="auto"  class="low-right-mock-up">
+    <div fxLayout="column" fxFlex="75"  class="low-right-mock-up">
       <!-- Présentation -->
       <div fxFlex="auto" class="presentation">
         <div class="title">
