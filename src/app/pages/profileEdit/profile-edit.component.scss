@@ -16,11 +16,19 @@
     background-color: transparent;
   }
 
+  .cover-photo-buttons-group {
+    text-align: -webkit-right;
+  }
+
+  .background_picture {
+    margin-bottom: 3%;
+  }
+
   .block {
-    display: flex;
+    //display: flex;
     flex-direction: column;
     align-items: start;
-    border: 0.5px solid $accent;
+    border: 1.5px solid $accent-lighter;
     border-radius: 10px;
     margin: 20px 10px;
     padding: 10px;
@@ -88,6 +96,7 @@
         border: 3px solid #ddd;
         border-radius: 200px;
         overflow: hidden;
+        margin-top: 5%;
 
         #profile-picture {
           &.wide {
