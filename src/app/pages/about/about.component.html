@@ -17,163 +17,63 @@
   </div>
 
   <!-- Deuxième conteneur en ligne -->
-  <div class="low-mock-up" flexLayout="row-wrap">
+  <div class="low-mock-up" fxLayout="row">
     <!-- Agenda -->
-    <div fxLayout="column" fxFlex.gt-md="36%"  fxFlex.lt-md="100%" class="agenda" #actions>
+    <div fxFlex="25" class="agenda" #actions >
       <h2 class="title">Agenda</h2>
 
-      <div class="box">
+      <div class="box" *ngFor="let e of evenements">
         <mat-card class="event">
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+            <div mat-card-avatar class="example-header-image" [ngStyle]="{'background': 'url('+ 'https://fustel-api.rookie.red' + e.photo.fullPath +')'}" style="background-position: top center; background-size: cover;" ></div>
+            <mat-card-title>{{e.title}}</mat-card-title>
+            <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
+            <p> {{e.description}} </p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button>Consulter l'evenement</button>
           </mat-card-actions>
         </mat-card>
       </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
-      <br/>
-
-      <div class="box">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
-            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-
       <br/>
 
     </div>
 
     <!-- Troisième conteneur en colonne -->
-    <div fxLayout="column" fxFlex.gt-md="64%"  fxFlex.lt-md="100%"  class="low-right-mock-up">
+    <div fxLayout="column" fxFlex="75"  class="low-right-mock-up">
       <!-- Présentation -->
       <div fxFlex="auto" class="presentation">
         <div class="title">
           <h2>Qui nous sommes</h2>
         </div>
-        <div class="content" #whoAreWe>
-          <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
-          <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
-            été scolarisée au moins un an au Lycée Fustel de Coulanges de Yaoundé, tout membre du personnel administratif
-            comme professoral et enfin tout parent d'élève.
-          </p>
-          <h4>C’est de la pensée que découle l’action.</h4>
-          <p>L'ALFY est <b>née en septembre 2016</b> pensée dans le but premier d'aider la promotion de bacheliers dans leur orientation
-            post-bac, en les mettant en contact avec des anciens élèves dont la formation scolaire et professionnelle s'inscrirait
-            dans le cadre de leurs ambitions. Suite à une réflexion menée avec la proviseur du lycée en fonction en 2017, l'ALFY
-            est <b>passée du statut de projet à celui d'association</b> dont la vie a été rythmée depuis par une collaboration restreinte
-            avec le <a href="https://www.fustel-yaounde.net/">lycée Fustel de Coulanges</a>, <a href="https://alfm.fr/">l'association mondiale ALFM</a>, l'AEFE et d'autres associations locales telles que
-            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques.
-          </p>
+          <div class="presentation" *ngIf="!editorBool">
+            <div class="content" #whoAreWe>
+              <!--<img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>-->
+              <p [innerHTML]="editorData">
+              </p>
+            </div>
+            <div class="edit-button">
+              <button mat-raised-button (click)="showEditor()">Editer la présentation</button>
+            </div>
+          </div>
+
+          <div class="editor" *ngIf="editorBool">
+            <ckeditor [editor]="editor" (change)="onChange($event)" data="{{editorData}}">
+
+            </ckeditor>
+            <div class="edit-button">
+              <button mat-raised-button (click)="save()">Enregistrer les modifications</button>
+            </div>
         </div>
+
       </div>
       <!-- Actualité -->
       <div fxFlex="auto" class="actualites">
         <div class="title" >
           <h2>Actualites</h2>
-          <p>
-            lalala
-          </p>
+          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Falfyaounde%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
         </div>
       </div>
       <!-- Partenaire -->
@@ -183,55 +83,10 @@
         </div>
 
         <div class="logos">
-          <div class="logo">
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+          <div class="logo" *ngFor="let s of sponsorList">
+            <a href="{{s.link}}"><img [ngStyle]="{'content': 'url('+ 'https://fustel-api.rookie.red' + s.photo.fullPath +')'}" alt="Avatar Sponsor"></a>
             <br/>
-            <span> Partenaire 1</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 2</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 1</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 3</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 4</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 5</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 6</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 7</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 8</span>
-          </div>
-          <div>
-            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
-            <br/>
-            <span> Partenaire 9</span>
+            <span>{{s.title}}</span>
           </div>
         </div>
       </div>

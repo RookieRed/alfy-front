@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: "https://fustel-api.rookie.red",
+  apiURL: "http://localhost:8000",
 };
 
 /*
