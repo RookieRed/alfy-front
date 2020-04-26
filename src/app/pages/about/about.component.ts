@@ -4,6 +4,7 @@ import {PageService} from '../../services/page.service';
 import {PageInfo} from '../../models/page';
 import {environment} from '../../../environments/environment';
 
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -11,26 +12,23 @@ import {environment} from '../../../environments/environment';
 })
 export class AboutComponent implements OnInit {
 
-  @ViewChild('slideshow') slideshow;
-  backgroundImages:  IImage[] = [];
-
+  backgroundImages: (string)[] = [
+    "/assets/img/logo-alfy.jpg",
+    "/assets/img/anciens-voyagent.jpg"    
+  ];
+  
   constructor(
-    private pageService: PageService,
   ) { }
 
   ngOnInit() {
-    this.pageService.getPage('about')
-      .then((response) => {
-        const pageInfo: PageInfo = response;
-        pageInfo.files.forEach(file => {
-          const iImage: IImage = Object.assign(file.options, { url: environment.apiURL + '/' + file.path });
-          this.backgroundImages.push(iImage);
-        });
-      }).catch(console.error);
+   
   }
 
   callback() {
-    console.log('click');
+  }
+
+  goToPartenaire() {
+    console.log("Vous venez de cliquer sur un partenaire. Une fonction sera bientôt implémentaire pour cela.");
   }
   
 

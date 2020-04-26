@@ -1,7 +1,11 @@
-<div flex class="about-container">
-  <div flex="1" class="row alfy-presentation">
-    <editable-element class="main-title" [hide]="backgroundImages.length == 0" (onEdit)="callback()"
-                      [class.no-background]="backgroundImages.length == 0">
+<!-- Conteneur générale en Colonne-->
+<div flexLayout="column" class="about-container">
+  <!-- Carousel -->
+  <div class="caroussel" >
+    <!-- editable-element
+    [hide]="backgroundImages.length == 0" (onEdit)="callback()"
+                      [class.no-background]="backgroundImages.length == 0"-->
+    <div class="main-title">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
         [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
         minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
@@ -9,119 +13,229 @@
       <div *ngIf="backgroundImages.length === 0" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
       </div>
-    </editable-element>
-    <div class="title">
-      <h2>Qui nous sommes</h2>
-    </div>
-    <div class="content" #whoAreWe>
-      <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
-      <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
-        été scolarisée au moins un an au Lycée Fustel de Coulanges de Yaoundé, tout membre du personnel administratif
-        comme professoral et enfin tout parent d'élève. </p>
-      <h4>C’est de la pensée que découle l’action.</h4>
-      <p>L'ALFY est <b>née en septembre 2016</b> pensée dans le but premier d'aider la promotion de bacheliers dans leur orientation
-        post-bac, en les mettant en contact avec des anciens élèves dont la formation scolaire et professionnelle s'inscrirait
-        dans le cadre de leurs ambitions. Suite à une réflexion menée avec la proviseur du lycée en fonction en 2017, l'ALFY
-        est <b>passée du statut de projet à celui d'association</b> dont la vie a été rythmée depuis par une collaboration restreinte
-        avec le <a href="https://www.fustel-yaounde.net/">lycée Fustel de Coulanges</a>, <a href="https://alfm.fr/">l'association mondiale ALFM</a>, l'AEFE et d'autres associations locales telles que
-        l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques. </p>
     </div>
   </div>
-  <div class="row goals-container">
-    <div class="title"><h2>Nos objectifs</h2></div>
-    <div class="content goals-content">
-      <div class="goal">
-        <img src="/assets/img/about/lighthouse%201.png">
-        <h4>Aider...</h4>
-        <div>A l’orientation des actuels élèves du lycée Fustel de Coulanges à travers une mise en relation avec des anciens de parcours désiré.</div>
+
+  <!-- Deuxième conteneur en ligne -->
+  <div class="low-mock-up" flexLayout="row-wrap">
+    <!-- Agenda -->
+    <div fxLayout="column" fxFlex.gt-md="36%"  fxFlex.lt-md="100%" class="agenda" #actions>
+      <h2 class="title">Agenda</h2>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-      <div class="goal">
-        <img src="/assets/img/about/hand%20shake%202.png">
-        <h4>Fédérer...</h4>
-        <div>La communauté des anciens du LFC présente sur tous les continents autour de rencontres.</div>
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-      <div class="goal">
-        <img src="/assets/img/about/network%201.png">
-        <h4>Partager...</h4>
-        <div>Notre expérience d’ancien d’un lycée français du monde avec d’autres anciens élèves de lycées français de l’étranger à travers des partenariats.</div>
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-      <div class="goal">
-        <img src="/assets/img/about/life%20buoy%201.png">
-        <h4>Soutenir...</h4>
-        <div>Les projets de nos anciens et participer à leur promotion au sein de la communauté des anciens.</div>
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <br/>
+
+      <div class="box">
+        <mat-card class="event">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Réunion des anciens de l'ALFY</mat-card-title>
+            <mat-card-subtitle>7 mars 2020</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Description de l'evenement, description de l'evenement, description de l'evenement, description de l'evenement.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Consulter l'evenement</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <br/>
+
     </div>
-  </div>
-  <div flex="1" class="row alfy-actions" #actions>
-    <div class="title">
-      <h2>Notre histoire</h2>
-    </div>
-    <div class="content timeline">
-      <div class="entry">
+
+    <!-- Troisième conteneur en colonne -->
+    <div fxLayout="column" fxFlex.gt-md="64%"  fxFlex.lt-md="100%"  class="low-right-mock-up">
+      <!-- Présentation -->
+      <div fxFlex="auto" class="presentation">
         <div class="title">
-          <h3>Juillet 2018</h3>
-          <p>L'été d'ALFY</p>
+          <h2>Qui nous sommes</h2>
         </div>
-        <div class="body">
-          <p>Première édition de l'évènement estival "l'été d'ALFY".<br>
-            Pour l'occasion nous avons été représenté dans les 3 villes différentes :</p>
-          <ul>
-            <li>Paris</li>
-            <li>Yaoundé</li>
-            <li>Montréal</li>
-          </ul>
+        <div class="content" #whoAreWe>
+          <img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>
+          <p>L’association ALFY des <b>Anciens du Lycée Français de Yaoundé</b> rassemble toute personne de plus de 16 ans ayant
+            été scolarisée au moins un an au Lycée Fustel de Coulanges de Yaoundé, tout membre du personnel administratif
+            comme professoral et enfin tout parent d'élève.
+          </p>
+          <h4>C’est de la pensée que découle l’action.</h4>
+          <p>L'ALFY est <b>née en septembre 2016</b> pensée dans le but premier d'aider la promotion de bacheliers dans leur orientation
+            post-bac, en les mettant en contact avec des anciens élèves dont la formation scolaire et professionnelle s'inscrirait
+            dans le cadre de leurs ambitions. Suite à une réflexion menée avec la proviseur du lycée en fonction en 2017, l'ALFY
+            est <b>passée du statut de projet à celui d'association</b> dont la vie a été rythmée depuis par une collaboration restreinte
+            avec le <a href="https://www.fustel-yaounde.net/">lycée Fustel de Coulanges</a>, <a href="https://alfm.fr/">l'association mondiale ALFM</a>, l'AEFE et d'autres associations locales telles que
+            l'ALFD du lycée français de Dakar et la tenue de nombreuses rencontres sur différents sites géographiques.
+          </p>
         </div>
       </div>
-      <div class="entry">
-        <div class="title">
-          <h3>(Mois) 2018</h3>
-          <p>PEPA</p>
-        </div>
-        <div class="body">
-          <p>Etablissement d'une convention entre le lycée Fustel et l'association : le <b>PEPA</b>,
-          Projet Educatif Parainage par les Anciens élèves bacheliers.</p>
-        </div>
-      </div>
-      <div class="entry">
-        <div class="title">
-          <h3>Novembre 2017</h3>
-          <p>Congrès ALFM</p>
-        </div>
-        <div class="body">
-          <p>Participation au Congrès ALFM des Anciens des Lycées Français du Monde.</p>
-          <ul>
-            <li>Congrès organisé à l'occasion de la semaine des lycés français de l'étranger</li>
-            <li>Egalement présent et actif au lycée Fustel à Yaoundé</li>
-            <li>Lancement de la plateforme de l'<a href="https://alfm.fr/" target="_blank">ALFM</a></li>
-          </ul>
+      <!-- Actualité -->
+      <div fxFlex="auto" class="actualites">
+        <div class="title" >
+          <h2>Actualites</h2>
+          <p>
+            lalala
+          </p>
         </div>
       </div>
-      <div class="entry">
-        <div class="title">
-          <h3>Novembre 2016</h3>
-          <p>Forum des métiers</p>
+      <!-- Partenaire -->
+      <div class="partenaires">
+        <div class="title" >
+          <h2>Partenaires</h2>
         </div>
-        <div class="body">
-          <p>Participation au forum des métiers organisé au Lycée Fustel.</p>
-          <ul>
-            <li>Un petit mot sur cette partie ?</li>
-            <li>Ou peut-être deux ?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="entry">
-        <div class="title">
-          <h3>Novembre 2016</h3>
-          <p>Création de l'asso</p>
-        </div>
-        <div class="body">
-          <p>Création de l'association des Anciens du Lycée Français de Yaoundé</p>
-          <ul>
-            <li>Un petit mot sur cette partie ?</li>
-            <li>Ou peut-être deux ?</li>
-          </ul>
+
+        <div class="logos">
+          <div class="logo">
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 1</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 2</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 1</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 3</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 4</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 5</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 6</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 7</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 8</span>
+          </div>
+          <div>
+            <img src="/assets/img/logo-alfy.jpg" alt="Avatar" (click)="goToPartenaire()">
+            <br/>
+            <span> Partenaire 9</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

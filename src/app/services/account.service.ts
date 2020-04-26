@@ -33,8 +33,10 @@ export class AccountService {
 
   public setSession(jwt: string) {
     localStorage.setItem('jwt', jwt);
-    this.getUser('me').then(apiResponse => {
-      localStorage.setItem('jwt', jwt);
+    this.getUserInfo().then(apiResponse => {
+      for (const attr in apiResponse) {
+        localStorage.setItem(attr, apiResponse[attr]);
+      }
     }, err => {
       console.error(err);
       this.signOut();
@@ -49,8 +51,25 @@ export class AccountService {
     return localStorage.getItem('jwt') != null;
   }
 
+  public getConnectedUserRole(): string {
+    return localStorage.getItem('role');
+  }
+
+  public getConnectedUsername(): string {
+    return localStorage.getItem('username');
+  }
+
+  public getConnectedUserId(): number {
+    const id = localStorage.getItem('id');
+    return id === null ? null : +id;
+  }
+
   public getMine(): Promise<any> {
     return this.http.get(environment.apiURL + '/account/me').toPromise();
+  }
+
+  public getUserInfo(): Promise<any> {
+    return this.http.get(environment.apiURL + '/account/my-info').toPromise();
   }
 
   public updateProfilePicture(uploadedPicture: File) {
