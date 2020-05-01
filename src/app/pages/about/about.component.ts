@@ -1,12 +1,10 @@
-import {Component, OnInit, ViewChild, NgModule} from '@angular/core';
-import {IImage} from 'ng-simple-slideshow';
-import {PageService} from '../../services/page.service';
+import {Component, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { AboutService } from 'src/app/services/about.service';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-import { Section, HTMLSection } from 'src/app/models/sections';
-import { EventTile } from 'src/app/models/event.tile';
+import {AboutService} from 'src/app/services/about.service';
+import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
+import {HTMLSection, Section} from 'src/app/models/sections';
+import {EventTile} from 'src/app/models/event.tile';
 
 
 @Component({
@@ -17,25 +15,26 @@ import { EventTile } from 'src/app/models/event.tile';
 export class AboutComponent implements OnInit {
 
   public editor = ClassicEditor;
-  private editorBool : boolean = false;
-  private editorData : string;
-  private splitData : string[];
-  private agenda : Section;
-  private intro : HTMLSection;
-  private slides_about : Section;
-  private sponsors : Section;
-  private photos : File[];
-  private evenements : EventTile[];
+  private editorBool = false;
+  private editorData: string;
+  private splitData: string[];
+  private agenda: Section;
+  private intro: HTMLSection;
+  private slides_about: Section;
+  private sponsors: Section;
+  private photos: File[];
+  private evenements: EventTile[];
   private sponsorList: EventTile[];
 
   private backgroundImages: (string)[] = [];
 
   constructor(
-    private aboutService : AboutService,
-  ) { }
+    private aboutService: AboutService,
+  ) {
+  }
 
   ngOnInit() {
-   this.getAbout();
+    this.getAbout();
   }
 
   async getAbout() {
@@ -66,8 +65,8 @@ export class AboutComponent implements OnInit {
   }
 
   caroussel(photos) {
-    var i : number = 0;
-    for(let photo of photos) {
+    var i: number = 0;
+    for (let photo of photos) {
       this.backgroundImages[i] = environment.apiURL + photo.fullPath;
       i++;
     }
@@ -76,22 +75,24 @@ export class AboutComponent implements OnInit {
   goToPartenaire() {
     console.log("Vous venez de cliquer sur un partenaire. Une fonction sera bientôt implémentaire pour cela.");
   }
-  
+
 
   showEditor() {
     this.editorBool = true;
   }
 
-  onChange( { editor }: ChangeEvent ) {
+  onChange({editor}: ChangeEvent) {
     this.editorData = editor.getData();
-    console.log(  this.editorData );
+    console.log(this.editorData);
   }
 
-  save(){
+  save() {
     this.editorBool = false;
     this.intro.html = this.editorData;
     this.aboutService.updatePresentation(this.intro).toPromise().then(
-      res => {console.log("Succes")}
+      res => {
+        console.log("Succes");
+      }
     ).catch();
   }
 

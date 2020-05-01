@@ -1,14 +1,14 @@
 <!-- Conteneur générale en Colonne-->
 <div flexLayout="column" class="about-container">
   <!-- Carousel -->
-  <div class="caroussel" >
+  <div class="caroussel">
     <!-- editable-element
     [hide]="backgroundImages.length == 0" (onEdit)="callback()"
                       [class.no-background]="backgroundImages.length == 0"-->
     <div class="main-title">
       <slideshow #slideshow *ngIf="backgroundImages.length > 0"
-        [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
-        minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
+                 [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
+                 minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
       </slideshow>
       <div *ngIf="backgroundImages.length === 0" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
@@ -19,13 +19,15 @@
   <!-- Deuxième conteneur en ligne -->
   <div class="low-mock-up" fxLayout="row">
     <!-- Agenda -->
-    <div fxFlex="25" class="agenda" #actions >
+    <div fxFlex="25" class="agenda" #actions>
       <h2 class="title">Agenda</h2>
 
       <div class="box" *ngFor="let e of evenements">
         <mat-card class="event">
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image" [ngStyle]="{'background': 'url('+ 'https://fustel-api.rookie.red' + e.photo.fullPath +')'}" style="background-position: top center; background-size: cover;" ></div>
+            <div mat-card-avatar class="example-header-image"
+                 [ngStyle]="{'background': 'url('+ 'https://fustel-api.rookie.red' + e.photo.fullPath +')'}"
+                 style="background-position: top center; background-size: cover;"></div>
             <mat-card-title>{{e.title}}</mat-card-title>
             <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
           </mat-card-header>
@@ -42,49 +44,54 @@
     </div>
 
     <!-- Troisième conteneur en colonne -->
-    <div fxLayout="column" fxFlex="75"  class="low-right-mock-up">
+    <div fxLayout="column" fxFlex="75" class="low-right-mock-up">
       <!-- Présentation -->
       <div fxFlex="auto" class="presentation">
         <div class="title">
           <h2>Qui nous sommes</h2>
         </div>
-          <div class="presentation" *ngIf="!editorBool">
-            <div class="content" #whoAreWe>
-              <!--<img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>-->
-              <p [innerHTML]="editorData">
-              </p>
-            </div>
-            <div class="edit-button">
-              <button mat-raised-button (click)="showEditor()">Editer la présentation</button>
-            </div>
+        <div class="presentation" *ngIf="!editorBool">
+          <div class="content" #whoAreWe>
+            <!--<img class="logo-alfy" align="right" src="/assets/img/logo-alfy.jpg"/>-->
+            <p [innerHTML]="editorData">
+            </p>
           </div>
+          <div class="edit-button">
+            <button mat-raised-button (click)="showEditor()">Editer la présentation</button>
+          </div>
+        </div>
 
-          <div class="editor" *ngIf="editorBool">
-            <ckeditor [editor]="editor" (change)="onChange($event)" data="{{editorData}}">
+        <div class="editor" *ngIf="editorBool">
+          <ckeditor [editor]="editor" (change)="onChange($event)" data="{{editorData}}">
 
-            </ckeditor>
-            <div class="edit-button">
-              <button mat-raised-button (click)="save()">Enregistrer les modifications</button>
-            </div>
+          </ckeditor>
+          <div class="edit-button">
+            <button mat-raised-button (click)="save()">Enregistrer les modifications</button>
+          </div>
         </div>
 
       </div>
       <!-- Actualité -->
       <div fxFlex="auto" class="actualites">
-        <div class="title" >
+        <div class="title">
           <h2>Actualites</h2>
-          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Falfyaounde%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Falfyaounde%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+            width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+            allowTransparency="true" allow="encrypted-media"></iframe>
         </div>
       </div>
       <!-- Partenaire -->
       <div class="partenaires">
-        <div class="title" >
+        <div class="title">
           <h2>Partenaires</h2>
         </div>
 
         <div class="logos">
           <div class="logo" *ngFor="let s of sponsorList">
-            <a href="{{s.link}}"><img [ngStyle]="{'content': 'url('+ 'https://fustel-api.rookie.red' + s.photo.fullPath +')'}" alt="Avatar Sponsor"></a>
+            <a href="{{s.link}}"><img
+              [ngStyle]="{'content': 'url('+ 'https://fustel-api.rookie.red' + s.photo.fullPath +')'}"
+              alt="Avatar Sponsor"></a>
             <br/>
             <span>{{s.title}}</span>
           </div>

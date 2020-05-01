@@ -3,7 +3,7 @@ export class Faq {
   public sections: Section[];
 
 
-  public constructor(obj?: {name?: string, sections?: {[key: string]: Section}, }) {
+  public constructor(obj?: { name?: string, sections?: { [key: string]: Section }, }) {
     if (obj != null) {
       this.name = obj.name;
       this.sections = Object.values(obj.sections);
@@ -23,16 +23,17 @@ export class Section {
   public orderIndex: number;
   public categories: Category[];
 
-  public constructor(obj?: {html?: string,
-                            files: string[],
-                            type: string,
-                            id: number,
-                            updatedAt: string,
-                            lastWriter: string,
-                            title: string,
-                            orderIndex: number,
-                            categories: Category[],
-                           }) {
+  public constructor(obj?: {
+    html?: string,
+    files: string[],
+    type: string,
+    id: number,
+    updatedAt: string,
+    lastWriter: string,
+    title: string,
+    orderIndex: number,
+    categories: Category[],
+  }) {
     if (obj != null) {
       this.html = obj.html;
       this.files = obj.files;
@@ -55,19 +56,21 @@ export class Category {
   orderIndex: number;
   questions: Question[];
 
-  public constructor(obj?: {id?: number,
+  public constructor(obj?: {
+    id?: number,
     name?: string,
     description?: string,
     orderIndex?: number,
-    questions?: Question[]}) {
-      if (obj != null) {
-        this.id = obj.id;
-        this.name = obj.name;
-        this.description = obj.description;
-        this.orderIndex = obj.orderIndex;
-        this.questions = obj.questions;
-      }
+    questions?: Question[]
+  }) {
+    if (obj != null) {
+      this.id = obj.id;
+      this.name = obj.name;
+      this.description = obj.description;
+      this.orderIndex = obj.orderIndex;
+      this.questions = obj.questions;
     }
+  }
 }
 
 export class CategoryUpdate {
@@ -77,19 +80,21 @@ export class CategoryUpdate {
   orderIndex: number;
   sectionId: number;
 
-  public constructor(obj?: {id?: number,
+  public constructor(obj?: {
+    id?: number,
     name?: string,
     description?: string,
     orderIndex?: number,
-    sectionId?: number}) {
-      if (obj != null) {
-        this.id = obj.id;
-        this.name = obj.name;
-        this.description = obj.description;
-        this.orderIndex = obj.orderIndex;
-        this.sectionId = obj.sectionId;
-      }
+    sectionId?: number
+  }) {
+    if (obj != null) {
+      this.id = obj.id;
+      this.name = obj.name;
+      this.description = obj.description;
+      this.orderIndex = obj.orderIndex;
+      this.sectionId = obj.sectionId;
     }
+  }
 }
 
 export class CategoryAdd {
@@ -97,15 +102,17 @@ export class CategoryAdd {
   description: string;
   sectionId: number;
 
-  public constructor(obj?: {name?: string,
+  public constructor(obj?: {
+    name?: string,
     description?: string,
-    sectionId?: number}) {
-      if (obj != null) {
-        this.name = obj.name;
-        this.description = obj.description;
-        this.sectionId = obj.sectionId;
-      }
+    sectionId?: number
+  }) {
+    if (obj != null) {
+      this.name = obj.name;
+      this.description = obj.description;
+      this.sectionId = obj.sectionId;
     }
+  }
 }
 
 export class Question {
@@ -113,15 +120,17 @@ export class Question {
   question: string;
   answer: string;
 
-  public constructor(obj?: {id?: number,
+  public constructor(obj?: {
+    id?: number,
     question?: string,
-    answer?: string,}) {
-      if (obj != null) {
+    answer?: string,
+  }) {
+    if (obj != null) {
       this.id = obj.id;
       this.question = obj.question;
       this.answer = obj.answer;
-      }
     }
+  }
 }
 
 export class QuestionAdd {
@@ -132,13 +141,14 @@ export class QuestionAdd {
   public constructor(obj?: {
     question?: string,
     answer?: string,
-    categoryId?: number, }) {
-      if (obj != null) {
+    categoryId?: number,
+  }) {
+    if (obj != null) {
       this.question = obj.question;
       this.answer = obj.answer;
       this.categoryId = obj.categoryId;
-      }
     }
+  }
 }
 
 export class QuestionUpdate {
@@ -147,17 +157,19 @@ export class QuestionUpdate {
   answer: string;
   categoryId: number;
 
-  public constructor(obj?: {id?: number,
+  public constructor(obj?: {
+    id?: number,
     question?: string,
     answer?: string,
-    categoryId?: number,}) {
-      if (obj != null) {
+    categoryId?: number,
+  }) {
+    if (obj != null) {
       this.id = obj.id;
       this.question = obj.question;
       this.answer = obj.answer;
       this.categoryId = obj.categoryId;
-      }
     }
+  }
 }
 
 

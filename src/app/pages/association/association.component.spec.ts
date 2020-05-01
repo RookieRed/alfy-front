@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AssociationComponent } from './association.component';
+import {AssociationComponent} from './association.component';
 
 describe('AssociationComponent', () => {
   let component: AssociationComponent;
@@ -8,9 +8,9 @@ describe('AssociationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AssociationComponent ]
+      declarations: [AssociationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

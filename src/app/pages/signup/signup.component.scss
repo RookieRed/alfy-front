@@ -12,7 +12,7 @@
   margin-top: 3px !important;
 }
 
-mat-option{
+mat-option {
   white-space: pre-line;
   line-height: 27px !important;
   height: auto !important;
@@ -35,7 +35,7 @@ mat-option{
   }
 
   mat-form-field {
-    width: 400px;    
+    width: 400px;
   }
 
   .action-buttons {
@@ -43,20 +43,19 @@ mat-option{
       margin: 10px 10px;
     }
   }
-    
-  
+
 
 }
 
 @media only screen and (max-width: 500px) {
 
-      mat-form-field {
-            width: 300px !important;    
-        }
-          
-        .action-buttons {
-          button {
-            margin: 10px 70px !important;
-          }
-        }
+  mat-form-field {
+    width: 300px !important;
+  }
+
+  .action-buttons {
+    button {
+      margin: 10px 70px !important;
+    }
+  }
 }

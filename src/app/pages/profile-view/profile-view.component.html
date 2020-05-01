@@ -2,10 +2,11 @@
      style="background-image: url('/assets/img/connection-background.jpg'); background-repeat: round">
   <div fxLayout="column" class="container" fxFlex="60" style="background-color: white;">
     <div class="pictures">
-      <div class="backround-picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}" style="background-position: top center; background-size: cover;">
-        <img *ngIf="exists(pathProfilePicture); else elseBlock" class="profile-pic" src={{pathProfilePicture}} />
+      <div class="backround-picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}"
+           style="background-position: top center; background-size: cover;">
+        <img *ngIf="exists(pathProfilePicture); else elseBlock" class="profile-pic" src={{pathProfilePicture}}/>
         <ng-template #elseBlock>
-          <img class="profile-pic" src="/assets/img/default-avatar.png" />
+          <img class="profile-pic" src="/assets/img/default-avatar.png"/>
         </ng-template>
       </div>
 
@@ -28,9 +29,10 @@
           <a href={{email}} *ngIf="exists(email);"> <img src="/assets/img/about/logoEmail.png" alt="Lien Email"
                                                          width="38"
                                                          height="38" hspace="10"> </a>
-          <a href={{linkedIn}} *ngIf="exists(linkedIn);"> <img src="/assets/img/about/logoLinkedin.png" alt="Lien Linkedin"
-                                                         width="38"
-                                                         height="38" hspace="10"> </a>
+          <a href={{linkedIn}} *ngIf="exists(linkedIn);"> <img src="/assets/img/about/logoLinkedin.png"
+                                                               alt="Lien Linkedin"
+                                                               width="38"
+                                                               height="38" hspace="10"> </a>
         </div>
       </div>
 

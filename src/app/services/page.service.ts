@@ -10,13 +10,14 @@ export class PageService {
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+  }
 
   public getPage(pageName: string): Promise<any> {
     return this.http.get(environment.apiURL + '/pages/' + pageName).toPromise();
   }
 
-  public  uploadFile(pageName: string, uploadedPicture: File) {
+  public uploadFile(pageName: string, uploadedPicture: File) {
     const form = new FormData();
     form.append('file', uploadedPicture, uploadedPicture.name);
     return this.http.post(environment.apiURL + '/pages/' + pageName + '/file', form).toPromise();

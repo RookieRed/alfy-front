@@ -8,8 +8,8 @@ export class Project {
   details: string;
 
 
-  constructor(obj?: {startedAt: Date | Moment, endedAt: Date | Moment, title: string, details: string}) {
-    if ( obj != null ) {
+  constructor(obj?: { startedAt: Date | Moment, endedAt: Date | Moment, title: string, details: string }) {
+    if (obj != null) {
       this.startedAt = obj.startedAt;
       this.endedAt = obj.endedAt;
       this.title = obj.title;

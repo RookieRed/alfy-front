@@ -1,9 +1,8 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AccountService} from "../../services/account.service";
-import {AppRoutingModule} from "../../app-routing.module";
 import {AuthGuard} from "../auth.guard";
 import {Router} from "@angular/router";
-import {BreakpointObserver, BreakpointState, MediaMatcher} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-header',
@@ -16,22 +15,22 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   shownMenuLinks: Link[] = [];
   readonly menuLinks: Link[] = [
-    { link: '/about', name: 'Accueil' },
-    { link: '/directory', name: 'Annuaire' },
-    { link: '/admin/students', name: 'Gestion des utilisateurs' },
-    { link: '/profile/edit', name: 'Mon compte' },
-    { link: '/signout', name: 'Se déconnecter' },
-    { link: '/signin', name: 'Se connecter' },
+    {link: '/about', name: 'Accueil'},
+    {link: '/directory', name: 'Annuaire'},
+    {link: '/admin/students', name: 'Gestion des utilisateurs'},
+    {link: '/profile/edit', name: 'Mon compte'},
+    {link: '/signout', name: 'Se déconnecter'},
+    {link: '/signin', name: 'Se connecter'},
     //{ link: '/profileview/{id}', name: 'Profil' },
     // { link: '/signup', name: 'Inscription' },
   ];
 
   readonly tabsLinks: Link[] = [
-    { link: '/about', name: 'Accueil' },
-    { link: '/association', name: 'L\'association' },
-    { link: '/high-school', name: 'Le lycée' },
-    { link: '/faq', name: 'FAQ' },
-    { link: '/profileview/{id}', name: 'Profil' },
+    {link: '/about', name: 'Accueil'},
+    {link: '/association', name: 'L\'association'},
+    {link: '/high-school', name: 'Le lycée'},
+    {link: '/faq', name: 'FAQ'},
+    {link: '/profileview/{id}', name: 'Profil'},
   ];
   isSmallScreen: boolean;
 
@@ -46,7 +45,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   public toggleMenu() {
-    this.isMenuOpened = ! this.isMenuOpened;
+    this.isMenuOpened = !this.isMenuOpened;
   }
 
   public signout() {

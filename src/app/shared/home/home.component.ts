@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account.service";
 import {AuthGuard} from "../auth.guard";
 import {Router} from "@angular/router";
@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
     private accountService: AccountService,
     private auth: AuthGuard,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   async ngOnInit() {
     if (this.accountService.isUserConnected()) {

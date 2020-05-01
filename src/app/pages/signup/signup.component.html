@@ -1,6 +1,6 @@
-  <div class="login-container" align="center">
+<div class="login-container" align="center">
   <mat-card color="accent">
-    <div layout="column" >
+    <div layout="column">
       <div flex>
         <mat-card-title>Formulaire d'inscription</mat-card-title>
       </div>
@@ -36,14 +36,15 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="multi-year" [startAt]="calendarStartDate"></mat-datepicker>
           </mat-form-field>
-        </div> 
+        </div>
 
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obtention du Bac" type="number" [min]="1967" [max]="9999">
+            <input (input)="checkValidity()" formControlName="bacYear" matInput placeholder="Année d'obtention du Bac"
+                   type="number" [min]="1967" [max]="9999">
           </mat-form-field>
         </div>
-      
+
         <div class="row" flex>
           <mat-form-field>
             <input (input)="checkValidity()" formControlName="username" matInput placeholder="Identifiant" type="text">
@@ -58,19 +59,22 @@
 
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="emailConfirm" matInput placeholder="Confirmation de l'adresse mail" type="email">
+            <input (input)="checkValidity()" formControlName="emailConfirm" matInput
+                   placeholder="Confirmation de l'adresse mail" type="email">
           </mat-form-field>
         </div>
 
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="password" matInput placeholder="Mot de passe (doit faire plus de 6 caractères)" type="password">
+            <input (input)="checkValidity()" formControlName="password" matInput
+                   placeholder="Mot de passe (doit faire plus de 6 caractères)" type="password">
           </mat-form-field>
         </div>
 
         <div class="row" flex>
           <mat-form-field>
-            <input (input)="checkValidity()" formControlName="passwordConfirm" matInput placeholder="Confirmation du mot de passe" type="password">
+            <input (input)="checkValidity()" formControlName="passwordConfirm" matInput
+                   placeholder="Confirmation du mot de passe" type="password">
           </mat-form-field>
         </div>
 
@@ -85,13 +89,14 @@
                   (+{{raisons.value.length - 1}} {{raisons.value?.length === 2 ? 'other' : 'others'}})
                 </span>
               </mat-select-trigger>
-              <mat-option *ngFor="let raison of raisonList" (click)="textZoneMotivation(raison)" [value]="raison">{{raison}}</mat-option>
-             </mat-select>
+              <mat-option *ngFor="let raison of raisonList" (click)="textZoneMotivation(raison)"
+                          [value]="raison">{{raison}}</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
 
-        <form *ngIf="textZone">        
-          <mat-form-field >
+        <form *ngIf="textZone">
+          <mat-form-field>
             <textarea matInput placeholder="Expliquez ici vos motivations"></textarea>
           </mat-form-field>
         </form>
@@ -99,14 +104,15 @@
         <div>
           <mat-card-content>
             <section>
-              <mat-checkbox name="checked_politique_conf">J'accepte les conditions de la politique de fidélité</mat-checkbox>
+              <mat-checkbox name="checked_politique_conf">J'accepte les conditions de la politique de fidélité
+              </mat-checkbox>
             </section>
           </mat-card-content>
         </div>
         <div>
           <mat-card-content>
             <section>
-              <mat-checkbox name="checked_newsletter" >Je  souhaite  m'inscrire  à  la  Newsletter</mat-checkbox>
+              <mat-checkbox name="checked_newsletter">Je souhaite m'inscrire à la Newsletter</mat-checkbox>
             </section>
           </mat-card-content>
         </div>
@@ -115,13 +121,15 @@
           <p class="mat-error">{{ error }}</p>
         </div>
 
-        <div class="row action-buttons"  *ngIf="!loading" flex>
+        <div class="row action-buttons" *ngIf="!loading" flex>
           <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
-          <button mat-flat-button color="accent" onclick="location.href='http://localhost:4200/about';" >Retour</button>  
-          <button mat-flat-button color="accent" routerLink="/signin" >Se connecter</button>
-          <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary" [disabled]="!form.valid">Soumettre</button>
+          <button mat-flat-button color="accent" onclick="location.href='http://localhost:4200/about';">Retour</button>
+          <button mat-flat-button color="accent" routerLink="/signin">Se connecter</button>
+          <button mat-flat-button [autofocus]="form" type="submit" (click)="submitForm()" color="primary"
+                  [disabled]="!form.valid">Soumettre
+          </button>
         </div>
-       
+
         <div *ngIf="loading">
           <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
         </div>

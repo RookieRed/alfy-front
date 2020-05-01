@@ -1,25 +1,25 @@
 .title {
-    font-size: xx-large;
-    text-align: center;
+  font-size: xx-large;
+  text-align: center;
 }
 
 .introduction {
-    font-size: large;
-    text-align: center;
+  font-size: large;
+  text-align: center;
 }
 
 
 .question {
-    //margin-left: 25px;
-    font-style: italic;
-    font-size: large;
-    display: block;
-    font-weight: bold;
+  //margin-left: 25px;
+  font-style: italic;
+  font-size: large;
+  display: block;
+  font-weight: bold;
 }
 
 .answer {
-    margin-left: 125px;
-    font-size: large;
+  margin-left: 125px;
+  font-size: large;
 }
 
 .questionInput {
@@ -31,7 +31,7 @@
 }
 
 .answerInput {
- //margin-left: 110px;
+  //margin-left: 110px;
   font-size: large;
   width: 100%;
 }
@@ -47,65 +47,68 @@
 }
 
 ::ng-deep .addButton {
-  height:40px !important;
-  width:40px !important;
-  font-size:40px !important;
+  height: 40px !important;
+  width: 40px !important;
+  font-size: 40px !important;
 }
 
 .category {
-    width : 100%;
-    font-size: larger;
-    font-weight: bold;
-    /*button{
-        float: right;
-    } */
+  width: 100%;
+  font-size: larger;
+  font-weight: bold;
+  /*button{
+      float: right;
+  } */
 }
 
 .cat {
-    margin: auto;
-    width: 80%;
-    padding: 10px;
-    overflow:hidden;
-    .buttonEdit {
-        position: relative;
-    }
-    .arrows {
-      display: block;
-    }
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+  overflow: hidden;
+
+  .buttonEdit {
+    position: relative;
+  }
+
+  .arrows {
+    display: block;
+  }
 }
 
 .validation {
-    float: right;
-    margin-bottom: 25px;
-    margin-left: 25px;
-    margin-top: 25px;
+  float: right;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  margin-top: 25px;
 }
 
 .buttonAddCategory {
-    //display: block;
-    //margin: auto;
-    text-align: center;
+  //display: block;
+  //margin: auto;
+  text-align: center;
 }
+
 .categoryInputName {
-    font-style: italic;
-    font-size: large;
-    display: block;
-    width: 100%;
+  font-style: italic;
+  font-size: large;
+  display: block;
+  width: 100%;
 }
 
 mat-expansion-panel {
-    width: 100%;
+  width: 100%;
 }
 
-mat-expansion-panel-header{
-    white-space: pre-line !important;
-    height: auto !important;
+mat-expansion-panel-header {
+  white-space: pre-line !important;
+  height: auto !important;
 }
 
 @media only screen and (max-width: 500px) {
 
-    p.answer {
-        margin-left: 0px;
-    }
+  p.answer {
+    margin-left: 0px;
+  }
 }
 

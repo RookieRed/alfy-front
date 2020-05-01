@@ -57,16 +57,16 @@ $item-height: 40px;
       width: 100%;
       flex: 2;
 
-        mat-form-field {
-          min-width: 250px;
-          width: 50%;
-          max-width: 600px;
-          transition: width 0.3s ease-in-out;
+      mat-form-field {
+        min-width: 250px;
+        width: 50%;
+        max-width: 600px;
+        transition: width 0.3s ease-in-out;
 
-          &:focus-within {
-            transition: width 0.3s ease-in-out;
-            width: 80%;
-          }
+        &:focus-within {
+          transition: width 0.3s ease-in-out;
+          width: 80%;
+        }
       }
     }
   }

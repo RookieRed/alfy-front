@@ -12,7 +12,7 @@ export class Study {
   notation: number;
 
 
-  constructor(obj?: {id: number, type: string, university: University, startedAt: Date | Moment, monthsDuration: number, comment: string, notation: number}) {
+  constructor(obj?: { id: number, type: string, university: University, startedAt: Date | Moment, monthsDuration: number, comment: string, notation: number }) {
     if (obj != null) {
       this.id = obj.id;
       this.type = obj.type;

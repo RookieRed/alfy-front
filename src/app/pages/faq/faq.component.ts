@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormBuilder, MaxLengthValidator} from '@angular/forms';
-import { FaqService } from '../../services/faq.service';
-import { Faq, Category, Question, QuestionAdd, QuestionUpdate, CategoryAdd, CategoryUpdate} from '../../models/pageFaq';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {FaqService} from '../../services/faq.service';
+import {Category, CategoryAdd, CategoryUpdate, Faq, Question, QuestionAdd, QuestionUpdate} from '../../models/pageFaq';
 
 
 @Component({
@@ -47,29 +47,29 @@ export class FaqComponent implements OnInit {
     //this.sortQuestions();
   }
 
-  async  ngOnInit() {
+  async ngOnInit() {
     await this.getFaq();
     this.questionForm = this.fb.group({
       newQuestion: [],
       newAnswer: [],
-    })
+    });
     this.modifQuestionForm = this.fb.group({
       modifQuestion: [],
       modifAnswer: [],
-    })
+    });
     this.categoryForm = this.fb.group({
       newCategoryName: [],
-    })
+    });
     this.modifCategoryForm = this.fb.group({
       modifCategoryName: [],
-    })
+    });
   }
 
   // Function for buttons
 
   //________________CATEGORIES___________
 
-  categoryModifZone(categorie) {                          
+  categoryModifZone(categorie) {
     // Affichage de la zone de modification
     this.categoryListOE.push(categorie);
     this.panelOpenState = true;
@@ -81,12 +81,12 @@ export class FaqComponent implements OnInit {
     this.categoryListOE.splice(index, 1);
   }
 
-  saveUpdateCategory(categorie) {                      
+  saveUpdateCategory(categorie) {
     // Enregistre les modifications
     if (this.modifCategoryForm.value.modifCategoryName == null) {
-      this.modifCategoryForm.value.modifCategoryName = categorie.name ;
+      this.modifCategoryForm.value.modifCategoryName = categorie.name;
     }
-    categorie.name  = this.modifCategoryForm.value.modifCategoryName;
+    categorie.name = this.modifCategoryForm.value.modifCategoryName;
 
     var categorieUpdate = new CategoryUpdate();
     categorieUpdate.id = categorie.id;
@@ -95,8 +95,11 @@ export class FaqComponent implements OnInit {
     categorieUpdate.sectionId = 7;
 
     this.faqService.updateCategory(categorieUpdate).toPromise().then(
-      res => {var index = this.categories.indexOf(categorie);
-        this.categories.splice(index, 1, res);return res;}).catch();
+      res => {
+        var index = this.categories.indexOf(categorie);
+        this.categories.splice(index, 1, res);
+        return res;
+      }).catch();
 
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
@@ -105,7 +108,10 @@ export class FaqComponent implements OnInit {
   // Suppression d'une categorie
   deleteCategory(categorie) {
     this.faqService.deleteCategory(categorie).toPromise().then(
-      res => {this.categories = this.categories.filter(category => category.id != categorie.id);return res;}).catch();
+      res => {
+        this.categories = this.categories.filter(category => category.id != categorie.id);
+        return res;
+      }).catch();
   }
 
   // Ajout d'une categorie
@@ -125,11 +131,14 @@ export class FaqComponent implements OnInit {
       return;
     }
     var newCategory = new CategoryAdd();
-    newCategory.name =  this.categoryForm.value.newCategoryName;
+    newCategory.name = this.categoryForm.value.newCategoryName;
     newCategory.description = null;
     newCategory.sectionId = 7;
     var result = this.faqService.addCategory(newCategory).toPromise().then(
-      res => {this.categories.push(res) ;return res;}).catch();
+      res => {
+        this.categories.push(res);
+        return res;
+      }).catch();
     this.categorieAdd = false;
   }
 
@@ -144,7 +153,7 @@ export class FaqComponent implements OnInit {
   saveUpdateQuestion(categorie, question) {
     // Enregistre les modifications
     if (this.modifQuestionForm.value.modifQuestion == null) {
-      this.modifQuestionForm.value.modifQuestion = question.question ;
+      this.modifQuestionForm.value.modifQuestion = question.question;
     }
     if (this.modifQuestionForm.value.modifAnswer == null) {
       this.modifQuestionForm.value.modifAnswer = question.answer;
@@ -156,14 +165,17 @@ export class FaqComponent implements OnInit {
     questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
     questionUpdate.categoryId = categorie.id;
     this.faqService.updateQuestion(questionUpdate).toPromise().then(
-      res => {var index = this.categories.indexOf(categorie);
-        categorie.questions.forEach (questionFor => { 
-          if (questionFor.id == questionUpdate.id){
+      res => {
+        var index = this.categories.indexOf(categorie);
+        categorie.questions.forEach(questionFor => {
+          if (questionFor.id == questionUpdate.id) {
             var index2 = categorie.questions.indexOf(questionFor);
-            categorie.questions.splice(index2, 1, res)
+            categorie.questions.splice(index2, 1, res);
           }
         });
-        this.categories.splice(index, 1, categorie);return res;}).catch();
+        this.categories.splice(index, 1, categorie);
+        return res;
+      }).catch();
 
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
@@ -178,17 +190,21 @@ export class FaqComponent implements OnInit {
   // Suppression d'une question
   deleteQuestion(categorie, question) {
     this.faqService.deleteQuestion(question).toPromise().then(
-      res => {var index = this.categories.indexOf(categorie);
+      res => {
+        var index = this.categories.indexOf(categorie);
         categorie.questions = categorie.questions.filter(questionFor => questionFor.id != question.id);
-        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+        this.categories.splice(index, 1, categorie);
+        return res;
+      }).catch();
   }
- 
+
 
   // Ajout d'une question
   questionZoneAdd(categorie) {
     // Affichage de la zone d'ajout d'une question
     this.categoriesAddQuestion.push(categorie.id);
   }
+
   validationAddQuestion(categorie) {
     // Validation de la nouvelle question
     if (this.questionForm.value.newQuestion == null) {
@@ -200,20 +216,23 @@ export class FaqComponent implements OnInit {
       return;
     }
     var newQuestion = new QuestionAdd();
-    newQuestion.question =  this.questionForm.value.newQuestion;
+    newQuestion.question = this.questionForm.value.newQuestion;
     newQuestion.answer = this.questionForm.value.newAnswer;
     newQuestion.categoryId = categorie.id;
     this.faqService.addQuestion(newQuestion).toPromise().then(
-      res => {var index = this.categories.indexOf(categorie);
+      res => {
+        var index = this.categories.indexOf(categorie);
         categorie.questions.push(res);
-        this.categories.splice(index, 1, categorie) ;return res;}).catch();
+        this.categories.splice(index, 1, categorie);
+        return res;
+      }).catch();
 
-    // Fais disparaitre l'espace d'édition d'une nouvelle question                    
+    // Fais disparaitre l'espace d'édition d'une nouvelle question
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);
   }
 
-  conceledAddQuestion(categorie) {                                                    
+  conceledAddQuestion(categorie) {
     // Annulation de l'ajout
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
     this.categoriesAddQuestion.splice(index, 1);

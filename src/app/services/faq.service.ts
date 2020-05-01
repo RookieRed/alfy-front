@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
-import { Faq, Category, Question,  QuestionAdd, QuestionUpdate, CategoryUpdate, CategoryAdd} from '../models/pageFaq';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {Category, CategoryAdd, CategoryUpdate, Question, QuestionAdd, QuestionUpdate} from '../models/pageFaq';
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -11,19 +11,21 @@ export class FaqService {
 
   constructor(
     private http: HttpClient
-    ) { }
+  ) {
+  }
 
   public getFAQ() {
-    return this.http.get(environment.apiURL + '/pages/faq' ).toPromise();
+    return this.http.get(environment.apiURL + '/pages/faq').toPromise();
   }
 
   public updateQuestion(question: QuestionUpdate): Observable<Question> {
     return this.http.post<Question>(environment.apiURL + '/faq/questions', question);
   }
+
   public updateCategory(category: CategoryUpdate): Observable<Category> {
     return this.http.post<Category>(environment.apiURL + '/faq/categories', category);
   }
-  
+
   public addQuestion(question: QuestionAdd): Observable<Question> {
     return this.http.put<Question>(environment.apiURL + '/faq/questions', question);
   }

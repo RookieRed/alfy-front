@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AccountService} from "../services/account.service";
 
 @Injectable({
@@ -27,7 +26,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private accountService: AccountService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const url: string = state.url;
@@ -45,24 +45,24 @@ export class AuthGuard implements CanActivate {
 
   public isEnabled(link: string) {
     return (this.accountService.isUserConnected() && this.isUserProtected(link))
-    || this.isUnprotected(link);
+      || this.isUnprotected(link);
   }
 
   private isUnprotected(link: string) {
-    return this.unprotectedLinks.some( e => {
-      return link === <string> e;
+    return this.unprotectedLinks.some(e => {
+      return link === <string>e;
     });
   }
 
   private isConnection(link: string) {
-    return this.connectionLinks.some( e => {
-      return link === <string> e;
+    return this.connectionLinks.some(e => {
+      return link === <string>e;
     });
   }
 
   private isUserProtected(link: string) {
-    return this.userProtectedLinks.some( e => {
-      return link === <string> e;
+    return this.userProtectedLinks.some(e => {
+      return link === <string>e;
     });
   }
 }

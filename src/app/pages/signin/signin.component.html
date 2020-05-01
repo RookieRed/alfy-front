@@ -1,39 +1,43 @@
 <div class="login-container" align="center">
 
-<mat-card color="accent">
-  <div layout="column">
-    <div flex>
-      <mat-card-title>Connectez vous</mat-card-title>
+  <mat-card color="accent">
+    <div layout="column">
+      <div flex>
+        <mat-card-title>Connectez vous</mat-card-title>
+      </div>
+
+      <form [formGroup]="form">
+        <div class="row" flex>
+          <mat-form-field>
+            <input [formControl]="form.controls.username" (input)="checkValidity()" (blur)="checkValidity()" matInput
+                   placeholder="Identifiant" type="text" name="username">
+          </mat-form-field>
+        </div>
+        <div class="row" flex>
+          <mat-form-field>
+            <input [formControl]="form.controls.password" (input)="checkValidity()" (blur)="checkValidity()" matInput
+                   placeholder="Mot de passe" type="password" name="password">
+          </mat-form-field>
+        </div>
+
+        <div class="row" flex>
+          <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
+        </div>
+
+        <div class="row action-buttons" flex *ngIf="!loading">
+          <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
+          <a mat-button mat-flat-button color="accent" routerLink="/">Retour</a>
+          <a mat-button mat-flat-button color="accent" routerLink="/signup">S'inscrire</a>
+          <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid"
+                  (click)="submitForm()">Connexion
+          </button>
+        </div>
+
+        <div *ngIf="loading">
+          <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+        </div>
+      </form>
     </div>
-
-    <form [formGroup]="form">
-      <div class="row" flex>
-        <mat-form-field>
-          <input [formControl]="form.controls.username" (input)="checkValidity()" (blur)="checkValidity()" matInput placeholder="Identifiant" type="text" name="username">
-        </mat-form-field>
-      </div>
-      <div class="row" flex>
-        <mat-form-field>
-          <input [formControl]="form.controls.password" (input)="checkValidity()" (blur)="checkValidity()" matInput placeholder="Mot de passe" type="password" name="password">
-        </mat-form-field>
-      </div>
-
-      <div class="row" flex>
-        <p *ngIf="error !== null" class="mat-error">{{ error }}</p>
-      </div>
-
-      <div class="row action-buttons" flex *ngIf="!loading">
-        <!-- Bouton de retour juste un lien vers localhost, a changer par la suite -->
-        <a mat-button mat-flat-button color="accent" routerLink="/">Retour</a>
-        <a mat-button mat-flat-button color="accent" routerLink="/signup" >S'inscrire</a>
-        <button mat-flat-button [autofocus]="form" type="submit" color="primary" [disabled]="!form.valid" (click)="submitForm()">Connexion</button>
-      </div>
-
-      <div *ngIf="loading">
-        <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
-      </div>
-    </form>
-  </div>
-</mat-card>
+  </mat-card>
 
 </div>

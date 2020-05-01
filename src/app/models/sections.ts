@@ -8,9 +8,9 @@ export class Section extends TimedWritableContent {
   // Permet de savoir si la Section est de type HTML, Slides, FAQ ou EventTiles
   type: 'html' | 'faq' | 'slides' | 'tiles';
 
-  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: {id?: number, title?: string, type?: "html" | "faq" | "slides" | "tiles"}) {
+  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number, title?: string, type?: "html" | "faq" | "slides" | "tiles" }) {
     super(obj);
-    if ( obj2 != null ) {
+    if (obj2 != null) {
       this.id = obj2.id;
       this.title = obj2.title;
       this.type = obj2.type;
@@ -23,9 +23,9 @@ export class Section extends TimedWritableContent {
 export class HTMLSection extends Section {
   html: string;
 
-  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: {html: string}) {
+  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: { html: string }) {
     super(obj, obj2);
-    if (obj3 != null ) {
+    if (obj3 != null) {
       this.html = obj3.html;
     }
   }
@@ -37,9 +37,9 @@ export class SlidesShowSection extends Section {
   photos: File[];
 
 
-  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: {photos?: File[]}) {
+  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: { photos?: File[] }) {
     super(obj, obj2);
-    if ( obj3 != null ) {
+    if (obj3 != null) {
       this.photos = obj3.photos;
     }
   }
@@ -50,9 +50,9 @@ export class SlidesShowSection extends Section {
 export class EventsTilesSection extends Section {
   events: EventTile[];
 
-  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: {events?: EventTile[]}) {
+  constructor(obj?: { createdAt?: Date; updatedAt?: Date; lastWriter?: User }, obj2?: { id?: number; title?: string; type?: "html" | "faq" | "slides" | "tiles" }, obj3?: { events?: EventTile[] }) {
     super(obj, obj2);
-    if( obj3 != null ) {
+    if (obj3 != null) {
       this.events = obj3.events;
     }
   }

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 import {User} from "../models/user";
 
 @Injectable({
@@ -84,7 +84,7 @@ export class AccountService {
   }
 
   public update(userBean: User): Promise<any> {
-    const payload = <any> Object.assign({}, userBean);
+    const payload = <any>Object.assign({}, userBean);
     delete payload.profilePicture;
     delete payload.role;
     if (payload.password == null || payload.password.length === 0) {

@@ -17,15 +17,16 @@ export class SimpleDialogComponent implements OnInit {
       closeLabel?: string,
       type?: 'error' | 'info'
     }
-    ) {
+  ) {
     if (data.closeLabel == null) {
       data.closeLabel = 'Fermer';
     }
     if (this.data.type == null) {
-      this.data.type = 'info'
+      this.data.type = 'info';
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

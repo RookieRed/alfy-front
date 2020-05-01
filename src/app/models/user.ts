@@ -28,8 +28,8 @@ export class User {
   password: string;
 
 
-  constructor(obj?: {id: number, userName: string, firstName: string, lastName: string, birthDay: Date | Moment, email: string, phone: string, role: string, profilePicture: File, coverPicture: File, facebook: string, linkedIn: string, twitter: string, instagram: string, baccalaureate: string, studies: Study[], jobTitle: string, projects: Project[], address: Address, password: string}) {
-    if ( obj != null ) {
+  constructor(obj?: { id: number, userName: string, firstName: string, lastName: string, birthDay: Date | Moment, email: string, phone: string, role: string, profilePicture: File, coverPicture: File, facebook: string, linkedIn: string, twitter: string, instagram: string, baccalaureate: string, studies: Study[], jobTitle: string, projects: Project[], address: Address, password: string }) {
+    if (obj != null) {
       this.id = obj.id;
       this.username = obj.userName;
       this.firstName = obj.firstName;

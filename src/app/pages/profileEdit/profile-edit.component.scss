@@ -12,7 +12,7 @@
   align-items: center;
   text-align: center;
 
-  &.loading{
+  &.loading {
     background-color: transparent;
   }
 
@@ -103,6 +103,7 @@
             height: auto;
             width: 105%;
           }
+
           &.tall {
             height: 105%;
             width: auto;

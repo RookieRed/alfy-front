@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
 import {StudentService} from "../../services/student.service";
 import {PaginatedResults} from "../../models/paginatedResults";
@@ -82,9 +82,9 @@ export class DirectoryComponent implements OnInit {
                 }
               });
             });
-            this.getAllStudents();
-          }
-        });
+          this.getAllStudents();
+        }
+      });
     }
   }
 

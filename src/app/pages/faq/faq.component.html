@@ -19,7 +19,7 @@
     <mat-expansion-panel-header *ngIf="!categoryListOE.includes(c)">
       <p class="category">
         {{c.name}}
-      </p>  
+      </p>
       <button mat-icon-button class="buttonEdit" (click)="categoryModifZone(c)">
         <mat-icon>
           edit
@@ -32,7 +32,7 @@
       </button>
     </mat-expansion-panel-header>
 
-    
+
     <mat-expansion-panel-header *ngIf="categoryListOE.includes(c)">
       <p class="category">
         Modification de la Catégorie
@@ -40,25 +40,25 @@
     </mat-expansion-panel-header>
     <div *ngIf="categoryListOE.includes(c)">
       <form [formGroup]="modifCategoryForm" *ngIf="categoryListOE.includes(c)">
-        <mat-form-field class = "categoryInputName">
+        <mat-form-field class="categoryInputName">
           <textarea matInput placeholder="Catégorie" formControlName="modifCategoryName" value="{{c.name}}"></textarea>
         </mat-form-field>
       </form>
-      
-      <button mat-icon-button >
+
+      <button mat-icon-button>
         <mat-icon (click)="saveUpdateCategory(c)">
           check
         </mat-icon>
       </button>
-      <button mat-icon-button  (click)="cancelModifCategory(c)">
+      <button mat-icon-button (click)="cancelModifCategory(c)">
         <mat-icon>
           close
         </mat-icon>
       </button>
     </div>
 
-    <div *ngFor = "let q of c.questions">
-      <div *ngIf = "!questionListOE.includes(q)">
+    <div *ngFor="let q of c.questions">
+      <div *ngIf="!questionListOE.includes(q)">
 
         <p class="question">
           <!--
@@ -89,7 +89,7 @@
 
         <p class="answer">{{q.answer}}</p>
       </div>
-      <div *ngIf = "questionListOE.includes(q)">
+      <div *ngIf="questionListOE.includes(q)">
         <form [formGroup]="modifQuestionForm">
           <mat-form-field class="questionInput">
             <textarea matInput placeholder="Question" formControlName="modifQuestion" value="{{q.question}}"></textarea>
@@ -110,7 +110,7 @@
         </button>
       </div>
     </div>
-    <div *ngIf = "categoriesAddQuestion.includes(c.id)">
+    <div *ngIf="categoriesAddQuestion.includes(c.id)">
       <form [formGroup]="questionForm">
         <mat-form-field class="questionInput">
           <textarea matInput placeholder="Question" formControlName="newQuestion" value=""></textarea>
@@ -133,7 +133,7 @@
         </button>
       </div>
     </div>
-    <div class="add" *ngIf = "!categoriesAddQuestion.includes(c.id)"> 
+    <div class="add" *ngIf="!categoriesAddQuestion.includes(c.id)">
       <button mat-icon-button class="addButton" (click)="questionZoneAdd(c)">
         <mat-icon class="addButton">
           add_circle_outline
@@ -141,15 +141,15 @@
       </button>
     </div>
   </mat-expansion-panel>
-  <div *ngIf = "!categorieAdd" class="buttonAddCategory"> 
+  <div *ngIf="!categorieAdd" class="buttonAddCategory">
     <button mat-flat-button (click)="categoryZoneAdd()">
-      <mat-icon >
+      <mat-icon>
         add
       </mat-icon>
       ajouter une catégorie
     </button>
   </div>
-  <div *ngIf = "categorieAdd" class="buttonAddCategory"> 
+  <div *ngIf="categorieAdd" class="buttonAddCategory">
     <form [formGroup]="categoryForm">
       <mat-form-field class="categoryInputName">
         <textarea matInput placeholder="Nouvelle Catégorie" formControlName="newCategoryName" value=""></textarea>

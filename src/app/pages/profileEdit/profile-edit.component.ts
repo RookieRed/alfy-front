@@ -1,4 +1,4 @@
-import {Component, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {AccountService} from "../../services/account.service";
@@ -33,7 +33,7 @@ export class ProfileEditComponent implements OnInit {
   pictureIsWide: boolean;
   profileError: string;
   passwordError: string;
-  pathCoverPicture : string;
+  pathCoverPicture: string;
 
   private passwordOK: boolean;
   private oldUser: User;
@@ -68,8 +68,7 @@ export class ProfileEditComponent implements OnInit {
       this.loading = false;
       this.pathCoverPicture = environment.apiURL + this.oldUser.coverPicture.fullPath;
 
-    }
-    catch (e) {
+    } catch (e) {
       this.form = null;
       this.error = e.toString();
       this.loading = false;
@@ -187,19 +186,19 @@ export class ProfileEditComponent implements OnInit {
       const loginTaken = 'Le login est déjà pris, séléctionnez en un autre';
       const serverError = 'Erreur serveur, le login n\'a pas pu être vérifié';
       this.accountService.isUsernameTaken(input)
-            .then(() => {
-              this.form.get('username').setErrors(null);
-              if (this.profileError == loginTaken || this.profileError == serverError) {
-                this.profileError = null;
-              }
-            }, (httpError: HttpErrorResponse) => {
-              this.form.get('username').setErrors({taken: true});
-              if (httpError.status === 409) {
-                this.profileError = loginTaken;
-              } else {
-                this.profileError = serverError;
-              }
-            });
+        .then(() => {
+          this.form.get('username').setErrors(null);
+          if (this.profileError == loginTaken || this.profileError == serverError) {
+            this.profileError = null;
+          }
+        }, (httpError: HttpErrorResponse) => {
+          this.form.get('username').setErrors({taken: true});
+          if (httpError.status === 409) {
+            this.profileError = loginTaken;
+          } else {
+            this.profileError = serverError;
+          }
+        });
     }
   }
 
@@ -212,21 +211,21 @@ export class ProfileEditComponent implements OnInit {
   }
 
   onImageChange(e) {
-      if (e.target.files.length > 0) {
-        this.setLoadingPicture();
-        this.uploadedPicture = e.target.files[0];
-        const fr = new FileReader();
-        fr.onload = () => {
-          this.pictureSrc = fr.result.toString();
-        };
-        fr.readAsDataURL(this.uploadedPicture);
-      }
+    if (e.target.files.length > 0) {
+      this.setLoadingPicture();
+      this.uploadedPicture = e.target.files[0];
+      const fr = new FileReader();
+      fr.onload = () => {
+        this.pictureSrc = fr.result.toString();
+      };
+      fr.readAsDataURL(this.uploadedPicture);
+    }
   }
 
   uploadPicture() {
     this.setLoadingPicture();
     this.accountService.updateProfilePicture(this.uploadedPicture)
-      .then( newImage => {
+      .then(newImage => {
           this.uploadedPicture = null;
           this.oldUser.profilePicture = (<any>newImage);
           this.pictureSrc = this.getInitialPictureSrc();
@@ -249,7 +248,7 @@ export class ProfileEditComponent implements OnInit {
           }).afterClosed().subscribe(() => {
             this.resetPicture();
           });
-      });
+        });
   }
 
   resetPicture() {
@@ -267,13 +266,13 @@ export class ProfileEditComponent implements OnInit {
 
   private setLoadingPicture() {
     this.pictureLoading = true;
-    const pictureElem = <HTMLImageElement> document.getElementById('profile-picture');
+    const pictureElem = <HTMLImageElement>document.getElementById('profile-picture');
     if (pictureElem != null) {
       pictureElem.onload = () => {
         this.pictureIsWide = pictureElem.naturalWidth / pictureElem.naturalHeight < 1;
         this.pictureLoading = false;
       };
-    } else  {
+    } else {
       this.pictureLoading = false;
     }
   }

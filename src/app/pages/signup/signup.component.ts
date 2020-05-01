@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {HttpErrorResponse} from '@angular/common/http';
-import {FormControl} from '@angular/forms';
-
 
 
 @Component({
@@ -30,14 +28,14 @@ export class SignupComponent implements OnInit, OnDestroy {
   userMatchOnServer: User;
   raisons = new FormControl();
   raisonList: string[] = ['Pour développer mon réseau',
-   'Pour chercher des futurs partenaires', 
-   'Pour s’informer sur les dernières actualités de l’association', 
-   'Pour chercher des futurs stagiaires', 
-   'Pour trouver des opportunités de travail', 
-   'Pour retrouver des anciens élèves', 
-   'Autre'];
-   textZone: boolean;
-   selectedOther: boolean;
+    'Pour chercher des futurs partenaires',
+    'Pour s’informer sur les dernières actualités de l’association',
+    'Pour chercher des futurs stagiaires',
+    'Pour trouver des opportunités de travail',
+    'Pour retrouver des anciens élèves',
+    'Autre'];
+  textZone: boolean;
+  selectedOther: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -65,11 +63,11 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public textZoneMotivation(other) {
-    if ('Autre' === other){
-      if (this.selectedOther){
+    if ('Autre' === other) {
+      if (this.selectedOther) {
         this.textZone = false;
         this.selectedOther = false;
-      }else{
+      } else {
         this.textZone = true;
         this.selectedOther = true;
       }

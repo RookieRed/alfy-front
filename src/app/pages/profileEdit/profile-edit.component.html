@@ -6,8 +6,9 @@
       <div class="block">
         <h3>Infos perso</h3>
         <div class=" personal-infos">
-          <div class="background_picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}" style="background-position: top center; background-size: cover;">
-            <div class="profile-picture" >
+          <div class="background_picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}"
+               style="background-position: top center; background-size: cover;">
+            <div class="profile-picture">
               <div class="picture-border" [ngClass]="{blur: pictureLoading}">
                 <img id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
                 <mat-progress-spinner *ngIf="pictureLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
@@ -36,7 +37,7 @@
                 <mat-icon>save</mat-icon>
               </button>
             </div>
-        </div>
+          </div>
           <div class="row">
             <mat-form-field>
               <input matInput formControlName="firstName" type="text" placeholder="Prenom"/>

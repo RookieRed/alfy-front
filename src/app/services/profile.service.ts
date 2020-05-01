@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { AccountService } from 'src/app/services/account.service';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
 export class ProfileService {
 
   constructor(private http: HttpClient) {
-   }
+  }
 
   public getUser() {
     return this.http.get(environment.apiURL + '/account/me').toPromise();

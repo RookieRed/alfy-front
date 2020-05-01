@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SignoutComponent } from './signout.component';
+import {SignoutComponent} from './signout.component';
 
 describe('SignoutComponent', () => {
   let component: SignoutComponent;
@@ -8,9 +8,9 @@ describe('SignoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignoutComponent ]
+      declarations: [SignoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
