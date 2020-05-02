@@ -41,8 +41,57 @@ h2 {
     border-radius: 3%;
   }
 
-  &.alfy-presentation {
+  .alfy-presentation {
     background-color: white;
+
+    .main-title {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      flex-flow: column;
+      min-height: 400px;
+      background: url('/assets/img/fustel.jpg') no-repeat 50% 50%;
+      background-origin: border-box;
+      background-size: cover;
+      box-sizing: border-box;
+
+      .voile {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 20px;
+        padding-right: 50%;
+        width: 100%;
+        font-weight: bolder;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 0;
+          width: 0;
+          border-bottom: 330px solid rgba(255,255,255,0.7);
+          border-right: 800px solid transparent;
+          z-index: 0;
+        }
+
+        h1 {
+          width: 100%;
+          z-index: 5;
+          min-width: 260px;
+          max-width: 370px;
+          font-size: 46px;
+          line-height: 52px;
+          font-family: Bitter, serif;
+          margin: 0 20% 0 7%;
+        }
+      }
+    }
   }
 
   .low-mock-up {

@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {PageContent, PageFile} from '../models/page';
+import {ApiFile} from "../models/file";
+import {HTMLSection} from "../models/sections";
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,11 @@ export class PageService {
     return this.http.post(environment.apiURL + '/pages/' + pageName + '/file', form).toPromise();
   }
 
-  public updatePicturesConfigAboutPage(pageName: string, files: PageFile[]) {
+  public updatePicturesConfigAboutPage(pageName: string, files: ApiFile[]) {
     return this.http.post(environment.apiURL + '/pages/' + pageName + '/files-config', files).toPromise();
   }
 
-  public updatePageContent(pageName: string, content: PageContent) {
-    return this.http.post(environment.apiURL + '/pages/' + pageName + '/' + content.id, content).toPromise();
+  public updateHtmlContent(pageName: string, html: HTMLSection) {
+    return this.http.post(environment.apiURL + '/pages/' + pageName + '/' + html.id, html).toPromise();
   }
 }

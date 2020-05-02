@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FaqService} from '../../services/faq.service';
-import {Category, CategoryAdd, CategoryUpdate, Faq, Question, QuestionAdd, QuestionUpdate} from '../../models/pageFaq';
+import {Category, FAQPage, Question} from '../../models/pageFaq';
 
 
 @Component({
@@ -10,7 +10,6 @@ import {Category, CategoryAdd, CategoryUpdate, Faq, Question, QuestionAdd, Quest
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
-
   categories: Category[];
   questions: Question[];
   intro: string;
@@ -23,28 +22,23 @@ export class FaqComponent implements OnInit {
   categoryForm: FormGroup;
   categorieAdd: boolean;
   panelOpenState: boolean;
-
-  private onApiError(err) {
-    console.error(err);
-  }
+  faqSectionId: number;
 
   constructor(private fb: FormBuilder, private faqService: FaqService) {
-    this.questionListOE = new Array<Question>();
-    this.categoryListOE = new Array<Category>();
-    this.categoriesAddQuestion = new Array<number>();
+    this.questionListOE = [];
+    this.categoryListOE = [];
+    this.categoriesAddQuestion = [];
     this.categorieAdd = false;
     this.panelOpenState = false;
   }
 
-  async getFaq() {
-    await this.faqService.getFAQ().then((resp: any) => {
-      const respObj = new Faq(resp);
-      this.categories = <Category[]>respObj.sections[1].categories;
-      this.intro = (new DOMParser().parseFromString(respObj.sections[0].html, "text/xml")).firstChild.textContent;
-    }, err => {
-      this.onApiError(err);
-    });
-    //this.sortQuestions();
+  getFaq() {
+    this.faqService.getFAQ().then((resp: any) => {
+      const respObj = new FAQPage(resp);
+      this.faqSectionId = respObj.sections['main-faq'].id;
+      this.categories = respObj.sections['main-faq'].categories;
+      this.intro = respObj.sections['faq-intro'].html;
+    }, console.error);
   }
 
   async ngOnInit() {
@@ -67,7 +61,7 @@ export class FaqComponent implements OnInit {
 
   // Function for buttons
 
-  //________________CATEGORIES___________
+  // ________________CATEGORIES___________
 
   categoryModifZone(categorie) {
     // Affichage de la zone de modification
@@ -88,30 +82,30 @@ export class FaqComponent implements OnInit {
     }
     categorie.name = this.modifCategoryForm.value.modifCategoryName;
 
-    var categorieUpdate = new CategoryUpdate();
-    categorieUpdate.id = categorie.id;
-    categorieUpdate.name = categorie.name;
-    categorieUpdate.description = categorie.description;
-    categorieUpdate.sectionId = 7;
-
-    this.faqService.updateCategory(categorieUpdate).toPromise().then(
-      res => {
-        var index = this.categories.indexOf(categorie);
-        this.categories.splice(index, 1, res);
-        return res;
-      }).catch();
+    const categorieUpdate = <Category> {
+      id: categorie.id,
+      name: categorie.name,
+      description: categorie.description,
+      sectionId: this.faqSectionId
+    };
 
     const index = this.categoryListOE.indexOf(categorie);
     this.categoryListOE.splice(index, 1);
+
+    this.faqService.updateCategory(categorieUpdate).toPromise().then(
+      res => {
+        this.categories.splice(index, 1, res);
+        return res;
+      }).catch(console.error);
   }
 
   // Suppression d'une categorie
   deleteCategory(categorie) {
     this.faqService.deleteCategory(categorie).toPromise().then(
       res => {
-        this.categories = this.categories.filter(category => category.id != categorie.id);
+        this.categories = this.categories.filter(category => category.id !== categorie.id);
         return res;
-      }).catch();
+      }).catch(console.error);
   }
 
   // Ajout d'une categorie
@@ -130,19 +124,18 @@ export class FaqComponent implements OnInit {
       alert("Vous devez écrire une catégorie");
       return;
     }
-    var newCategory = new CategoryAdd();
-    newCategory.name = this.categoryForm.value.newCategoryName;
-    newCategory.description = null;
-    newCategory.sectionId = 7;
-    var result = this.faqService.addCategory(newCategory).toPromise().then(
+    const newCategory = <Category> {
+      name: this.categoryForm.value.newCategoryName,
+      sectionId: this.faqSectionId
+    };
+    this.faqService.addCategory(newCategory).toPromise().then(
       res => {
         this.categories.push(res);
-        return res;
-      }).catch();
+      }).catch(console.error);
     this.categorieAdd = false;
   }
 
-  //________________QUESTIONS____________
+  // ________________QUESTIONS____________
 
   // Modifications des questions
   questionZoneEdit(question) {
@@ -159,23 +152,24 @@ export class FaqComponent implements OnInit {
       this.modifQuestionForm.value.modifAnswer = question.answer;
     }
 
-    var questionUpdate = new QuestionUpdate();
-    questionUpdate.id = question.id;
-    questionUpdate.answer = this.modifQuestionForm.value.modifAnswer;
-    questionUpdate.question = this.modifQuestionForm.value.modifQuestion;
-    questionUpdate.categoryId = categorie.id;
+    const questionUpdate = <Question> {
+      id: question.id,
+      answer: this.modifQuestionForm.value.modifAnswer,
+      question: this.modifQuestionForm.value.modifQuestion,
+      categoryId: categorie.id,
+    };
     this.faqService.updateQuestion(questionUpdate).toPromise().then(
       res => {
         var index = this.categories.indexOf(categorie);
         categorie.questions.forEach(questionFor => {
-          if (questionFor.id == questionUpdate.id) {
+          if (questionFor.id === questionUpdate.id) {
             var index2 = categorie.questions.indexOf(questionFor);
             categorie.questions.splice(index2, 1, res);
           }
         });
         this.categories.splice(index, 1, categorie);
         return res;
-      }).catch();
+      }).catch(console.error);
 
     const index = this.questionListOE.indexOf(question);
     this.questionListOE.splice(index, 1);
@@ -195,7 +189,7 @@ export class FaqComponent implements OnInit {
         categorie.questions = categorie.questions.filter(questionFor => questionFor.id != question.id);
         this.categories.splice(index, 1, categorie);
         return res;
-      }).catch();
+      }).catch(console.error);
   }
 
 
@@ -215,7 +209,7 @@ export class FaqComponent implements OnInit {
       alert("Vous devez écrire une réponse");
       return;
     }
-    var newQuestion = new QuestionAdd();
+    var newQuestion = new Question();
     newQuestion.question = this.questionForm.value.newQuestion;
     newQuestion.answer = this.questionForm.value.newAnswer;
     newQuestion.categoryId = categorie.id;
@@ -225,7 +219,7 @@ export class FaqComponent implements OnInit {
         categorie.questions.push(res);
         this.categories.splice(index, 1, categorie);
         return res;
-      }).catch();
+      }).catch(console.error);
 
     // Fais disparaitre l'espace d'édition d'une nouvelle question
     const index = this.categoriesAddQuestion.indexOf(categorie.id);
@@ -238,19 +232,9 @@ export class FaqComponent implements OnInit {
     this.categoriesAddQuestion.splice(index, 1);
   }
 
-  //________________Position des Questions___________
+  // ________________Position des Questions___________
 
   /*
-  sortQuestions() {
-    for(let c of this.categories) {
-      var index = 0;
-      for(let q of c.questions) {
-        q.id = index;
-        index++;
-      }
-    }
-  }
-
   questionDownward(categorie, question) {
     // Monter question
     console.log("Vous avez appuyer sur down!");

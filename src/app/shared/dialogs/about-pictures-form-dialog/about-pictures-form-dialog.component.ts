@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {PageFile} from '../../../models/page';
 import {PageService} from '../../../services/page.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ApiFile} from "../../../models/file";
 
 @Component({
   selector: 'app-about-pictures-form-dialog',
@@ -15,7 +15,7 @@ export class AboutPicturesFormDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
-      filesIn: PageFile[]
+      filesIn: ApiFile[]
     },
     private pageService: PageService,
     private fb: FormBuilder
@@ -41,11 +41,11 @@ export class AboutPicturesFormDialogComponent implements OnInit {
 
   }
 
-  private createPictureForm(file?: PageFile) {
+  private createPictureForm(file?: ApiFile) {
     if (file) {
       this.fb.group({
-        'caption': [file.options.caption],
-        'contain': [file.options.backgroundSize === 'contain']
+        'caption': [file.config.caption],
+        'contain': [file.config.backgroundSize === 'contain']
       });
     } else {
       this.fb.group({

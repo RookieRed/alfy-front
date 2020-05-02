@@ -4,7 +4,7 @@ import {Moment} from 'moment';
 import {Address} from 'src/app/models/address';
 import {Study} from 'src/app/models/study';
 import {Project} from 'src/app/models/project';
-import {File} from 'src/app/models/file';
+import {ApiFile} from 'src/app/models/file';
 import {environment} from 'src/environments/environment';
 
 @Component({
@@ -25,8 +25,8 @@ export class ProfileViewComponent implements OnInit {
   private email: string;
   private phone: string;
   private role: string;
-  private profilePicture: File;
-  private coverPicture: File;
+  private profilePicture: ApiFile;
+  private coverPicture: ApiFile;
   private facebook: string;
   private linkedIn: string;
   private twitter: string;
@@ -76,8 +76,8 @@ export class ProfileViewComponent implements OnInit {
       this.email = <string>respObj.email;
       this.phone = <string>respObj.phone;
       this.role = <string>respObj.role;
-      this.profilePicture = <File>respObj.profilePicture;
-      this.coverPicture = <File>respObj.coverPicture;
+      this.profilePicture = <ApiFile>respObj.profilePicture;
+      this.coverPicture = <ApiFile>respObj.coverPicture;
       this.facebook = <string>respObj.facebook;
       this.linkedIn = <string>respObj.linkedIn;
       this.twitter = <string>respObj.twitter;

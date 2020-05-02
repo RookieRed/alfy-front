@@ -1,8 +1,9 @@
-export class File {
+export class ApiFile {
 
   name: string;
   path: string;
   fullPath: string;
+  config: any;
 
 
   constructor(obj?: { name?: string, path?: string, fullPath?: string }) {

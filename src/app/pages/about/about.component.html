@@ -1,16 +1,13 @@
 <!-- Conteneur générale en Colonne-->
 <div flexLayout="column" class="about-container">
   <!-- Carousel -->
-  <div class="caroussel">
-    <!-- editable-element
-    [hide]="backgroundImages.length == 0" (onEdit)="callback()"
-                      [class.no-background]="backgroundImages.length == 0"-->
+  <div class="caroussel alfy-presentation">
     <div class="main-title">
-      <slideshow #slideshow *ngIf="backgroundImages.length > 0"
+      <slideshow #slideshow *ngIf="backgroundImages?.length"
                  [autoPlay]="true" [height]="" [imageUrls]="backgroundImages" [lazyLoad]="false"
                  minHeight="500px" [showArrows]="true" arrowSize="30px" autoPlayInterval="8000">
       </slideshow>
-      <div *ngIf="backgroundImages.length === 0" class="voile">
+      <div *ngIf="!backgroundImages?.length" class="voile">
         <h1>Anciens du Lycée Fustel de Yaoundé</h1>
       </div>
     </div>
@@ -26,7 +23,7 @@
         <mat-card class="event">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"
-                 [ngStyle]="{'background': 'url('+ 'https://fustel-api.rookie.red' + e.photo.fullPath +')'}"
+                 [ngStyle]="{'background': 'url(' + e.photo.fullPath +')'}"
                  style="background-position: top center; background-size: cover;"></div>
             <mat-card-title>{{e.title}}</mat-card-title>
             <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
@@ -62,7 +59,7 @@
         </div>
 
         <div class="editor" *ngIf="editorBool">
-          <ckeditor [editor]="editor" (change)="onChange($event)" data="{{editorData}}">
+          <ckeditor [editor]="editor" (change)="onEditorChange($event)" data="{{editorData}}">
 
           </ckeditor>
           <div class="edit-button">
@@ -89,9 +86,7 @@
 
         <div class="logos">
           <div class="logo" *ngFor="let s of sponsorList">
-            <a href="{{s.link}}"><img
-              [ngStyle]="{'content': 'url('+ 'https://fustel-api.rookie.red' + s.photo.fullPath +')'}"
-              alt="Avatar Sponsor"></a>
+            <a href="{{s.link}}"><img src="{{s.photo.fullPath}}" alt="Avatar Sponsor"></a>
             <br/>
             <span>{{s.title}}</span>
           </div>
