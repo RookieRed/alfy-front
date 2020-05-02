@@ -10,7 +10,6 @@ import {BreakpointObserver} from '@angular/cdk/layout';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnChanges {
-
   isMenuOpened: boolean;
 
   shownMenuLinks: Link[] = [];
@@ -18,19 +17,17 @@ export class HeaderComponent implements OnInit, OnChanges {
     {link: '/about', name: 'Accueil'},
     {link: '/directory', name: 'Annuaire'},
     {link: '/admin/students', name: 'Gestion des utilisateurs'},
-    {link: '/profile/edit', name: 'Mon compte'},
+    {link: '/profile/me', name: 'Mon Profil'},
     {link: '/signout', name: 'Se déconnecter'},
     {link: '/signin', name: 'Se connecter'},
-    //{ link: '/profileview/{id}', name: 'Profil' },
     // { link: '/signup', name: 'Inscription' },
   ];
 
   readonly tabsLinks: Link[] = [
     {link: '/about', name: 'Accueil'},
     {link: '/association', name: 'L\'association'},
-    {link: '/high-school', name: 'Le lycée'},
     {link: '/faq', name: 'FAQ'},
-    {link: '/profileview/{id}', name: 'Profil'},
+    {link: '/profile/me', name: 'Mon Profil'},
   ];
   isSmallScreen: boolean;
 

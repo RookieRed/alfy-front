@@ -10,8 +10,8 @@ export class ProfileService {
   constructor(private http: HttpClient) {
   }
 
-  public getUser() {
-    return this.http.get(environment.apiURL + '/account/me').toPromise();
+  public getUser(who: string) {
+    return this.http.get(environment.apiURL + '/account/' + who).toPromise();
   }
 
 }

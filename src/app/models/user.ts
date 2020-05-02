@@ -26,6 +26,7 @@ export class User {
   projects: Project[];
   address: Address;
   password: string;
+  personalWebsite: string;
 
 
   constructor(obj?: { id: number, userName: string, firstName: string, lastName: string, birthDay: Date | Moment, email: string, phone: string, role: string, profilePicture: ApiFile, coverPicture: ApiFile, facebook: string, linkedIn: string, twitter: string, instagram: string, baccalaureate: string, studies: Study[], jobTitle: string, projects: Project[], address: Address, password: string }) {
@@ -52,4 +53,10 @@ export class User {
       this.password = obj.password;
     }
   }
+}
+
+export enum UserRoles {
+  ADMIN = 'ADMIN',
+  STUDENT = 'STUDENT',
+  TEACHER = 'TEACHER',
 }

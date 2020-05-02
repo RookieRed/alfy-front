@@ -14,12 +14,16 @@ export class AuthGuard implements CanActivate {
   private readonly unprotectedLinks: string[] = this.connectionLinks.concat([
     '/about',
     '/history',
+    '/association',
+    '/high-school',
+    '/profile/:who',
     '/fustel',
     '/faq',
   ]);
   private readonly userProtectedLinks: string[] = [
     '/directory',
     '/profile/edit',
+    '/profile/me',
     '/signout',
   ];
 

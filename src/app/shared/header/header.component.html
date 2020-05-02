@@ -13,7 +13,7 @@
     <div [fxHide.lt-md]="true" class="menu-tabs-link" fxLayout="column" fxLayoutAlign="flex-end flex-end">
       <nav mat-tab-nav-bar backgroundColor="primary" mat-align-tabs="center">
         <a mat-tab-link routerLinkActive="rla" #rla="routerLinkActive" [active]="rla.isActive"
-           *ngFor="let link of tabsLinks" [routerLink]="link.link">
+           *ngFor="let link of tabsLinks" [routerLink]="link.link" [ngClass]="{'hidden': !isEnabled(link.link)}">
           <div class="menu-tab-link">
             <span>{{ link.name }}</span>
           </div>

@@ -16,7 +16,8 @@
   }
 
   .title {
-    margin-right: 10% !important;
+    margin-right: 8% !important;
+    margin-left: 8% !important;
     margin-top: 10% !important;
 
     h1 {
@@ -32,124 +33,146 @@
 
     .timeline {
 
+      &:before {
+        left: 35px !important;
+      }
+
       .entry {
-        max-width: 270px !important;
         font-size: 90% !important;
+        margin-left: 10px;
 
         .body {
-          left: 36% !important;
+          margin-left: 50px !important;
 
           &:before {
             border: 6px solid $primary-darker !important;
-            left: -19% !important;
-
+            left: -30px !important;
           }
         }
       }
     }
   }
-
 }
 
-.container {
-  margin-top: 4%;
-  margin-bottom: 4%;
-  max-width: 200%;
+.loading-container {
+  background-color: white;
+}
 
-  .backround-picture {
-    position: relative;
-    height: 280px;
+.profile-view-container {
+  background-color: #eeeeee;
+
+  .container {
+    margin-top: 4%;
     margin-bottom: 4%;
-    background-size: 110%;
-    background-color: $accent;
-  }
+    min-height: 250px;
+    border-radius: 5px;
 
-  .profile-pic {
-    border-radius: 100%;
-    border-style: solid;
-    border-color: white;
-    background-color: $primary-darker;
-    border-width: 10px;
-    margin-top: 15%;
-    margin-left: 5%;
-    width: 200px;
-    height: 200px;
-  }
-
-  .title {
-    margin-left: 5%;
-
-    h1 {
-      margin-top: 12%;
-      font-size: 300%;
-    }
-
-    h2 {
-      font-size: 200%;
-      color: $primary-darker;
-      font-style: italic;
-    }
-
-    h3 {
-      font-size: 150%;
-      color: $primary-darker;
-      font-style: italic;
-    }
-  }
-
-  .informations {
-    $border-width: 10px;
-    $dot-diameter: 1px;
-    margin-bottom: 5%;
-    display: contents;
-
-    .title-info {
-      margin-left: 5%;
-      color: black;
-    }
-
-    .timeline {
-      //vertical line
+    .backround-picture {
       position: relative;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      width: 100%;
+      height: 280px;
+      margin-bottom: 4%;
+      background-color: $accent;
+      background-position: top center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-      &:before {
-        content: '';
-        position: absolute;
-        left: 12%;
-        height: 100%;
-        width: 4px;
-        background: $primary-darker;
-        z-index: 1;
+    .profile-pic {
+      border-radius: 100%;
+      border-style: solid;
+      border-color: white;
+      background-color: $primary-darker;
+      border-width: 10px;
+      margin-top: 15%;
+      margin-left: 5%;
+      width: 200px;
+      height: 200px;
+    }
+
+    .title {
+      margin-left: 4%;
+      margin-right: 4%;
+
+      h1 {
+        margin-top: 12%;
+        font-size: 300%;
       }
 
-      .entry {
-        text-align: left;
-        max-width: 80%;
+      h2 {
+        font-size: 200%;
+        color: $primary-darker;
+        font-style: italic;
+      }
 
-        .body {
-          position: relative;
-          left: 20%;
+      h3 {
+        font-size: 150%;
+        color: $primary-darker;
+        font-style: italic;
+      }
+    }
 
-          &:before {
-            //dots
-            content: '';
-            position: absolute;
-            width: $dot-diameter;
-            height: $dot-diameter;
-            border: $border-width solid $primary-darker;
-            border-radius: 100%;
-            top: 15%;
-            left: -5.8%;
-            z-index: 99;
+    .informations {
+      $border-width: 10px;
+      $dot-diameter: 1px;
+      margin-bottom: 5%;
+      display: contents;
+
+      .title-info {
+        margin-left: 5%;
+        color: black;
+      }
+
+      .timeline {
+        //vertical line
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 50px;
+          height: 100%;
+          width: 4px;
+          background: $primary-darker;
+        }
+
+        .entry {
+          .body {
+            position: relative;
+            margin-left: 100px;
+
+            &:before {
+              content: '';
+              position: absolute;
+              width: $dot-diameter;
+              height: $dot-diameter;
+              border: $border-width solid $primary-darker;
+              border-radius: 100%;
+              top: 15%;
+              left: -58px;
+            }
+
           }
 
         }
 
+        .empty-list-message {
+          width: 100%;
+          text-align: center;
+
+          span {
+            color: $accent;
+            font-size: 105%;
+            font-weight: bolder;
+          }
+        }
       }
     }
-  }
 
+    .action-buttons {
+      margin: 20px 0;
+    }
+  }
 }
