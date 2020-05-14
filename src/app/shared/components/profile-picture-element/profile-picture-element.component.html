@@ -1,0 +1,8 @@
+<div class="profile-picture" >
+  <div class="picture-border">
+    <img class="actual-picture" id="{{imgElementId}}" [src]="profilePictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
+    <div fxLayoutAlign="center center" class="loading-profile" [ngClass]="{blur: pictureIsLoading}">
+      <mat-progress-spinner *ngIf="pictureIsLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+    </div>
+  </div>
+</div>

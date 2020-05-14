@@ -7,7 +7,7 @@
     <div *ngIf="!isLoading">
       <div class="pictures">
         <div class="backround-picture" [ngStyle]="{'background-image': 'url('+ pathCoverPicture +')'}">
-          <img *ngIf="pathProfilePicture" class="profile-pic" src="{{ pathProfilePicture }}"/>
+          <app-profile-picture-element [src]="pathProfilePicture"></app-profile-picture-element>
         </div>
 
         <div fxLayout="column">

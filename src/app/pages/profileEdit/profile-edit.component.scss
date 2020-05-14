@@ -18,10 +18,45 @@
 
   .cover-photo-buttons-group {
     text-align: -webkit-right;
+
+    button {
+      z-index: 3;
+    }
   }
 
-  .background_picture {
+  .background-picture {
     margin-bottom: 3%;
+    position: relative;
+
+    .photo-buttons-group {
+      z-index: 4;
+    }
+
+    #cover-picture-view {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .loading-cover {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: white;
+      opacity: 0;
+      transition: 0.3s ease-in;
+
+      &.blur {
+        opacity: 0.7 !important;
+        filter: sepia(1);
+      }
+    }
   }
 
   .block {
@@ -42,7 +77,7 @@
       text-align: left;
       margin: 0;
       padding: 0 10px;
-      z-index: 3;
+      z-index: 4;
       color: $accent;
       font-size: 15px;
       line-height: 15px;
@@ -79,61 +114,13 @@
     flex-direction: column;
     width: 100%;
 
-    .profile-picture {
+    app-profile-picture-element {
       justify-content: center;
       align-items: flex-end;
       display: flex;
       margin-bottom: 10px;
-
-      .picture-border {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        width: 200px;
-        margin: 0;
-        padding: 0;
-        border: 3px solid #ddd;
-        border-radius: 200px;
-        overflow: hidden;
-        margin-top: 5%;
-
-        #profile-picture {
-          &.wide {
-            height: auto;
-            width: 105%;
-          }
-
-          &.tall {
-            height: 105%;
-            width: auto;
-          }
-        }
-
-        &.blur {
-          filter: blur(2px);
-        }
-
-        mat-progress-spinner {
-          position: absolute;
-        }
-      }
-
-      .photo-buttons-group {
-        left: -20px;
-        max-width: 40px;
-        overflow: visible;
-        display: flex;
-        position: relative;
-
-        .primary {
-          background-color: $primary;
-        }
-
-        button {
-          margin: 0 2px;
-        }
-      }
+      width: 250px;
+      height: 250px;
     }
   }
 
@@ -147,5 +134,6 @@
     display: flex;
     justify-self: center;
     align-self: center;
+    z-index: 4;
   }
 }

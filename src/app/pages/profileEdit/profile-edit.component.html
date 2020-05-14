@@ -6,38 +6,37 @@
       <div class="block">
         <h3>Infos perso</h3>
         <div class=" personal-infos">
-          <div class="background_picture" [ngStyle]="{'background': 'url('+ pathCoverPicture +')'}"
-               style="background-position: top center; background-size: cover;">
-            <div class="profile-picture">
-              <div class="picture-border" [ngClass]="{blur: pictureLoading}">
-                <img id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
-                <mat-progress-spinner *ngIf="pictureLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
-              </div>
-              <input id="photoPicker" (change)="onImageChange($event)" type="file" accept="image/*" hidden/>
+          <div class="background-picture" style="background-position: top center; background-size: cover;">
+            <img [src]="coverPictureSrc" alt="cover picture preview" id="cover-picture-view">
+            <div class="loading-cover" [ngClass]="{blur: pictureCoverLoading}"></div>
+            <div fxFlex="100%" fxLayoutAlign="center center" >
+              <app-profile-picture-element [src]="profilePictureSrc" [loading]="pictureProfileLoading"></app-profile-picture-element>
+              <input id="photoProfilePicker" (change)="onImageChange('profile', $event)" type="file" accept="image/*" hidden/>
               <div class="photo-buttons-group">
-                <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()">
+                <button mat-mini-fab *ngIf="uploadedProfilePicture == null" color="primary"  (click)="chosePicture('profile')">
                   <mat-icon>add_a_photo_alternate</mat-icon>
                 </button>
-                <button mat-mini-fab *ngIf="uploadedPicture != null" (click)="resetPicture()">
+                <button mat-mini-fab *ngIf="uploadedProfilePicture != null" (click)="resetPicture('profile')">
                   <mat-icon>cancel</mat-icon>
                 </button>
-                <button mat-mini-fab *ngIf="uploadedPicture != null" class="primary" (click)="uploadPicture()">
+                <button mat-mini-fab *ngIf="uploadedProfilePicture != null" color="primary"  (click)="uploadPicture('profile')">
                   <mat-icon>save</mat-icon>
                 </button>
               </div>
             </div>
             <div class="cover-photo-buttons-group">
-              <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()">
+              <input id="photoCoverPicker" (change)="onImageChange('cover', $event)" type="file" accept="image/*" hidden/>
+              <button mat-mini-fab *ngIf="uploadedCoverPicture == null" color="primary"  (click)="chosePicture('cover')">
                 <mat-icon>add_a_photo_alternate</mat-icon>
               </button>
-              <button mat-mini-fab *ngIf="uploadedPicture != null" (click)="resetPicture()">
+              <button mat-mini-fab *ngIf="uploadedCoverPicture != null" (click)="resetPicture('cover')">
                 <mat-icon>cancel</mat-icon>
               </button>
-              <button mat-mini-fab *ngIf="uploadedPicture != null" class="primary" (click)="uploadPicture()">
+              <button mat-mini-fab *ngIf="uploadedCoverPicture != null" color="primary"  (click)="uploadPicture('cover')">
                 <mat-icon>save</mat-icon>
               </button>
             </div>
-          </div>
+        </div>
           <div class="row">
             <mat-form-field>
               <input matInput formControlName="firstName" type="text" placeholder="Prenom"/>
@@ -196,11 +195,15 @@
 
       <div class="block submission">
         <p class="mat-error" *ngIf="error != null">{{ error }}</p>
-        <button mat-stroked-button color="primary" type="submit" (click)="onFormSubmit()" [disabled]="!form.valid">
-          Enregistrer
-        </button>
+        <div fxLayout="row" fxLayoutAlign="center space-even">
+          <a mat-raised-button color="accent" routerLink="/profile/me">Retour</a>
+          <button mat-stroked-button color="primary" type="submit" (click)="onFormSubmit()" [disabled]="!form.valid">
+            Enregistrer
+          </button>
+        </div>
       </div>
     </form>
   </div>
   <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="100"></mat-progress-spinner>
+  <p class="mat-error" *ngIf="error && form == null">{{ error }}</p>
 </div>

@@ -61,7 +61,7 @@ export class AccountService {
 
   public getConnectedUserId(): number {
     const id = localStorage.getItem('id');
-    return id === null ? null : +id;
+    return id === null ? null : + id;
   }
 
   public getMine(): Promise<any> {
@@ -72,10 +72,11 @@ export class AccountService {
     return this.http.get(environment.apiURL + '/account/my-info').toPromise();
   }
 
-  public updateProfilePicture(uploadedPicture: File) {
+  public updateUserPicture(type: 'cover' | 'profile', uploadedPicture: File) {
     const formData = new FormData();
     formData.append('picture', uploadedPicture, uploadedPicture.name);
-    return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
+    const target = type === 'profile' ? '/account/pictures' : '/account/cover-pictures';
+    return this.http.post(environment.apiURL + target, formData).toPromise();
   }
 
   public deleteAccount(user?: any): Promise<any> {

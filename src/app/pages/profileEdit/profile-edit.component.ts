@@ -21,15 +21,20 @@ import {HttpErrorResponse} from "../../../../node_modules/@angular/common/http";
   ]
 })
 export class ProfileEditComponent implements OnInit {
+  private static readonly DEFAULT_PROFILE_PICTURE_SRC: string = '/assets/img/default-avatar.png';
+  private static readonly DEFAULT_COVER_PICTURE_SRC: string = '/assets/img/default-cover.png';
 
   form: FormGroup;
   addressForm: FormGroup;
   securityForm: FormGroup;
   error: string;
   loading: boolean;
-  pictureLoading: boolean;
-  uploadedPicture: File;
-  pictureSrc: string;
+  pictureProfileLoading: boolean;
+  pictureCoverLoading: boolean;
+  uploadedProfilePicture: File;
+  uploadedCoverPicture: File;
+  profilePictureSrc: string;
+  coverPictureSrc: string;
   pictureIsWide: boolean;
   profileError: string;
   passwordError: string;
@@ -38,8 +43,6 @@ export class ProfileEditComponent implements OnInit {
   private passwordOK: boolean;
   private oldUser: User;
   private userAddress: Address;
-
-  private static readonly DEFAULT_PICTURE_SRC: string = '/assets/img/default-avatar.png';
 
   /*----------------------------
    *  INIT
@@ -52,8 +55,10 @@ export class ProfileEditComponent implements OnInit {
     private dialog: MatDialog,
   ) {
     this.loading = true;
-    this.pictureLoading = true;
-    this.uploadedPicture = null;
+    this.pictureProfileLoading = true;
+    this.pictureCoverLoading = true;
+    this.uploadedProfilePicture = null;
+    this.uploadedCoverPicture = null;
     this.pictureIsWide = false;
     this.passwordOK = false;
     this.error = null;
@@ -66,13 +71,14 @@ export class ProfileEditComponent implements OnInit {
     try {
       this.oldUser = await (this.accountService.getMine());
       this.loading = false;
-      this.pathCoverPicture = environment.apiURL + this.oldUser.coverPicture.fullPath;
-
+      this.pathCoverPicture = this.getInitialPictureSrc("cover");
     } catch (e) {
+      console.error(e);
       this.form = null;
       this.error = e.toString();
       this.loading = false;
-      this.pictureLoading = false;
+      this.pictureProfileLoading = false;
+      this.pictureCoverLoading = false;
       return;
     }
 
@@ -87,7 +93,7 @@ export class ProfileEditComponent implements OnInit {
       birthDay: [this.oldUser.birthDay, Validators.required],
       phone: [this.oldUser.phone],
       email: [this.oldUser.email],
-      //address: this.addressForm,
+      // address: this.addressForm,
       security: this.securityForm,
       facebook: [this.oldUser.facebook],
       instagram: [this.oldUser.instagram],
@@ -98,8 +104,10 @@ export class ProfileEditComponent implements OnInit {
       address: [this.oldUser.address],
     });
 
-    this.pictureSrc = this.getInitialPictureSrc();
-    this.setLoadingPicture();
+    this.profilePictureSrc = this.getInitialPictureSrc('profile');
+    this.coverPictureSrc = this.getInitialPictureSrc('cover');
+    this.setLoadingPicture('cover');
+    this.setLoadingPicture('profile');
   }
 
   private resetForm() {
@@ -135,8 +143,8 @@ export class ProfileEditComponent implements OnInit {
       const userBean = new User(Object.assign({}, this.form.value));
 
       // Password check
-      if (this.passwordOK && this.securityForm.value.newPassword != null && this.securityForm.value.newPassword != ''
-        && this.securityForm.value.newPassword == this.securityForm.value.passwordConfirm) {
+      if (this.passwordOK && this.securityForm.value.newPassword != null && this.securityForm.value.newPassword !== ''
+        && this.securityForm.value.newPassword === this.securityForm.value.passwordConfirm) {
         userBean.password = this.securityForm.value.newPassword;
       } else {
         delete userBean.password;
@@ -148,9 +156,6 @@ export class ProfileEditComponent implements OnInit {
       } else {
         userBean.address = this.userAddress;
       }
-
-      // Social check
-
 
       // Send form to API
       this.accountService.update(userBean)
@@ -180,6 +185,10 @@ export class ProfileEditComponent implements OnInit {
     }
   }
 
+  onSecurityFormSubmit() {
+
+  }
+
   checkUsername() {
     const input = this.form.value.username;
     if (input !== this.oldUser.username && input.length > 0) {
@@ -188,7 +197,7 @@ export class ProfileEditComponent implements OnInit {
       this.accountService.isUsernameTaken(input)
         .then(() => {
           this.form.get('username').setErrors(null);
-          if (this.profileError == loginTaken || this.profileError == serverError) {
+          if (this.profileError === loginTaken || this.profileError === serverError) {
             this.profileError = null;
           }
         }, (httpError: HttpErrorResponse) => {
@@ -206,34 +215,55 @@ export class ProfileEditComponent implements OnInit {
    *  Profile picture
    -----------------------------*/
 
-  choseAPicture() {
-    document.getElementById('photoPicker').click();
-  }
-
-  onImageChange(e) {
-    if (e.target.files.length > 0) {
-      this.setLoadingPicture();
-      this.uploadedPicture = e.target.files[0];
-      const fr = new FileReader();
-      fr.onload = () => {
-        this.pictureSrc = fr.result.toString();
-      };
-      fr.readAsDataURL(this.uploadedPicture);
+  chosePicture(type: 'cover' | 'profile') {
+    if (type === 'cover') {
+      document.getElementById('photoCoverPicker').click();
+    } else {
+      document.getElementById('photoProfilePicker').click();
     }
   }
 
-  uploadPicture() {
-    this.setLoadingPicture();
-    this.accountService.updateProfilePicture(this.uploadedPicture)
+  onImageChange(type: 'cover' | 'profile', e) {
+    if (e.target.files.length > 0) {
+      this.setLoadingPicture(type);
+      if (type === 'profile') {
+        this.uploadedProfilePicture = e.target.files[0];
+      } else {
+        this.uploadedCoverPicture = e.target.files[0];
+      }
+      const fr = new FileReader();
+      fr.onload = () => {
+        if (type === 'profile') {
+          this.profilePictureSrc = fr.result.toString();
+        } else {
+          this.coverPictureSrc = fr.result.toString();
+        }
+      };
+      fr.readAsDataURL(type === 'profile' ? this.uploadedProfilePicture : this.uploadedCoverPicture);
+    }
+    console.log(this);
+  }
+
+  uploadPicture(type: 'cover' | 'profile') {
+    this.setLoadingPicture(type);
+    this.accountService.updateUserPicture(type,
+      type === 'profile' ? this.uploadedProfilePicture : this.uploadedCoverPicture)
       .then(newImage => {
-          this.uploadedPicture = null;
-          this.oldUser.profilePicture = (<any>newImage);
-          this.pictureSrc = this.getInitialPictureSrc();
+          if (type === 'profile') {
+            this.uploadedProfilePicture = null;
+            this.oldUser.profilePicture = (<any>newImage);
+            this.profilePictureSrc = this.getInitialPictureSrc(type);
+          } else {
+            this.uploadedCoverPicture = null;
+            this.oldUser.coverPicture = (<any>newImage);
+            this.coverPictureSrc = this.getInitialPictureSrc(type);
+          }
+          const typeLabel = type === 'cover' ? 'couverture' : 'profil';
           this.dialog.open(SimpleDialogComponent, {
             width: '400px',
             data: {
-              title: 'Photo de profil enregistrée',
-              message: 'Votre photo de profil a bien été enregistrée'
+              title: 'Photo de ' + typeLabel + ' enregistrée',
+              message: 'Votre photo de ' + typeLabel + ' a bien été enregistrée'
             }
           });
         },
@@ -246,34 +276,57 @@ export class ProfileEditComponent implements OnInit {
               type: 'error',
             }
           }).afterClosed().subscribe(() => {
-            this.resetPicture();
+            this.resetPicture(type);
           });
         });
   }
 
-  resetPicture() {
-    this.uploadedPicture = null;
-    this.pictureSrc = this.getInitialPictureSrc();
-    this.setLoadingPicture();
+  resetPicture(type: 'cover' | 'profile') {
+    const initialPictureSrc = this.getInitialPictureSrc(type);
+    if (type === 'profile') {
+      this.uploadedProfilePicture = null;
+      this.profilePictureSrc = initialPictureSrc;
+    } else {
+      this.uploadedCoverPicture = null;
+      this.coverPictureSrc = initialPictureSrc;
+    }
+    this.setLoadingPicture(type);
   }
 
-  private getInitialPictureSrc() {
-    if (this.oldUser.profilePicture != null) {
+  private getInitialPictureSrc(type: 'cover' | 'profile') {
+    if (this.oldUser.profilePicture != null && type === 'profile') {
       return environment.apiURL + '/' + this.oldUser.profilePicture.path + this.oldUser.profilePicture.name;
     }
-    return ProfileEditComponent.DEFAULT_PICTURE_SRC;
+    if (this.oldUser.coverPicture != null && type === 'cover') {
+      return environment.apiURL + '/' + this.oldUser.coverPicture.fullPath;
+    }
+    return type === 'profile'
+      ? ProfileEditComponent.DEFAULT_PROFILE_PICTURE_SRC
+      : ProfileEditComponent.DEFAULT_COVER_PICTURE_SRC;
   }
 
-  private setLoadingPicture() {
-    this.pictureLoading = true;
-    const pictureElem = <HTMLImageElement>document.getElementById('profile-picture');
+  private setLoadingPicture(type: 'cover' | 'profile') {
+    if (type === 'profile') {
+      this.pictureProfileLoading = true;
+    } else {
+      this.pictureCoverLoading = true;
+    }
+    const pictureElem = <HTMLImageElement>document.getElementById(type + '-picture');
     if (pictureElem != null) {
       pictureElem.onload = () => {
         this.pictureIsWide = pictureElem.naturalWidth / pictureElem.naturalHeight < 1;
-        this.pictureLoading = false;
+        if (type === 'profile') {
+          this.pictureProfileLoading = false;
+        } else {
+          this.pictureCoverLoading = false;
+        }
       };
     } else {
-      this.pictureLoading = false;
+      if (type === 'profile') {
+        this.pictureProfileLoading = false;
+      } else {
+        this.pictureCoverLoading = false;
+      }
     }
   }
 
@@ -287,14 +340,14 @@ export class ProfileEditComponent implements OnInit {
       || (this.userAddress.region != null && this.userAddress.region.length)
       || (this.userAddress.city != null && this.userAddress.city.length)
       || this.userAddress.country != null) {
-      if (this.userAddress.line1 == null || this.userAddress.line1.length == 0) {
+      if (this.userAddress.line1 == null || this.userAddress.line1.length === 0) {
         this.addressForm.controls.line1.setErrors({invalid: true});
         this.profileError = "Ligne 1 de l'adrese erronnée";
       } else {
         this.addressForm.controls.line1.setErrors(null);
         this.profileError = null;
       }
-      if (this.userAddress.city == null || this.userAddress.city.length == 0) {
+      if (this.userAddress.city == null || this.userAddress.city.length === 0) {
         this.addressForm.controls.city.setErrors({invalid: true});
         this.profileError = "Veuillez renseigner le champs ville";
       } else {
@@ -333,7 +386,7 @@ export class ProfileEditComponent implements OnInit {
 
   checkCurrentPassword() {
     const password = this.securityForm.value.password;
-    if (password != '') {
+    if (password) {
       this.accountService.checkCredentials(this.oldUser.username, password)
         .then(resp => {
             this.passwordError = null;
@@ -352,13 +405,13 @@ export class ProfileEditComponent implements OnInit {
     const password = this.securityForm.value.password;
     const newPassword = this.securityForm.value.newPassword;
     const passwordConfirm = this.securityForm.value.passwordConfirm;
-    if (password == '' || !this.passwordOK && (newPassword != '' || passwordConfirm != '')) {
+    if (password || !this.passwordOK && (newPassword || passwordConfirm)) {
       this.passwordError = "Veuillez renseinger votre mot de passe actuel";
       this.securityForm.controls.password.setErrors({invalid: true});
-    } else if (password == '' && newPassword == '' && passwordConfirm == '') {
+    } else if (password && newPassword && passwordConfirm) {
       this.passwordError = null;
     } else if (this.passwordOK) {
-      if (newPassword != passwordConfirm) {
+      if (newPassword !== passwordConfirm) {
         this.passwordError = "Les deux mots de passes sont différents";
       } else {
         this.passwordError = null;

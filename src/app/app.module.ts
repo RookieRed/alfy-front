@@ -51,7 +51,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {PageIsBuildingComponent} from './pages/page-is-building/page-is-building.component';
 import {AssociationComponent} from './pages/association/association.component';
 import {HighSchoolComponent} from './pages/high-school/high-school.component';
-import {EditableElementComponent} from './shared/components/editable-element/editable-element.component';
 import {AboutPicturesFormDialogComponent} from './shared/dialogs/about-pictures-form-dialog/about-pictures-form-dialog.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {FooterComponent} from './shared/footer/footer.component';
@@ -59,6 +58,7 @@ import {FaqComponent} from './pages/faq/faq.component';
 import {ActivitiesComponent} from './pages/activities/activities.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ProfileViewComponent} from './pages/profile-view/profile-view.component';
+import { ProfilePictureElementComponent } from './shared/components/profile-picture-element/profile-picture-element.component';
 
 @NgModule({
   declarations: [
@@ -79,12 +79,12 @@ import {ProfileViewComponent} from './pages/profile-view/profile-view.component'
     PageIsBuildingComponent,
     AssociationComponent,
     HighSchoolComponent,
-    EditableElementComponent,
     AboutPicturesFormDialogComponent,
     FooterComponent,
     FaqComponent,
     ActivitiesComponent,
     ProfileViewComponent,
+    ProfilePictureElementComponent,
   ],
   entryComponents: [
     SimpleDialogComponent,

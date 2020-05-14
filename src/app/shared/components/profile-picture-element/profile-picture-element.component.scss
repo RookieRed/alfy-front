@@ -1,0 +1,73 @@
+@import "src/styles";
+
+@media only screen and (max-width: 600px) {
+  .profile-picture {
+    max-width: 180px;
+    max-height: 180px;
+
+    .picture-border {
+      border-width: 3px;
+    }
+  }
+}
+
+.profile-picture {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  .picture-border {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: white;
+    padding: 0;
+    border: 5px solid #ddd;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-top: 5%;
+    z-index: 3;
+    overflow: hidden;
+
+    img.actual-picture {
+      z-index: 3;
+
+      &.wide {
+        height: auto;
+        width: 105%;
+      }
+
+      &.tall {
+        height: 105%;
+        width: auto;
+      }
+    }
+
+    .loading-profile {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      transition: 0.3s ease-in background-color;
+
+      &.blur {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      mat-progress-spinner {
+        position: absolute;
+        z-index: 5;
+      }
+    }
+  }
+}

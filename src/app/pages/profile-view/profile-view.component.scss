@@ -11,7 +11,7 @@
     height: 210px !important;
   }
 
-  .profile-pic {
+  app-profile-picture-element {
     margin-top: 14% !important;
   }
 
@@ -77,16 +77,12 @@
       background-repeat: no-repeat;
     }
 
-    .profile-pic {
-      border-radius: 100%;
-      border-style: solid;
-      border-color: white;
-      background-color: $primary-darker;
-      border-width: 10px;
-      margin-top: 15%;
-      margin-left: 5%;
-      width: 200px;
-      height: 200px;
+    app-profile-picture-element {
+      top: 15%;
+      left: 5%;
+      width: 280px;
+      height: 280px;
+      position: absolute;
     }
 
     .title {
