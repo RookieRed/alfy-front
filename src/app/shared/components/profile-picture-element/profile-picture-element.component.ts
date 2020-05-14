@@ -7,11 +7,11 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 })
 export class ProfilePictureElementComponent implements OnInit, OnChanges {
   @Input("src")
-  profilePictureSrc: string;
+  public profilePictureSrc: string;
   @Input("loading")
-  pictureIsLoading = false;
-  pictureIsWide = false;
-  private readonly imgElementId = "profile-picture" + ("" + Math.random()).substr(0, 4);
+  public pictureIsLoading = false;
+  public pictureIsWide = false;
+  public readonly imgElementId = "profile-picture" + ("" + Math.random()).substr(0, 4);
 
   constructor() { }
 

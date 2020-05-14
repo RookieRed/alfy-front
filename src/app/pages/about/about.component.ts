@@ -16,17 +16,16 @@ import {PageService} from "../../services/page.service";
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
   public isLoading = true;
   public editor = ClassicEditor;
-  private editorBool = false;
-  private editorData: string;
-  private intro: HTMLSection;
-  private evenements: EventTile[];
-  private sponsorList: EventTile[];
+  public editorData: string;
+  public intro: HTMLSection;
+  public evenements: EventTile[];
+  public sponsorList: EventTile[];
+  public backgroundImages: string[];
+  public editorBool = false;
+  public readonly isAdmin: boolean;
 
-  private backgroundImages: string[];
-  private readonly isAdmin: boolean;
   private readonly pageName = 'about';
 
   constructor(
