@@ -1,5 +1,8 @@
 <!-- Conteneur générale en Colonne-->
 <div flexLayout="column" class="about-container">
+  <div *ngIf="isLoading" class="loading-blur">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </div>
   <!-- Carousel -->
   <div class="caroussel alfy-presentation">
     <div class="main-title">
@@ -17,27 +20,30 @@
   <div class="low-mock-up" fxLayout="row">
     <!-- Agenda -->
     <div fxFlex="25" class="agenda" #actions>
-      <h2 class="title">Agenda</h2>
-
-      <div class="box" *ngFor="let e of evenements">
-        <mat-card class="event">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"
-                 [ngStyle]="{'background': 'url(' + e.photo.fullPath +')'}"
-                 style="background-position: top center; background-size: cover;"></div>
-            <mat-card-title>{{e.title}}</mat-card-title>
-            <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p> {{e.description}} </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Consulter l'evenement</button>
-          </mat-card-actions>
-        </mat-card>
+      <iframe
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Falfyaounde%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+        width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+        allowTransparency="true" allow="encrypted-media"></iframe>
+      <div>
+        <h2 class="title">Agenda</h2>
+        <div class="box" *ngFor="let e of evenements">
+          <mat-card class="event">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"
+                   [ngStyle]="{'background': 'url(' + e.photo.fullPath +')'}"
+                   style="background-position: top center; background-size: cover;"></div>
+              <mat-card-title>{{e.title}}</mat-card-title>
+              <mat-card-subtitle>{{e.date}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p> {{e.description}} </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button>Consulter l'evenement</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
       </div>
-      <br/>
-
     </div>
 
     <!-- Troisième conteneur en colonne -->
@@ -54,7 +60,7 @@
             </p>
           </div>
           <div class="edit-button">
-            <button mat-raised-button (click)="showEditor()">Editer la présentation</button>
+            <button *ngIf="isAdmin" mat-raised-button (click)="showEditor()">Editer la présentation</button>
           </div>
         </div>
 
@@ -67,16 +73,6 @@
           </div>
         </div>
 
-      </div>
-      <!-- Actualité -->
-      <div fxFlex="auto" class="actualites">
-        <div class="title">
-          <h2>Actualites</h2>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Falfyaounde%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-            width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-            allowTransparency="true" allow="encrypted-media"></iframe>
-        </div>
       </div>
       <!-- Partenaire -->
       <div class="partenaires">

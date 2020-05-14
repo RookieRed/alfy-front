@@ -28,7 +28,8 @@ export class PageService {
     return this.http.post(environment.apiURL + '/pages/' + pageName + '/files-config', files).toPromise();
   }
 
-  public updateHtmlContent(pageName: string, html: HTMLSection) {
-    return this.http.post(environment.apiURL + '/pages/' + pageName + '/' + html.id, html).toPromise();
+  public updateHtmlContent(section: HTMLSection) {
+    const payload = { id: section.id, html: section.html, title: section.title };
+    return this.http.put(environment.apiURL + '/pages-sections/html/' + section.id, payload).toPromise();
   }
 }

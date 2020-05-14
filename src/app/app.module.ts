@@ -21,7 +21,7 @@ import {
   MatListModule,
   MatNativeDateModule,
   MatOptionModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule,
@@ -124,6 +124,7 @@ import { ProfilePictureElementComponent } from './shared/components/profile-pict
     MatExpansionModule,
     MatCheckboxModule,
     CKEditorModule,
+    MatProgressBarModule,
   ],
   providers: [
     {
