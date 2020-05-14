@@ -1,96 +1,209 @@
 <div [ngClass]="{'profile-container': true, 'loading': loading}">
   <h1>Mon compte</h1>
   <div *ngIf="!loading && form != null">
-  <form [formGroup]="form">
+    <form [formGroup]="form">
 
-    <div class="block">
-      <h3>Infos perso</h3>
-      <div class=" personal-infos">
-        <div class="profile-picture">
-          <div class="picture-border" [ngClass]="{blur: pictureLoading}">
-            <img id="profile-picture" [src]="pictureSrc" [ngClass]="{wide: pictureIsWide, tall: !pictureIsWide}">
-            <mat-progress-spinner *ngIf="pictureLoading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+      <div class="block">
+        <h3>Infos perso</h3>
+        <div class=" personal-infos">
+          <div class="background-picture" style="background-position: top center; background-size: cover;">
+            <img [src]="coverPictureSrc" alt="cover picture preview" id="cover-picture-view">
+            <div class="loading-cover" [ngClass]="{blur: pictureCoverLoading}"></div>
+            <div fxFlex="100%" fxLayoutAlign="center center" >
+              <app-profile-picture-element [src]="profilePictureSrc" [loading]="pictureProfileLoading"></app-profile-picture-element>
+              <input id="photoProfilePicker" (change)="onImageChange('profile', $event)" type="file" accept="image/*" hidden/>
+              <div class="photo-buttons-group">
+                <button mat-mini-fab *ngIf="uploadedProfilePicture == null" color="primary"  (click)="chosePicture('profile')">
+                  <mat-icon>add_a_photo_alternate</mat-icon>
+                </button>
+                <button mat-mini-fab *ngIf="uploadedProfilePicture != null" (click)="resetPicture('profile')">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+                <button mat-mini-fab *ngIf="uploadedProfilePicture != null" color="primary"  (click)="uploadPicture('profile')">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="cover-photo-buttons-group">
+              <input id="photoCoverPicker" (change)="onImageChange('cover', $event)" type="file" accept="image/*" hidden/>
+              <button mat-mini-fab *ngIf="uploadedCoverPicture == null" color="primary"  (click)="chosePicture('cover')">
+                <mat-icon>add_a_photo_alternate</mat-icon>
+              </button>
+              <button mat-mini-fab *ngIf="uploadedCoverPicture != null" (click)="resetPicture('cover')">
+                <mat-icon>cancel</mat-icon>
+              </button>
+              <button mat-mini-fab *ngIf="uploadedCoverPicture != null" color="primary"  (click)="uploadPicture('cover')">
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+        </div>
+          <div class="row">
+            <mat-form-field>
+              <input matInput formControlName="firstName" type="text" placeholder="Prenom"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="lastName" type="text" placeholder="Nom"/>
+            </mat-form-field>
           </div>
-          <input id="photoPicker" (change)="onImageChange($event)" type="file" accept="image/*" hidden />
-          <div class="photo-buttons-group">
-            <button mat-mini-fab *ngIf="uploadedPicture == null" class="primary" (click)="choseAPicture()"><mat-icon>add_a_photo_alternate</mat-icon></button>
-            <button mat-mini-fab *ngIf="uploadedPicture != null" (click)="resetPicture()"><mat-icon>cancel</mat-icon></button>
-            <button mat-mini-fab *ngIf="uploadedPicture != null" class="primary" (click)="uploadPicture()"><mat-icon>save</mat-icon></button>
+          <div class="row">
+            <mat-form-field>
+              <input matInput (keyup)="checkUsername()" formControlName="username" type="text" class="username"
+                     placeholder="Pseudo"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="birthDay"
+                     [matDatepicker]="picker" placeholder="Date de naissance">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <app-address-form [form]="addressForm" (address)="onAddressChanged($event)"></app-address-form>
+          <p *ngIf="profileError != null" class="mat-error">{{ profileError }}</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Infos pro</h3>
+        <div class="professional">
+          <mat-form-field>
+            <input matInput type="text" formControlName="baccalaureate" placeholder="Bac réalisé"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" formControlName="jobTitle" placeholder="Poste actuel"/>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Sécurité</h3>
+        <p class="info">Vous pouvez changer de mot de passe ici.</p>
+        <div class="security">
+          <div class="row">
+            <mat-form-field>
+              <input (change)="checkCurrentPassword()" matInput [formControl]="securityForm.controls.password"
+                     type="password" placeholder="Mot de passe actuel"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input (input)="onNewPasswordsChanges()" matInput placeholder="Nouveau mot de passe" type="password"
+                     name="newPassword" [formControl]="securityForm.controls.newPassword"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input (input)="onNewPasswordsChanges()" matInput placeholder="Confirmation" type="password"
+                     name="password" [formControl]="securityForm.controls.passwordConfirm"/>
+            </mat-form-field>
+          </div>
+          <p class="mat-error" *ngIf="passwordError != null">{{ passwordError }}</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Contacts / Social</h3>
+        <p class="info">Renseignez vos profils sur les réseaux sociaux.</p>
+        <div class="social">
+          <div class="row">
+            <mat-form-field>
+              <input matInput placeholder="Téléphone" type="text" name="phone" formControlName="phone"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Mail" type="text" name="email" formControlName="email"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input matInput placeholder="Instagram" type="text" name="instagram" formControlName="instagram"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Facebook" type="text" name="facebook" formControlName="facebook"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input matInput placeholder="LinkedIn" type="text" name="linkedIn" formControlName="linkedIn"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Twitter" type="text" name="password" formControlName="twitter"/>
+            </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <mat-form-field>
-            <input  matInput formControlName="firstName" type="text" placeholder="Prenom"/>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="lastName" type="text" placeholder="Nom"/>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input matInput (keyup)="checkUsername()" formControlName="username" type="text" class="username" placeholder="Pseudo"/>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="birthDay"
-                   [matDatepicker]="picker" placeholder="Date de naissance">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <app-address-form [form]="addressForm" (address)="onAddressChanged($event)"></app-address-form>
-        <p *ngIf="profileError != null" class="mat-error">{{ profileError }}</p>
       </div>
-    </div>
 
-    <div class="block">
-      <h3>Sécurité</h3>
-      <p class="info">Vous pouvez changer de mot de passe ici.</p>
-      <div class="security">
-        <div class="row">
-          <mat-form-field>
-            <input (change)="checkCurrentPassword()" matInput [formControl]="securityForm.controls.password" type="password" placeholder="Mot de passe actuel"/>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input (input)="onNewPasswordsChanges()" matInput placeholder="Nouveau mot de passe" type="password" name="newPassword" [formControl]="securityForm.controls.newPassword"/>
-          </mat-form-field>
-          <mat-form-field>
-            <input (input)="onNewPasswordsChanges()" matInput placeholder="Confirmation" type="password" name="password" [formControl]="securityForm.controls.passwordConfirm"/>
-          </mat-form-field>
-        </div>
-        <p class="mat-error" *ngIf="passwordError != null">{{ passwordError }}</p>
-      </div>
-    </div>
+      <div class="block">
+        <h3>Études</h3>
+        <div class="studies">
+          <div class="row">
+            <mat-form-field>
+              <input matInput type="text" placeholder="École"/>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Diplôme"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input matInput type="number" placeholder="Année de début" min="1980"/>
+            </mat-form-field>
 
-    <div class="block">
-      <h3>Contacts / Social</h3>
-      <p class="info">Renseignez vos profils sur les réseaux sociaux.</p>
-      <div class="social">
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="Téléphone" type="text" name="phone" formControlName="phone"/>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Facebook" type="text" name="facebook" formControlName="facebook"/>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field>
-            <input matInput placeholder="LinkedIn" type="text" name="linkedIn" formControlName="linkedIn"/>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Twitter" type="text" name="password" formControlName="twitter"/>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Année de fin" min="1980"/>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </div>
+          <button mat-icon-button>
+            <mat-icon>
+              add_circle_outline
+            </mat-icon>
+          </button>
         </div>
       </div>
-    </div>
 
-    <div class="block submission">
-      <p class="mat-error" *ngIf="error != null">{{ error }}</p>
-      <button mat-stroked-button color="primary" type="submit" (click)="onFormSubmit()" [disabled]="!form.valid">Enregistrer</button>
-    </div>
-  </form>
+
+      <div class="block">
+        <h3>Projets</h3>
+        <div class="projects">
+          <div class="row">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Nom"/>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input matInput type="number" placeholder="Année de début" min="1980"/>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="number" placeholder="Année de fin" min="1980"/>
+            </mat-form-field>
+          </div>
+          <button mat-icon-button>
+            <mat-icon>
+              add_circle_outline
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="block submission">
+        <p class="mat-error" *ngIf="error != null">{{ error }}</p>
+        <div fxLayout="row" fxLayoutAlign="center space-even">
+          <a mat-raised-button color="accent" routerLink="/profile/me">Retour</a>
+          <button mat-stroked-button color="primary" type="submit" (click)="onFormSubmit()" [disabled]="!form.valid">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
   <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="100"></mat-progress-spinner>
+  <p class="mat-error" *ngIf="error && form == null">{{ error }}</p>
 </div>

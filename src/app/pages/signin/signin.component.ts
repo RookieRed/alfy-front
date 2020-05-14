@@ -1,6 +1,6 @@
-import {Component, NgModule, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import { AccountService } from "../../services/account.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.style.background = "url('../../../assets/img/connection-background.jpg') no-repeat 0 0";
-    document.body.style.backgroundSize = "100%";
+    document.body.style.backgroundSize = "auto";
   }
 
   ngOnDestroy() {

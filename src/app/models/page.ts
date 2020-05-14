@@ -1,18 +1,14 @@
+import {User} from "./user";
+import {Section} from "./sections";
 
-export class PageInfo {
-  public title: string;
-  public contents: PageContent[];
-  public files: PageFile[];
+export class TimedWritableContent {
+  createdAt?: Date;
+  updatedAt?: Date;
+  lastWriter?: User;
 }
 
-export class PageContent {
-  public id: number;
-  public title: string;
-  public html: string;
-}
-
-export class PageFile {
-  public id: number;
-  public path: string;
-  public options: any;
+export class Page extends TimedWritableContent {
+  title: string;
+  // Mapping { "code-section-a": SectionA, "code-section-b": SectionB, ... }
+  sections: { [key: string]: Section };
 }

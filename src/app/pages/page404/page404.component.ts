@@ -10,7 +10,8 @@ export class Page404Component implements OnInit, OnDestroy {
 
   constructor(
     private title: Title
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.title.setTitle('ALFY : page introuvable');

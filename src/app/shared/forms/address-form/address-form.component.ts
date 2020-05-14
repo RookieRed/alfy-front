@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Address} from "../../../models/address";
 import {Country} from "../../../models/country";
 import {AddressService} from "../../../services/address.service";
-import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-address-form',
@@ -43,7 +42,7 @@ export class AddressFormComponent implements OnInit {
         },
         (err) => {
           console.error(err);
-      });
+        });
   }
 
   onInputChanges() {

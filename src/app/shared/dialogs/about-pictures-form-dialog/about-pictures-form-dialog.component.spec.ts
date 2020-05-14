@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AboutPicturesFormDialogComponent } from './about-pictures-form-dialog.component';
+import {AboutPicturesFormDialogComponent} from './about-pictures-form-dialog.component';
 
 describe('AboutPicturesFormDialogComponent', () => {
   let component: AboutPicturesFormDialogComponent;
@@ -8,9 +8,9 @@ describe('AboutPicturesFormDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutPicturesFormDialogComponent ]
+      declarations: [AboutPicturesFormDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

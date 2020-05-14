@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 
@@ -7,7 +7,8 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor() {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const jwt = localStorage.getItem('jwt');

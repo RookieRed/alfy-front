@@ -55,6 +55,9 @@
           "configurations": {
             "production": {
               "browserTarget": "front:build:production"
+            },
+            "local": {
+              "browserTarget": "front:build:local"
             }
           }
         },

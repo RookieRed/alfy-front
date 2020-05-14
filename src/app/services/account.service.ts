@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 import {User} from "../models/user";
 
 @Injectable({
@@ -33,8 +33,10 @@ export class AccountService {
 
   public setSession(jwt: string) {
     localStorage.setItem('jwt', jwt);
-    this.getUser('me').then(apiResponse => {
-      localStorage.setItem('jwt', jwt);
+    this.getUserInfo().then(apiResponse => {
+      for (const attr in apiResponse) {
+        localStorage.setItem(attr, apiResponse[attr]);
+      }
     }, err => {
       console.error(err);
       this.signOut();
@@ -49,14 +51,32 @@ export class AccountService {
     return localStorage.getItem('jwt') != null;
   }
 
+  public getConnectedUserRole(): string {
+    return localStorage.getItem('role');
+  }
+
+  public getConnectedUsername(): string {
+    return localStorage.getItem('username');
+  }
+
+  public getConnectedUserId(): number {
+    const id = localStorage.getItem('id');
+    return id === null ? null : + id;
+  }
+
   public getMine(): Promise<any> {
     return this.http.get(environment.apiURL + '/account/me').toPromise();
   }
 
-  public updateProfilePicture(uploadedPicture: File) {
+  public getUserInfo(): Promise<any> {
+    return this.http.get(environment.apiURL + '/account/my-info').toPromise();
+  }
+
+  public updateUserPicture(type: 'cover' | 'profile', uploadedPicture: File) {
     const formData = new FormData();
     formData.append('picture', uploadedPicture, uploadedPicture.name);
-    return this.http.post(environment.apiURL + '/account/pictures', formData).toPromise();
+    const target = type === 'profile' ? '/account/pictures' : '/account/cover-pictures';
+    return this.http.post(environment.apiURL + target, formData).toPromise();
   }
 
   public deleteAccount(user?: any): Promise<any> {
@@ -65,7 +85,7 @@ export class AccountService {
   }
 
   public update(userBean: User): Promise<any> {
-    const payload = <any> Object.assign({}, userBean);
+    const payload = <any>Object.assign({}, userBean);
     delete payload.profilePicture;
     delete payload.role;
     if (payload.password == null || payload.password.length === 0) {
@@ -103,7 +123,7 @@ export class AccountService {
     }
 
     // Sending
-    return this.http.post(environment.apiURL + '/account/me', payload).toPromise();
+    return this.http.post(environment.apiURL + '/account/my-info', payload).toPromise();
   }
 
   isUsernameTaken(username: string): Promise<any> {

@@ -4,39 +4,56 @@
   <div class="row">
     <div class="search-container">
       <mat-form-field>
-        <input matInput class="search-input" [(ngModel)]="searchValue" (input)="onSearchChange()" type="text" placeholder="Rechercher...">
+        <input matInput class="search-input" [(ngModel)]="searchValue" (input)="onSearchChange()" type="text"
+               placeholder="Rechercher...">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
     <div class="admin-buttons" *ngIf="isAdmin">
       <h4>Importer des étudiants</h4>
-      <input #importButton (input)="onImportChange($event)" type="file" hidden accept=".xlsx, .xls, .csv" />
+      <input #importButton (input)="onImportChange($event)" type="file" hidden accept=".xlsx, .xls, .csv"/>
       <button mat-raised-button color="accent" (click)="downloadModel()"
-              matTooltip="Télécharger le modèle d'import"><mat-icon>save_alt</mat-icon>Télécharger le modèle</button>
+              matTooltip="Télécharger le modèle d'import">
+        <mat-icon>save_alt</mat-icon>
+        Télécharger le modèle
+      </button>
       <button mat-raised-button color="primary" (click)="importButton.click()"
-              matTooltip="Importer une liste d'élèves en fichier Excel"><mat-icon>open_in_browser</mat-icon>Importer</button>
+              matTooltip="Importer une liste d'élèves en fichier Excel">
+        <mat-icon>open_in_browser</mat-icon>
+        Importer
+      </button>
     </div>
   </div>
   <div class="results-info">
-    <button (click)="previousPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage > 1)">
-            <mat-icon>skip_previous</mat-icon>
+    <button (click)="previousPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous"
+            [disabled]="!(pagination.currentPage > 1)">
+      <mat-icon>skip_previous</mat-icon>
     </button>
     <div class="blank-filler"></div>
     <div class="nb-result">Nombre de résultats : {{ nbResults }}</div>
-    <div *ngIf="pagination.totalPages != null" class="pages-info">Page : {{ pagination.currentPage }} / {{ pagination.totalPages }}</div>
+    <div *ngIf="pagination.totalPages != null" class="pages-info">Page : {{ pagination.currentPage }}
+      / {{ pagination.totalPages }}</div>
     <div class="blank-filler"></div>
-    <button (click)="nextPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous" [disabled]="!(pagination.currentPage < pagination.totalPages)">
+    <button (click)="nextPage()" *ngIf="pagination.totalPages != null" mat-icon-button class="pagination-previous"
+            [disabled]="!(pagination.currentPage < pagination.totalPages)">
       <mat-icon>skip_next</mat-icon>
     </button>
   </div>
   <mat-list *ngIf="students.length > 0">
     <mat-list-item class="student-item" *ngFor="let u of students">
-      <div routerLink="/profile/{{u.id}}" class="student-info student-avatar"><img [src]="getProfilePictureURL(u)"/></div>
-      <div routerLink="/profile/{{u.id}}" class="student-info student-name">{{ u.firstName }} {{ u.lastName | case: 'up' }}</div>
-      <div routerLink="/profile/{{u.id}}" class="student-info student-username" *ngIf="u.username != null">@{{ u.username }}</div>
+      <div routerLink="/profile/{{u.id}}" class="student-info student-avatar"><img [src]="getProfilePictureURL(u)"/>
+      </div>
+      <div routerLink="/profile/{{u.id}}"
+           class="student-info student-name">{{ u.firstName }} {{ u.lastName | case: 'up' }}</div>
+      <div routerLink="/profile/{{u.id}}" class="student-info student-username" *ngIf="u.username != null">
+        @{{ u.username }}</div>
       <div class="blank-filler"></div>
-      <button class="admin-button" mat-mini-fab routerLink="/profile/edit/{{u.id}}" *ngIf="isAdmin"><mat-icon>edit</mat-icon></button>
-      <button class="admin-button" mat-mini-fab (click)="deleteUser(u)" *ngIf="isAdmin"><mat-icon>delete</mat-icon></button>
+      <button class="admin-button" mat-mini-fab routerLink="/profile/edit/{{u.id}}" *ngIf="isAdmin">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button class="admin-button" mat-mini-fab (click)="deleteUser(u)" *ngIf="isAdmin">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-list-item>
   </mat-list>
   <div class="errors-container" *ngIf="students.length == 0">

@@ -1,4 +1,4 @@
-import { CasePipe } from './case.pipe';
+import {CasePipe} from './case.pipe';
 
 describe('CasePipe', () => {
   it('create an instance', () => {

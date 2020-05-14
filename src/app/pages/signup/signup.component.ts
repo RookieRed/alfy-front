@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {AccountService} from "../../services/account.service";
 import {Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {HttpErrorResponse} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ import {HttpErrorResponse} from '@angular/common/http';
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ]
 })
+
 export class SignupComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
@@ -24,6 +26,16 @@ export class SignupComponent implements OnInit, OnDestroy {
   error: string;
   loading: boolean;
   userMatchOnServer: User;
+  raisons = new FormControl();
+  raisonList: string[] = ['Pour développer mon réseau',
+    'Pour chercher des futurs partenaires',
+    'Pour s’informer sur les dernières actualités de l’association',
+    'Pour chercher des futurs stagiaires',
+    'Pour trouver des opportunités de travail',
+    'Pour retrouver des anciens élèves',
+    'Autre'];
+  textZone: boolean;
+  selectedOther: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +49,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       firstName: ['', Validators.compose([Validators.required])],
       lastName: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
+      emailConfirm: ['', Validators.compose([Validators.required, Validators.email])],
+      bacYear: ['', Validators.compose([Validators.required])],
       birthDay: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       passwordConfirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -44,6 +58,21 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.adapter.setLocale('fr-FR');
     this.calendarStartDate = new Date('2000-01-01');
     this.loading = false;
+    this.textZone = false;
+    this.selectedOther = false;
+  }
+
+  public textZoneMotivation(other) {
+    if ('Autre' === other) {
+      if (this.selectedOther) {
+        this.textZone = false;
+        this.selectedOther = false;
+      } else {
+        this.textZone = true;
+        this.selectedOther = true;
+      }
+    }
+    //debugger
   }
 
   public submitForm() {
@@ -52,6 +81,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
       if (val.password !== val.passwordConfirm) {
         this.error = "Les deux mots de passes ne sont pas identiques";
+        return;
+      }
+      if (val.email !== val.emailConfirm) {
+        this.error = "Les deux adresses mail ne sont pas identiques";
         return;
       }
 
@@ -102,7 +135,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.style.background = "url('../../../assets/img/connection-background.jpg') no-repeat 0 0";
-    document.body.style.backgroundSize = "100%";
+    document.body.style.backgroundSize = "auto";
   }
 
   ngOnDestroy() {

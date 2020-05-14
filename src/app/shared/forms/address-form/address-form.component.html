@@ -1,15 +1,18 @@
 <div class="address-container">
   <div class="row">
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line1" ([ngModel])="address.line1" placeholder="Adresse" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.line1"
+             ([ngModel])="address.line1" placeholder="Adresse"/>
     </mat-form-field>
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.city" ([ngModel])="address.city" placeholder="Ville" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.city"
+             ([ngModel])="address.city" placeholder="Ville"/>
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field>
-      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.region" ([ngModel])="address.region" placeholder="Région" />
+      <input type="text" (input)="onInputChanges()" matInput [formControl]="form.controls.region"
+             ([ngModel])="address.region" placeholder="Région"/>
     </mat-form-field>
     <mat-form-field>
       <mat-select aria-placeholder="Sélectionner un pays" [formControl]="form.controls.countryId">

@@ -2,305 +2,238 @@
 
 $padding: 11%;
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
-  .about-container .content{
-    display: flex;
-    flex-direction: column;
-
+  .content {
     .logo-alfy {
       max-height: 240px !important;
       width: auto;
-      margin: 0 auto !important;
       top: 0 !important;
     }
   }
+
+  .agenda {
+    max-width: 100% !important;
+  }
+
+  .low-right-mock-up {
+    max-width: 100% !important;
+  }
+
+  .low-mock-up {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+}
+
+h2 {
+  font-size: 30px;
 }
 
 .about-container {
+  position: relative;
   display: flex;
   flex-direction: column;
+  background-color: $accent-lighter;
 
-  .row {
-    display: flex;
-    padding: 0 $padding;
-    align-content: center;
-    flex-direction: column;
+  .loading-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 
-    .title {
-      margin: 25px 0;
+  .caroussel {
+    //margin: 2%;
+    border-radius: 3%;
+  }
 
-      h2 {
-        margin: 0;
-      }
-    }
+  .alfy-presentation {
+    background-color: white;
 
-    .content {
-      margin: 0 0 25px;
-      line-height: 23px;
-      font-size: 17px;
-    }
-
-    &.alfy-presentation {
-      background-color: white;
-
-      .main-title {
-        position: relative;
-        display: flex;
-        justify-content: flex-end;
-        flex-flow: column;
-        height: 500px;
-        width: 100% * ( 1 / 0.78 );
-        left: 11% * ( -1 / 0.78 );
-
-        &.no-background {
-          background-image: url('/assets/img/fustel.jpg');
-          background-size: cover;
-          background-color: $accent-lighter;
-          background-repeat: no-repeat;
-          background-position: center center;
-        }
-
-        .voile {
-          position: relative;
-          height: 100%;
-          display: flex;
-          align-items: flex-end;
-          padding-bottom: 20px;
-          padding-right: 50%;
-          width: 100%;
-          font-weight: bolder;
-          box-sizing: border-box;
-          overflow: hidden;
-
-          &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 0;
-            width: 0;
-            border-bottom: 330px solid rgba(255,255,255,0.7);
-            border-right: 800px solid transparent;
-            z-index: 0;
-          }
-
-          h1 {
-            width: 100%;
-            z-index: 5;
-            min-width: 260px;
-            max-width: 370px;
-            font-size: 46px;
-            line-height: 52px;
-            font-family: Bitter, serif;
-            margin: 0 20% 0 7%;
-          }
-        }
-      }
-
-      .logo-alfy {
-        position: relative;
-        top: -25px;
-        max-height: 230px;
-        margin: -15px 8% 0 25px;
-      }
-    }
-
-    &.goals-container {
+    .main-title {
+      position: relative;
       display: flex;
-      flex-direction: column;
+      justify-content: flex-end;
+      flex-flow: column;
+      min-height: 500px;
+      background: url('/assets/img/fustel.jpg') no-repeat 50% 50%;
+      background-origin: border-box;
+      background-size: cover;
+      box-sizing: border-box;
 
-      h3 {
-        margin-bottom: 30px;
-      }
-
-      .goals-content {
+      .voile {
+        position: relative;
+        height: 100%;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        align-items: flex-end;
+        padding-bottom: 20px;
+        padding-right: 50%;
+        width: 100%;
+        font-weight: bolder;
+        box-sizing: border-box;
+        overflow: hidden;
 
-        .goal {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          flex: 1;
-          min-width: 200px;
-          margin: 10px;
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 0;
+          width: 0;
+          border-bottom: 330px solid rgba(255,255,255,0.7);
+          border-right: 800px solid transparent;
+          z-index: 0;
+        }
 
-          h4 {
-            font-size: 23px;
-            margin: 15px 0;
-          }
-
-          img {
-            height: 100px;
-            width: auto;
-          }
+        h1 {
+          width: 100%;
+          z-index: 5;
+          min-width: 260px;
+          max-width: 370px;
+          font-size: 46px;
+          line-height: 52px;
+          font-family: Bitter, serif;
+          margin: 0 20% 0 7%;
         }
       }
     }
+  }
 
-    &.goals-container, &.alfy-contacts {
-      background-color: $accent-darker;
-      color: white;
-      z-index: 2;
+  .low-mock-up {
+    display: flex;
+    flex-direction: row;
+    position: relative;
 
-      &:before, &:after {
-        display: block;
-        position: relative;
-        content: "";
-        width: 100% * (1 / 0.78);
-        left: 11% * (-1 / 0.78);
-        height: 24px;
-        background: url(/assets/img/shadow.png) no-repeat top center;
-        background-size: contain;
-      }
-
-      &:before {
+    .agenda {
+      @media only screen and (min-width: 768px) {
+        position: absolute;
         top: 0;
+        bottom: 0;
+        left: 0;
+        right: 64%;
+      }
+      overflow-y: auto;
+      background-color: $accent-lighter;
+      margin: 2%;
+
+      .title {
+        color: black;
       }
 
-      &:after {
-        bottom: 0;
-        transform: rotate(180deg);
+      .event {
+        border-radius: 20px;
+        background-color: white;
+
+        mat-card-actions {
+          button {
+            background-color: white;
+          }
+        }
+      }
+
+      .example-header-image {
+        background-image: url("/assets/img/logo-alfy.jpg");
+        background-size: cover;
       }
 
       .title {
-        margin-top: 10px;
+        text-align: center;
+      }
+
+      .box {
+        text-align: center;
+        color: white;
+        padding: 10px;
+        width: 70%;
+        margin: auto;
+      }
+
+      .test {
+        font-size: 100;
       }
     }
 
-    &.alfy-actions {
-      $gutter: 30px;
-      $border-width: 5px;
-      $dot-diameter: 8px;
-
-      display: flex;
-      justify-content: center;
-
-      * {
-        box-sizing: border-box;
+    .low-right-mock-up {
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      flex-grow: 0;
+      @media only screen and (min-width: 768px) {
+        margin-left: 36%;
       }
 
-      .timeline {
-        width: 100%;
-        max-width: 800px;
-        padding: 20px 0;
-        position: relative;
-        margin: 0 auto 30px;
-
-        &:before {
-          content: '';
-          position: absolute;
-          top: -15px;
-          left: calc( 34% - 3px );
-          height: calc( 100% + 45px );
-          bottom: 0;
-          width: 4px;
-          background: $accent-darker;
-          z-index: 1;
-        }
-      }
-
-      .entry {
-        text-align: left;
-        display: flex;
-        align-items: baseline;
+      .presentation {
+        margin: 2%;
+        margin-top: 4%;
+        background-color: $accent-lighter;
+        //border-radius: 3%;
 
         .title {
-          float: left;
-          flex: 34%;
-          padding-right: $gutter;
-          text-align: right;
-          position: relative;
-          margin: 0 !important;
-
-          &:before {
-            content: '';
-            position: absolute;
-            width: $dot-diameter;
-            height: $dot-diameter;
-            border: $border-width solid $warn;
-            background-color: #fff;
-            border-radius:100%;
-            top: 15%;
-            right: -$dot-diameter - 0.5px;
-            z-index: 99;
-          }
-
-          h3 {
-            margin: 0;
-            font-size: 120%;
-
-            @media only screen and (max-width: 500px) {
-              font-size: 100% !important;
-            }
-          }
-
-          p {
-            margin: 0;
-            font-size: 100%;
-          }
+          margin: 20px;
         }
 
-        .body {
-          margin: 0 0 20px;
-          float: right;
-          width: 66%;
-          padding-left: $gutter;
+        .content {
+          margin: 30px;
+          font-size: 20px;
 
-          p:first-child {
-            margin-top: 0;
-            font-weight: 400;
-            margin-bottom: 10px;
+          .logo-alfy {
+            position: relative; // ou static
+            top: -25px;
+            max-height: 200px;
+            margin: 30px;
+            border-radius: 100%;
           }
 
-          ul {
-            color: $accent;
-            padding-left: 0;
-            list-style-type: none;
-            font-size: 16px;
-            margin: 10px 0;
-
-            li:before {
-              content: "–";
-              margin-right: .5em;
-            }
+          .edit-button {
+            margin: 30px;
           }
         }
       }
-    }
 
-    &.alfy-contacts {
+      .actualites {
+        background-color: $accent-darker;
+        margin: 2%;
+        //border-radius: 3%;
+        margin-right: 2%;
 
-      .content {
-        top: 24px;
+        .title {
+          margin: 20px;
+          color: white;
+        }
+      }
 
-        .flex-rows {
+      .partenaires {
+        margin: 2%;
+        background-color: $accent-lighter;
+        overflow-x: auto;
+        //border-radius: 3%;
+        max-width: 1400px;
+
+        .title {
+          margin: 20px;
+        }
+
+        .logos {
           display: flex;
-          width: 100%;
-          font-size: 22px;
-          line-height: 22px;
-          flex-wrap: wrap;
+          text-align: center;
+          margin: 30px;
+          white-space: nowrap;
 
-          div {
-            display: flex;
-            flex: 1;
-            min-width: 200px;
-            justify-content: center;
-            margin: 10px 0;
-          }
 
-          mat-icon {
-            margin-right: 15px;
-            height: 22px;
+          img {
+            position: relative; // ou static
+            max-height: 100px;
+            border-radius: 50%;
+            margin: 30px 30px;
           }
         }
       }
     }
   }
+
 }

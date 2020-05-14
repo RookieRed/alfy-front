@@ -1,7 +1,10 @@
 <div id="app-container">
-  <mat-toolbar class="app-toolbar" color="primary" fxLayout="row" fxLayoutAlign.gt-md="space-between center" fxLayoutAlign.lt-md="flex-start center">
+  <mat-toolbar class="app-toolbar" color="primary" fxLayout="row" fxLayoutAlign.gt-md="space-between center"
+               fxLayoutAlign.lt-md="flex-start center">
     <div fxLayout="row" fxLayoutAlign="flex-start center">
-      <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <h1 *ngIf="!isSmallScreen" routerLink="/about">Anciens du Lycée Français de Yaoundé (ALFY)</h1>
       <h1 *ngIf="isSmallScreen" routerLink="/about">ALFY</h1>
     </div>
@@ -10,29 +13,33 @@
     <div [fxHide.lt-md]="true" class="menu-tabs-link" fxLayout="column" fxLayoutAlign="flex-end flex-end">
       <nav mat-tab-nav-bar backgroundColor="primary" mat-align-tabs="center">
         <a mat-tab-link routerLinkActive="rla" #rla="routerLinkActive" [active]="rla.isActive"
-           *ngFor="let link of tabsLinks" [routerLink]="link.link">
+           *ngFor="let link of tabsLinks" [routerLink]="link.link" [ngClass]="{'hidden': !isEnabled(link.link)}">
           <div class="menu-tab-link">
             <span>{{ link.name }}</span>
           </div>
         </a>
       </nav>
     </div>
-<!--    <button mat-stroked-button *ngIf="isConnected()" (click)="signout()">Déconnexion</button>-->
-<!--    <button mat-stroked-button *ngIf="!isConnected()" routerLink="/signin">Connexion</button>-->
+    <!--    <button mat-stroked-button *ngIf="isConnected()" (click)="signout()">Déconnexion</button>-->
+    <!--    <button mat-stroked-button *ngIf="!isConnected()" routerLink="/signin">Connexion</button>-->
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav-menu" mode="over" [(opened)]="isMenuOpened">
       <mat-nav-list>
-        <mat-list-item routerLink="{{ link.link }}" (click)="toggleMenu()" *ngFor="let link of shownMenuLinks" [ngClass]="{'hidden': !isEnabled(link.link)}">
+        <mat-list-item routerLink="{{ link.link }}" (click)="toggleMenu()" *ngFor="let link of shownMenuLinks"
+                       [ngClass]="{'hidden': !isEnabled(link.link)}">
           <a matLine>{{ link.name }}</a>
         </mat-list-item>
       </mat-nav-list>
-      <div id="copyright">&copy; <a target="_blank" style="color: black; text-decoration: none;" href="https://www.rookie.red/?&source=alfy">Rookie<b style="color:red;">Red</b></a></div>
+      <div id="copyright">&copy; <a target="_blank" style="color: black; text-decoration: none;"
+                                    href="https://www.rookie.red/?&source=alfy">Rookie<b style="color:red;">Red</b></a>
+      </div>
     </mat-sidenav>
 
     <mat-sidenav-content id="app-content">
       <router-outlet></router-outlet>
+      <app-footer></app-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

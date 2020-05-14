@@ -15,14 +15,14 @@ $header-height: 65px;
   max-width: 100%;
 
   &::selection {
-    background-color: $primary;
+    background-color: $accent-lighter;
   }
 
   .app-toolbar {
     height: $header-height;
     position: fixed;
     padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 100;
 
     mat-icon {
@@ -95,4 +95,8 @@ $header-height: 65px;
       padding: 0;
     }
   }
+}
+
+.hidden {
+  display: none;
 }
