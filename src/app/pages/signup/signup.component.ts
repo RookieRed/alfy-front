@@ -36,6 +36,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     'Autre'];
   textZone: boolean;
   selectedOther: boolean;
+  selected: any;
 
   constructor(
     private fb: FormBuilder,

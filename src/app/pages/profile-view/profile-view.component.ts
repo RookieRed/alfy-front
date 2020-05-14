@@ -12,12 +12,12 @@ import {AccountService} from "../../services/account.service";
 })
 export class ProfileViewComponent implements OnInit, OnDestroy {
 
+  public isLoading: boolean;
   private id: Number;
   private user: User = <User> {};
   private age: string;
   private pathProfilePicture: string;
   private pathCoverPicture: string;
-  private isLoading: boolean;
   private who: string;
 
   constructor(
