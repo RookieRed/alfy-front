@@ -30,7 +30,7 @@
     "ajv": "^6.11.0",
     "core-js": "^2.6.11",
     "flag-icon-css": "^3.4.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng-simple-slideshow": "^1.2.9",
     "ngx-mat-select-search": "^1.8.0",
     "rxjs": "6.2.2",
